@@ -6,6 +6,6 @@
 1. ng add @angular/material
 2. ngxs-store, ngxs-logger-plugin for (state management)
 3. npm i @ngxs/storage-plugin for (persist state)
-4. ngx-translate/core, ngx-translate/http-loader for (language changes)
+4. npm i ngx-translate/core, ngx-translate/http-loader for (language changes)
 5. npm install ngx-skeleton-loader for skeleton loaders
 6. nmp install lottie-web ngx-lottie for animations

@@ -1,0 +1,38 @@
+{
+  "titles": {
+    "notificationPanel": "දැනුම්දීම් පැනලය",
+    "mainMenu": "ප්‍රධාන මෙනුව",
+    "dashboard": "උපකරණ පුවරුව",
+    "settings": "සැකසුම්",
+    "helps": "උදව්",
+    "registration": "ලියාපදිංචිය",
+    "students": "සිසුන්",
+    "teachers": "ගුරුවරුන්",
+    "staff": "කාර්ය මණ්ඩලය",
+    "classes": "පන්ති",
+
+    "testtitle": "මෙය පරීක්ෂණ මාතෘකාවයි",
+    "one": "එක",
+    "two": "දෙක",
+    "three": "තුන",
+    "four": "හතර"
+  },
+
+  "tooltips": {
+    "notifications": "දැනුම්දීම්",
+    "close": "වසන්න"
+  },
+
+  "alert-messages": {
+  
+  },
+  
+  "labels": {
+    "search": "සොයන්න",
+    "itemsPerPage": "පිටුවකට අයිතම"
+  },
+
+  "error-messages": {
+    
+  }
+}

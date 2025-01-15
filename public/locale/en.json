@@ -1,0 +1,56 @@
+{
+  "titles": {
+    "areYouSureYouWantToDelete": "Are you sure you want to delete this item?"
+  },
+
+  "tooltips": {
+    "backToGallery": "Back to gallery"
+  },
+
+  "alerts": {
+    "common": {
+      "noPermissionToDelete": "You don't have permission to delete this item"
+    },
+    "success": {
+      "loginSuccessful": "Login successful",
+      "vehicleCreated": "Vehicle created",
+      "vehicleUpdated": "Vehicle updated"
+    },
+    "failed": {
+      "incorrectUsernamePassword": "Incorrect Username or Password!"
+    }
+  },
+
+  "notifications": {
+    "newTickets": "You have new tickets"
+  },
+  
+  "labels": {
+    "buttons": {
+      "about": "ABOUT"
+    },
+    "forms": {
+      "description": "Description"
+    }
+  },
+
+  "errors": {
+    "required": "This field is required",
+    "minlength": "Minimum length is {{min}} characters",
+    "maxlength": "Maximum length is {{max}} characters",
+    "min": "Minimum value is {{min}}",
+    "email": "Please enter a valid email address"
+  },
+
+  "contents": {
+    "featureNotActivated": "This feature is not activated for you."
+  },
+
+  "subscriptionMessage": {
+    "greeting": "Dear customer,",
+    "expired": "Your subscription has ended, and access to the system has been temporarily suspended.<br>To restore access and continue using our services, please renew your subscription at your earliest convenience.<br>For assistance with the renewal process, contact our support team.",
+    "nearingEnd": "Your subscription is nearing its end. You have <strong>only {{ remainDates }} days remaining</strong> until your current subscription period expires. To avoid any interruption in your service, please renew your subscription as soon as possible. If you have any questions or need assistance with the renewal process, please contact our support team.",
+    "closing": "Thank you for your continued trust in our services.",
+    "signature": "Best regards,<br>CJNextGenSys"
+  }
+}

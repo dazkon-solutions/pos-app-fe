@@ -9,6 +9,7 @@
 
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { 
   MaterialModule, 
   StandaloneCommonModule 
@@ -25,5 +26,10 @@ import {
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'pos-app-fe';
+  constructor(
+    private translate: TranslateService
+  ) {
+    this.translate.setDefaultLang('en');
+    this.translate.use('en');
+  }
 }
