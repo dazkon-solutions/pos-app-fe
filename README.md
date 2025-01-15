@@ -3,7 +3,7 @@
 - node version: v20.11.1
 
 ## Installed packages
-1. angular-materials
+1. ng add @angular/material
 2. ngxs-store, ngxs-logger-plugin for (state management)
 3. npm i @ngxs/storage-plugin for (persist state)
 4. ngx-translate/core, ngx-translate/http-loader for (language changes)
