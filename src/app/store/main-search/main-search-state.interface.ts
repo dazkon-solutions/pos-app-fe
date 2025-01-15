@@ -7,5 +7,17 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './form.helper';
-export * from './subscription.helper';
+import { Resource } from "src/app/common/enums";
+
+export interface MainSearchConfig {
+  label:             string;
+  resource:          Resource;
+  isFilterAvailable: boolean;
+}
+
+export interface MainSearchStateModel {
+  searchTerm:     string;
+  config:         MainSearchConfig | null;
+  list:           MainSearchConfig[];
+  isFilterActive: boolean;
+}

@@ -14,14 +14,19 @@
 @use 'dazkon-theme' as theme;
 @use 'dark-theme' as dt;
 @use 'light-theme' as lt;
+@use 'form' as form;
 
 
 @include mat.typography-hierarchy(theme.$light-theme,
                                   '.mat-typography',
                                   false);
+
 :root {
   @include mat.core-theme(theme.$light-theme);
   @include mat.all-component-themes(theme.$light-theme);
+  @include mat.form-field-overrides((
+    outlined-container-shape: 12px
+  ));
 }
 
 html, 
@@ -43,3 +48,6 @@ body {
 .light-theme {
   @include lt.light-theme-styles();
 }
+
+// Import custom styles
+@include form.form-styles();

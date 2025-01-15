@@ -7,5 +7,6 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './form.helper';
-export * from './subscription.helper';
+export enum Resource {
+  NONE = 'NONE'
+}

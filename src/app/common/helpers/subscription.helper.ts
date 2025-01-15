@@ -7,5 +7,11 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './form.helper';
-export * from './subscription.helper';
+import { Subject } from "rxjs";
+
+export class SubscriptionHelper {
+  static destroy(destroy$: Subject<void>): void {
+    destroy$.next();
+    destroy$.complete();
+  }
+}

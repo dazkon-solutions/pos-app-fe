@@ -6,3 +6,6 @@
  * without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
  * For inquiries, please contact: info@dazkonsolutions.com
  */
+
+export * from './search-panel.service';
+export * from './icon.service';

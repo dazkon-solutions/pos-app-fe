@@ -7,5 +7,15 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './form.helper';
-export * from './subscription.helper';
+import { Resource } from "src/app/common/enums";
+
+export interface NavigationConfig {
+  uid:          number;
+  pid:          number;
+  title:        string;
+  description:  string;
+  route:        string;
+  resource:     Resource;
+  icon:         string;
+  child?:       NavigationConfig[];
+}

@@ -27,6 +27,8 @@ import {
   HttpClient, 
   provideHttpClient 
 } from '@angular/common/http';
+import { MainSearchState, NavigationState } from 'src/app/store';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 
 export const appConfig: ApplicationConfig = {
@@ -36,7 +38,10 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideAnimationsAsync(), 
     provideStore(
-      [],
+      [
+        NavigationState,
+        MainSearchState
+      ],
       withNgxsLoggerPlugin(),
       withNgxsStoragePlugin({
         keys: '*'
@@ -50,7 +55,11 @@ export const appConfig: ApplicationConfig = {
           deps: [HttpClient]
         },
       })
-    ])
+    ]),
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline' }
+    },
   ]
 };
 

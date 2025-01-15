@@ -18,6 +18,13 @@
         },
         "@schematics/angular:pipe": {
           "skipTests": true
+        },
+        "i18n": {
+          "sourceLocale": "en",
+          "locales": {
+            "en": "locale/en.json",
+            "si": "locale/si.json"
+          }
         }
       },
       "root": "",

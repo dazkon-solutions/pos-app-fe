@@ -7,5 +7,19 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './form.helper';
-export * from './subscription.helper';
+.daz-main-search-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-field {
+  --mdc-outlined-text-field-container-shape: 100px;
+
+  width: 500px;
+
+  input {
+    padding-top: 5px;
+  }
+}

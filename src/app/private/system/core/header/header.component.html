@@ -1,0 +1,47 @@
+<!-- 
+  Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+  All rights reserved.  
+  This code is proprietary to DAZKON SOLUTIONS. 
+  Unauthorized use, reproduction, modification, distribution, or sale 
+  without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+  For inquiries, please contact: info@dazkonsolutions.com 
+-->
+
+<mat-toolbar class="daz-header header-bg" >
+  <!-- Title -->
+  @let currentNav = currentNav$ | async;
+  <span class="title mat-headline-small" >
+    {{ currentNav && (currentNav.title | translate) }}
+  </span>
+  <!-- End of title -->
+
+  <!-- Search field -->
+  @let searchConfig = searchConfig$ | async;
+  @if (searchConfig) {
+    <daz-main-search [config]="searchConfig" />
+  }
+  <!-- End of search field -->
+
+  <span class="spacer" ></span>
+
+  <!-- Button section -->
+  <section class="button-section" >
+    <button mat-icon-button
+            [matTooltip]="LocaleKeys.tooltips.notifications | translate"
+            (click)="onClickNotifications()" >
+      <mat-icon svgIcon="bell" 
+                matBadge="1" 
+                matBadgeSize="medium" 
+                matBadgeOverlap="true" 
+                aria-hidden="false" />
+    </button>
+
+    <div class="profile-avatar-container"
+         matRipple >
+      <img [src]="profileAvatar" 
+           class="profile-avatar"
+           alt="profile-avatar" >
+    </div>
+  </section>
+  <!-- End of button section -->
+</mat-toolbar>

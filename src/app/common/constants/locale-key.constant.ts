@@ -18,7 +18,9 @@ export const LocaleKeys = {
     areYouSureYouWantToDelete: 'titles.areYouSureYouWantToDelete',
   },
   tooltips: {
-    backToGallery: 'tooltips.backToGallery',
+    notifications: 'tooltips.notifications',
+    advancedFilter: 'tooltips.advancedFilter',
+    clear: 'tooltips.clear',
   },
   alerts: {
     common: {
@@ -41,7 +43,7 @@ export const LocaleKeys = {
       about: 'labels.buttons.about',
     },
     forms: {
-      description: 'labels.forms.description',
+      usingAdvancedFilter: 'labels.forms.usingAdvancedFilter',
     },
   },
   errors: {

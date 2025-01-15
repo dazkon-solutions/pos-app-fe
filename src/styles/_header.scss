@@ -7,5 +7,9 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './form.helper';
-export * from './subscription.helper';
+
+@mixin header-background($bg-color) {
+  .header-bg {
+    background-color: $bg-color;
+  }
+}

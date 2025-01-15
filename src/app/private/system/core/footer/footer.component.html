@@ -6,22 +6,13 @@
   without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
-  
-<div class="light-theme" >
 
-  <!-- Header -->
-  <daz-header />
-  <!-- End of header -->
+<mat-toolbar class="daz-footer" >
+  <span class="spacer" ></span>
 
-  <span class="mat-title-small" >this is title</span>
-  <button mat-flat-button >hello button</button>
-</div>
+  <span class="mat-label-small" >
+    Copyright © {{ getCurrentYear() }} Dazkon Solutions
+  </span>
 
-<div>
-
-  <router-outlet />
-</div>
-
-<!-- Footer -->
-<daz-footer />
-<!-- End of footer -->
+  <span class="spacer" ></span>
+</mat-toolbar>

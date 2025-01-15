@@ -12,7 +12,7 @@
 // @use 'mat-component';
 // @use 'common';
 // @use 'scroll';
-// @use 'header';
+@use 'header';
 // @use 'dialog';
 // @use 'bottom-sheet' as bs;
 // @use 'table';
@@ -36,7 +36,7 @@
   //                                var.$scroll-bg-color,
   //                                var.$hover-color);
 
-  // @include header.header-background(var.$light-bg-color);
+  @include header.header-background(var.$light-bg-color);
 
   // @include dialog.dialog-background(var.$light-bg-color);
 

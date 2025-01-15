@@ -7,5 +7,17 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './form.helper';
-export * from './subscription.helper';
+ @use 'variables' as var;
+
+.daz-footer {
+  --mat-toolbar-standard-height: 25px;
+  --mat-toolbar-mobile-height: 25px;
+
+  position: absolute;
+  bottom: 0;
+
+  border-top: 1px solid var.$static-bg-color-3;
+
+  background-color: var.$static-bg-color-2;
+  color: var.$static-bg-color-3;
+}

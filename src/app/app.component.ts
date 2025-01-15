@@ -11,25 +11,35 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { 
+  FooterComponent, 
+  HeaderComponent 
+} from 'src/app/private/system/core';
+import { 
   MaterialModule, 
   StandaloneCommonModule 
 } from './common/modules';
+import { IconService } from './common/services';
 
 @Component({
   selector: 'daz-root',
   imports: [
     RouterOutlet,
     StandaloneCommonModule,
-    MaterialModule
+    MaterialModule,
+    HeaderComponent,
+    FooterComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   constructor(
-    private translate: TranslateService
+    private translate: TranslateService,
+    private iconSvc: IconService
   ) {
     this.translate.setDefaultLang('en');
     this.translate.use('en');
+
+    this.iconSvc.registerSvgIcons();
   }
 }

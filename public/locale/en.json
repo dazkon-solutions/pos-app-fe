@@ -4,7 +4,9 @@
   },
 
   "tooltips": {
-    "backToGallery": "Back to gallery"
+    "notifications": "Notifications",
+    "advancedFilter": "Advanced filter",
+    "clear": "Clear"
   },
 
   "alerts": {
@@ -30,7 +32,7 @@
       "about": "ABOUT"
     },
     "forms": {
-      "description": "Description"
+      "usingAdvancedFilter": "Using advanced filter.."
     }
   },
 

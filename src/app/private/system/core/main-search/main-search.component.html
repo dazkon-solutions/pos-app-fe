@@ -1,0 +1,58 @@
+<!-- 
+  Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+  All rights reserved.  
+  This code is proprietary to DAZKON SOLUTIONS. 
+  Unauthorized use, reproduction, modification, distribution, or sale 
+  without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+  For inquiries, please contact: info@dazkonsolutions.com 
+-->
+
+<span class="daz-main-search-field" >
+
+  <form [formGroup]="form" >
+    <mat-form-field class="search-field" 
+                    subscriptSizing="dynamic" >
+
+      <!-- Advanced filter button -->
+      <button matPrefix 
+              mat-icon-button
+              [disabled]="!config.isFilterAvailable"
+              [matTooltip]="LocaleKeys.tooltips.advancedFilter | translate"
+              (click)="onClickAdvancedFilter()" >
+        <mat-icon svgIcon="tune"
+                  class="primary-badge"
+                  matBadge="1"
+                  matBadgeSize="small" 
+                  matBadgeOverlap="true"
+                  aria-hidden="false"
+                  [matBadgeHidden]="!isFiltered" />
+      </button>
+      <!-- End of advanced filter button -->
+      
+      <input matInput 
+             formControlName="search"
+             name="search"
+             maxlength="255"
+             [placeholder]="config.label | translate" >
+
+      @if (hasSearchValue() || isFiltered) {
+        <!-- Clear button -->
+        <button matSuffix 
+                mat-icon-button
+                [matTooltip]="LocaleKeys.tooltips.clear | translate"
+                (click)="onClickClearForm()" >
+          <mat-icon svgIcon="close" />
+        </button>
+        <!-- End of clear button -->
+         
+      } @else {
+        <button matSuffix 
+                mat-icon-button 
+                disabled >
+          <mat-icon svgIcon="search" />
+        </button>
+      }
+
+    </mat-form-field>
+  </form>
+</span>

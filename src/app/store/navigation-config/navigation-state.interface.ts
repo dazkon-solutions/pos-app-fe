@@ -7,5 +7,16 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './form.helper';
-export * from './subscription.helper';
+import { Resource } from "src/app/common/enums";
+import { NavigationConfig } from "src/app/common/interfaces";
+
+
+export interface NavigationStateModel {
+  resource: Resource;
+  list:     NavigationConfig[];
+  isLoaded: boolean;
+  current: {
+    parent: NavigationConfig;
+    child:  NavigationConfig | null;
+  };
+}
