@@ -15,10 +15,21 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { withNgxsLoggerPlugin } from '@ngxs/logger-plugin';
+import { withNgxsStoragePlugin } from '@ngxs/storage-plugin';
+import { provideStore } from '@ngxs/store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
-    provideRouter(routes), provideAnimationsAsync()
+    provideRouter(routes), 
+    provideAnimationsAsync(), 
+    provideStore(
+      [],
+      withNgxsLoggerPlugin(),
+      withNgxsStoragePlugin({
+        keys: '*'
+      })
+    )
   ]
 };
