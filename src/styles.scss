@@ -1,19 +1,45 @@
+/**
+ * Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+ * All rights reserved. 
+ * This code is proprietary to DAZKON SOLUTIONS. 
+ * Unauthorized use, reproduction, modification, distribution, or sale
+ * without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+ * For inquiries, please contact: info@dazkonsolutions.com
+ */
 
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
+@use 'variables' as var;
+@use 'dazkon-theme' as theme;
+@use 'dark-theme' as dt;
+@use 'light-theme' as lt;
 
-html {
-  @include mat.theme((
-    color: (
-      theme-type: light,
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-    typography: Roboto,
-    density: 0,
-  ));
-}/* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@include mat.typography-hierarchy(theme.$light-theme,
+                                  '.mat-typography',
+                                  false);
+:root {
+  @include mat.core-theme(theme.$light-theme);
+  @include mat.all-component-themes(theme.$light-theme);
+}
+
+html, 
+body { 
+  height: 100%; 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  // background-color: var.$light-bg-color;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.dark-theme {
+  @include dt.dark-theme-styles();
+}
+
+.light-theme {
+  @include lt.light-theme-styles();
+}
