@@ -7,6 +7,8 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
+@use 'variables' as var;
+
 .daz-header {
   --mat-toolbar-standard-height: 72px;
   --mat-toolbar-mobile-height: 56px;
@@ -25,19 +27,23 @@
   gap: 15px;
 }
 
-.profile-avatar-container {
+.profile-avatar {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
   border-radius: 100px;
+  border: 3px solid;
+  border-color: var.$static-bg-color-3;
+
+  color: var.$dark-bg-text-color;
+
+  background-color: var.$static-bg-color-2;
 
   &:hover {
     filter: brightness(0.95);
   }
-}
 
-.profile-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 100px;
-  
   cursor: pointer;
 }

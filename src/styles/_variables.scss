@@ -23,9 +23,24 @@ $dark-bg-text-color: #fff;
 
 
 $light-bg-color: #F3F3F3;
-$dark-bg-color: #1B1B1F;
+$dark-bg-color: #141414;
+
+$static-bg-color-1: #1E1F25; // not used
+$static-bg-color-2: #000100; // for darkest backgrounds
+$static-bg-color-3: #8F9097; // for borders
 
 
-$static-bg-color-1: #1E1F25;
-$static-bg-color-2: #05060F;
-$static-bg-color-3: #8F9097;
+// Main menu
+$menu-panel-text-color: #BBBBBB;
+$menu-panel-item-icon-color-selected: #fff;
+$menu-panel-item-bg-color-hover: $hover-color;
+$menu-panel-item-bg-color-selected: #2c2c2c;
+$menu-panel-bg-color: $dark-bg-color;
+$menu-panel-item-child-bg-color: #0c0c0c;
+$menu-panel-item-child-bg-color-selected: #242424;
+
+$menu-panel-hover-text-color: #fff;
+$selected-text-color: #fff;
+$selected-child-bg-color: #4db6ac;
+$selected-parent-bg-color: $primary-color;
+$text-and-icon-color: #37474F;

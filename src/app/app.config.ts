@@ -27,8 +27,15 @@ import {
   HttpClient, 
   provideHttpClient 
 } from '@angular/common/http';
-import { MainSearchState, NavigationState } from 'src/app/store';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { 
+  AppearanceState,
+  LeftPanelState,
+  MainSearchState, 
+  MenuState, 
+  NavigationState, 
+  ResourceState
+} from 'src/app/store';
 
 
 export const appConfig: ApplicationConfig = {
@@ -39,8 +46,12 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(), 
     provideStore(
       [
+        ResourceState,
+        AppearanceState,
         NavigationState,
-        MainSearchState
+        MenuState,
+        MainSearchState,
+        LeftPanelState,
       ],
       withNgxsLoggerPlugin(),
       withNgxsStoragePlugin({

@@ -12,7 +12,7 @@
 @use 'variables' as var;
 // @use 'mat-component';
 // @use 'common';
-// @use 'scroll';
+@use 'scroll';
 @use 'header';
 // @use 'dialog';
 // @use 'bottom-sheet' as bs;
@@ -25,7 +25,7 @@
   color: var.$dark-bg-text-color;
 
   .daz-container {
-    background-color: var.$dark-bg-color;
+    background-color: var.$static-bg-color-2;
   }
 
   // @include mat.all-component-colors($theme);
@@ -36,10 +36,10 @@
 
   // @include common.active-layer-color(var.$dark-active-color);
 
-  // @include scroll.scroller-style(var.$dark-scroll-bg-color, 
-  //                                var.$dark-scroll-thumb-color,
-  //                                var.$dark-scroll-bg-color,
-  //                                var.$dark-hover-color);
+  @include scroll.scroller-style(var.$dark-scroll-bg-color, 
+                                 var.$dark-scroll-thumb-color,
+                                 var.$dark-scroll-bg-color,
+                                 var.$dark-hover-color);
 
   @include header.header-background(var.$dark-bg-color);
 

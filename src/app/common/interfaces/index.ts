@@ -7,4 +7,4 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './navigation.interface';
+export * from './permission.interface';

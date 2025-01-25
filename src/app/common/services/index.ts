@@ -9,3 +9,5 @@
 
 export * from './search-panel.service';
 export * from './icon.service';
+export * from './navigator.service';
+export * from './theme.service';

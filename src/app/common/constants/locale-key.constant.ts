@@ -15,6 +15,11 @@
 
 export const LocaleKeys = {
   titles: {
+    hi: 'titles.hi',
+    dashboard: 'titles.dashboard',
+    products: 'titles.products',
+    categories: 'titles.categories',
+    brands: 'titles.brands',
     areYouSureYouWantToDelete: 'titles.areYouSureYouWantToDelete',
   },
   tooltips: {
@@ -41,9 +46,14 @@ export const LocaleKeys = {
   labels: {
     buttons: {
       about: 'labels.buttons.about',
+      signOut: 'labels.buttons.signOut',
+      fullScreen: 'labels.buttons.fullScreen',
+      exitFullScreen: 'labels.buttons.exitFullScreen',
+      myProfile: 'labels.buttons.myProfile',
     },
     forms: {
       usingAdvancedFilter: 'labels.forms.usingAdvancedFilter',
+      productsFilter: 'labels.forms.productsFilter',
     },
   },
   errors: {

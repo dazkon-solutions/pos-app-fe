@@ -1,0 +1,118 @@
+<!-- 
+  Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+  All rights reserved.  
+  This code is proprietary to DAZKON SOLUTIONS. 
+  Unauthorized use, reproduction, modification, distribution, or sale 
+  without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+  For inquiries, please contact: info@dazkonsolutions.com 
+-->
+  
+<!-- Logo section -->
+<section class="logo-container" >
+  @if (isLeftPanelExpanded) {
+    POINT OF SALE
+    <!-- <img src="https://randomuser.me/api/portraits/thumb/men/75.jpg" > -->
+  } @else {
+    POS
+    <!-- <img src="https://randomuser.me/api/portraits/thumb/men/75.jpg"
+         class="collapsed-menu-logo" > -->
+  }
+</section>
+<mat-divider />
+<!-- End of logo section -->
+
+@let current = (current$ | async) ?? null;
+
+<!-- Menu section -->
+@if (isLeftPanelExpanded) {
+
+  <!-- Expanded menu section -->
+  <section class="menu-container-expanded" >
+    <mat-tree #tree 
+              class="menu-tree-expanded"
+              [dataSource]="dataSource" 
+              [childrenAccessor]="childrenAccessor" >
+
+      <!-- Template for single nodes -->
+      <mat-tree-node *matTreeNodeDef="let node" 
+                      matTreeNodePadding 
+                      mat-ripple
+                      class="mat-title-small 
+                             menu-item"
+                      [ngClass]="getMenuItemStyle(node, 
+                                                  current)"
+                      (click)="onClickExpandedMenuNode(node)" >
+                     
+        @if (node.icon) {
+          <mat-icon class="menu-icon" [svgIcon]="node.icon" />
+        }
+        
+        {{ node.name | translate }}
+
+        <button mat-icon-button disabled ></button>
+      </mat-tree-node>
+      <!-- End of template for single nodes -->
+
+      <!-- Template for expandable nodes -->
+      <mat-tree-node *matTreeNodeDef="let node;when: hasChild" 
+                      matTreeNodePadding
+                      isExpandable
+                      matTreeNodeToggle
+                      mat-ripple
+                      class="mat-title-small 
+                             menu-item"
+                      [cdkTreeNodeTypeaheadLabel]="node.name"
+                      [ngClass]="getMenuItemStyle(node, 
+                                                  current)" >
+
+        @if (node.icon) {
+          <mat-icon [svgIcon]="node.icon" 
+                    class="menu-icon" />
+        }
+
+        {{ node.name | translate }}
+        <span class="spacer" ></span>
+
+        <button mat-icon-button matTreeNodeToggle >
+          <mat-icon [svgIcon]="tree.isExpanded(node) 
+            ? 'expand-more' 
+            : 'expand-less-right'" />
+        </button>
+      </mat-tree-node>
+      <!-- End of template for expandable nodes -->
+
+    </mat-tree>
+
+  </section>
+  <!-- End of expanded menu section -->
+
+} @else {
+
+  <!-- Collapsed menu section -->
+  <section class="menu-container-collapsed" >
+    <mat-tree #tree 
+              class="menu-tree-collapsed"
+              [dataSource]="dataSource" 
+              [childrenAccessor]="childrenAccessor" >
+
+      <mat-tree-node *matTreeNodeDef="let node"
+                      class="mat-title-small 
+                             menu-item"
+                      matTooltipPosition="right"
+                      mat-ripple
+                      [matTooltip]="node.name | translate"
+                      [ngClass]="getMenuItemStyle(node, 
+                                                  current)"
+                      (click)="onClickCollapsedMenuNode(node)" >
+                     
+        <mat-icon class="menu-icon" 
+                  matTooltipPosition="right"
+                  [svgIcon]="node.icon" />
+
+      </mat-tree-node>
+
+    </mat-tree>
+  </section>
+  <!-- End of collapsed menu section -->
+}
+<!-- End of menu section -->

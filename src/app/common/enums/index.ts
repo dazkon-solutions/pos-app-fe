@@ -8,3 +8,4 @@
  */
 
 export * from './resource.enum';
+export * from './action.enum';

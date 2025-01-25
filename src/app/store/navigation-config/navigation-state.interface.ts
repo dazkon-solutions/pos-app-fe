@@ -8,15 +8,13 @@
  */
 
 import { Resource } from "src/app/common/enums";
-import { NavigationConfig } from "src/app/common/interfaces";
 
 
 export interface NavigationStateModel {
-  resource: Resource;
-  list:     NavigationConfig[];
-  isLoaded: boolean;
-  current: {
-    parent: NavigationConfig;
-    child:  NavigationConfig | null;
-  };
+  uid:          number;
+  pid:          number;
+  name:         string;
+  description:  string;
+  route:        string;
+  resource:     Resource;
 }

@@ -41,12 +41,11 @@ import {
   SetMainSearchTerm
 } from 'src/app/store';
 import { LocaleKeys } from 'src/app/common/constants';
-import { SearchPanelService } from 'src/app/common/services';
+import { Navigator, SearchPanelService } from 'src/app/common/services';
 
 
 @Component({
   selector: 'daz-main-search',
-  standalone: true,
   imports: [
     StandaloneCommonModule,
     MaterialModule
@@ -71,14 +70,20 @@ export class MainSearchComponent implements
   constructor(
     private formBuilder: FormBuilder,
     private store: Store,
-    private searchPanelSvc: SearchPanelService
+    private searchPanelSvc: SearchPanelService,
+    private navigateSvc: Navigator
   ) {
     this.form = this.createForm(this.formBuilder);
     this.onSearchValue();
   }
 
   ngOnInit(): void {
+    this.subscribeToNavigationChanges();
     this.syncFilterChanges();
+  }
+
+  private subscribeToNavigationChanges(): void {
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void {

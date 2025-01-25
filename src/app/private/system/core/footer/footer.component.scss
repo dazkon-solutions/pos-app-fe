@@ -15,9 +15,10 @@
 
   position: absolute;
   bottom: 0;
+  z-index: 100;
 
   border-top: 1px solid var.$static-bg-color-3;
 
-  background-color: var.$static-bg-color-2;
+  background-color: var.$dark-bg-color;
   color: var.$static-bg-color-3;
 }

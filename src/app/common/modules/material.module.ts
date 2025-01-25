@@ -27,6 +27,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { CdkTreeModule } from '@angular/cdk/tree';
 
 
 const materialComponents = [
@@ -48,7 +52,11 @@ const materialComponents = [
   MatListModule,
   MatSelectModule,
   MatTableModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatTreeModule,
+  MatMenuModule,
+  MatButtonToggleModule,
+  CdkTreeModule
 ];
 
 @NgModule({

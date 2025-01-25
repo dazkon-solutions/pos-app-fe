@@ -8,5 +8,10 @@
  */
 
 export enum StateKey {
-  MAIN_SEARCH = 'mainSearch'
+  MAIN_SEARCH = 'mainSearch',
+  APPEARANCE = 'appearance',
+  MENU = 'menu',
+  NAVIGATION = 'navigation',
+  LEFT_PANEL = 'leftPanel',
+  RESOURCE = 'resource'
 }

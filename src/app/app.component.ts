@@ -7,18 +7,23 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Store } from '@ngxs/store';
 import { TranslateService } from '@ngx-translate/core';
 import { 
   FooterComponent, 
-  HeaderComponent 
+  HeaderComponent, 
+  LeftPanelComponent
 } from 'src/app/private/system/core';
 import { 
   MaterialModule, 
   StandaloneCommonModule 
 } from './common/modules';
-import { IconService } from './common/services';
+import { IconService, ThemeService } from './common/services';
+import { LeftPanelState } from './store';
+import { MenuConfigService } from './store/menu-config/menu-config.service';
 
 @Component({
   selector: 'daz-root',
@@ -27,19 +32,41 @@ import { IconService } from './common/services';
     StandaloneCommonModule,
     MaterialModule,
     HeaderComponent,
+    LeftPanelComponent,
     FooterComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  isLightTheme$!: Observable<boolean>;
+  isLeftPanelExpanded$!: Observable<boolean>;
+  isAuth = true;
+
   constructor(
     private translate: TranslateService,
-    private iconSvc: IconService
+    private iconSvc: IconService,
+    private menuConfigSvc: MenuConfigService,
+    private themeSvc: ThemeService,
+    private store: Store,
   ) {
     this.translate.setDefaultLang('en');
     this.translate.use('en');
 
     this.iconSvc.registerSvgIcons();
+  }
+
+  ngOnInit(): void {
+    this.init();
+    this.syncState();
+    this.menuConfigSvc.createMenuTreeByPermission(); // TODO: REMOVE
+  }
+
+  private init(): void {
+    this.isLightTheme$ = this.themeSvc.isLightTheme$();
+  }
+
+  private syncState(): void {
+    this.isLeftPanelExpanded$ = this.store.select(LeftPanelState.isExpanded);
   }
 }

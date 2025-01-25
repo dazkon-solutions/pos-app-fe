@@ -6,3 +6,34 @@
  * without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
  * For inquiries, please contact: info@dazkonsolutions.com
  */
+
+.drawer-container {
+  height: 100%;
+}
+
+.daz-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.daz-content {
+  overflow-y: hidden;
+  padding: 5px;
+}
+
+.left-panel {
+  border-radius: 0;
+}
+
+.left-panel-expanded {
+  @extend .left-panel;
+  
+  width: 256px;
+}
+
+.left-panel-collapsed {
+  @extend .left-panel;
+  
+  width: 55px;
+}

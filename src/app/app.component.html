@@ -7,20 +7,44 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
   
-<div class="light-theme" >
+@let isLightTheme = isLightTheme$ | async;
+<mat-drawer-container class="drawer-container" 
+                      [ngClass]="isLightTheme ? 'light-theme' : 'dark-theme'"
+                      autosize 
+                      hasBackdrop="false" > 
+  <!-- left panel -->
+  @let isLeftPanelExpanded = (isLeftPanelExpanded$ | async) ?? false;
+  <mat-drawer #drawer
+              mode="side"
+              opened="true"
+              [ngClass]="isLeftPanelExpanded 
+                ? 'left-panel-expanded' 
+                : 'left-panel-collapsed'"
+              [style.width]="!isAuth 
+                ? '0' : 
+                  ''" >
+        
+    @if (isAuth) {
+      <daz-left-panel />
+    }
+  </mat-drawer>
+  <!-- end of left panel -->
 
-  <!-- Header -->
-  <daz-header />
-  <!-- End of header -->
+  <div class="daz-container" >
+    <!-- Header -->
+    <daz-header />
+    <!-- End of header -->
 
-  <span class="mat-title-small" >this is title</span>
-  <button mat-flat-button >hello button</button>
-</div>
+    <!-- Content -->
+    <div class="daz-content" >
+      content
+      <router-outlet />
+    </div>
+    <!-- End of content -->
+  </div>
 
-<div>
+</mat-drawer-container>
 
-  <router-outlet />
-</div>
 
 <!-- Footer -->
 <daz-footer />

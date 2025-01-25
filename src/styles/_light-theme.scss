@@ -11,7 +11,7 @@
 @use 'variables' as var;
 // @use 'mat-component';
 // @use 'common';
-// @use 'scroll';
+@use 'scroll';
 @use 'header';
 // @use 'dialog';
 // @use 'bottom-sheet' as bs;
@@ -31,10 +31,10 @@
 
   // @include common.active-layer-color(var.$active-color);
 
-  // @include scroll.scroller-style(var.$scroll-bg-color, 
-  //                                var.$scroll-thumb-color,
-  //                                var.$scroll-bg-color,
-  //                                var.$hover-color);
+  @include scroll.scroller-style(var.$scroll-bg-color, 
+                                 var.$scroll-thumb-color,
+                                 var.$scroll-bg-color,
+                                 var.$hover-color);
 
   @include header.header-background(var.$light-bg-color);
 

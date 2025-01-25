@@ -7,15 +7,13 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Resource } from "src/app/common/enums";
 
-export interface NavigationConfig {
-  uid:          number;
-  pid:          number;
-  title:        string;
-  description:  string;
-  route:        string;
-  resource:     Resource;
-  icon:         string;
-  child?:       NavigationConfig[];
+export enum Action {
+  CREATE = 'CREATE',
+  VIEW = 'VIEW',
+  UPDATE = 'UPDATE',
+  DELETE = 'DELETE',
+  LIST_VIEW = 'LIST_VIEW',
+  PRINT = 'PRINT',
+  DOWNLOAD = 'DOWNLOAD'
 }

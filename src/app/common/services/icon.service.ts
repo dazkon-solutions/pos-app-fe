@@ -36,6 +36,19 @@ export class IconService {
       .addSvgIcon('close', this.setPath(`${this.path}/close-outlined.svg`))
       .addSvgIcon('tune', this.setPath(`${this.path}/tune-outlined.svg`))
       .addSvgIcon('search', this.setPath(`${this.path}/search-outlined.svg`))
+      .addSvgIcon('menu', this.setPath(`${this.path}/menu-outlined.svg`))
+      .addSvgIcon('expand-more', this.setPath(`${this.path}/expand-more-outlined.svg`))
+      .addSvgIcon('expand-less', this.setPath(`${this.path}/expand-less-outlined.svg`))
+      .addSvgIcon('expand-less-right', this.setPath(`${this.path}/expand-less-right-outlined.svg`))
+      .addSvgIcon('fullscreen', this.setPath(`${this.path}/fullscreen-outlined.svg`))
+      .addSvgIcon('fullscreen-exit', this.setPath(`${this.path}/fullscreen-exit-outlined.svg`))
+      .addSvgIcon('signout', this.setPath(`${this.path}/signout-outlined.svg`))
+      .addSvgIcon('info', this.setPath(`${this.path}/info-outlined.svg`))
+      .addSvgIcon('account', this.setPath(`${this.path}/account-outlined.svg`))
+      .addSvgIcon('light-mode', this.setPath(`${this.path}/light-mode-outlined.svg`))
+      .addSvgIcon('dark-mode', this.setPath(`${this.path}/dark-mode-outlined.svg`))
+      .addSvgIcon('dashboard', this.setPath(`${this.path}/dashboard-outlined.svg`))
+      .addSvgIcon('inventory', this.setPath(`${this.path}/inventory-outlined.svg`))
   }                
 
   private setPath(url: string): SafeResourceUrl {

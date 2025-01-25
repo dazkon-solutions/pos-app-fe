@@ -1,5 +1,10 @@
 {
   "titles": {
+    "hi": "Hi!",
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "categories": "Categories",
+    "brands": "Brands",
     "areYouSureYouWantToDelete": "Are you sure you want to delete this item?"
   },
 
@@ -29,10 +34,15 @@
   
   "labels": {
     "buttons": {
-      "about": "ABOUT"
+      "about": "ABOUT",
+      "signOut": "SIGN OUT",
+      "fullScreen": "FULL SCREEN",
+      "exitFullScreen": "EXIT FULL SCREEN",
+      "myProfile": "MY PROFILE"
     },
     "forms": {
-      "usingAdvancedFilter": "Using advanced filter.."
+      "usingAdvancedFilter": "Using advanced filter..",
+      "productsFilter": "Filter products"
     }
   },
 

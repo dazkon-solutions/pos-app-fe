@@ -18,7 +18,6 @@ import {
   takeUntil
 } from 'rxjs';
 import { Store } from '@ngxs/store';
-import { NavigationConfig } from 'src/app/common/interfaces';
 import { 
   MaterialModule, 
   StandaloneCommonModule 
@@ -29,16 +28,19 @@ import {
   MainSearchState, 
   NavigationState, 
   DeactivateMainSearchFilter, 
-  SetMainSearchByResource
+  SetMainSearchByResource,
+  NavigationStateModel,
+  ToggleLeftPanel,
+  ToggleTheme
 } from 'src/app/store';
 import { LocaleKeys } from 'src/app/common/constants';
 import { SubscriptionHelper } from 'src/app/common/helpers';
 import { MainSearchComponent } from '../main-search/main-search.component';
+import { ThemeService } from 'src/app/common/services';
 
 
 @Component({
   selector: 'daz-header',
-  standalone: true,
   imports: [
     StandaloneCommonModule,
     MaterialModule,
@@ -51,38 +53,61 @@ export class HeaderComponent implements
   OnInit,
   OnDestroy  
 {
-  currentNav$!: Observable<NavigationConfig>;
+  currentNav$!: Observable<NavigationStateModel>;
   searchConfig$!: Observable<MainSearchConfig | null>;
+  isLightTheme$!: Observable<boolean>;
   LocaleKeys = LocaleKeys;
-
-  profileAvatar = 'https://randomuser.me/api/portraits/thumb/men/75.jpg';
+  isFullScreen = false;
+  username = 'samantha';
+  role = 'ADMIN';
 
   private destroy$ = new Subject<void>();
   
   constructor(
     private store: Store,
+    private themeSvc: ThemeService
     // private notificationPanelSvc: NotificationPanelService
   ) { }
 
   ngOnInit(): void {
+    this.init();
+  }
+  
+  private init(): void {
     this.syncState();
+    
+    this.isLightTheme$ = this.themeSvc.isLightTheme$();
   }
 
   private syncState(): void {
-    this.currentNav$ = this.store.select(NavigationState.getCurrentParent);
+    this.currentNav$ = this.store.select(NavigationState.navigation);
     this.searchConfig$ = this.store.select(MainSearchState.getConfig);
 
-    this.store.select(NavigationState.getResource)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(resource => 
-        this.store.dispatch([
-          new SetMainSearchByResource(resource),
-          new DeactivateMainSearchFilter()
-        ]));
+    // this.store.select(NavigationState.getResource)
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe(resource => 
+    //     this.store.dispatch([
+    //       new SetMainSearchByResource(resource),
+    //       new DeactivateMainSearchFilter()
+    //     ]));
   }
 
   onClickNotifications(): void {
     // this.notificationPanelSvc.openPanel();
+  }
+
+  onToggleLeftPanel(): void {
+    this.store.dispatch(new ToggleLeftPanel());
+  }
+
+  onToggleTheme(): void {
+    this.store.dispatch(new ToggleTheme());
+  }
+
+  getUsername(type: 'SHORT' | 'FULL'): string {
+    return type === 'SHORT'
+      ? `${this.username.charAt(0).toUpperCase()}${this.username.charAt(1).toUpperCase()}`
+      : this.username;
   }
 
   ngOnDestroy(): void {

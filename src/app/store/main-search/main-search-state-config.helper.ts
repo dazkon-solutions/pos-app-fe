@@ -33,8 +33,8 @@ export class MainSearchStateConfigHelper {
       //   isFilterAvailable: true
       // },
       {
-        label: 'category',
-        resource: Resource.NONE,
+        label: LocaleKeys.labels.forms.productsFilter,
+        resource: Resource.PRODUCTS,
         isFilterAvailable: false
       },
     ];

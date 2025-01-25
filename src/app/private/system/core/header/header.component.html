@@ -8,10 +8,19 @@
 -->
 
 <mat-toolbar class="daz-header header-bg" >
+  <!-- Menu toggle -->
+  <button mat-icon-button
+          (click)="onToggleLeftPanel()" >
+    <mat-icon svgIcon="menu" />
+  </button>
+  <!-- End of menu toggle -->
+
+  <span class="spacer" ></span>
+  
   <!-- Title -->
   @let currentNav = currentNav$ | async;
   <span class="title mat-headline-small" >
-    {{ currentNav && (currentNav.title | translate) }}
+    {{ currentNav && (currentNav.name| translate) }}
   </span>
   <!-- End of title -->
 
@@ -36,12 +45,97 @@
                 aria-hidden="false" />
     </button>
 
-    <div class="profile-avatar-container"
-         matRipple >
-      <img [src]="profileAvatar" 
-           class="profile-avatar"
-           alt="profile-avatar" >
+    <div class="profile-avatar"
+         matRipple 
+         [matMenuTriggerFor]="menu" >
+      <span class="mat-title-medium" >{{ getUsername('SHORT') }}</span>
     </div>
   </section>
   <!-- End of button section -->
 </mat-toolbar>
+
+
+<!-- Menu -->
+<mat-menu #menu="matMenu" >
+
+  <div mat-menu-item 
+       disableRipple
+       class="profile" >
+    <section class="items" >
+      <div class="profile-avatar" >
+        <p class="mat-caption username" >
+          {{ getUsername('SHORT') }}
+        </p>
+      </div>
+
+      <span class="mat-subtitle-1 username-full" >
+        {{ LocaleKeys.titles.hi | translate }} {{ getUsername('FULL') }}
+      </span>
+
+      <mat-chip class="role" >
+        <span class="mat-caption" >
+          {{ role }}
+        </span> 
+      </mat-chip>
+
+    </section>
+  </div>
+  
+  <mat-divider />
+
+  <button mat-menu-item
+          class="menu-item"
+          (click)="null" >
+    <mat-icon svgIcon="account" />
+    {{ LocaleKeys.labels.buttons.myProfile | translate }}
+  </button>
+
+  <mat-divider />
+
+  <button mat-menu-item
+          class="menu-item"
+          (click)="null" >
+    <mat-icon svgIcon="info" />
+    {{ LocaleKeys.labels.buttons.about | translate }}
+  </button>
+
+  <mat-divider />
+
+  @let isLightTheme = (isLightTheme$ | async) ?? false ;
+  <mat-button-toggle-group hideSingleSelectionIndicator >
+    <mat-button-toggle [checked]="isLightTheme"
+                       (click)="onToggleTheme()" >
+      <mat-icon svgIcon="light-mode" />
+    </mat-button-toggle>
+
+    <mat-button-toggle [checked]="!isLightTheme"
+                       (click)="onToggleTheme()" >
+      <mat-icon svgIcon="dark-mode" />
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <mat-divider />
+
+  <button mat-menu-item
+          class="menu-item"
+          (click)="null" >
+    <mat-icon [svgIcon]="isFullScreen 
+                ? 'fullscreen-exit' 
+                : 'fullscreen'" />
+    @if (isFullScreen) {
+      {{ LocaleKeys.labels.buttons.exitFullScreen | translate }}
+    } @else {
+      {{ LocaleKeys.labels.buttons.fullScreen | translate }}
+    }
+  </button>
+
+  <mat-divider />
+
+  <button mat-menu-item
+          class="menu-item"
+          (click)="null" >
+    <mat-icon svgIcon="signout" />
+    {{ LocaleKeys.labels.buttons.signOut | translate }}
+  </button>
+</mat-menu>
+<!-- End of Menu -->
