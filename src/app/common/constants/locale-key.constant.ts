@@ -21,6 +21,8 @@ export const LocaleKeys = {
     categories: 'titles.categories',
     brands: 'titles.brands',
     areYouSureYouWantToDelete: 'titles.areYouSureYouWantToDelete',
+    settings: 'titles.settings',
+    helpDesk: 'titles.helpDesk',
   },
   tooltips: {
     notifications: 'tooltips.notifications',

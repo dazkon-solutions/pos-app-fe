@@ -41,13 +41,15 @@ import {
   MaterialModule, 
   StandaloneCommonModule 
 } from 'src/app/common/modules';
+import { BottomMenuComponent } from './bottom-menu/bottom-menu.component';
 
 
 @Component({
   selector: 'daz-left-panel',
   imports: [
     StandaloneCommonModule,
-    MaterialModule
+    MaterialModule,
+    BottomMenuComponent
   ],
   templateUrl: './left-panel.component.html',
   styleUrl: './left-panel.component.scss',

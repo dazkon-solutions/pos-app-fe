@@ -49,6 +49,8 @@ export class IconService {
       .addSvgIcon('dark-mode', this.setPath(`${this.path}/dark-mode-outlined.svg`))
       .addSvgIcon('dashboard', this.setPath(`${this.path}/dashboard-outlined.svg`))
       .addSvgIcon('inventory', this.setPath(`${this.path}/inventory-outlined.svg`))
+      .addSvgIcon('settings', this.setPath(`${this.path}/settings-outlined.svg`))
+      .addSvgIcon('help', this.setPath(`${this.path}/help-outlined.svg`))
   }                
 
   private setPath(url: string): SafeResourceUrl {

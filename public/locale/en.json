@@ -5,7 +5,9 @@
     "products": "Products",
     "categories": "Categories",
     "brands": "Brands",
-    "areYouSureYouWantToDelete": "Are you sure you want to delete this item?"
+    "areYouSureYouWantToDelete": "Are you sure you want to delete this item?",
+    "settings": "Settings",
+    "helpDesk": "Help Desk"
   },
 
   "tooltips": {

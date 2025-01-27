@@ -1,0 +1,89 @@
+/**
+ * Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+ * All rights reserved. 
+ * This code is proprietary to DAZKON SOLUTIONS. 
+ * Unauthorized use, reproduction, modification, distribution, or sale
+ * without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+ * For inquiries, please contact: info@dazkonsolutions.com
+ */
+
+@use '@angular/material' as mat;
+@use 'variables' as var;
+
+.daz-bottom-section {
+  position: absolute;
+  bottom: 10px;
+  
+  width: 100%;
+}
+
+.menu-container {
+  overflow: hidden;
+  overflow-y: auto;
+
+  background-color: var.$menu-panel-bg-color;
+
+  @include mat.tree-overrides((
+    container-background-color: var.$menu-panel-bg-color,
+    node-text-color: var.$menu-panel-text-color
+  ));
+}
+
+.menu-container-expanded {
+  @extend .menu-container;
+}
+
+.menu-container-collapsed {
+  @extend .menu-container;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-tree {
+  @include mat.tree-overrides((
+    node-min-height: 5px
+  ));
+}
+
+.menu-tree-expanded {
+  @extend .menu-tree;
+
+  .menu-item {
+    .menu-icon {
+      margin: 0 0.5rem;
+    }
+
+    &:hover {
+      opacity: 90%;
+
+      color: var.$menu-panel-text-color-hover;
+
+      background-color: var.$menu-panel-item-bg-color-hover;
+
+      cursor: pointer;
+    }
+  }
+}
+
+.menu-tree-collapsed {
+  @extend .menu-tree;
+
+  padding: 10px 10px 0 10px;
+
+  .menu-item {
+    padding: 7px;
+    border-radius: 8px;
+
+    &:hover {
+      opacity: 90%;
+
+      color: var.$menu-panel-text-color-hover;
+
+      background-color: var.$menu-panel-item-bg-color-hover;
+
+      cursor: pointer;
+    }
+  }
+}

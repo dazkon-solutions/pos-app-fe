@@ -7,8 +7,12 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
+@use 'variables' as var;
+
 .drawer-container {
   height: 100%;
+  
+  background-color: var.$dark-bg-color;
 }
 
 .daz-container {
@@ -24,6 +28,8 @@
 
 .left-panel {
   border-radius: 0;
+
+  background-color: var.$dark-bg-color;
 }
 
 .left-panel-expanded {

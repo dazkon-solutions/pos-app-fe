@@ -20,9 +20,7 @@
               [ngClass]="isLeftPanelExpanded 
                 ? 'left-panel-expanded' 
                 : 'left-panel-collapsed'"
-              [style.width]="!isAuth 
-                ? '0' : 
-                  ''" >
+              [style.width]="!isAuth ? '0' : ''" >
         
     @if (isAuth) {
       <daz-left-panel />
@@ -41,11 +39,10 @@
       <router-outlet />
     </div>
     <!-- End of content -->
+
+    <!-- Footer -->
+    <daz-footer />
+    <!-- End of footer -->
   </div>
 
 </mat-drawer-container>
-
-
-<!-- Footer -->
-<daz-footer />
-<!-- End of footer -->
