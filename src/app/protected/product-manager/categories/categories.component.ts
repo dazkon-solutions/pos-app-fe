@@ -7,11 +7,14 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-@use '@angular/material' as mat;
+import { Component } from '@angular/core';
 
-.daz-main-search-field {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
+@Component({
+  selector: 'daz-categories',
+  imports: [],
+  templateUrl: './categories.component.html',
+  styleUrl: './categories.component.scss'
+})
+export class CategoriesComponent {
+
 }

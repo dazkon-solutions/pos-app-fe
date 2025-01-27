@@ -13,6 +13,7 @@
 // @use 'common';
 @use 'scroll';
 @use 'header';
+@use 'control-bar';
 @use 'footer';
 @use 'form';
 // @use 'dialog';
@@ -24,7 +25,7 @@
   // $theme: theme.$light-theme;
 
   .daz-container {
-    background-color: var.$light-bg-color;
+    background-color: var.$light-bg-color-2;
   }
 
   // @include mat-component.mat-component-color-variants($theme);
@@ -38,17 +39,20 @@
                                   var.$scroll-bg-color,
                                   var.$hover-color);
 
-  @include header.header-styles(var.$light-bg-color,
+  @include header.header-styles(var.$light-bg-color-2,
                                 var.$light-bg-text-color);
 
-  @include footer.footer-styles(var.$light-bg-color,
+  @include control-bar.control-bar-styles(var.$light-bg-color-1,
+                                          var.$light-bg-text-color);
+
+  @include footer.footer-styles(var.$light-bg-color-2,
                                 var.$light-bg-text-color);
 
   @include form.form-colors(var.$light-bg-text-color);
 
-  // @include dialog.dialog-background(var.$light-bg-color);
+  // @include dialog.dialog-background(var.$light-bg-color-2);
 
-  // @include bs.bottom-sheet-background(var.$light-bg-color);
+  // @include bs.bottom-sheet-background(var.$light-bg-color-2);
 
-  // @include table.table-background(var.$light-bg-color);
+  // @include table.table-background(var.$light-bg-color-2);
 }

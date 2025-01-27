@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { TranslateService } from '@ngx-translate/core';
 import { 
+  ControlBarComponent,
   FooterComponent, 
   HeaderComponent, 
   LeftPanelComponent
@@ -21,7 +22,10 @@ import {
   MaterialModule, 
   StandaloneCommonModule 
 } from './common/modules';
-import { IconService, ThemeService } from './common/services';
+import { 
+  IconService, 
+  ThemeService 
+} from './common/services';
 import { LeftPanelState } from './store';
 import { MenuConfigService } from './store/menu-config/menu-config.service';
 
@@ -33,7 +37,8 @@ import { MenuConfigService } from './store/menu-config/menu-config.service';
     MaterialModule,
     HeaderComponent,
     LeftPanelComponent,
-    FooterComponent
+    FooterComponent,
+    ControlBarComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

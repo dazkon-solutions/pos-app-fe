@@ -14,22 +14,15 @@ import {
 } from '@angular/core';
 import { 
   Observable,
-  Subject,
-  takeUntil
+  Subject
 } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { 
   MaterialModule, 
   StandaloneCommonModule 
 } from 'src/app/common/modules';
-// import { NotificationPanelService } from 'src/app/private/system/core';
 import { 
   MainSearchConfig, 
-  MainSearchState, 
-  NavigationState, 
-  DeactivateMainSearchFilter, 
-  SetMainSearchByResource,
-  NavigationStateModel,
   ToggleLeftPanel,
   ToggleTheme,
   MenuNode,
@@ -37,7 +30,6 @@ import {
 } from 'src/app/store';
 import { LocaleKeys } from 'src/app/common/constants';
 import { SubscriptionHelper } from 'src/app/common/helpers';
-import { MainSearchComponent } from '../main-search/main-search.component';
 import { ThemeService } from 'src/app/common/services';
 
 
@@ -45,8 +37,7 @@ import { ThemeService } from 'src/app/common/services';
   selector: 'daz-header',
   imports: [
     StandaloneCommonModule,
-    MaterialModule,
-    MainSearchComponent
+    MaterialModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -68,7 +59,6 @@ export class HeaderComponent implements
   constructor(
     private store: Store,
     private themeSvc: ThemeService
-    // private notificationPanelSvc: NotificationPanelService
   ) { }
 
   ngOnInit(): void {
@@ -83,16 +73,6 @@ export class HeaderComponent implements
 
   private syncState(): void {
     this.menuParentItem$ = this.store.select(MenuState.getParent);
-    // this.currentNav$ = this.store.select(NavigationState.navigation);
-    // this.searchConfig$ = this.store.select(MainSearchState.getConfig);
-
-    // this.store.select(NavigationState.getResource)
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe(resource => 
-    //     this.store.dispatch([
-    //       new SetMainSearchByResource(resource),
-    //       new DeactivateMainSearchFilter()
-    //     ]));
   }
 
   onClickNotifications(): void {
@@ -109,7 +89,7 @@ export class HeaderComponent implements
 
   getUsername(type: 'SHORT' | 'FULL'): string {
     return type === 'SHORT'
-      ? `${this.username.charAt(0).toUpperCase()}${this.username.charAt(1).toUpperCase()}`
+      ? `${this.username.charAt(0)}${this.username.charAt(1)}`
       : this.username;
   }
 

@@ -40,12 +40,13 @@
       "signOut": "SIGN OUT",
       "fullScreen": "FULL SCREEN",
       "exitFullScreen": "EXIT FULL SCREEN",
-      "myProfile": "MY PROFILE"
+      "myProfile": "MY PROFILE",
+      "addNew": "ADD NEW"
     },
     "forms": {
       "filtersAreNotAvailableHere": "Filters are not available here..",
       "usingAdvancedFilter": "Using advanced filter..",
-      "productsFilter": "Filter products"
+      "searchByNames": "Search by names"
     }
   },
 

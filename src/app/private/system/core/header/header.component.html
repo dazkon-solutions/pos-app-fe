@@ -17,14 +17,10 @@
 
   <!-- Title -->
   @let menuParentItem = menuParentItem$ | async;
-  <span class="title mat-headline-small" >
+  <span class="title mat-title-medium" >
     {{ menuParentItem && (menuParentItem.name | translate) }}
   </span>
   <!-- End of title -->
-
-  <!-- Search field -->
-  <daz-main-search />
-  <!-- End of search field -->
 
   <span class="spacer" ></span>
 
@@ -43,7 +39,9 @@
     <div class="profile-avatar"
          matRipple 
          [matMenuTriggerFor]="menu" >
-      <span class="mat-title-medium" >{{ getUsername('SHORT') }}</span>
+      <span class="mat-title-medium" >
+        {{ getUsername('SHORT') | uppercase }}
+      </span>
     </div>
   </section>
   <!-- End of button section -->
@@ -59,7 +57,7 @@
     <section class="items" >
       <div class="profile-avatar" >
         <p class="mat-caption username" >
-          {{ getUsername('SHORT') }}
+          {{ getUsername('SHORT') | uppercase }}
         </p>
       </div>
 

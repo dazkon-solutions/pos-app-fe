@@ -9,9 +9,14 @@
 
 @use '@angular/material' as mat;
 
-.daz-main-search-field {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
+@mixin control-bar-styles(
+  $bg-color,
+  $text-color
+) {
+  .daz-control-bar {
+    @include mat.toolbar-overrides((
+      container-background-color: $bg-color,
+      container-text-color: $text-color
+    ));
+  }
 }

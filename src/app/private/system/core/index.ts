@@ -10,3 +10,4 @@
 export * from './footer/footer.component';
 export * from './header/header.component';
 export * from './left-panel/left-panel.component';
+export * from './control-bar/control-bar.component';

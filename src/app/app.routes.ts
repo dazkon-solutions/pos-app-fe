@@ -13,11 +13,11 @@ export const routes: Routes = [
   { 
     path: '', 
     loadComponent: () => import('./protected/dashboard/dashboard.component')
-      .then(m => m.DashboardComponent) 
+      .then(m => m.DashboardComponent)
   },
   { 
     path: 'products', 
-    loadChildren: () => import('./protected/products/product.routes')
-      .then(m => m.PRODUCT_ROUTS) 
+    loadChildren: () => import('./protected/product-manager/product.routes')
+      .then(m => m.PRODUCT_MANAGER_ROUTS)
   }
 ];

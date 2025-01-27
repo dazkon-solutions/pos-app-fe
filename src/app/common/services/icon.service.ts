@@ -51,6 +51,7 @@ export class IconService {
       .addSvgIcon('inventory', this.setPath(`${this.path}/inventory-outlined.svg`))
       .addSvgIcon('settings', this.setPath(`${this.path}/settings-outlined.svg`))
       .addSvgIcon('help', this.setPath(`${this.path}/help-outlined.svg`))
+      .addSvgIcon('add', this.setPath(`${this.path}/add-outlined.svg`))
   }                
 
   private setPath(url: string): SafeResourceUrl {

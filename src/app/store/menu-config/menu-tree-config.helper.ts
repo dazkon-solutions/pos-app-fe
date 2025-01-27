@@ -44,7 +44,7 @@ export class MenuTreeConfigHelper {
             pid: 10,
             name: LocaleKeys.titles.categories,
             description: LocaleKeys.titles.categories,
-            route: 'categories',
+            route: 'products/categories',
             resource: Resource.CATEGORIES
           },
           {

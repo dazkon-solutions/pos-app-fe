@@ -29,6 +29,9 @@
     container-vertical-padding: 7px,
     outlined-container-shape: 12px,
   ));
+  @include mat.button-overrides((
+    filled-container-height: 36px
+  ));
 }
 
 html, 

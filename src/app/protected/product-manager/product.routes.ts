@@ -8,18 +8,16 @@
  */
 
 import { Routes } from '@angular/router';
-import { ProductsComponent } from './products.component';
+import { ProductsComponent } from './products/products.component';
 
-export const PRODUCT_ROUTS: Routes = [
+export const PRODUCT_MANAGER_ROUTS: Routes = [
   { 
     path: '', 
-    component: ProductsComponent,
-    children: [
-      // {
-      //   path: '',
-      //   loadComponent: () => import('./protected/dashboard/dashboard.component')
-      //     .then(m => m.DashboardComponent) 
-      // }
-    ]
+    component: ProductsComponent
+  },
+  {
+    path: 'categories',
+    loadComponent: () => import('./categories/categories.component')
+      .then(m => m.CategoriesComponent) 
   }
 ];

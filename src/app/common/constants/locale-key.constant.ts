@@ -52,11 +52,12 @@ export const LocaleKeys = {
       fullScreen: 'labels.buttons.fullScreen',
       exitFullScreen: 'labels.buttons.exitFullScreen',
       myProfile: 'labels.buttons.myProfile',
+      addNew: 'labels.buttons.addNew',
     },
     forms: {
       filtersAreNotAvailableHere: 'labels.forms.filtersAreNotAvailableHere',
       usingAdvancedFilter: 'labels.forms.usingAdvancedFilter',
-      productsFilter: 'labels.forms.productsFilter',
+      searchByNames: 'labels.forms.searchByNames',
     },
   },
   errors: {

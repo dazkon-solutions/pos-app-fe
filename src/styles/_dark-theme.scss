@@ -14,6 +14,7 @@
 // @use 'common';
 @use 'scroll';
 @use 'header';
+@use 'control-bar';
 @use 'footer';
 @use 'form';
 // @use 'dialog';
@@ -24,7 +25,7 @@
 @mixin dark-theme-styles() {
   // $theme: theme.$dark-theme;
 
-  color: var.$dark-bg-text-color;
+  color: var.$dark-bg-text-color-1;
 
   .daz-container {
     background-color: var.$static-bg-color-2;
@@ -43,13 +44,16 @@
                                   var.$dark-scroll-bg-color,
                                   var.$dark-hover-color);
 
-  @include header.header-styles(var.$dark-bg-color,
-                                var.$dark-bg-text-color);
+  @include header.header-styles(var.$static-bg-color-1,
+                                var.$dark-bg-text-color-2);
+
+  @include control-bar.control-bar-styles(var.$dark-bg-color,
+                                          var.$dark-bg-text-color-1);
 
   @include footer.footer-styles(var.$static-bg-color-2,
-                                var.$dark-bg-text-color);
+                                var.$dark-bg-text-color-1);
 
-  @include form.form-colors(var.$dark-bg-text-color);
+  @include form.form-colors(var.$dark-bg-text-color-1);
   @include form.form-colors-dark();
   @include form.form-colors-dark-disabled();
 
