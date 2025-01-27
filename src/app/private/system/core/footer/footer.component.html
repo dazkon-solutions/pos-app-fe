@@ -8,11 +8,14 @@
 -->
 
 <mat-toolbar class="daz-footer" >
-  <span class="spacer" ></span>
+  <div class="container" >
+    <div class="left-section" ></div>
+  
+    <div class="center-section mat-label-small" >
+      Copyright © {{ getCurrentYear() }} Dazkon Solutions
+    </div>
+    
+    <div class="right-section" ></div>
 
-  <span class="mat-label-small" >
-    Copyright © {{ getCurrentYear() }} Dazkon Solutions
-  </span>
-
-  <span class="spacer" ></span>
+  </div>
 </mat-toolbar>

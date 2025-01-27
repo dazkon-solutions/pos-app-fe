@@ -13,6 +13,7 @@
 // @use 'common';
 @use 'scroll';
 @use 'header';
+@use 'footer';
 @use 'form';
 // @use 'dialog';
 // @use 'bottom-sheet' as bs;
@@ -38,6 +39,9 @@
                                   var.$hover-color);
 
   @include header.header-styles(var.$light-bg-color,
+                                var.$light-bg-text-color);
+
+  @include footer.footer-styles(var.$light-bg-color,
                                 var.$light-bg-text-color);
 
   @include form.form-colors(var.$light-bg-text-color);
