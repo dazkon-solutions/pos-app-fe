@@ -63,7 +63,7 @@ export class MainSearchState {
   }
 
   @Selector()
-  static getConfig(state: MainSearchStateModel): MainSearchConfig | null {
+  static getConfig(state: MainSearchStateModel): MainSearchConfig {
     return state.config;
   }
 
@@ -84,10 +84,10 @@ export class MainSearchState {
   ): void {
     const state = ctx.getState();
     const selectedConfig = state.list.find(config => 
-      config.resource === action.resource) || null;
+      config.resource === action.resource);
 
     ctx.patchState({
-      config: selectedConfig
+      config: selectedConfig ?? MainSearchStateConfigHelper.defaultConfig()
     });
   }
 

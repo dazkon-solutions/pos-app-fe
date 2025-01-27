@@ -16,7 +16,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 45px;
+  height: 56px;
 
   background-color: var.$menu-panel-bg-color;
 
@@ -67,7 +67,7 @@
     &:hover {
       opacity: 90%;
 
-      color: var.$menu-panel-hover-text-color;
+      color: var.$menu-panel-text-color-hover;
 
       background-color: var.$menu-panel-item-bg-color-hover;
 
@@ -88,7 +88,7 @@
     &:hover {
       opacity: 90%;
 
-      color: var.$menu-panel-hover-text-color;
+      color: var.$menu-panel-text-color-hover;
 
       background-color: var.$menu-panel-item-bg-color-hover;
 

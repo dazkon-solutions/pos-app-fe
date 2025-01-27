@@ -31,7 +31,8 @@ import {
   LeftPanelState,
   SelectMenuItem,
   MenuNode,
-  ToggleLeftPanel
+  ToggleLeftPanel,
+  SetMenuParent
 } from 'src/app/store';
 import { SubscriptionHelper } from 'src/app/common/helpers';
 import { Resource } from 'src/app/common/enums';
@@ -99,7 +100,7 @@ export class LeftPanelComponent implements
       });
   }
 
-  private setFlattened(menuNodes: MenuNode[]): void {
+  private setFlattenedIfNotExist(menuNodes: MenuNode[]): void {
     if(this.flattened.length > 0) return;
   
     const flattenNodes = (nodes: MenuNode[]): MenuNode[] => {
@@ -124,7 +125,7 @@ export class LeftPanelComponent implements
       .pipe(takeUntil(this.destroy$))
       .subscribe(list => {
         this.dataSource = list;
-        this.setFlattened(list);
+        this.setFlattenedIfNotExist(list);
       });
   }
 
@@ -141,9 +142,15 @@ export class LeftPanelComponent implements
 
     const parentItem = this.dataSource.find(item => item.uid === current.pid);
 
-    if(!parentItem) return;
+    if(!parentItem) {
+      this.store.dispatch(new SetMenuParent(current));
+
+      return;
+    };
 
     this.tree.expand(parentItem);
+
+    this.store.dispatch(new SetMenuParent(parentItem));
   }
 
   private collapseAllNodes(): void {
@@ -159,10 +166,12 @@ export class LeftPanelComponent implements
     this.navigateTo(menuNode.route);
 
     this.store.dispatch(new SelectMenuItem(menuNode));
+
+    this.expandParent();
   }
 
   onClickExpandedMenuNode(node: MenuNode): void {
-    this.navigateToResource(node.resource);
+    this.navigateSvc.navigateTo(node.resource);
   }
 
   onClickCollapsedMenuNode(node: MenuNode): void {
@@ -174,7 +183,7 @@ export class LeftPanelComponent implements
       ? firstChild.resource
       : node.resource;
 
-    this.navigateToResource(resource);
+    this.navigateSvc.navigateTo(resource);
 
     this.store.dispatch(new ToggleLeftPanel());
   }

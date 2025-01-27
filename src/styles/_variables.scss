@@ -9,38 +9,38 @@
 
 $primary-color: #2196F3;
 
+$dark-disabled: #ffffff33;
+
 $tertiary-color: #FF6D00; // not used
 $hover-color: #e0e0ff88;
 $active-color: #e0e0ff;
 $scroll-thumb-color: #e0e0ff;
 $scroll-bg-color: #F5F5F5;
 
-$dark-hover-color: #e1e0f920;
+$dark-hover-color: $primary-color;
 $dark-active-color: #515264;
 $dark-scroll-thumb-color: #515264;
 $dark-scroll-bg-color: #e1e0f920;
+
+// Text
+$light-bg-text-color: #141414;
 $dark-bg-text-color: #fff;
 
-
+// Background
 $light-bg-color: #F3F3F3;
 $dark-bg-color: #141414;
 
+// Static colors
 $static-bg-color-1: #1E1F25; // not used
 $static-bg-color-2: #000100; // for darkest backgrounds
 $static-bg-color-3: #8F9097; // for borders
 
-
 // Main menu
 $menu-panel-text-color: #BBBBBB;
+$menu-panel-text-color-hover: #fff;
 $menu-panel-item-icon-color-selected: #fff;
 $menu-panel-item-bg-color-hover: $hover-color;
 $menu-panel-item-bg-color-selected: #2c2c2c;
 $menu-panel-bg-color: $dark-bg-color;
 $menu-panel-item-child-bg-color: #0c0c0c;
 $menu-panel-item-child-bg-color-selected: #242424;
-
-$menu-panel-hover-text-color: #fff;
-$selected-text-color: #fff;
-$selected-child-bg-color: #4db6ac;
-$selected-parent-bg-color: $primary-color;
-$text-and-icon-color: #37474F;

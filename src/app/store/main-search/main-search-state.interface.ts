@@ -17,7 +17,7 @@ export interface MainSearchConfig {
 
 export interface MainSearchStateModel {
   searchTerm:     string;
-  config:         MainSearchConfig | null;
+  config:         MainSearchConfig;
   list:           MainSearchConfig[];
   isFilterActive: boolean;
 }

@@ -21,7 +21,7 @@
 <mat-divider />
 <!-- End of logo section -->
 
-@let current = (current$ | async) ?? null;
+@let current = current$ | async;
 
 <!-- Menu section -->
 @if (isLeftPanelExpanded) {

@@ -6,17 +6,29 @@
  * without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
  * For inquiries, please contact: info@dazkonsolutions.com
  */
+@use '@angular/material' as mat;
+@use 'variables' as var;
+
+@mixin form-colors($text-color) {
+  @include mat.form-field-overrides((
+    outlined-input-text-color: $text-color
+  ));
+}
+
+@mixin form-colors-dark {
+  @include mat.form-field-overrides((
+    outlined-hover-outline-color: var.$primary-color
+  ));
+}
+
+@mixin form-colors-dark-disabled {
+  @include mat.form-field-overrides((
+    outlined-disabled-outline-color: var.$dark-disabled,
+    disabled-input-text-placeholder-color: var.$dark-disabled
+  ));
+}
 
 @mixin form-styles {
-  mat-form-field {
-    --mat-form-field-container-height: 34px;
-    --mat-form-field-container-vertical-padding: 5px;
-
-    .mat-mdc-icon-button.mat-mdc-button-base {
-      --mdc-icon-button-state-layer-size: 44px;
-    }
-  }
-
   form {
     display: flex;
     flex-wrap: wrap;

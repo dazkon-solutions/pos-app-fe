@@ -7,7 +7,7 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-<mat-toolbar class="daz-header header-bg" >
+<mat-toolbar class="daz-header" >
   <!-- Menu toggle -->
   <button mat-icon-button
           (click)="onToggleLeftPanel()" >
@@ -15,20 +15,15 @@
   </button>
   <!-- End of menu toggle -->
 
-  <span class="spacer" ></span>
-  
   <!-- Title -->
-  @let currentNav = currentNav$ | async;
+  @let menuParentItem = menuParentItem$ | async;
   <span class="title mat-headline-small" >
-    {{ currentNav && (currentNav.name| translate) }}
+    {{ menuParentItem && (menuParentItem.name | translate) }}
   </span>
   <!-- End of title -->
 
   <!-- Search field -->
-  @let searchConfig = searchConfig$ | async;
-  @if (searchConfig) {
-    <daz-main-search [config]="searchConfig" />
-  }
+  <daz-main-search />
   <!-- End of search field -->
 
   <span class="spacer" ></span>

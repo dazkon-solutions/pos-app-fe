@@ -19,19 +19,14 @@ import { MenuStateModel } from "./menu-state.interface";
 import { MenuStateConfigHelper } from "./menu-state-config.helper";
 import { StateKey } from "../state-key.token";
 
-export class SetParentMenuItem {
-  static readonly type = '[Menu] Set parent';
-  constructor(public parent: number) { }
-}
-
-export class SetChildMenuItem {
-  static readonly type = '[Menu] Set child';
-  constructor(public child: number) { }
-}
-
 export class SelectMenuItem {
   static readonly type = '[Menu] Select';
   constructor(public menuNode: MenuNode) { }
+}
+
+export class SetMenuParent {
+  static readonly type = '[Menu] Set parent';
+  constructor(public parentMenuNode: MenuNode) { }
 }
 
 export class SetMenuTree {
@@ -50,41 +45,18 @@ export class ResetMenu {
 @Injectable()
 export class MenuState {
   @Selector()
-  static currentItem(state: MenuStateModel) {
-    return {
-      child: state.child, 
-      parent:state.parent
-    };
-  }
-
-  @Selector()
   static getCurrent(state: MenuStateModel): MenuNode | null {
     return state.current;
   }
 
   @Selector()
+  static getParent(state: MenuStateModel): MenuNode | null {
+    return state.parent;
+  }
+
+  @Selector()
   static getTree(state: MenuStateModel): MenuNode[] {
     return state.tree;
-  }
-
-  @Action(SetChildMenuItem)
-  setChild(
-    ctx: StateContext<MenuStateModel>,
-    action: SetChildMenuItem
-  ) {
-    ctx.patchState({
-      child: action.child
-    });
-  }
-
-  @Action(SetParentMenuItem)
-  setParent(
-    ctx: StateContext<MenuStateModel>,
-    action: SetParentMenuItem
-  ) {
-    ctx.patchState({
-      parent: action.parent
-    });
   }
 
   @Action(SelectMenuItem)
@@ -94,6 +66,16 @@ export class MenuState {
   ) {
     ctx.patchState({
       current: action.menuNode
+    });
+  }
+
+  @Action(SetMenuParent)
+  setMenuParent(
+    ctx: StateContext<MenuStateModel>,
+    action: SetMenuParent
+  ) {
+    ctx.patchState({
+      parent: action.parentMenuNode
     });
   }
 

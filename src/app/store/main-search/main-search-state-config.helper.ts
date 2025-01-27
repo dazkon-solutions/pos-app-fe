@@ -19,14 +19,27 @@ export class MainSearchStateConfigHelper {
   static createDefault(): MainSearchStateModel {
     return {
       searchTerm: '',
-      config: null,
+      config: this.defaultConfig(),
       list: this.createConfigList(),
       isFilterActive: false
     };
   }
 
+  static defaultConfig(): MainSearchConfig {
+    return {
+      label: LocaleKeys.labels.forms.filtersAreNotAvailableHere,
+      resource: Resource.NONE,
+      isFilterAvailable: false
+    }
+  }
+
   static createConfigList(): MainSearchConfig[] {
     return [
+      // {
+      //   label: LocaleKeys.labels.forms.productsFilter,
+      //   resource: Resource.PRODUCTS,
+      //   isFilterAvailable: false
+      // },
       // {
       //   label: LocaleKeys.labels.forms.searchTeachers,
       //   resource: Resource.TEACHERS,
@@ -35,7 +48,7 @@ export class MainSearchStateConfigHelper {
       {
         label: LocaleKeys.labels.forms.productsFilter,
         resource: Resource.PRODUCTS,
-        isFilterAvailable: false
+        isFilterAvailable: true
       },
     ];
   }

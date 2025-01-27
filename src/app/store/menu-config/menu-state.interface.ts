@@ -10,8 +10,7 @@
 import { MenuNode } from "src/app/store/menu-config/menu.interface";
 
 export interface MenuStateModel {
-  parent:   number;
-  child:    number;
+  parent:   MenuNode | null;
   current:  MenuNode | null;
   tree:     MenuNode[];
   isLoaded: boolean;

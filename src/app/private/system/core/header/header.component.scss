@@ -7,16 +7,19 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
+@use '@angular/material' as mat;
 @use 'variables' as var;
 
 .daz-header {
-  --mat-toolbar-standard-height: 72px;
-  --mat-toolbar-mobile-height: 56px;
+  @include mat.toolbar-overrides((
+    standard-height: 56px,
+    mobile-height: 56px
+  ));
 }
 
 .title {
   width: 33%;
-  margin: 0;
+  margin: 0 0 0 15px;
   
   font-weight: 500;
 }

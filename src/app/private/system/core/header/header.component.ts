@@ -31,7 +31,9 @@ import {
   SetMainSearchByResource,
   NavigationStateModel,
   ToggleLeftPanel,
-  ToggleTheme
+  ToggleTheme,
+  MenuNode,
+  MenuState
 } from 'src/app/store';
 import { LocaleKeys } from 'src/app/common/constants';
 import { SubscriptionHelper } from 'src/app/common/helpers';
@@ -53,7 +55,7 @@ export class HeaderComponent implements
   OnInit,
   OnDestroy  
 {
-  currentNav$!: Observable<NavigationStateModel>;
+  menuParentItem$!: Observable<MenuNode | null>;
   searchConfig$!: Observable<MainSearchConfig | null>;
   isLightTheme$!: Observable<boolean>;
   LocaleKeys = LocaleKeys;
@@ -80,8 +82,9 @@ export class HeaderComponent implements
   }
 
   private syncState(): void {
-    this.currentNav$ = this.store.select(NavigationState.navigation);
-    this.searchConfig$ = this.store.select(MainSearchState.getConfig);
+    this.menuParentItem$ = this.store.select(MenuState.getParent);
+    // this.currentNav$ = this.store.select(NavigationState.navigation);
+    // this.searchConfig$ = this.store.select(MainSearchState.getConfig);
 
     // this.store.select(NavigationState.getResource)
     //   .pipe(takeUntil(this.destroy$))

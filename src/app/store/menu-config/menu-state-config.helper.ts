@@ -12,8 +12,7 @@ import { MenuStateModel } from "./menu-state.interface";
 export class MenuStateConfigHelper {
   static createDefault(): MenuStateModel {
     return {
-      parent: 1,
-      child: 0,
+      parent: null,
       current: null,
       tree: [],
       isLoaded: false

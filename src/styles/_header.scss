@@ -7,9 +7,16 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
+@use '@angular/material' as mat;
 
-@mixin header-background($bg-color) {
-  .header-bg {
-    background-color: $bg-color;
+@mixin header-styles(
+  $bg-color,
+  $text-color
+) {
+  .daz-header {
+    @include mat.toolbar-overrides((
+      container-background-color: $bg-color,
+      container-text-color: $text-color
+    ));
   }
 }

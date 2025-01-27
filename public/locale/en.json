@@ -41,6 +41,7 @@
       "myProfile": "MY PROFILE"
     },
     "forms": {
+      "filtersAreNotAvailableHere": "Filters are not available here..",
       "usingAdvancedFilter": "Using advanced filter..",
       "productsFilter": "Filter products"
     }

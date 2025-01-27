@@ -14,6 +14,7 @@
 // @use 'common';
 @use 'scroll';
 @use 'header';
+@use 'form';
 // @use 'dialog';
 // @use 'bottom-sheet' as bs;
 // @use 'table';
@@ -36,12 +37,17 @@
 
   // @include common.active-layer-color(var.$dark-active-color);
 
-  @include scroll.scroller-style(var.$dark-scroll-bg-color, 
-                                 var.$dark-scroll-thumb-color,
-                                 var.$dark-scroll-bg-color,
-                                 var.$dark-hover-color);
+  @include scroll.scroller-styles(var.$dark-scroll-bg-color, 
+                                  var.$dark-scroll-thumb-color,
+                                  var.$dark-scroll-bg-color,
+                                  var.$dark-hover-color);
 
-  @include header.header-background(var.$dark-bg-color);
+  @include header.header-styles(var.$dark-bg-color,
+                                var.$dark-bg-text-color);
+
+  @include form.form-colors(var.$dark-bg-text-color);
+  @include form.form-colors-dark();
+  @include form.form-colors-dark-disabled();
 
   // @include dialog.dialog-background(var.$dark-bg-color);
 

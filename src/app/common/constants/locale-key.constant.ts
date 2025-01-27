@@ -52,6 +52,7 @@ export const LocaleKeys = {
       myProfile: 'labels.buttons.myProfile',
     },
     forms: {
+      filtersAreNotAvailableHere: 'labels.forms.filtersAreNotAvailableHere',
       usingAdvancedFilter: 'labels.forms.usingAdvancedFilter',
       productsFilter: 'labels.forms.productsFilter',
     },

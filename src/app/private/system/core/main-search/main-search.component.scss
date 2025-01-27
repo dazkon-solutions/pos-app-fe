@@ -7,6 +7,8 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
+@use '@angular/material' as mat;
+
 .daz-main-search-field {
   display: flex;
   flex-direction: row;
@@ -15,11 +17,7 @@
 }
 
 .search-field {
-  --mdc-outlined-text-field-container-shape: 100px;
-
-  width: 500px;
-
-  input {
-    padding-top: 5px;
-  }
+  @include mat.form-field-overrides((
+    outlined-container-shape: 100px
+  ));
 }

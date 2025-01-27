@@ -11,6 +11,7 @@ export * from './resource-config/resource.state';
 export * from './appearance/appearance.state';
 export * from './main-search/main-search.state';
 export * from './main-search/main-search-state.interface';
+export * from './main-search/main-search-state-config.helper';
 export * from './navigation-config/navigation.state';
 export * from './navigation-config/navigation-state.interface';
 export * from './menu-config/menu.state';

@@ -14,7 +14,7 @@
 @use 'dazkon-theme' as theme;
 @use 'dark-theme' as dt;
 @use 'light-theme' as lt;
-@use 'form' as form;
+@use 'form';
 
 
 @include mat.typography-hierarchy(theme.$light-theme,
@@ -25,7 +25,9 @@
   @include mat.core-theme(theme.$light-theme);
   @include mat.all-component-themes(theme.$light-theme);
   @include mat.form-field-overrides((
-    outlined-container-shape: 12px
+    container-height: 34px,
+    container-vertical-padding: 7px,
+    outlined-container-shape: 12px,
   ));
 }
 
@@ -34,7 +36,6 @@ body {
   height: 100%; 
   margin: 0; 
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  // background-color: var.$light-bg-color;
 }
 
 .spacer {

@@ -8,12 +8,9 @@
  */
 
 import { 
-  Component, 
-  Input, 
-  OnChanges, 
+  Component,
   OnDestroy,
-  OnInit,
-  SimpleChanges
+  OnInit
 } from '@angular/core';
 import { 
   FormBuilder, 
@@ -38,10 +35,15 @@ import {
   MainSearchConfig,
   MainSearchState, 
   DeactivateMainSearchFilter,
-  SetMainSearchTerm
+  SetMainSearchTerm,
+  SetMainSearchByResource,
+  MainSearchStateConfigHelper
 } from 'src/app/store';
 import { LocaleKeys } from 'src/app/common/constants';
-import { Navigator, SearchPanelService } from 'src/app/common/services';
+import { 
+  Navigator, 
+  SearchPanelService 
+} from 'src/app/common/services';
 
 
 @Component({
@@ -55,12 +57,9 @@ import { Navigator, SearchPanelService } from 'src/app/common/services';
 })
 export class MainSearchComponent implements 
   OnInit, 
-  OnChanges,
   OnDestroy 
 {
-  @Input('config')
-  config!: MainSearchConfig;
-
+  config: MainSearchConfig = MainSearchStateConfigHelper.defaultConfig();
   form: FormGroup;
   LocaleKeys = LocaleKeys;
   isFiltered = false;
@@ -78,24 +77,25 @@ export class MainSearchComponent implements
   }
 
   ngOnInit(): void {
-    this.subscribeToNavigationChanges();
+    this.init();
+    this.syncState();
     this.syncFilterChanges();
   }
 
-  private subscribeToNavigationChanges(): void {
-    
+  private init(): void {
+    this.navigateSvc.navigator$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(resource => 
+        this.store.dispatch(new SetMainSearchByResource(resource)));
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if('config' in changes) {
-      this.clearForm();
-    }
-  }
-
-  private handleFormActivation(isFilterd: boolean): void {
-    isFilterd 
-      ? this.form.disable() 
-      : this.form.enable();
+  private syncState(): void {
+    this.store.select(MainSearchState.getConfig)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(config => {
+        this.config = config;
+        this.handleFormActivation(!config.isFilterAvailable);
+      });
   }
 
   private syncFilterChanges(): void {
@@ -108,6 +108,12 @@ export class MainSearchComponent implements
         this.handleFormActivation(filtered);
         this.clearForm();
       });
+  }
+
+  private handleFormActivation(isFilterd: boolean): void {
+    isFilterd 
+      ? this.form.disable() 
+      : this.form.enable();
   }
 
   private createForm(formBuilder: FormBuilder): any {
@@ -149,7 +155,7 @@ export class MainSearchComponent implements
   }
 
   onClickAdvancedFilter(): void {
-    this.searchPanelSvc.onClickOpen(this.config.resource);
+    // this.searchPanelSvc.onClickOpen(this.config.resource);
   }
 
   ngOnDestroy(): void {
