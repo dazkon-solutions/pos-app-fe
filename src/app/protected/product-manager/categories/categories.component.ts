@@ -8,10 +8,17 @@
  */
 
 import { Component } from '@angular/core';
+import { 
+  MaterialModule, 
+  StandaloneCommonModule 
+} from 'src/app/common/modules';
 
 @Component({
   selector: 'daz-categories',
-  imports: [],
+  imports: [
+    StandaloneCommonModule,
+    MaterialModule
+  ],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss'
 })

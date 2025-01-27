@@ -17,3 +17,4 @@ export * from './navigation-config/navigation-state.interface';
 export * from './menu-config/menu.state';
 export * from './menu-config/menu.interface';
 export * from './left-panel-config/left-panel.state';
+export * from './right-panel-config/right-panel.state';

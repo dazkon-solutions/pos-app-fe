@@ -17,6 +17,8 @@
 @use 'control-bar';
 @use 'footer';
 @use 'form';
+@use 'card';
+@use 'drawer';
 // @use 'dialog';
 // @use 'bottom-sheet' as bs;
 // @use 'table';
@@ -56,6 +58,12 @@
   @include form.form-colors(var.$dark-bg-text-color-1);
   @include form.form-colors-dark();
   @include form.form-colors-dark-disabled();
+
+  @include card.card-styles(var.$dark-bg-color,
+                            var.$static-bg-color-3,
+                            var.$dark-bg-text-color-2);
+
+  @include drawer.drawer-styles(var.$static-bg-color-2);
 
   // @include dialog.dialog-background(var.$dark-bg-color);
 

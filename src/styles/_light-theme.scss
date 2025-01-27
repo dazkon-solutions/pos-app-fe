@@ -16,6 +16,8 @@
 @use 'control-bar';
 @use 'footer';
 @use 'form';
+@use 'card';
+@use 'drawer';
 // @use 'dialog';
 // @use 'bottom-sheet' as bs;
 // @use 'table';
@@ -49,6 +51,12 @@
                                 var.$light-bg-text-color);
 
   @include form.form-colors(var.$light-bg-text-color);
+
+  @include card.card-styles(var.$light-bg-color-1,
+                            var.$light-bg-color-2,
+                            var.$light-bg-text-color);
+
+  @include drawer.drawer-styles(var.$light-bg-color-2);
 
   // @include dialog.dialog-background(var.$light-bg-color-2);
 

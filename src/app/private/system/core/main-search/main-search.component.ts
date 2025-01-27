@@ -36,14 +36,11 @@ import {
   MainSearchState, 
   DeactivateMainSearchFilter,
   SetMainSearchTerm,
-  SetMainSearchByResource,
-  MainSearchStateConfigHelper
+  MainSearchStateConfigHelper,
+  ToggleRightPanel
 } from 'src/app/store';
 import { LocaleKeys } from 'src/app/common/constants';
-import { 
-  Navigator, 
-  SearchPanelService 
-} from 'src/app/common/services';
+import { SearchPanelService } from 'src/app/common/services';
 
 
 @Component({
@@ -69,24 +66,15 @@ export class MainSearchComponent implements
   constructor(
     private formBuilder: FormBuilder,
     private store: Store,
-    private searchPanelSvc: SearchPanelService,
-    private navigateSvc: Navigator
+    private searchPanelSvc: SearchPanelService
   ) {
     this.form = this.createForm(this.formBuilder);
     this.onSearchValue();
   }
 
   ngOnInit(): void {
-    this.init();
     this.syncState();
     this.syncFilterChanges();
-  }
-
-  private init(): void {
-    this.navigateSvc.navigator$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(resource => 
-        this.store.dispatch(new SetMainSearchByResource(resource)));
   }
 
   private syncState(): void {
@@ -156,6 +144,8 @@ export class MainSearchComponent implements
 
   onClickAdvancedFilter(): void {
     // this.searchPanelSvc.onClickOpen(this.config.resource);
+
+    this.store.dispatch(new ToggleRightPanel());
   }
 
   ngOnDestroy(): void {

@@ -34,14 +34,29 @@
     <!-- End of header -->
 
     <!-- Control bar -->
-    <daz-control-bar />
+    @let menuCurrent = menuCurrent$ | async;
+    @if(isVisibleControlBar(menuCurrent && menuCurrent.resource)) {
+      <daz-control-bar />
+    }
     <!-- End of control bar -->
 
     <!-- Content -->
-    <div class="daz-content" >
-      content
-      <router-outlet />
-    </div>
+    <mat-drawer-container autosize
+                          hasBackdrop="false" > 
+
+      <div class="daz-content" >
+        <router-outlet />
+      </div>
+
+      <!-- Right panel -->
+      <mat-drawer #rightPanel
+                  mode="side"
+                  position="end" >
+        <daz-right-panel />
+      </mat-drawer>
+      <!-- End of right panel -->
+      
+    </mat-drawer-container>
     <!-- End of content -->
 
     <!-- Footer -->

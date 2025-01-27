@@ -7,8 +7,14 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Component, OnInit } from '@angular/core';
+import { 
+  AfterViewInit, 
+  Component, 
+  OnInit, 
+  ViewChild 
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { MatDrawer } from '@angular/material/sidenav';
 import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,7 +22,8 @@ import {
   ControlBarComponent,
   FooterComponent, 
   HeaderComponent, 
-  LeftPanelComponent
+  LeftPanelComponent,
+  RightPanelComponent
 } from 'src/app/private/system/core';
 import { 
   MaterialModule, 
@@ -26,8 +33,14 @@ import {
   IconService, 
   ThemeService 
 } from './common/services';
-import { LeftPanelState } from './store';
+import { 
+  LeftPanelState, 
+  MenuNode, 
+  MenuState, 
+  RightPanelState 
+} from './store';
 import { MenuConfigService } from './store/menu-config/menu-config.service';
+import { Resource } from './common/enums';
 
 @Component({
   selector: 'daz-root',
@@ -37,15 +50,23 @@ import { MenuConfigService } from './store/menu-config/menu-config.service';
     MaterialModule,
     HeaderComponent,
     LeftPanelComponent,
+    RightPanelComponent,
     FooterComponent,
     ControlBarComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements 
+  OnInit,
+  AfterViewInit
+{
+  @ViewChild('rightPanel') 
+  rightPanel!: MatDrawer;
+  
   isLightTheme$!: Observable<boolean>;
   isLeftPanelExpanded$!: Observable<boolean>;
+  menuCurrent$!: Observable<MenuNode | null>;
   isAuth = true;
 
   constructor(
@@ -67,11 +88,30 @@ export class AppComponent implements OnInit {
     this.menuConfigSvc.createMenuTreeByPermission(); // TODO: REMOVE
   }
 
+  ngAfterViewInit(): void {
+    this.store.select(RightPanelState.isExpanded)
+      .subscribe(isExpanded => isExpanded 
+        ? this.rightPanel.open() 
+        : this.rightPanel.close());
+  }
+
   private init(): void {
     this.isLightTheme$ = this.themeSvc.isLightTheme$();
   }
 
   private syncState(): void {
     this.isLeftPanelExpanded$ = this.store.select(LeftPanelState.isExpanded);
+    this.menuCurrent$ = this.store.select(MenuState.getCurrent);
+  }
+
+  isVisibleControlBar(resource: Resource | null): boolean {
+    if(!resource) return false;
+
+    const avoidResources = [ 
+      Resource.DASHBOARD,
+      Resource.NONE
+    ];
+
+    return !avoidResources.includes(resource);
   }
 }
