@@ -41,22 +41,9 @@
     <!-- End of control bar -->
 
     <!-- Content -->
-    <mat-drawer-container autosize
-                          hasBackdrop="false" > 
-
-      <div class="daz-content" >
-        <router-outlet />
-      </div>
-
-      <!-- Right panel -->
-      <mat-drawer #rightPanel
-                  mode="side"
-                  position="end" >
-        <daz-right-panel />
-      </mat-drawer>
-      <!-- End of right panel -->
-      
-    </mat-drawer-container>
+    <div class="daz-content" >
+      <router-outlet />
+    </div>
     <!-- End of content -->
 
     <!-- Footer -->

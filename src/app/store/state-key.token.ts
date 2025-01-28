@@ -13,6 +13,5 @@ export enum StateKey {
   MENU = 'menu',
   NAVIGATION = 'navigation',
   LEFT_PANEL = 'leftPanel',
-  RIGHT_PANEL = 'rightPanel',
   RESOURCE = 'resource'
 }

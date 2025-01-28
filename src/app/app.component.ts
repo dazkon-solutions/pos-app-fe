@@ -8,13 +8,10 @@
  */
 
 import { 
-  AfterViewInit, 
   Component, 
-  OnInit, 
-  ViewChild 
+  OnInit 
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MatDrawer } from '@angular/material/sidenav';
 import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { TranslateService } from '@ngx-translate/core';
@@ -22,8 +19,7 @@ import {
   ControlBarComponent,
   FooterComponent, 
   HeaderComponent, 
-  LeftPanelComponent,
-  RightPanelComponent
+  LeftPanelComponent
 } from 'src/app/private/system/core';
 import { 
   MaterialModule, 
@@ -36,8 +32,7 @@ import {
 import { 
   LeftPanelState, 
   MenuNode, 
-  MenuState, 
-  RightPanelState 
+  MenuState
 } from './store';
 import { MenuConfigService } from './store/menu-config/menu-config.service';
 import { Resource } from './common/enums';
@@ -50,20 +45,13 @@ import { Resource } from './common/enums';
     MaterialModule,
     HeaderComponent,
     LeftPanelComponent,
-    RightPanelComponent,
     FooterComponent,
     ControlBarComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements 
-  OnInit,
-  AfterViewInit
-{
-  @ViewChild('rightPanel') 
-  rightPanel!: MatDrawer;
-  
+export class AppComponent implements OnInit {
   isLightTheme$!: Observable<boolean>;
   isLeftPanelExpanded$!: Observable<boolean>;
   menuCurrent$!: Observable<MenuNode | null>;
@@ -86,13 +74,6 @@ export class AppComponent implements
     this.init();
     this.syncState();
     this.menuConfigSvc.createMenuTreeByPermission(); // TODO: REMOVE
-  }
-
-  ngAfterViewInit(): void {
-    this.store.select(RightPanelState.isExpanded)
-      .subscribe(isExpanded => isExpanded 
-        ? this.rightPanel.open() 
-        : this.rightPanel.close());
   }
 
   private init(): void {

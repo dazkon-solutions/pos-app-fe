@@ -33,8 +33,7 @@ import {
   MenuNode,
   ToggleLeftPanel,
   SetMenuParent,
-  SetMainSearchByResource,
-  CollapseRightPanel
+  SetMainSearchByResource
 } from 'src/app/store';
 import { SubscriptionHelper } from 'src/app/common/helpers';
 import { Resource } from 'src/app/common/enums';
@@ -171,7 +170,6 @@ export class LeftPanelComponent implements
 
     this.store.dispatch([
       new SelectMenuItem(menuNode),
-      new CollapseRightPanel(), // Close advanced filter
       new SetMainSearchByResource(resource) // Set main search
     ]);
 

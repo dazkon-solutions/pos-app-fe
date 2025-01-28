@@ -34,8 +34,7 @@ import {
   MainSearchState, 
   MenuState, 
   NavigationState, 
-  ResourceState,
-  RightPanelState
+  ResourceState
 } from 'src/app/store';
 
 
@@ -52,8 +51,7 @@ export const appConfig: ApplicationConfig = {
         NavigationState,
         MenuState,
         MainSearchState,
-        LeftPanelState,
-        RightPanelState
+        LeftPanelState
       ],
       withNgxsLoggerPlugin(),
       withNgxsStoragePlugin({

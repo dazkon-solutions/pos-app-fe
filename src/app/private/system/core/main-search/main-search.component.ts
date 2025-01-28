@@ -36,8 +36,7 @@ import {
   MainSearchState, 
   DeactivateMainSearchFilter,
   SetMainSearchTerm,
-  MainSearchStateConfigHelper,
-  ToggleRightPanel
+  MainSearchStateConfigHelper
 } from 'src/app/store';
 import { LocaleKeys } from 'src/app/common/constants';
 import { SearchPanelService } from 'src/app/common/services';
@@ -144,8 +143,6 @@ export class MainSearchComponent implements
 
   onClickAdvancedFilter(): void {
     // this.searchPanelSvc.onClickOpen(this.config.resource);
-
-    this.store.dispatch(new ToggleRightPanel());
   }
 
   ngOnDestroy(): void {
