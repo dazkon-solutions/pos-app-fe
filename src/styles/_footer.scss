@@ -14,11 +14,7 @@
   $text-color
 ) {
   .daz-footer {
-    @include mat.toolbar-overrides((
-      container-background-color: $bg-color,
-      container-text-color: $text-color,
-      standard-height: 25px,
-      mobile-height: 25px
-    ));
+    background-color: $bg-color;
+    color: $text-color;
   }
 }

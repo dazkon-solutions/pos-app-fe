@@ -174,6 +174,11 @@ export class LeftPanelComponent implements
     ]);
 
     this.expandParent();
+
+    // Open Leftpanel if closed
+    if(!this.isLeftPanelExpanded) {
+      this.store.dispatch(new ToggleLeftPanel());
+    }
   }
 
   onClickExpandedMenuNode(node: MenuNode): void {
@@ -190,8 +195,6 @@ export class LeftPanelComponent implements
       : node.resource;
 
     this.navigateSvc.navigateTo(resource);
-
-    this.store.dispatch(new ToggleLeftPanel());
   }
 
   private navigateTo(route: string): void {
