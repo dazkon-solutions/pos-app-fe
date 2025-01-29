@@ -11,6 +11,8 @@
 @use 'variables' as var;
 
 .daz-control-bar {
+  border-radius: 15px 15px 0 0;
+
   @include mat.toolbar-overrides((
     standard-height: 50px,
     mobile-height: 50px

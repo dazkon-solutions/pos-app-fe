@@ -28,14 +28,14 @@
 
   .daz-container,
   .daz-content {
-    background-color: var.$light-bg-color-2;
+    background-color: var.$light-bg-color-1;
   }
 
   .background-color-with-curve-helper-for-header {
     background-color: var.$light-bg-color-2;
   }
 
-  .background-color-with-curve-helper-for-control-bar {
+  .background-color-with-curve-helper-for-control-bar{
     background-color: var.$light-bg-color-1;
   }
 
@@ -56,7 +56,7 @@
   @include control-bar.control-bar-styles(var.$light-bg-color-1,
                                           var.$light-bg-text-color);
 
-  @include footer.footer-styles(var.$light-bg-color-2,
+  @include footer.footer-styles(var.$light-bg-color-1,
                                 var.$light-bg-text-color);
 
   @include form.form-colors(var.$light-bg-text-color);

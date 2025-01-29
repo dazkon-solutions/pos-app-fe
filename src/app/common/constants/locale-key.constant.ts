@@ -57,7 +57,7 @@ export const LocaleKeys = {
     forms: {
       filtersAreNotAvailableHere: 'labels.forms.filtersAreNotAvailableHere',
       usingAdvancedFilter: 'labels.forms.usingAdvancedFilter',
-      searchByNames: 'labels.forms.searchByNames',
+      searchByName: 'labels.forms.searchByName',
     },
   },
   errors: {

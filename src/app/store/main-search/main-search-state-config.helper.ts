@@ -46,12 +46,12 @@ export class MainSearchStateConfigHelper {
       //   isFilterAvailable: true
       // },
       {
-        label: LocaleKeys.labels.forms.searchByNames,
+        label: LocaleKeys.labels.forms.searchByName,
         resource: Resource.PRODUCTS,
         isFilterAvailable: true
       },
       {
-        label: LocaleKeys.labels.forms.searchByNames,
+        label: LocaleKeys.labels.forms.searchByName,
         resource: Resource.CATEGORIES,
         isFilterAvailable: true
       },

@@ -33,18 +33,21 @@
     <daz-header />
     <!-- End of header -->
 
+    <!-- Helper for manage background color with curve -->
+    <div class="background-color-with-curve-helper-for-header" ></div>
+    <!-- End of helper for manage background color with curve -->
+
     <!-- Control bar -->
     @let menuCurrent = menuCurrent$ | async;
     @if(isVisibleControlBar(menuCurrent && menuCurrent.resource)) {
-      <daz-control-bar />
+      <daz-control-bar class="daz-control-bar" />
     }
     <!-- End of control bar -->
 
     <!-- Helper for manage background color with curve -->
-    <div [ngClass]="isVisibleControlBar(menuCurrent && menuCurrent.resource) 
-            ? 'background-color-with-curve-helper-for-control-bar'
-            : 'background-color-with-curve-helper-for-header'" >
-    </div>
+    @if(isVisibleControlBar(menuCurrent && menuCurrent.resource)) {
+      <div class="background-color-with-curve-helper-for-control-bar" ></div>
+    }
     <!-- End of helper for manage background color with curve -->
 
     <!-- Content -->
