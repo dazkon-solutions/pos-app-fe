@@ -8,11 +8,10 @@
  */
 
 import { Component } from '@angular/core';
-import { MaterialModule } from 'src/app/common/modules';
 
 @Component({
   selector: 'daz-footer',
-  imports: [ MaterialModule ],
+  imports: [ ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
 })

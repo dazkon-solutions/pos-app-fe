@@ -29,8 +29,17 @@
 
   color: var.$dark-bg-text-color-1;
 
-  .daz-container {
+  .daz-container,
+  .daz-content {
     background-color: var.$static-bg-color-2;
+  }
+
+  .background-color-with-curve-helper-for-header {
+    background-color: var.$static-bg-color-1;
+  }
+
+  .background-color-with-curve-helper-for-control-bar {
+    background-color: var.$dark-bg-color;
   }
 
   // @include mat.all-component-colors($theme);

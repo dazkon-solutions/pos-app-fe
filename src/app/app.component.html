@@ -40,6 +40,13 @@
     }
     <!-- End of control bar -->
 
+    <!-- Helper for manage background color with curve -->
+    <div [ngClass]="isVisibleControlBar(menuCurrent && menuCurrent.resource) 
+            ? 'background-color-with-curve-helper-for-control-bar'
+            : 'background-color-with-curve-helper-for-header'" >
+    </div>
+    <!-- End of helper for manage background color with curve -->
+
     <!-- Content -->
     <div class="daz-content" >
       <router-outlet />

@@ -24,6 +24,8 @@
 .daz-content {
   overflow-y: hidden;
   padding: 5px;
+  border-radius: 15px 15px 0 0;
+  z-index: 0;
 }
 
 .left-panel {
@@ -42,4 +44,24 @@
   @extend .left-panel;
   
   width: 55px;
+}
+
+.background-color-with-curve-helper {
+  position: absolute;
+  top: 92px;
+
+  height: 20px;
+  width: 100%;
+}
+
+.background-color-with-curve-helper-for-header {
+  @extend .background-color-with-curve-helper;
+
+  top: 42px;
+}
+
+.background-color-with-curve-helper-for-control-bar {
+  @extend .background-color-with-curve-helper;
+
+  top: 92px;
 }
