@@ -7,14 +7,13 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-@use '@angular/material' as mat;
-@use 'variables' as var;
+import { 
+  TableColumnAlignmentStyleClass, 
+  DynamicTableColumnType 
+} from "./dynamic-table.enum";
 
-.daz-control-bar {
-  border-radius: 15px 15px 0 0;
-
-  @include mat.toolbar-overrides((
-    standard-height: 54px,
-    mobile-height: 54px
-  ));
+export interface DynamicTableColumnConfig {
+  name:       string;
+  alignment:  TableColumnAlignmentStyleClass;
+  type:       DynamicTableColumnType;
 }

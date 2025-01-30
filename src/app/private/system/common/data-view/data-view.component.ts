@@ -1,0 +1,33 @@
+/**
+ * Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+ * All rights reserved. 
+ * This code is proprietary to DAZKON SOLUTIONS. 
+ * Unauthorized use, reproduction, modification, distribution, or sale
+ * without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+ * For inquiries, please contact: info@dazkonsolutions.com
+ */
+
+import { 
+  Component, 
+  Input 
+} from '@angular/core';
+import { DynamicTableColumnConfig } from '../dynamic-table';
+import { DynamicTableComponent } from '../dynamic-table/dynamic-table.component';
+import { PaginationComponent } from '../pagination/pagination.component';
+
+@Component({
+  selector: 'daz-data-view',
+  imports: [
+    DynamicTableComponent,
+    PaginationComponent
+  ],
+  templateUrl: './data-view.component.html',
+  styleUrl: './data-view.component.scss'
+})
+export class DataViewComponent {
+  @Input('data')
+  data: any[] = [];
+
+  @Input('tableColumnConfigs')
+  tableColumnConfigs: DynamicTableColumnConfig[] = [];
+}

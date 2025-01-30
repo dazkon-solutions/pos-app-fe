@@ -7,5 +7,13 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-<daz-data-view [data]="dataSource"
-               [tableColumnConfigs]="tableColumnConfigs" />
+<div class="daz-data-view" >
+  <!-- Table section -->
+  <daz-dynamic-table class="daz-dynamic-table" [data]="data"
+                     [tableColumnConfigs]="tableColumnConfigs" />
+  <!-- End of table section -->
+
+  <!-- Pagination section -->
+  <daz-pagination />
+  <!-- End of pagination section -->
+</div>

@@ -19,6 +19,8 @@
 @use 'form';
 @use 'card';
 @use 'drawer';
+@use 'table';
+@use 'pagination';
 // @use 'dialog';
 // @use 'bottom-sheet' as bs;
 // @use 'table';
@@ -73,6 +75,14 @@
                             var.$dark-bg-text-color-2);
 
   @include drawer.drawer-styles(var.$static-bg-color-2);
+
+  @include table.table-colors(var.$static-bg-color-2,
+                              var.$dark-bg-text-color-1,
+                              var.$dark-bg-text-color-2);
+
+  @include pagination.pagination-styles(var.$static-bg-color-2,
+                                        var.$dark-bg-text-color-2);
+  @include pagination.pagination-colors-dark();
 
   // @include dialog.dialog-background(var.$dark-bg-color);
 

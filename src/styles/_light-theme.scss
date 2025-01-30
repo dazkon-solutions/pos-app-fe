@@ -18,6 +18,8 @@
 @use 'form';
 @use 'card';
 @use 'drawer';
+@use 'table';
+@use 'pagination';
 // @use 'dialog';
 // @use 'bottom-sheet' as bs;
 // @use 'table';
@@ -66,6 +68,13 @@
                             var.$light-bg-text-color);
 
   @include drawer.drawer-styles(var.$light-bg-color-2);
+
+  @include table.table-colors(var.$light-bg-color-1,
+                              var.$light-bg-text-color,
+                              var.$light-bg-text-color);
+
+  @include pagination.pagination-styles(var.$light-bg-color-1,
+                                        var.$light-bg-text-color);
 
   // @include dialog.dialog-background(var.$light-bg-color-2);
 

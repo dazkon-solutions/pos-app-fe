@@ -10,11 +10,19 @@
 @use '@angular/material' as mat;
 @use 'variables' as var;
 
-.daz-control-bar {
-  border-radius: 15px 15px 0 0;
+@mixin pagination-styles(
+  $bg-color,
+  $text-color,
+) {
+  @include mat.paginator-overrides((
+    container-text-color: $text-color,
+    container-background-color: $bg-color
+  ));
+}
 
-  @include mat.toolbar-overrides((
-    standard-height: 54px,
-    mobile-height: 54px
+@mixin pagination-colors-dark {
+  @include mat.paginator-overrides((
+    disabled-icon-color: var.$dark-disabled,
+    enabled-icon-color: var.$dark-bg-text-color-2
   ));
 }

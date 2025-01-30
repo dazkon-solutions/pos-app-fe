@@ -6,6 +6,9 @@
   without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
-
-<daz-data-view [data]="dataSource"
-               [tableColumnConfigs]="tableColumnConfigs" />
+  
+<mat-paginator  showFirstLastButtons
+                [length]="200" 
+                [pageSizeOptions]="[10, 50, 100]" 
+                aria-label="Select page" >
+</mat-paginator>

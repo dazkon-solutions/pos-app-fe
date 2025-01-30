@@ -7,14 +7,15 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-@use '@angular/material' as mat;
-@use 'variables' as var;
+.daz-data-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100dvh - 118px);
+}
 
-.daz-control-bar {
-  border-radius: 15px 15px 0 0;
-
-  @include mat.toolbar-overrides((
-    standard-height: 54px,
-    mobile-height: 54px
-  ));
+.daz-dynamic-table {
+  height: calc(100dvh - 161px);
+  overflow-y: auto;
+  border-radius: 12px 25px 0 0;
 }

@@ -7,14 +7,5 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-@use '@angular/material' as mat;
-@use 'variables' as var;
-
-.daz-control-bar {
-  border-radius: 15px 15px 0 0;
-
-  @include mat.toolbar-overrides((
-    standard-height: 54px,
-    mobile-height: 54px
-  ));
-}
+export * from './dynamic-table.interface';
+export * from './dynamic-table.enum';

@@ -7,14 +7,17 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-@use '@angular/material' as mat;
-@use 'variables' as var;
+import { Component } from '@angular/core';
+import { MaterialModule } from 'src/app/common/modules';
 
-.daz-control-bar {
-  border-radius: 15px 15px 0 0;
+@Component({
+  selector: 'daz-pagination',
+  imports: [
+    MaterialModule
+  ],
+  templateUrl: './pagination.component.html',
+  styleUrl: './pagination.component.scss'
+})
+export class PaginationComponent {
 
-  @include mat.toolbar-overrides((
-    standard-height: 54px,
-    mobile-height: 54px
-  ));
 }

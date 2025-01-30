@@ -19,6 +19,10 @@
   @include mat.form-field-overrides((
     outlined-hover-outline-color: var.$primary-color
   ));
+
+  @include mat.select-overrides((
+    enabled-trigger-text-color: var.$dark-bg-text-color-2
+  ));
 }
 
 @mixin form-colors-dark-disabled {

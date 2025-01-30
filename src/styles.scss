@@ -15,6 +15,7 @@
 @use 'dark-theme' as dt;
 @use 'light-theme' as lt;
 @use 'form';
+@use 'table';
 
 
 @include mat.typography-hierarchy(theme.$light-theme,
@@ -31,6 +32,15 @@
   ));
   @include mat.button-overrides((
     filled-container-height: 36px
+  ));
+  @include mat.table-overrides((
+    header-container-height: 40px,
+    row-item-container-height: 40px
+  ));
+  @include mat.paginator-overrides((
+    form-field-container-height: 33px,
+    form-field-container-vertical-padding: 4px,
+    container-size: 43px
   ));
 }
 
@@ -55,3 +65,4 @@ body {
 
 // Import custom styles
 @include form.form-styles();
+@include table.table-styles();
