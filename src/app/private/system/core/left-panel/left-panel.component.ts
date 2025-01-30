@@ -241,6 +241,23 @@ export class LeftPanelComponent implements
     return '';
   }
 
+  getIcon(
+    node: MenuNode,
+    current: MenuNode | null
+  ): string {
+    if(!current) return node.icon ?? '';
+
+    if(current.pid > 0) {
+      return current.pid === node.uid
+        ? `${node.icon}-filled`
+        : (node.icon ?? '');
+    } else {
+      return current.uid === node.uid
+        ? `${node.icon}-filled`
+        : (node.icon ?? '');
+    }
+  }
+
   ngOnDestroy(): void {
     SubscriptionHelper.destroy(this.destroy$);
   }

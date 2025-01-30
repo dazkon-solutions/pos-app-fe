@@ -44,7 +44,9 @@
                       (click)="onClickExpandedMenuNode(node)" >
                      
         @if (node.icon) {
-          <mat-icon class="menu-icon" [svgIcon]="node.icon" />
+          <mat-icon class="menu-icon" 
+                    [svgIcon]="getIcon(node, 
+                                       current)" />
         }
         
         {{ node.name | translate }}
@@ -66,8 +68,9 @@
                                                   current)" >
 
         @if (node.icon) {
-          <mat-icon [svgIcon]="node.icon" 
-                    class="menu-icon" />
+          <mat-icon class="menu-icon" 
+                    [svgIcon]="getIcon(node, 
+                                       current)" />
         }
 
         {{ node.name | translate }}
@@ -107,7 +110,8 @@
                      
         <mat-icon class="menu-icon" 
                   matTooltipPosition="right"
-                  [svgIcon]="node.icon" />
+                  [svgIcon]="getIcon(node, 
+                                     current)" />
 
       </mat-tree-node>
 

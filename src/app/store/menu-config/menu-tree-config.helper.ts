@@ -28,7 +28,7 @@ export class MenuTreeConfigHelper {
         pid: 0,
         name: LocaleKeys.titles.products,
         description: LocaleKeys.titles.products,
-        icon: 'inventory',
+        icon: 'product',
         resource: Resource.PRODUCT_MANAGER,
         children: [
           {
