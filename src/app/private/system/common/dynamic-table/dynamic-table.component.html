@@ -13,6 +13,8 @@
 
   @for (column of displayedColumns; track column) {
     <ng-container [matColumnDef]="column.name" >
+
+      <!-- Hader section -->
       <th mat-header-cell 
           *matHeaderCellDef 
           class="header"
@@ -20,13 +22,41 @@
           [class.left-side-header]="isSideHeader('LEFT', column.name)"
           [class.right-side-header]="isSideHeader('RIGHT', column.name)"
           [style.background-color]="headerColor" > 
-        {{ column.name | translate }} 
+        {{ column.isVisibleHeader ? column.name : '' | translate }} 
       </th>
+      <!-- End of header section -->
+
+      <!-- Row section -->
       <td mat-cell 
           *matCellDef="let element"
-          [class]="column.alignment" > 
-        {{ element[column.name] }} 
+          [class]="column.alignment" >
+        @switch (column.type) {
+          @case (DynamicTableColumnType.IMAGE) {
+            <img class="cell-image" 
+                 [src]="element[column.name]" 
+                 alt="image" >
+          }
+          @case (DynamicTableColumnType.TEXT) {
+            {{ element[column.name] }}
+          }
+          @case (DynamicTableColumnType.CURRENCY) {
+            {{ element[column.name] | currency: ' ' }}
+          }
+          @case (DynamicTableColumnType.DATE) {
+            {{ element[column.name] | date: 'dd/MM/yyyy' }}
+          }
+          @case (DynamicTableColumnType.ACTION_BUTTON) {
+            <button (click)="onClick(Action.VIEW, 
+                                     element)" >
+              click me
+            </button>
+          }
+          @default {
+            {{ element[column.name] }} 
+          }
+        }
       </td>
+      <!-- End of row section -->
     </ng-container>
   }
 

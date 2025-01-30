@@ -8,6 +8,7 @@
  */
 
 export enum DynamicTableColumnType {
+  IMAGE,
   TEXT,
   DATE,
   CURRENCY,

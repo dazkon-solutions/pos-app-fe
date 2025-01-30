@@ -11,17 +11,25 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component, 
+  EventEmitter, 
   Input, 
   OnChanges,
+  OnDestroy,
   OnInit,
+  Output,
   SimpleChanges
 } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { 
   MaterialModule, 
   StandaloneCommonModule 
 } from 'src/app/common/modules';
+import { Action } from 'src/app/common/enums';
+import { SubscriptionHelper } from 'src/app/common/helpers';
 import { ThemeService } from 'src/app/common/services';
+import { ActionResponse } from 'src/app/common/interfaces';
 import { DynamicTableColumnConfig } from './dynamic-table.interface';
+import { DynamicTableColumnType } from './dynamic-table.enum';
 
 @Component({
   selector: 'daz-dynamic-table',
@@ -35,7 +43,8 @@ import { DynamicTableColumnConfig } from './dynamic-table.interface';
 })
 export class DynamicTableComponent implements 
   OnInit,
-  OnChanges
+  OnChanges,
+  OnDestroy
 {
   @Input('data')
   data: any[] = [];
@@ -43,10 +52,17 @@ export class DynamicTableComponent implements
   @Input('tableColumnConfigs')
   tableColumnConfigs: DynamicTableColumnConfig[] = [];
 
+  @Output('buttonClicked')
+  buttonClicked = new EventEmitter<ActionResponse>(true);
+
   dataSource: any[] = [];
   displayedColumns: DynamicTableColumnConfig[] = [];
   columnsToDisplay: string[] = [];
   headerColor = '';
+  DynamicTableColumnType = DynamicTableColumnType;
+  Action = Action;
+
+  private destroy$ = new Subject<void>();
 
   constructor(
     private themeSvc: ThemeService,
@@ -58,7 +74,9 @@ export class DynamicTableComponent implements
   }
 
   private init(): void {
-    this.themeSvc.isLightTheme$().subscribe(isLightTheme => 
+    this.themeSvc.isLightTheme$()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(isLightTheme => 
       this.setHeaderColor(isLightTheme));
   }
 
@@ -99,5 +117,16 @@ export class DynamicTableComponent implements
     } else {
       return false;
     }
+  }
+
+  onClick(
+    action: Action, 
+    data: any
+  ): void {
+    this.buttonClicked.emit({ action, data });
+  }
+
+  ngOnDestroy(): void {
+    SubscriptionHelper.destroy(this.destroy$);
   }
 }

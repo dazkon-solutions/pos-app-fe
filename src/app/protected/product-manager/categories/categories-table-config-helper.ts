@@ -17,24 +17,40 @@ export class CategoriesTableConfigHelper {
   static createTableColumns(): DynamicTableColumnConfig[] {
     return [
       {
+        name: 'photo',
+        alignment: TableColumnAlignmentStyleClass.LEFT,
+        type: DynamicTableColumnType.IMAGE,
+        isVisibleHeader: true
+      },
+      {
         name: 'position',
         alignment: TableColumnAlignmentStyleClass.LEFT,
-        type: DynamicTableColumnType.TEXT
+        type: DynamicTableColumnType.TEXT,
+        isVisibleHeader: true
       },
       {
         name: 'name',
         alignment: TableColumnAlignmentStyleClass.CENTER,
-        type: DynamicTableColumnType.TEXT
+        type: DynamicTableColumnType.TEXT,
+        isVisibleHeader: true
       },
       {
         name: 'weight',
         alignment: TableColumnAlignmentStyleClass.RIGHT,
-        type: DynamicTableColumnType.TEXT
+        type: DynamicTableColumnType.TEXT,
+        isVisibleHeader: true
       },
       {
         name: 'symbol',
         alignment: TableColumnAlignmentStyleClass.LEFT,
-        type: DynamicTableColumnType.TEXT
+        type: DynamicTableColumnType.TEXT,
+        isVisibleHeader: true
+      },
+      {
+        name: 'action',
+        alignment: TableColumnAlignmentStyleClass.RIGHT,
+        type: DynamicTableColumnType.ACTION_BUTTON,
+        isVisibleHeader: false
       }
     ]
   }

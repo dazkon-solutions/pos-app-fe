@@ -8,4 +8,5 @@
 -->
 
 <daz-data-view [data]="dataSource"
-               [tableColumnConfigs]="tableColumnConfigs" />
+               [tableColumnConfigs]="tableColumnConfigs"
+               (buttonClicked)="clickResponse($event)" />

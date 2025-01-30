@@ -8,3 +8,4 @@
  */
 
 export * from './permission.interface';
+export * from './action-response.interface';

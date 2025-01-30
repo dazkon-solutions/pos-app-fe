@@ -9,8 +9,11 @@
 
 import { 
   Component, 
-  Input 
+  EventEmitter, 
+  Input, 
+  Output
 } from '@angular/core';
+import { ActionResponse } from 'src/app/common/interfaces';
 import { DynamicTableColumnConfig } from '../dynamic-table';
 import { DynamicTableComponent } from '../dynamic-table/dynamic-table.component';
 import { PaginationComponent } from '../pagination/pagination.component';
@@ -30,4 +33,11 @@ export class DataViewComponent {
 
   @Input('tableColumnConfigs')
   tableColumnConfigs: DynamicTableColumnConfig[] = [];
+
+  @Output('buttonClicked')
+  buttonClicked = new EventEmitter<ActionResponse>(true);
+
+  handleActionResponse(actionResponse: ActionResponse): void {
+    this.buttonClicked.emit(actionResponse);
+  }
 }

@@ -9,8 +9,10 @@
 
 <div class="daz-data-view" >
   <!-- Table section -->
-  <daz-dynamic-table class="daz-dynamic-table" [data]="data"
-                     [tableColumnConfigs]="tableColumnConfigs" />
+  <daz-dynamic-table class="daz-dynamic-table" 
+                     [data]="data"
+                     [tableColumnConfigs]="tableColumnConfigs"
+                     (buttonClicked)="handleActionResponse($event)" />
   <!-- End of table section -->
 
   <!-- Pagination section -->
