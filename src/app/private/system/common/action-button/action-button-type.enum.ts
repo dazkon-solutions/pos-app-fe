@@ -7,11 +7,15 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export enum StateKey {
-  MAIN_SEARCH = 'mainSearch',
-  APPEARANCE = 'appearance',
-  MENU = 'menu',
-  NAVIGATION = 'navigation',
-  LEFT_PANEL = 'leftPanel',
-  RESOURCE = 'resource'
+export enum ActionButtonType {
+  ADD = 'add',
+  CREATE = 'create',
+  UPDATE = 'update',
+  VIEW = 'view',
+  DELETE_FAB = 'deleteFab'
+}
+
+export enum ActionButtonShape {
+  FAB_EXTENDED,
+  MINI_FAB
 }

@@ -28,6 +28,7 @@ export const LocaleKeys = {
     notifications: 'tooltips.notifications',
     advancedFilter: 'tooltips.advancedFilter',
     clear: 'tooltips.clear',
+    delete: 'tooltips.delete',
   },
   alerts: {
     common: {
@@ -53,6 +54,9 @@ export const LocaleKeys = {
       exitFullScreen: 'labels.buttons.exitFullScreen',
       myProfile: 'labels.buttons.myProfile',
       addNew: 'labels.buttons.addNew',
+      save: 'labels.buttons.save',
+      update: 'labels.buttons.update',
+      view: 'labels.buttons.view',
     },
     forms: {
       filtersAreNotAvailableHere: 'labels.forms.filtersAreNotAvailableHere',

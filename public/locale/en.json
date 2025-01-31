@@ -13,7 +13,8 @@
   "tooltips": {
     "notifications": "Notifications",
     "advancedFilter": "Advanced filter",
-    "clear": "Clear"
+    "clear": "Clear",
+    "delete": "Delete"
   },
 
   "alerts": {
@@ -41,7 +42,10 @@
       "fullScreen": "FULL SCREEN",
       "exitFullScreen": "EXIT FULL SCREEN",
       "myProfile": "MY PROFILE",
-      "addNew": "ADD NEW"
+      "addNew": "ADD NEW",
+      "save": "SAVE",
+      "update": "UPDATE",
+      "view": "VIEW"
     },
     "forms": {
       "filtersAreNotAvailableHere": "Filters are not available here..",

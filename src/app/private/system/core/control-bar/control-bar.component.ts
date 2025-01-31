@@ -25,8 +25,13 @@ import {
   MenuNode,
   MenuState
 } from 'src/app/store';
-import { LocaleKeys } from 'src/app/common/constants';
 import { SubscriptionHelper } from 'src/app/common/helpers';
+import { Resource } from 'src/app/common/enums';
+import { ActionButtonComponent } from 'src/app/private/system/common/action-button/action-button.component';
+import { 
+  ActionButtonConfig, 
+  ActionButtonType 
+} from 'src/app/private/system/common/action-button';
 import { MainSearchComponent } from '../main-search/main-search.component';
 
 
@@ -35,7 +40,8 @@ import { MainSearchComponent } from '../main-search/main-search.component';
   imports: [
     StandaloneCommonModule,
     MaterialModule,
-    MainSearchComponent
+    MainSearchComponent,
+    ActionButtonComponent
   ],
   templateUrl: './control-bar.component.html',
   styleUrl: './control-bar.component.scss'
@@ -45,7 +51,11 @@ export class ControlBarComponent implements
   OnDestroy  
 {
   menuCurrent$!: Observable<MenuNode | null>;
-  LocaleKeys = LocaleKeys;
+  addNewButtonConfig: ActionButtonConfig = {
+    type: ActionButtonType.ADD,
+    isDisabled: true,
+    resource: Resource.NONE
+  }
 
   private destroy$ = new Subject<void>();
   
@@ -57,6 +67,19 @@ export class ControlBarComponent implements
   
   private syncState(): void {
     this.menuCurrent$ = this.store.select(MenuState.getCurrent);
+  }
+
+  setAddButtonConfig(menuCurrent: MenuNode | null): ActionButtonConfig {
+    if(!menuCurrent) return this.addNewButtonConfig;
+
+    return {
+      ...this.addNewButtonConfig,
+      resource: menuCurrent.resource
+    };
+  }
+
+  addNewButtonClickHandle(resource: Resource): void {
+    console.warn('add new', resource);
   }
 
   ngOnDestroy(): void {

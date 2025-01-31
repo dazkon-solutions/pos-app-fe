@@ -8,13 +8,25 @@
  */
 
 import { Component } from '@angular/core';
+import { Resource } from 'src/app/common/enums';
+import { 
+  ActionButtonConfig, 
+  ActionButtonType 
+} from 'src/app/private/system/common/action-button';
+import { ActionButtonComponent } from 'src/app/private/system/common/action-button/action-button.component';
 
 @Component({
   selector: 'daz-products',
-  imports: [],
+  imports: [
+    ActionButtonComponent
+  ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent {
-
+  createButtonConfig: ActionButtonConfig = {
+    type: ActionButtonType.CREATE,
+    isDisabled: false,
+    resource: Resource.PRODUCTS
+  }
 }

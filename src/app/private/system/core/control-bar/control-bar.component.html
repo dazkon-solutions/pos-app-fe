@@ -24,9 +24,7 @@
   <span class="spacer" ></span>
 
   <!-- Button section -->
-  <button mat-flat-button >
-    <mat-icon svgIcon="add" />
-    {{ LocaleKeys.labels.buttons.addNew | translate }}
-  </button>
+  <daz-action-button [config]="setAddButtonConfig(menuCurrent)"
+                     (buttonClicked)="addNewButtonClickHandle($event)" />
   <!-- End of button section -->
 </mat-toolbar>

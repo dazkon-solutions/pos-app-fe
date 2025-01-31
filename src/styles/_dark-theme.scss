@@ -21,6 +21,7 @@
 @use 'drawer';
 @use 'table';
 @use 'pagination';
+@use 'button';
 // @use 'dialog';
 // @use 'bottom-sheet' as bs;
 // @use 'table';
@@ -83,6 +84,11 @@
   @include pagination.pagination-styles(var.$static-bg-color-2,
                                         var.$dark-bg-text-color-2);
   @include pagination.pagination-colors-dark();
+
+  @include button.button-styles(var.$btn-primary-dark-color,
+                                var.$btn-warn-color,
+                                var.$btn-text-color);
+  @include button.button-styles-dark-disabled();
 
   // @include dialog.dialog-background(var.$dark-bg-color);
 

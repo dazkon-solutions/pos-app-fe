@@ -1,0 +1,62 @@
+/**
+ * Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+ * All rights reserved. 
+ * This code is proprietary to DAZKON SOLUTIONS. 
+ * Unauthorized use, reproduction, modification, distribution, or sale
+ * without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+ * For inquiries, please contact: info@dazkonsolutions.com
+ */
+
+@use '@angular/material' as mat;
+@use 'variables' as var;
+
+@mixin button-styles(
+  $primary-bg-color,
+  $warn-bg-color,
+  $fg-color
+) {
+  @include mat.fab-overrides((
+    extended-container-elevation-shadow: none,
+    extended-hover-container-elevation-shadow: none,
+    extended-pressed-container-elevation-shadow: none,
+    extended-focus-container-elevation-shadow: none,
+    small-container-elevation-shadow: none,
+    small-hover-container-elevation-shadow: none,
+    small-pressed-container-elevation-shadow: none,
+    small-focus-container-elevation-shadow: none,
+    foreground-color: $fg-color
+  ));
+
+  .btn-fab-primary {
+    @include mat.fab-overrides((
+      container-color: $primary-bg-color
+    ));
+  }
+
+  .btn-mini-fab-warn {
+    @include mat.fab-overrides((
+      small-container-color: $warn-bg-color,
+      small-foreground-color: $fg-color
+    ));
+  }
+
+  .btn-fab-primary,
+  .btn-mini-fab-warn {
+    @include mat.progress-spinner-overrides((
+      active-indicator-color: var.$light-bg-color-1
+    ));
+  }
+}
+
+@mixin button-styles-dark-disabled {
+  @include mat.button-overrides((
+    filled-disabled-container-color: var.$dark-disabled
+  ));
+
+  @include mat.fab-overrides((
+    disabled-state-container-color: var.$dark-disabled,
+    disabled-state-foreground-color: var.$dark-disabled,
+    small-disabled-state-container-color: var.$dark-disabled,
+    small-disabled-state-foreground-color: var.$dark-disabled
+  ));
+}

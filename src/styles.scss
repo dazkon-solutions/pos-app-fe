@@ -33,6 +33,10 @@
   @include mat.button-overrides((
     filled-container-height: 36px
   ));
+  @include mat.fab-overrides((
+    extended-container-height: 36px,
+    extended-container-shape: 100px
+  ));
   @include mat.table-overrides((
     header-container-height: 40px,
     row-item-container-height: 40px
