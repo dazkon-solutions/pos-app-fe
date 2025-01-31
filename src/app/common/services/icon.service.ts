@@ -57,6 +57,7 @@ export class IconService {
       .addSvgIcon('save', this.setPath(`${this.path}/save-outlined.svg`))
       .addSvgIcon('update', this.setPath(`${this.path}/update-outlined.svg`))
       .addSvgIcon('delete', this.setPath(`${this.path}/delete-outlined.svg`))
+      .addSvgIcon('view', this.setPath(`${this.path}/view-outlined.svg`))
   }                
 
   private setPath(url: string): SafeResourceUrl {

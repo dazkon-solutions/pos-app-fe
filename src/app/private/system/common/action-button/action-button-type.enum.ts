@@ -16,6 +16,12 @@ export enum ActionButtonType {
 }
 
 export enum ActionButtonShape {
-  FAB_EXTENDED,
-  MINI_FAB
+  FAB_EXTENDED = 'FAB_EXTENDED',
+  MINI_FAB = 'MINI_FAB'
+}
+
+export enum ActionButtonStyleClass {
+  NONE = '',
+  BTN_FAB_PRIMARY = 'btn-fab-primary',
+  BTN_MINI_FAB_WARN = 'btn-mini-fab-warn',
 }

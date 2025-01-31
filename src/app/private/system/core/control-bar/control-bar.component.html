@@ -9,9 +9,8 @@
 
 <mat-toolbar class="daz-control-bar" >
   <!-- Title -->
-  @let menuCurrent = menuCurrent$ | async;
   <span class="mat-title-large" >
-    {{ menuCurrent && (menuCurrent.name | translate) }}
+    {{ menuCurrent?.name ?? '' | translate }}
   </span>
   <!-- End of title -->
 
@@ -24,7 +23,7 @@
   <span class="spacer" ></span>
 
   <!-- Button section -->
-  <daz-action-button [config]="setAddButtonConfig(menuCurrent)"
+  <daz-action-button [config$]="addNewButtonConfig$"
                      (buttonClicked)="addNewButtonClickHandle($event)" />
   <!-- End of button section -->
 </mat-toolbar>

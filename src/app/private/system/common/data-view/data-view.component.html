@@ -10,8 +10,9 @@
 <div class="daz-data-view" >
   <!-- Table section -->
   <daz-dynamic-table class="daz-dynamic-table" 
-                     [data]="data"
-                     [tableColumnConfigs]="tableColumnConfigs"
+                     [tableColumnConfigs$]="tableColumnConfigs$"
+                     [dataSource$]="dataSource$"
+                     [isLoading$]="isLoading$"
                      (buttonClicked)="handleActionResponse($event)" />
   <!-- End of table section -->
 

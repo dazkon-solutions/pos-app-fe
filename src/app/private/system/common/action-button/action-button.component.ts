@@ -9,17 +9,21 @@
 
 import { 
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component, 
+  DestroyRef, 
   EventEmitter, 
   Input, 
-  OnChanges, 
-  Output, 
-  SimpleChanges
+  OnInit, 
+  Output
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Observable } from 'rxjs';
 import { 
   MaterialModule, 
   StandaloneCommonModule 
 } from 'src/app/common/modules';
+import { ActionResponse } from 'src/app/common/interfaces';
 import { Resource } from 'src/app/common/enums';
 import { 
   ActionButton, 
@@ -27,6 +31,7 @@ import {
 } from './action-button.interface';
 import { ActionButtonConfigHelper } from './action-button-config.helper';
 import { ActionButtonShape } from './action-button-type.enum';
+
 
 @Component({
   selector: 'daz-action-button',
@@ -36,29 +41,47 @@ import { ActionButtonShape } from './action-button-type.enum';
   ],
   templateUrl: './action-button.component.html',
   styleUrl: './action-button.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush 
 })
-export class ActionButtonComponent implements OnChanges {
-  @Input('config')
-  config!: ActionButtonConfig;
+export class ActionButtonComponent implements OnInit {
+  @Input({ 
+    alias: 'config$',
+    required: true
+  })
+  config$!: Observable<ActionButtonConfig>;
 
   @Output('buttonClicked')
-  buttonClicked = new EventEmitter<Resource>(true);
+  buttonClicked = new EventEmitter<ActionResponse>(true);
 
   button!: ActionButton;
-  ActionButtonShape = ActionButtonShape;
+  resource = Resource.NONE;
   isLoading = false;
+  isDisabled = true;
+  ActionButtonShape = ActionButtonShape;
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if('config' in changes) {
-      this.button = this.createButton();
-    }
+  constructor(
+    private destroyRef: DestroyRef,
+    private cdr: ChangeDetectorRef
+  ) { }
+
+  ngOnInit(): void {
+    this.config$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(config => this.button = this.createButton(config));
   }
 
-  private createButton(): ActionButton {
-    const button = ActionButtonConfigHelper.createButton(this.config.type);
+  private createButton(config: ActionButtonConfig): ActionButton {
+    const button = ActionButtonConfigHelper.createButton(config);
     // check permissions and update button configs.
-    button.isDisabled = this.config.isDisabled;
+    if(this.isDisabled !== config.isDisabled) {
+      this.isDisabled = config.isDisabled ?? false;
+    }
+
+    if(this.resource !== config.resource) {
+      this.resource = config.resource;
+    }
+
+    console.warn('changeeeeeeeeeeeee',button)
     return button;
   }
 
@@ -69,8 +92,19 @@ export class ActionButtonComponent implements OnChanges {
     if(this.isLoading) return;
 
     this.isLoading = true;
-    this.button.isDisabled = true;
+    this.isDisabled = true;
 
-    this.buttonClicked.emit(this.config.resource);
+    const actionResponse: ActionResponse = {
+      action: this.button.action,
+      data: { resource: this.resource }
+    };
+    this.buttonClicked.emit(actionResponse);
+
+    // Simulate an async operation (replace with your actual logic)
+    setTimeout(() => {
+      this.isLoading = false;
+      this.isDisabled = false; // Reset to the button's disabled state
+      this.cdr.detectChanges();
+    }, 1000); // Adjust the timeout as needed
   }
 }

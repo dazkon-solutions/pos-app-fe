@@ -9,13 +9,11 @@
 
 import { 
   Component, 
-  OnDestroy, 
+  DestroyRef, 
   OnInit
 } from '@angular/core';
-import { 
-  Observable,
-  Subject
-} from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { BehaviorSubject } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { 
   MaterialModule, 
@@ -25,13 +23,13 @@ import {
   MenuNode,
   MenuState
 } from 'src/app/store';
-import { SubscriptionHelper } from 'src/app/common/helpers';
 import { Resource } from 'src/app/common/enums';
 import { ActionButtonComponent } from 'src/app/private/system/common/action-button/action-button.component';
 import { 
   ActionButtonConfig, 
   ActionButtonType 
 } from 'src/app/private/system/common/action-button';
+import { ActionResponse } from 'src/app/common/interfaces';
 import { MainSearchComponent } from '../main-search/main-search.component';
 
 
@@ -46,43 +44,42 @@ import { MainSearchComponent } from '../main-search/main-search.component';
   templateUrl: './control-bar.component.html',
   styleUrl: './control-bar.component.scss'
 })
-export class ControlBarComponent implements 
-  OnInit,
-  OnDestroy  
-{
-  menuCurrent$!: Observable<MenuNode | null>;
-  addNewButtonConfig: ActionButtonConfig = {
+export class ControlBarComponent implements OnInit {
+  addNewButtonConfig$ = new BehaviorSubject<ActionButtonConfig>({
     type: ActionButtonType.ADD,
-    isDisabled: true,
     resource: Resource.NONE
-  }
+  });
+  menuCurrent!: MenuNode | null;
 
-  private destroy$ = new Subject<void>();
-  
-  constructor(private store: Store) { }
+  constructor(
+    private destroyRef: DestroyRef,
+    private store: Store
+  ) { }
 
   ngOnInit(): void {
     this.syncState();
   }
   
   private syncState(): void {
-    this.menuCurrent$ = this.store.select(MenuState.getCurrent);
+    this.store.select(MenuState.getCurrent)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(current => {
+        this.menuCurrent = current;
+
+        if(current) { 
+          this.setAddButtonConfig(current.resource);
+        }
+      });
   }
 
-  setAddButtonConfig(menuCurrent: MenuNode | null): ActionButtonConfig {
-    if(!menuCurrent) return this.addNewButtonConfig;
-
-    return {
-      ...this.addNewButtonConfig,
-      resource: menuCurrent.resource
-    };
+  setAddButtonConfig(resource: Resource): void {
+    this.addNewButtonConfig$.next({
+      type: ActionButtonType.ADD,
+      resource
+    });
   }
 
-  addNewButtonClickHandle(resource: Resource): void {
-    console.warn('add new', resource);
-  }
-
-  ngOnDestroy(): void {
-    SubscriptionHelper.destroy(this.destroy$);
+  addNewButtonClickHandle(actionResponse: ActionResponse): void {
+    console.warn('add new', actionResponse.data.resource);
   }
 }

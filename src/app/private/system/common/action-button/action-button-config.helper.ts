@@ -11,9 +11,12 @@ import { LocaleKeys } from "src/app/common/constants";
 import { Action } from "src/app/common/enums";
 import { 
   ActionButtonShape, 
-  ActionButtonType 
+  ActionButtonStyleClass 
 } from "./action-button-type.enum";
-import { ActionButton } from "./action-button.interface";
+import { 
+  ActionButton, 
+  ActionButtonConfig 
+} from "./action-button.interface";
 
 export class ActionButtonConfigHelper {
   private static button = {
@@ -23,8 +26,7 @@ export class ActionButtonConfigHelper {
       label: LocaleKeys.labels.buttons.addNew,
       tooltip: '',
       shape: ActionButtonShape.FAB_EXTENDED,
-      style: 'btn-fab-primary',
-      isDisabled: true
+      style: ActionButtonStyleClass.BTN_FAB_PRIMARY
     },
     create: {
       action: Action.CREATE,
@@ -32,8 +34,7 @@ export class ActionButtonConfigHelper {
       label: LocaleKeys.labels.buttons.save,
       tooltip: '',
       shape: ActionButtonShape.FAB_EXTENDED,
-      style: 'btn-fab-primary',
-      isDisabled: true
+      style: ActionButtonStyleClass.BTN_FAB_PRIMARY
     },
     update: {
       action: Action.UPDATE,
@@ -41,17 +42,15 @@ export class ActionButtonConfigHelper {
       label: LocaleKeys.labels.buttons.update,
       tooltip: '',
       shape: ActionButtonShape.FAB_EXTENDED,
-      style: 'btn-fab-primary',
-      isDisabled: true
+      style: ActionButtonStyleClass.BTN_FAB_PRIMARY
     },
     view: {
       action: Action.VIEW,
-      icon: 'update',
+      icon: 'view',
       label: LocaleKeys.labels.buttons.view,
       tooltip: '',
       shape: ActionButtonShape.FAB_EXTENDED,
-      style: 'btn-fab-primary',
-      isDisabled: true
+      style: ActionButtonStyleClass.BTN_FAB_PRIMARY
     },
     deleteFab: {
       action: Action.DELETE,
@@ -59,12 +58,13 @@ export class ActionButtonConfigHelper {
       label: '',
       tooltip: LocaleKeys.tooltips.delete,
       shape: ActionButtonShape.MINI_FAB,
-      style: 'btn-mini-fab-warn',
-      isDisabled: true
+      style: ActionButtonStyleClass.BTN_MINI_FAB_WARN
     }
   }
 
-  static createButton(type: ActionButtonType): ActionButton {
-    return this.button[type];
+  static createButton(config: ActionButtonConfig): ActionButton {
+    return config.customButton
+      ? config.customButton
+      : this.button[config.type];
   }
 }

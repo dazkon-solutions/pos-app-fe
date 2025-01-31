@@ -11,63 +11,64 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component, 
+  DestroyRef, 
   EventEmitter, 
   Input, 
-  OnChanges,
-  OnDestroy,
   OnInit,
-  Output,
-  SimpleChanges
+  Output
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { 
-  Subject, 
-  takeUntil 
+  Observable,
+  of
 } from 'rxjs';
 import { 
   MaterialModule, 
   StandaloneCommonModule 
 } from 'src/app/common/modules';
-import { Action } from 'src/app/common/enums';
-import { SubscriptionHelper } from 'src/app/common/helpers';
+import { 
+  Action, 
+  CustomAction 
+} from 'src/app/common/enums';
 import { ThemeService } from 'src/app/common/services';
 import { ActionResponse } from 'src/app/common/interfaces';
 import { DynamicTableColumnConfig } from './dynamic-table.interface';
 import { DynamicTableColumnType } from './dynamic-table.enum';
+import { ActionButtonComponent } from '../action-button/action-button.component';
+import { ActionButtonConfig } from '../action-button';
 
 @Component({
   selector: 'daz-dynamic-table',
   imports: [
     StandaloneCommonModule,
-    MaterialModule
+    MaterialModule,
+    ActionButtonComponent
   ],
   templateUrl: './dynamic-table.component.html',
   styleUrl: './dynamic-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicTableComponent implements 
-  OnInit,
-  OnChanges,
-  OnDestroy
-{
-  @Input('data')
-  data: any[] = [];
+export class DynamicTableComponent implements OnInit {
+  @Input('tableColumnConfigs$')
+  tableColumnConfigs$!: Observable<DynamicTableColumnConfig[]>;
 
-  @Input('tableColumnConfigs')
-  tableColumnConfigs: DynamicTableColumnConfig[] = [];
+  @Input('dataSource$')
+  dataSource$!: Observable<any[]>;
+
+  @Input('isLoading$')
+  isLoading$!: Observable<boolean>;
 
   @Output('buttonClicked')
   buttonClicked = new EventEmitter<ActionResponse>(true);
 
-  dataSource: any[] = [];
   displayedColumns: DynamicTableColumnConfig[] = [];
   columnsToDisplay: string[] = [];
   headerColor = '';
   DynamicTableColumnType = DynamicTableColumnType;
   Action = Action;
 
-  private destroy$ = new Subject<void>();
-
   constructor(
+    private destroyRef: DestroyRef,
     private themeSvc: ThemeService,
     private cdr: ChangeDetectorRef
   ) { }
@@ -78,22 +79,16 @@ export class DynamicTableComponent implements
 
   private init(): void {
     this.themeSvc.isLightTheme$()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(isLightTheme => 
-      this.setHeaderColor(isLightTheme));
-  }
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(isLightTheme => this.setHeaderColor(isLightTheme));
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if('tableColumnConfigs' in changes) {
-      this.displayedColumns = this.tableColumnConfigs;
-      this.columnsToDisplay = 
-        this.displayedColumns.flatMap(column => column.name).slice();
-    }
-
-    if('data' in changes) {
-      this.dataSource = this.data;
-      this.cdr.detectChanges();
-    }
+    this.tableColumnConfigs$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(configs => {
+        this.displayedColumns = configs;
+        this.columnsToDisplay = configs.flatMap(column => column.name).slice();
+        this.cdr.detectChanges();
+      });
   }
 
   private setHeaderColor(isLightTheme: boolean): void {
@@ -123,13 +118,31 @@ export class DynamicTableComponent implements
   }
 
   onClick(
-    action: Action, 
+    action: Action | CustomAction, 
     data: any
   ): void {
     this.buttonClicked.emit({ action, data });
   }
 
-  ngOnDestroy(): void {
-    SubscriptionHelper.destroy(this.destroy$);
+  private checkButtonDisable(
+    config: ActionButtonConfig,
+    element: any
+  ): ActionButtonConfig {
+    const isDisabled = config.disableCondition 
+      ? config.disableCondition(element)
+      : false;
+
+    config.isDisabled = isDisabled;
+
+    return config;
+  }
+
+  getButtonConfigObservable(
+    config: ActionButtonConfig,
+    element: any
+  ): Observable<ActionButtonConfig> {
+    const buttonConfig = this.checkButtonDisable(config, 
+                                                 element);
+    return of(buttonConfig);
   }
 }

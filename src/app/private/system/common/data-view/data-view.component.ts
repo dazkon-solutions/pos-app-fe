@@ -13,6 +13,7 @@ import {
   Input, 
   Output
 } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ActionResponse } from 'src/app/common/interfaces';
 import { DynamicTableColumnConfig } from '../dynamic-table';
 import { DynamicTableComponent } from '../dynamic-table/dynamic-table.component';
@@ -28,11 +29,14 @@ import { PaginationComponent } from '../pagination/pagination.component';
   styleUrl: './data-view.component.scss'
 })
 export class DataViewComponent {
-  @Input('data')
-  data: any[] = [];
+  @Input('tableColumnConfigs$')
+  tableColumnConfigs$!: Observable<DynamicTableColumnConfig[]>;
+  
+  @Input('dataSource$')
+  dataSource$!: Observable<any[]>;
 
-  @Input('tableColumnConfigs')
-  tableColumnConfigs: DynamicTableColumnConfig[] = [];
+  @Input('isLoading$')
+  isLoading$!: Observable<boolean>;
 
   @Output('buttonClicked')
   buttonClicked = new EventEmitter<ActionResponse>(true);

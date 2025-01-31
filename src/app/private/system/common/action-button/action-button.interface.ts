@@ -9,25 +9,28 @@
 
 import { 
   Action, 
+  CustomAction, 
   Resource 
 } from "src/app/common/enums";
 import { 
   ActionButtonShape, 
-  ActionButtonType 
+  ActionButtonType, 
+  ActionButtonStyleClass
 } from "./action-button-type.enum";
 
 export interface ActionButtonConfig {
-  type:       ActionButtonType;
-  resource:   Resource;
-  isDisabled: boolean;
+  type:               ActionButtonType;
+  resource:           Resource;
+  isDisabled?:        boolean;
+  disableCondition?:  (rowData: any) => boolean; // Use in dynamic table
+  customButton?:      ActionButton;
 }
 
 export interface ActionButton {
-  action:       Action;
+  action:       Action | CustomAction;
   icon:         string;
   tooltip:      string;
   label:        string;
   shape:        ActionButtonShape;
-  isDisabled:   boolean;
-  style:        string;
+  style:        ActionButtonStyleClass;
 }

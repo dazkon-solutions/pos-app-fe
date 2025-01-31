@@ -7,14 +7,16 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
+import { ActionButtonConfig } from "../action-button";
 import { 
   TableColumnAlignmentStyleClass, 
   DynamicTableColumnType 
 } from "./dynamic-table.enum";
 
 export interface DynamicTableColumnConfig {
-  name:             string;
-  alignment:        TableColumnAlignmentStyleClass;
-  type:             DynamicTableColumnType;
-  isVisibleHeader:  boolean;
+  name:                 string;
+  alignment:            TableColumnAlignmentStyleClass;
+  type:                 DynamicTableColumnType;
+  isVisibleHeader:      boolean;
+  actionButtonConfig?:  ActionButtonConfig;
 }

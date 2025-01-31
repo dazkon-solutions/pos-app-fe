@@ -7,9 +7,12 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Action } from "../enums";
+import { 
+  Action, 
+  CustomAction 
+} from "../enums";
 
 export interface ActionResponse {
-  action: Action;
+  action: Action | CustomAction;
   data:   any;
 }

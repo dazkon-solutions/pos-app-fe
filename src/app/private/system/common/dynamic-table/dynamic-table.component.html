@@ -8,7 +8,7 @@
 -->
 
 <table mat-table 
-       [dataSource]="dataSource" 
+       [dataSource]="dataSource$" 
        class="mat-elevation-z8 table" >
 
   @for (column of displayedColumns; track column) {
@@ -46,10 +46,12 @@
             {{ element[column.name] | date: 'dd/MM/yyyy' }}
           }
           @case (DynamicTableColumnType.ACTION_BUTTON) {
-            <button (click)="onClick(Action.VIEW, 
-                                     element)" >
-              click me
-            </button>
+            @if (column.actionButtonConfig) {
+            <daz-action-button [config$]="getButtonConfigObservable(column.actionButtonConfig, 
+                                                                    element)"
+                               (buttonClicked)="onClick($event.action, 
+                                                        element)" />
+            }
           }
           @default {
             {{ element[column.name] }} 

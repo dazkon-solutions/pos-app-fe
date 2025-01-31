@@ -7,6 +7,7 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-<daz-data-view [data]="dataSource"
-               [tableColumnConfigs]="tableColumnConfigs"
+<daz-data-view [tableColumnConfigs$]="tableColumnConfigs$"
+               [dataSource$]="dataSource$"
+               [isLoading$]="isLoading$"
                (buttonClicked)="clickResponse($event)" />

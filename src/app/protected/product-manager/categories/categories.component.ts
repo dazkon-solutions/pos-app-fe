@@ -7,13 +7,19 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Component } from '@angular/core';
+import { 
+  Component, 
+  OnInit 
+} from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { 
   MaterialModule, 
   StandaloneCommonModule 
 } from 'src/app/common/modules';
 import { DataViewComponent } from 'src/app/private/system/common/data-view/data-view.component';
 import { ActionResponse } from 'src/app/common/interfaces';
+import { Resource } from 'src/app/common/enums';
+import { DynamicTableColumnConfig } from 'src/app/private/system/common/dynamic-table';
 import { CategoriesTableConfigHelper } from './categories-table-config-helper';
 
 interface PeriodicElement {
@@ -34,10 +40,22 @@ interface PeriodicElement {
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss'
 })
-export class CategoriesComponent {
-  tableColumnConfigs = CategoriesTableConfigHelper.createTableColumns();
+export class CategoriesComponent implements OnInit {
+  private readonly resource = Resource.CATEGORIES;
 
-  dataSource: PeriodicElement[] = [
+  tableColumnConfigs$ = new BehaviorSubject<DynamicTableColumnConfig[]>([]);
+  dataSource$ = new BehaviorSubject<PeriodicElement[]>([]);
+  isLoading$ = new BehaviorSubject<boolean>(false);
+
+  ngOnInit(): void {
+    this.tableColumnConfigs$.next(this.tableColumnConfigs);
+    this.dataSource$.next(this.dataSource);
+  }
+  
+  private tableColumnConfigs = 
+    CategoriesTableConfigHelper.createTableColumns(this.resource);
+
+  private dataSource: PeriodicElement[] = [
     {photo:'https://fastly.picsum.photos/id/2/5000/3333.jpg?hmac=_KDkqQVttXw_nM-RyJfLImIbafFrqLsuGO5YuHqD-qQ' ,position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
     {photo:'https://fastly.picsum.photos/id/2/5000/3333.jpg?hmac=_KDkqQVttXw_nM-RyJfLImIbafFrqLsuGO5YuHqD-qQ' ,position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
     {photo:'https://fastly.picsum.photos/id/2/5000/3333.jpg?hmac=_KDkqQVttXw_nM-RyJfLImIbafFrqLsuGO5YuHqD-qQ' ,position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
