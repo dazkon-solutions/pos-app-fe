@@ -9,7 +9,7 @@
 
 import { 
   Component,
-  OnDestroy,
+  DestroyRef,
   OnInit
 } from '@angular/core';
 import { 
@@ -17,16 +17,10 @@ import {
   FormGroup, 
   Validators
 } from '@angular/forms';
-import { 
-  distinctUntilChanged,
-  Subject, 
-  takeUntil
-} from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { distinctUntilChanged } from 'rxjs';
 import { Store } from '@ngxs/store';
-import { 
-  FormHelper, 
-  SubscriptionHelper 
-} from 'src/app/common/helpers';
+import { FormHelper } from 'src/app/common/helpers';
 import { 
   MaterialModule, 
   StandaloneCommonModule 
@@ -51,18 +45,14 @@ import { SearchPanelService } from 'src/app/common/services';
   templateUrl: './main-search.component.html',
   styleUrl: './main-search.component.scss'
 })
-export class MainSearchComponent implements 
-  OnInit, 
-  OnDestroy 
-{
+export class MainSearchComponent implements OnInit {
   config: MainSearchConfig = MainSearchStateConfigHelper.defaultConfig();
   form: FormGroup;
   LocaleKeys = LocaleKeys;
   isFiltered = false;
 
-  private destroy$ = new Subject<void>();
-
   constructor(
+    private destroyRef: DestroyRef,
     private formBuilder: FormBuilder,
     private store: Store,
     private searchPanelSvc: SearchPanelService
@@ -78,7 +68,7 @@ export class MainSearchComponent implements
 
   private syncState(): void {
     this.store.select(MainSearchState.getConfig)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(config => {
         this.config = config;
         this.handleFormActivation(!config.isFilterAvailable);
@@ -88,7 +78,7 @@ export class MainSearchComponent implements
   private syncFilterChanges(): void {
     this.store.select(MainSearchState.isFiltered)
       .pipe(
-        takeUntil(this.destroy$), 
+        takeUntilDestroyed(this.destroyRef), 
         distinctUntilChanged())
       .subscribe(filtered => {
         this.isFiltered = filtered;
@@ -128,7 +118,7 @@ export class MainSearchComponent implements
         const searchTerm = this.form.get('search')?.value.trim();
         this.store.dispatch(new SetMainSearchTerm(searchTerm));
       },
-      this.destroy$
+      this.destroyRef
     );
   }
 
@@ -143,9 +133,5 @@ export class MainSearchComponent implements
 
   onClickAdvancedFilter(): void {
     // this.searchPanelSvc.onClickOpen(this.config.resource);
-  }
-
-  ngOnDestroy(): void {
-    SubscriptionHelper.destroy(this.destroy$);
   }
 }

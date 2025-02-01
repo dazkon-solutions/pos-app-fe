@@ -13,19 +13,18 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component, 
-  OnDestroy, 
+  DestroyRef, 
   OnInit, 
   ViewChild
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngxs/store';
 import { CdkTree } from '@angular/cdk/tree';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { 
   firstValueFrom,
-  Observable,
-  Subject, 
-  takeUntil 
+  Observable
 } from 'rxjs';
+import { Store } from '@ngxs/store';
 import { 
   MenuState,
   LeftPanelState,
@@ -35,7 +34,6 @@ import {
   SetMenuParent,
   SetMainSearchByResource
 } from 'src/app/store';
-import { SubscriptionHelper } from 'src/app/common/helpers';
 import { Resource } from 'src/app/common/enums';
 import { Navigator } from 'src/app/common/services';
 import { 
@@ -58,8 +56,7 @@ import { BottomMenuComponent } from './bottom-menu/bottom-menu.component';
 })
 export class LeftPanelComponent implements 
   OnInit,
-  AfterViewInit,
-  OnDestroy
+  AfterViewInit
 {
   @ViewChild(CdkTree)
   tree!: CdkTree<MenuNode>;
@@ -69,13 +66,12 @@ export class LeftPanelComponent implements
   flattened: MenuNode[] = [];
   isLeftPanelExpanded = false;
   
-  private destroy$ = new Subject<void>();
-
   childrenAccessor = (node: MenuNode) => node.children ?? [];
   hasChild = (_: number, node: MenuNode) => 
     !!node.children && node.children.length > 0;
 
   constructor(
+    private destroyRef: DestroyRef,
     private router: Router,
     private store: Store,
     private navigateSvc: Navigator,
@@ -89,7 +85,7 @@ export class LeftPanelComponent implements
 
   ngAfterViewInit(): void {
     this.store.select(LeftPanelState.isExpanded)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(panel => {
         this.isLeftPanelExpanded = panel;
 
@@ -125,7 +121,7 @@ export class LeftPanelComponent implements
     this.current$ = this.store.select(MenuState.getCurrent);
 
     this.store.select(MenuState.getTree)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(list => {
         this.dataSource = list;
         this.setFlattenedIfNotExist(list);
@@ -134,7 +130,7 @@ export class LeftPanelComponent implements
 
   private init(): void {
     this.navigateSvc.navigator$
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(resource => this.navigateToResource(resource));
   }
 
@@ -256,9 +252,5 @@ export class LeftPanelComponent implements
         ? `${node.icon}-filled`
         : (node.icon ?? '');
     }
-  }
-
-  ngOnDestroy(): void {
-    SubscriptionHelper.destroy(this.destroy$);
   }
 }

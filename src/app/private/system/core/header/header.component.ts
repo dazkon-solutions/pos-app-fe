@@ -9,13 +9,10 @@
 
 import { 
   Component, 
-  OnDestroy, 
+  DestroyRef, 
   OnInit
 } from '@angular/core';
-import { 
-  Observable,
-  Subject
-} from 'rxjs';
+import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { 
   MaterialModule, 
@@ -29,7 +26,6 @@ import {
   MenuState
 } from 'src/app/store';
 import { LocaleKeys } from 'src/app/common/constants';
-import { SubscriptionHelper } from 'src/app/common/helpers';
 import { ThemeService } from 'src/app/common/services';
 
 
@@ -42,10 +38,7 @@ import { ThemeService } from 'src/app/common/services';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements 
-  OnInit,
-  OnDestroy  
-{
+export class HeaderComponent implements OnInit {
   menuParentItem$!: Observable<MenuNode | null>;
   searchConfig$!: Observable<MainSearchConfig | null>;
   isLightTheme$!: Observable<boolean>;
@@ -54,8 +47,6 @@ export class HeaderComponent implements
   username = 'samantha';
   role = 'ADMIN';
 
-  private destroy$ = new Subject<void>();
-  
   constructor(
     private store: Store,
     private themeSvc: ThemeService
@@ -91,9 +82,5 @@ export class HeaderComponent implements
     return type === 'SHORT'
       ? `${this.username.charAt(0)}${this.username.charAt(1)}`
       : this.username;
-  }
-
-  ngOnDestroy(): void {
-    SubscriptionHelper.destroy(this.destroy$);
   }
 }

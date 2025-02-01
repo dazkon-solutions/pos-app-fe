@@ -7,22 +7,20 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
+import { DestroyRef } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { 
   AbstractControl, 
   FormGroup 
 } from "@angular/forms";
-import { 
-  Subject, 
-  debounceTime, 
-  takeUntil 
-} from "rxjs";
+import { debounceTime } from "rxjs";
 
 
 export class FormHelper {
   static setupDebouncedFilter(
     control: AbstractControl | null,
     dispatchActions: () => void,
-    destroy$: Subject<void>
+    destroyRef: DestroyRef
   ): void {
     if (!control) {
       return;
@@ -30,7 +28,7 @@ export class FormHelper {
 
     control.valueChanges.pipe(
       debounceTime(1000),
-      takeUntil(destroy$)
+      takeUntilDestroyed(destroyRef)
     ).subscribe(() => {
       dispatchActions();
     });

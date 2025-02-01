@@ -13,30 +13,14 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component, 
-  OnDestroy, 
+  DestroyRef, 
   OnInit, 
   ViewChild
 } from '@angular/core';
-import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { CdkTree } from '@angular/cdk/tree';
-import { 
-  firstValueFrom,
-  Observable,
-  Subject, 
-  takeUntil 
-} from 'rxjs';
-import { 
-  MenuState,
-  LeftPanelState,
-  SelectMenuItem,
-  MenuNode,
-  ToggleLeftPanel,
-  SetMenuParent
-} from 'src/app/store';
-import { SubscriptionHelper } from 'src/app/common/helpers';
-import { Resource } from 'src/app/common/enums';
-import { Navigator } from 'src/app/common/services';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { LeftPanelState } from 'src/app/store';
 import { 
   MaterialModule, 
   StandaloneCommonModule 
@@ -57,8 +41,7 @@ import { BottomMenuConfigHelper } from './bottom-menu-config.helper';
 })
 export class BottomMenuComponent implements 
   OnInit,
-  AfterViewInit,
-  OnDestroy
+  AfterViewInit
 {
   @ViewChild(CdkTree)
   tree!: CdkTree<BottomMenuNode>;
@@ -66,48 +49,24 @@ export class BottomMenuComponent implements
   dataSource = BottomMenuConfigHelper.createBottomMenu();
   isLeftPanelExpanded = false;
   
-  private destroy$ = new Subject<void>();
-
   childrenAccessor = (node: BottomMenuNode) => [];
 
   constructor(
+    private destroyRef: DestroyRef,
     private store: Store,
     private cdr: ChangeDetectorRef
   ) { }
 
   async ngOnInit(): Promise<void> {
-    await this.syncState();
-    this.init();
+    //
   }
 
   ngAfterViewInit(): void {
     this.store.select(LeftPanelState.isExpanded)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(panel => {
         this.isLeftPanelExpanded = panel;
         this.cdr.detectChanges();
       });
-  }
-
-  
-  private async syncState(): Promise<void> {
-    // this.current$ = this.store.select(MenuState.getCurrent);
-
-    // this.store.select(MenuState.getTree)
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe(list => {
-    //     this.dataSource = list;
-    //     this.setFlattenedIfNotExist(list);
-    //   });
-  }
-
-  private init(): void {
-    // this.navigateSvc.navigator$
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe(resource => this.navigateToResource(resource));
-  }
-
-  ngOnDestroy(): void {
-    SubscriptionHelper.destroy(this.destroy$);
   }
 }
