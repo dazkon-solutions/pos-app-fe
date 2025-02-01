@@ -12,7 +12,8 @@
                              maxBufferPx="600" 
                              class="daz-data-view" >
   <!-- Table section -->
-  <daz-dynamic-table [tableColumnConfigs$]="tableColumnConfigs$"
+  <daz-dynamic-table class="daz-dynamic-table"
+                     [tableColumnConfigs$]="tableColumnConfigs$"
                      [dataSource$]="dataSource$"
                      [isLoading$]="isLoading$"
                      (buttonClicked)="handleActionResponse($event)" />

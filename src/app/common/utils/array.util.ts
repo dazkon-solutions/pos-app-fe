@@ -7,4 +7,12 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './array.util';
+export class ArrayUtil {
+  static createFakeArray(length: number): any[] {
+    const list = Array.from({ length }, (_, index) => ({
+      id: index + 1,
+      value: 'x'
+    }));
+    return list;
+  }
+}

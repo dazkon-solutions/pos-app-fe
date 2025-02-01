@@ -36,13 +36,15 @@ import { DynamicTableColumnConfig } from './dynamic-table.interface';
 import { DynamicTableColumnType } from './dynamic-table.enum';
 import { ActionButtonComponent } from '../action-button/action-button.component';
 import { ActionButtonConfig } from '../action-button';
+import { TableSkeletonWithImageComponent } from '../skeletons/table-skeleton-with-image/table-skeleton-with-image.component';
 
 @Component({
   selector: 'daz-dynamic-table',
   imports: [
     StandaloneCommonModule,
     MaterialModule,
-    ActionButtonComponent
+    ActionButtonComponent,
+    TableSkeletonWithImageComponent
   ],
   templateUrl: './dynamic-table.component.html',
   styleUrl: './dynamic-table.component.scss',

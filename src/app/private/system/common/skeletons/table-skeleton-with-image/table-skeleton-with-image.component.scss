@@ -7,4 +7,13 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './array.util';
+.daz-table-skeleton-with-image {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+  padding-right: 5px;
+
+  .line-wrapper {
+    width: 100%;
+  }
+}

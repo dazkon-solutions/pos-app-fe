@@ -63,8 +63,29 @@
     </ng-container>
   }
 
+  <!-- Header and rows section -->
   <tr mat-header-row 
       *matHeaderRowDef="columnsToDisplay sticky: true" >
   </tr>
   <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" ></tr>
+  <!-- End of header and rows section -->
+
+  <!-- This table row show if table empty -->
+   @let isLoading = isLoading$ | async;
+  <tr class="mat-row" 
+      *matNoDataRow >
+    <td class="mat-cell" 
+        [class.table-data-not-found-section]="!isLoading"
+        colspan="10" >
+      
+        @if (isLoading) {
+          <daz-table-skeleton-with-image [count]="7" />
+        } @else {
+          <!-- No data found message -->
+          
+          <!-- End of no data found message -->
+        }
+    </td>
+  </tr>
+  <!-- End of table empty row -->
 </table>

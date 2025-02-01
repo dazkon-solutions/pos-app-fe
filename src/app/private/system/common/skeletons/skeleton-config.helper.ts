@@ -7,4 +7,7 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './array.util';
+
+export class SkeletonConfigHelper {
+  static darkBgColor = '#141414';
+}
