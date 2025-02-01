@@ -6,9 +6,10 @@
   without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
-
+  
+@let dataSource = (dataSource$ | async) ?? [];
 <table mat-table 
-       [dataSource]="dataSource$" 
+       [dataSource]="dataSource" 
        class="mat-elevation-z8 table" >
 
   @for (column of displayedColumns; track column) {
@@ -63,8 +64,7 @@
   }
 
   <tr mat-header-row 
-      *matHeaderRowDef="columnsToDisplay 
-      sticky: true" >
+      *matHeaderRowDef="columnsToDisplay sticky: true" >
   </tr>
   <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" ></tr>
 </table>

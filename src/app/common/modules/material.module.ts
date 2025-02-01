@@ -32,6 +32,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 const materialComponents = [
@@ -58,7 +59,8 @@ const materialComponents = [
   MatMenuModule,
   MatButtonToggleModule,
   CdkTreeModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  ScrollingModule
 ];
 
 @NgModule({

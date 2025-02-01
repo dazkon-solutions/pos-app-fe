@@ -23,7 +23,7 @@
       } @else {
         <mat-icon [svgIcon]="button.icon" />
       }
-      {{ button.label | translate }}
+      {{ button.label | translate | uppercase }}
     </button>
   }
   @case (ActionButtonShape.MINI_FAB) {

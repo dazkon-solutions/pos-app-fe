@@ -15,6 +15,7 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActionResponse } from 'src/app/common/interfaces';
+import { MaterialModule } from 'src/app/common/modules';
 import { DynamicTableColumnConfig } from '../dynamic-table';
 import { DynamicTableComponent } from '../dynamic-table/dynamic-table.component';
 import { PaginationComponent } from '../pagination/pagination.component';
@@ -22,6 +23,7 @@ import { PaginationComponent } from '../pagination/pagination.component';
 @Component({
   selector: 'daz-data-view',
   imports: [
+    MaterialModule,
     DynamicTableComponent,
     PaginationComponent
   ],
