@@ -1,5 +1,5 @@
 # Dazkon POS App Frontend
-- angular version: v19.0.7
+- angular version: v19.1.4
 - node version: v20.11.1
 
 ## Installed packages
