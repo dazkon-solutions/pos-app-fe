@@ -1,0 +1,65 @@
+<!-- 
+  Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+  All rights reserved.  
+  This code is proprietary to DAZKON SOLUTIONS. 
+  Unauthorized use, reproduction, modification, distribution, or sale 
+  without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+  For inquiries, please contact: info@dazkonsolutions.com 
+-->
+
+<mat-card class="daz-dynamic-grid-item" >
+  <!-- Content section -->
+  <mat-card-content class="content" >
+    <!-- Title section -->
+    <div >
+      <mat-card-title >{{ item[config.titleKey] }}</mat-card-title>
+      @if (config.subTitleKey) { 
+        <span >{{ item[config.subTitleKey] }}</span>
+      }
+    </div>
+    <!-- End of title section -->
+
+    <!-- Image section -->
+    @if (config.imageKey) {
+      <img class="image" 
+           alt="item image"
+           [src]="item[config.imageKey]" >
+    }
+    <!-- End of image section -->
+  </mat-card-content>
+  <!-- End of content section -->
+
+  <mat-card-actions >
+    <!-- Action button area -->
+    <div class="action-area" >
+      <!-- Main button -->
+      <daz-action-button [config$]="getButtonConfigObservable(config.primaryActionButtonConfig, 
+                                                              item)"
+                         (buttonClicked)="onClick($event.action, 
+                                                  item)" />
+      <!-- End of main button -->
+      
+      <!-- Secondary button -->
+      @if (config.secondaryActionButtonConfig) {
+        <daz-action-button [config$]="getButtonConfigObservable(config.secondaryActionButtonConfig, 
+                                                                item)"
+                           (buttonClicked)="onClick($event.action, 
+                                                    item)" />
+      }
+      <!-- End of secondary button -->
+    </div>
+    <!-- End of action button area -->
+
+    <span class="spacer" ></span>
+
+    <!-- Option button -->
+    <button mat-icon-button
+            [disabled]="!(gridItemConfig?.optionActionButtonConfigs)"
+            [matTooltip]="LocaleKeys.tooltips.options | translate"
+            (click)="onClickOptions($event,
+                                    gridItemConfig)" >
+      <mat-icon svgIcon="expand-less-right" />
+    </button>
+    <!-- End of option button -->
+  </mat-card-actions>
+</mat-card>

@@ -26,37 +26,43 @@ export class CategoriesTableConfigHelper {
   static createTableColumns(resource: Resource): DynamicTableColumnConfig[] {
     return [
       {
-        name: 'photo',
+        label: 'tast label 1',
+        nameKey: 'photo',
         alignment: TableColumnAlignmentStyleClass.LEFT,
         type: DynamicTableColumnType.IMAGE,
         isVisibleHeader: true
       },
       {
-        name: 'position',
+        label: 'tast label 2',
+        nameKey: 'position',
         alignment: TableColumnAlignmentStyleClass.LEFT,
         type: DynamicTableColumnType.TEXT,
         isVisibleHeader: true
       },
       {
-        name: 'name',
+        label: 'tast label 3',
+        nameKey: 'name',
         alignment: TableColumnAlignmentStyleClass.CENTER,
         type: DynamicTableColumnType.TEXT,
         isVisibleHeader: true
       },
       {
-        name: 'weight',
+        label: 'tast label 4',
+        nameKey: 'weight',
         alignment: TableColumnAlignmentStyleClass.RIGHT,
         type: DynamicTableColumnType.TEXT,
         isVisibleHeader: true
       },
       {
-        name: 'symbol',
+        label: 'tast label 5',
+        nameKey: 'symbol',
         alignment: TableColumnAlignmentStyleClass.LEFT,
         type: DynamicTableColumnType.TEXT,
         isVisibleHeader: true
       },
       {
-        name: 'createAction',
+        label: 'tast label 6',
+        nameKey: 'createAction',
         alignment: TableColumnAlignmentStyleClass.RIGHT,
         type: DynamicTableColumnType.ACTION_BUTTON,
         isVisibleHeader: false,
@@ -66,7 +72,8 @@ export class CategoriesTableConfigHelper {
         }
       },
       {
-        name: 'deleteAction',
+        label: 'tast label 7',
+        nameKey: 'deleteAction',
         alignment: TableColumnAlignmentStyleClass.RIGHT,
         type: DynamicTableColumnType.ACTION_BUTTON,
         isVisibleHeader: false,
@@ -76,7 +83,8 @@ export class CategoriesTableConfigHelper {
         }
       },
       {
-        name: 'customAction',
+        label: 'tast label 8',
+        nameKey: 'customAction',
         alignment: TableColumnAlignmentStyleClass.RIGHT,
         type: DynamicTableColumnType.ACTION_BUTTON,
         isVisibleHeader: false,

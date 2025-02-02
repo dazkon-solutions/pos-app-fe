@@ -8,16 +8,12 @@
  */
 
 import { ActionButtonConfig } from "../action-button";
-import { 
-  TableColumnAlignmentStyleClass, 
-  DynamicTableColumnType 
-} from "./dynamic-table.enum";
 
-export interface DynamicTableColumnConfig {
-  label:                string;
-  nameKey:              string;
-  alignment:            TableColumnAlignmentStyleClass;
-  type:                 DynamicTableColumnType;
-  isVisibleHeader:      boolean;
-  actionButtonConfig?:  ActionButtonConfig;
+export interface DynamicGridItemConfig {
+  titleKey:                     string;
+  primaryActionButtonConfig:    ActionButtonConfig;
+  secondaryActionButtonConfig?: ActionButtonConfig;
+  optionActionButtonConfigs?:   ActionButtonConfig[];
+  subTitleKey?:                 string;
+  imageKey?:                    string;
 }

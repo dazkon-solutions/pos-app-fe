@@ -7,8 +7,4 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './search-panel.service';
-export * from './icon.service';
-export * from './navigator.service';
-export * from './theme.service';
-export * from './dialog.service';
+export * from './dynamic-grid.interface';

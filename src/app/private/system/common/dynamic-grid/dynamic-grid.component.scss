@@ -7,8 +7,9 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './search-panel.service';
-export * from './icon.service';
-export * from './navigator.service';
-export * from './theme.service';
-export * from './dialog.service';
+.daz-dynamic-grid {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: 1fr;
+}

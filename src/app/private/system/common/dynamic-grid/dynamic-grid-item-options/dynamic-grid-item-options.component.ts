@@ -7,8 +7,14 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './search-panel.service';
-export * from './icon.service';
-export * from './navigator.service';
-export * from './theme.service';
-export * from './dialog.service';
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'daz-dynamic-grid-item-options',
+  imports: [],
+  templateUrl: './dynamic-grid-item-options.component.html',
+  styleUrl: './dynamic-grid-item-options.component.scss'
+})
+export class DynamicGridItemOptionsComponent {
+
+}

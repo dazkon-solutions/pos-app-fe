@@ -11,35 +11,27 @@ import {
   Component, 
   EventEmitter, 
   Input, 
-  Output
+  Output 
 } from '@angular/core';
 import { Observable } from 'rxjs';
+import { StandaloneCommonModule } from 'src/app/common/modules';
 import { ActionResponse } from 'src/app/common/interfaces';
-import { MaterialModule } from 'src/app/common/modules';
-import { DynamicTableColumnConfig } from '../dynamic-table';
-import { DynamicTableComponent } from '../dynamic-table/dynamic-table.component';
-import { PaginationComponent } from '../pagination/pagination.component';
-import { DynamicGridComponent } from '../dynamic-grid/dynamic-grid.component';
-import { DynamicGridItemConfig } from '../dynamic-grid/dynamic-grid.interface';
+import { DynamicGridItemConfig } from './dynamic-grid.interface';
+import { DynamicGridItemComponent } from './dynamic-grid-item/dynamic-grid-item.component';
 
 @Component({
-  selector: 'daz-data-view',
+  selector: 'daz-dynamic-grid',
   imports: [
-    MaterialModule,
-    DynamicTableComponent,
-    DynamicGridComponent,
-    PaginationComponent
+    StandaloneCommonModule,
+    DynamicGridItemComponent
   ],
-  templateUrl: './data-view.component.html',
-  styleUrl: './data-view.component.scss'
+  templateUrl: './dynamic-grid.component.html',
+  styleUrl: './dynamic-grid.component.scss'
 })
-export class DataViewComponent {
-  @Input('tableColumnConfigs$')
-  tableColumnConfigs$!: Observable<DynamicTableColumnConfig[]>;
-
+export class DynamicGridComponent {
   @Input('gridItemConfig$')
   gridItemConfig$!: Observable<DynamicGridItemConfig>;
-  
+
   @Input('dataSource$')
   dataSource$!: Observable<any[]>;
 

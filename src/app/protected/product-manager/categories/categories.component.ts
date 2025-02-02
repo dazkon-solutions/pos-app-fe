@@ -21,6 +21,8 @@ import { ActionResponse } from 'src/app/common/interfaces';
 import { Resource } from 'src/app/common/enums';
 import { DynamicTableColumnConfig } from 'src/app/private/system/common/dynamic-table';
 import { CategoriesTableConfigHelper } from './categories-table-config-helper';
+import { DynamicGridItemConfig } from 'src/app/private/system/common/dynamic-grid';
+import { GridConfigHelper } from './grid-config-helper';
 
 interface PeriodicElement {
   photo: string;
@@ -44,6 +46,7 @@ export class CategoriesComponent implements OnInit {
   private readonly resource = Resource.CATEGORIES;
 
   tableColumnConfigs$ = new BehaviorSubject<DynamicTableColumnConfig[]>([]);
+  gridItemConfig$ = new BehaviorSubject<DynamicGridItemConfig>(GridConfigHelper.create(this.resource));
   dataSource$ = new BehaviorSubject<PeriodicElement[]>([]);
   isLoading$ = new BehaviorSubject<boolean>(false);
 
@@ -58,7 +61,7 @@ export class CategoriesComponent implements OnInit {
   private dataSource: PeriodicElement[] = [
     {photo:'https://fastly.picsum.photos/id/2/5000/3333.jpg?hmac=_KDkqQVttXw_nM-RyJfLImIbafFrqLsuGO5YuHqD-qQ' ,position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
     {photo:'https://fastly.picsum.photos/id/2/5000/3333.jpg?hmac=_KDkqQVttXw_nM-RyJfLImIbafFrqLsuGO5YuHqD-qQ' ,position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-    {photo:'https://fastly.picsum.photos/id/2/5000/3333.jpg?hmac=_KDkqQVttXw_nM-RyJfLImIbafFrqLsuGO5YuHqD-qQ' ,position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
+    {photo:'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U' ,position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
     {photo:'https://fastly.picsum.photos/id/2/5000/3333.jpg?hmac=_KDkqQVttXw_nM-RyJfLImIbafFrqLsuGO5YuHqD-qQ' ,position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
     {photo:'https://fastly.picsum.photos/id/2/5000/3333.jpg?hmac=_KDkqQVttXw_nM-RyJfLImIbafFrqLsuGO5YuHqD-qQ' ,position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
     {photo:'https://fastly.picsum.photos/id/2/5000/3333.jpg?hmac=_KDkqQVttXw_nM-RyJfLImIbafFrqLsuGO5YuHqD-qQ' ,position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},

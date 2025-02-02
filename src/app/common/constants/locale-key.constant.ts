@@ -29,6 +29,7 @@ export const LocaleKeys = {
     advancedFilter: 'tooltips.advancedFilter',
     clear: 'tooltips.clear',
     delete: 'tooltips.delete',
+    options: 'tooltips.options',
   },
   alerts: {
     common: {

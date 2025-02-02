@@ -14,7 +14,8 @@
     "notifications": "Notifications",
     "advancedFilter": "Advanced filter",
     "clear": "Clear",
-    "delete": "Delete"
+    "delete": "Delete",
+    "options": "Options"
   },
 
   "alerts": {

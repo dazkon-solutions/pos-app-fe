@@ -88,7 +88,7 @@ export class DynamicTableComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(configs => {
         this.displayedColumns = configs;
-        this.columnsToDisplay = configs.flatMap(column => column.name).slice();
+        this.columnsToDisplay = configs.flatMap(column => column.nameKey).slice();
         this.cdr.detectChanges();
       });
   }
@@ -105,7 +105,7 @@ export class DynamicTableComponent implements OnInit {
     side: 'LEFT' | 'RIGHT',
     columnName: string
   ): boolean {
-    const columnNames = this.displayedColumns.flatMap(column => column.name);
+    const columnNames = this.displayedColumns.flatMap(column => column.nameKey);
     const columnCount = columnNames.length;
 
     if(columnCount < 1) return false;

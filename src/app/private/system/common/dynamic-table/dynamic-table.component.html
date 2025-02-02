@@ -13,17 +13,17 @@
        class="mat-elevation-z8 table" >
 
   @for (column of displayedColumns; track column) {
-    <ng-container [matColumnDef]="column.name" >
+    <ng-container [matColumnDef]="column.nameKey" >
 
       <!-- Hader section -->
       <th mat-header-cell 
           *matHeaderCellDef 
           class="header"
           [class]="column.alignment"
-          [class.left-side-header]="isSideHeader('LEFT', column.name)"
-          [class.right-side-header]="isSideHeader('RIGHT', column.name)"
+          [class.left-side-header]="isSideHeader('LEFT', column.nameKey)"
+          [class.right-side-header]="isSideHeader('RIGHT', column.nameKey)"
           [style.background-color]="headerColor" > 
-        {{ column.isVisibleHeader ? column.name : '' | translate }} 
+        {{ column.isVisibleHeader ? column.label : '' | translate }} 
       </th>
       <!-- End of header section -->
 
@@ -34,17 +34,17 @@
         @switch (column.type) {
           @case (DynamicTableColumnType.IMAGE) {
             <img class="cell-image" 
-                 [src]="element[column.name]" 
+                 [src]="element[column.nameKey]" 
                  alt="image" >
           }
           @case (DynamicTableColumnType.TEXT) {
-            {{ element[column.name] }}
+            {{ element[column.nameKey] }}
           }
           @case (DynamicTableColumnType.CURRENCY) {
-            {{ element[column.name] | currency: ' ' }}
+            {{ element[column.nameKey] | currency: ' ' }}
           }
           @case (DynamicTableColumnType.DATE) {
-            {{ element[column.name] | date: 'dd/MM/yyyy' }}
+            {{ element[column.nameKey] | date: 'dd/MM/yyyy' }}
           }
           @case (DynamicTableColumnType.ACTION_BUTTON) {
             @if (column.actionButtonConfig) {
@@ -55,7 +55,7 @@
             }
           }
           @default {
-            {{ element[column.name] }} 
+            {{ element[column.nameKey] }} 
           }
         }
       </td>

@@ -7,18 +7,33 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-<cdk-virtual-scroll-viewport itemSize="47" 
-                             minBufferPx="564" 
-                             maxBufferPx="600" 
-                             class="daz-data-view" >
-  <!-- Table section -->
-  <daz-dynamic-table class="daz-dynamic-table"
-                     [tableColumnConfigs$]="tableColumnConfigs$"
-                     [dataSource$]="dataSource$"
-                     [isLoading$]="isLoading$"
-                     (buttonClicked)="handleActionResponse($event)" />
-  <!-- End of table section -->
-</cdk-virtual-scroll-viewport >
+@if (false) {
+  <cdk-virtual-scroll-viewport itemSize="47" 
+                               minBufferPx="564" 
+                               maxBufferPx="600" 
+                               class="daz-data-view" >
+    <!-- Table section -->
+    <daz-dynamic-table class="daz-dynamic-table"
+                       [tableColumnConfigs$]="tableColumnConfigs$"
+                       [dataSource$]="dataSource$"
+                       [isLoading$]="isLoading$"
+                       (buttonClicked)="handleActionResponse($event)" />
+    <!-- End of table section -->
+  </cdk-virtual-scroll-viewport >
+
+} @else {
+  <cdk-virtual-scroll-viewport itemSize="47" 
+                               minBufferPx="564" 
+                               maxBufferPx="600" 
+                               class="daz-data-view" >
+    <!-- Grid section -->
+    <daz-dynamic-grid [gridItemConfig$]="gridItemConfig$"
+                      [dataSource$]="dataSource$"
+                      [isLoading$]="isLoading$"
+                      (buttonClicked)="handleActionResponse($event)" />
+    <!-- End of grid section -->
+  </cdk-virtual-scroll-viewport >
+}
 
 <!-- Pagination section -->
 <daz-pagination />
