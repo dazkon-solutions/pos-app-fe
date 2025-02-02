@@ -20,7 +20,7 @@
                        diameter="20" 
                        strokeWidth="2" />
         </mat-icon>
-      } @else {
+      } @else if (button.icon) {
         <mat-icon [svgIcon]="button.icon" />
       }
       {{ button.label | translate | uppercase }}

@@ -33,6 +33,12 @@
     ));
   }
 
+  .btn-fab-warn {
+    @include mat.fab-overrides((
+      container-color: $warn-bg-color,
+    ));
+  }
+
   .btn-mini-fab-warn {
     @include mat.fab-overrides((
       small-container-color: $warn-bg-color,

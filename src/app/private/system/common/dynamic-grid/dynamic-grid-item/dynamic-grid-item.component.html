@@ -7,14 +7,14 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-<mat-card class="daz-dynamic-grid-item" >
+<mat-card class="daz-dynamic-grid-item card" appearance="outlined" >
   <!-- Content section -->
   <mat-card-content class="content" >
     <!-- Title section -->
     <div >
       <mat-card-title >{{ item[config.titleKey] }}</mat-card-title>
       @if (config.subTitleKey) { 
-        <span >{{ item[config.subTitleKey] }}</span>
+        <mat-card-subtitle >{{ item[config.subTitleKey] }}</mat-card-subtitle>
       }
     </div>
     <!-- End of title section -->
@@ -57,7 +57,8 @@
             [disabled]="!(gridItemConfig?.optionActionButtonConfigs)"
             [matTooltip]="LocaleKeys.tooltips.options | translate"
             (click)="onClickOptions($event,
-                                    gridItemConfig)" >
+                                    gridItemConfig,
+                                    item)" >
       <mat-icon svgIcon="expand-less-right" />
     </button>
     <!-- End of option button -->

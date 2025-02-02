@@ -7,7 +7,8 @@
     "brands": "Brands",
     "areYouSureYouWantToDelete": "Are you sure you want to delete this item?",
     "settings": "Settings",
-    "helpDesk": "Help Desk"
+    "helpDesk": "Help Desk",
+    "optionsMenu": "Options Menu"
   },
 
   "tooltips": {
@@ -46,7 +47,8 @@
       "addNew": "ADD NEW",
       "save": "SAVE",
       "update": "UPDATE",
-      "view": "VIEW"
+      "view": "VIEW",
+      "delete": "DELETE"
     },
     "forms": {
       "filtersAreNotAvailableHere": "Filters are not available here..",

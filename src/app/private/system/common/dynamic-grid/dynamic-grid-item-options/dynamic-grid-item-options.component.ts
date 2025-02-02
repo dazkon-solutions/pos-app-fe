@@ -7,14 +7,55 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Component } from '@angular/core';
+import { 
+  Component, 
+  Inject 
+} from '@angular/core';
+import { 
+  MAT_DIALOG_DATA, 
+  MatDialogRef 
+} from '@angular/material/dialog';
+import { 
+  Observable, 
+  of 
+} from 'rxjs';
+import { 
+  MaterialModule, 
+  StandaloneCommonModule 
+} from 'src/app/common/modules';
+import { 
+  Action, 
+  CustomAction 
+} from 'src/app/common/enums';
+import { LocaleKeys } from 'src/app/common/constants';
+import { ActionButtonConfig } from '../../action-button';
+import { ActionButtonComponent } from '../../action-button/action-button.component';
 
 @Component({
   selector: 'daz-dynamic-grid-item-options',
-  imports: [],
+  imports: [
+    StandaloneCommonModule,
+    MaterialModule,
+    ActionButtonComponent
+  ],
   templateUrl: './dynamic-grid-item-options.component.html',
   styleUrl: './dynamic-grid-item-options.component.scss'
 })
 export class DynamicGridItemOptionsComponent {
+  LocaleKeys = LocaleKeys;
+  
+  constructor(
+    private dialogRef: MatDialogRef<DynamicGridItemOptionsComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: ActionButtonConfig[]
+  ) { }
 
+  onClick(action: Action | CustomAction): void {
+    this.dialogRef.close(action);
+  }
+
+  getButtonConfigObservable(
+    config: ActionButtonConfig
+  ): Observable<ActionButtonConfig> {
+    return of(config);
+  }
 }

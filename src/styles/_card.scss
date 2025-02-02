@@ -8,6 +8,7 @@
  */
 
 @use '@angular/material' as mat;
+@use 'variables' as var;
 
 @mixin card-styles(
   $bg-color,
@@ -19,4 +20,10 @@
     outlined-outline-color: $outline-color,
     subtitle-text-color: $text-color
   ));
+}
+
+@mixin card-colors-dark {
+  .card {
+    color: var.$dark-bg-text-color-2;
+  }
 }

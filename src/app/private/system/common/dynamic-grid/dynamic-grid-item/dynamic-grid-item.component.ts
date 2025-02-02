@@ -18,6 +18,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { 
+  firstValueFrom,
   Observable, 
   of 
 } from 'rxjs';
@@ -91,7 +92,6 @@ export class DynamicGridItemComponent implements OnChanges {
     }
 
     if('item' in changes) {
-      // console.warn(this.item)
       this.cdr.detectChanges();
     }
   }
@@ -103,18 +103,28 @@ export class DynamicGridItemComponent implements OnChanges {
     this.buttonClicked.emit({ action, data });
   }
 
-  onClickOptions(
+  async onClickOptions(
     event: MouseEvent,
-    config: DynamicGridItemConfig | null
-  ): void {
+    config: DynamicGridItemConfig | null,
+    element: any
+  ): Promise<void> {
     event.stopPropagation();
     event.preventDefault();
 
     if(!config || !config.optionActionButtonConfigs) return;
 
-    this.dialogSvc.open(DynamicGridItemOptionsComponent, {
-      data: config.optionActionButtonConfigs
+    const buttonConfigs = config.optionActionButtonConfigs.map(config => 
+      this.checkButtonDisable(config, 
+                              element));
+
+    const dialogRef = await this.dialogSvc.open(DynamicGridItemOptionsComponent, {
+      data: buttonConfigs,
+      autoFocus: true
     });
+
+    const action = await firstValueFrom(dialogRef.afterClosed());
+    this.onClick(action, 
+                 element);
   }
 
   private checkButtonDisable(

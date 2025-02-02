@@ -23,6 +23,7 @@ export const LocaleKeys = {
     areYouSureYouWantToDelete: 'titles.areYouSureYouWantToDelete',
     settings: 'titles.settings',
     helpDesk: 'titles.helpDesk',
+    optionsMenu: 'titles.optionsMenu',
   },
   tooltips: {
     notifications: 'tooltips.notifications',
@@ -58,6 +59,7 @@ export const LocaleKeys = {
       save: 'labels.buttons.save',
       update: 'labels.buttons.update',
       view: 'labels.buttons.view',
+      delete: 'labels.buttons.delete',
     },
     forms: {
       filtersAreNotAvailableHere: 'labels.forms.filtersAreNotAvailableHere',

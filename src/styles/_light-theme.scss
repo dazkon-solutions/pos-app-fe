@@ -65,7 +65,7 @@
   @include form.form-colors(var.$light-bg-text-color);
 
   @include card.card-styles(var.$light-bg-color-1,
-                            var.$light-bg-color-2,
+                            var.$light-bg-color-3,
                             var.$light-bg-text-color);
 
   @include drawer.drawer-styles(var.$light-bg-color-2);

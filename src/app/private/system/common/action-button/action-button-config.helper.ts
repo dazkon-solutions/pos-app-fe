@@ -46,11 +46,19 @@ export class ActionButtonConfigHelper {
     },
     view: {
       action: Action.VIEW,
-      icon: 'view',
+      icon: '',
       label: LocaleKeys.labels.buttons.view,
       tooltip: '',
       shape: ActionButtonShape.FAB_EXTENDED,
       style: ActionButtonStyleClass.BTN_FAB_PRIMARY
+    },
+    delete: {
+      action: Action.DELETE,
+      icon: 'delete',
+      label: LocaleKeys.labels.buttons.delete,
+      tooltip: '',
+      shape: ActionButtonShape.FAB_EXTENDED,
+      style: ActionButtonStyleClass.BTN_FAB_WARN
     },
     deleteFab: {
       action: Action.DELETE,

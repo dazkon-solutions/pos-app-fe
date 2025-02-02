@@ -71,9 +71,10 @@
   @include form.form-colors-dark();
   @include form.form-colors-dark-disabled();
 
-  @include card.card-styles(var.$dark-bg-color,
-                            var.$static-bg-color-3,
+  @include card.card-styles(var.$static-bg-color-2,
+                            var.$static-bg-color-1,
                             var.$dark-bg-text-color-2);
+  @include card.card-colors-dark();
 
   @include drawer.drawer-styles(var.$static-bg-color-2);
 

@@ -24,7 +24,7 @@ export class GridConfigHelper {
       secondaryActionButtonConfig: {
         resource,
         type: ActionButtonType.VIEW,
-        disableCondition: (rowData: any) => rowData.position === 1,
+        disableCondition: (rowData: any) => rowData.position === 1
       },
       optionActionButtonConfigs: [
         {
@@ -33,7 +33,8 @@ export class GridConfigHelper {
         },
         {
           resource,
-          type: ActionButtonType.VIEW
+          type: ActionButtonType.DELETE,
+          disableCondition: (rowData: any) => rowData.position === 1
         }
       ]
     }

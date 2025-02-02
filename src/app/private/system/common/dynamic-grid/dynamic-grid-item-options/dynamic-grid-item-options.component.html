@@ -6,6 +6,14 @@
   without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
+<h2 mat-dialog-title >{{ LocaleKeys.titles.optionsMenu | translate }}</h2>
+<mat-dialog-content >
+  <mat-dialog-actions class="action-section" >
 
+    @for (item of data; track $index) {
+      <daz-action-button [config$]="getButtonConfigObservable(item)"
+                         (buttonClicked)="onClick($event.action)" />
+    }
 
-<p>dynamic-grid-item-options works!</p>
+  </mat-dialog-actions>
+</mat-dialog-content>
