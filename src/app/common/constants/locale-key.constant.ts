@@ -31,6 +31,8 @@ export const LocaleKeys = {
     clear: 'tooltips.clear',
     delete: 'tooltips.delete',
     options: 'tooltips.options',
+    gridView: 'tooltips.gridView',
+    listView: 'tooltips.listView',
   },
   alerts: {
     common: {

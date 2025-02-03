@@ -6,9 +6,31 @@
   without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
-  
-<mat-paginator  showFirstLastButtons
-                [length]="200" 
-                [pageSizeOptions]="[10, 50, 100]" 
-                aria-label="Select page" >
-</mat-paginator>
+
+<mat-toolbar class="daz-pagination" >
+  <mat-toolbar-row >
+    <!-- List view button -->
+    <button mat-icon-button
+            [matTooltip]="LocaleKeys.tooltips.listView | translate" >
+      <mat-icon svgIcon="list-view" />
+    </button>
+    <!-- End of list view button -->
+
+    <!-- Grid view button -->
+    <button mat-icon-button
+            [matTooltip]="LocaleKeys.tooltips.gridView | translate" >
+      <mat-icon svgIcon="grid-view" />
+    </button>
+    <!-- End of grid view button -->
+
+    <span class="spacer" ></span>
+
+    <!-- Paginator -->
+    <mat-paginator  showFirstLastButtons
+                    aria-label="Select page"
+                    [length]="200" 
+                    [pageSizeOptions]="[10, 50, 100]" >
+    </mat-paginator>
+    <!-- End of paginator -->
+  </mat-toolbar-row>
+</mat-toolbar>

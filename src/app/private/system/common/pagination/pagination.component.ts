@@ -8,16 +8,21 @@
  */
 
 import { Component } from '@angular/core';
-import { MaterialModule } from 'src/app/common/modules';
+import { LocaleKeys } from 'src/app/common/constants';
+import { 
+  MaterialModule, 
+  StandaloneCommonModule 
+} from 'src/app/common/modules';
 
 @Component({
   selector: 'daz-pagination',
   imports: [
+    StandaloneCommonModule,
     MaterialModule
   ],
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.scss'
 })
 export class PaginationComponent {
-
+  LocaleKeys = LocaleKeys;
 }

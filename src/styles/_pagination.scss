@@ -18,6 +18,12 @@
     container-text-color: $text-color,
     container-background-color: $bg-color
   ));
+
+  .daz-pagination {
+    @include mat.toolbar-overrides((
+      container-background-color: $bg-color
+    ));
+  }
 }
 
 @mixin pagination-colors-dark {
@@ -25,4 +31,10 @@
     disabled-icon-color: var.$dark-disabled,
     enabled-icon-color: var.$dark-bg-text-color-2
   ));
+
+  .daz-pagination {
+    @include mat.icon-button-overrides((
+      icon-color: var.$dark-bg-text-color-2
+    ));
+  }
 }
