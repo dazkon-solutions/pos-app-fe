@@ -13,10 +13,7 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
-import { 
-  MaterialModule, 
-  StandaloneCommonModule 
-} from 'src/app/common/modules';
+import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { ToggleLeftPanel } from 'src/app/store/left-panel-config';
 import { LocaleKeys } from 'src/app/common/constants';
 import { ThemeService } from 'src/app/common/services';
@@ -26,13 +23,14 @@ import {
   MenuNode, 
   MenuState 
 } from 'src/app/store/menu-config';
+import { HEADER_MAT_IMPORTS } from './header-imports';
 
 
 @Component({
   selector: 'daz-header',
   imports: [
-    StandaloneCommonModule,
-    MaterialModule
+    CORE_IMPORTS,
+    HEADER_MAT_IMPORTS
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'

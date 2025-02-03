@@ -9,16 +9,14 @@
 
 import { Component } from '@angular/core';
 import { LocaleKeys } from 'src/app/common/constants';
-import { 
-  MaterialModule, 
-  StandaloneCommonModule 
-} from 'src/app/common/modules';
+import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
+import { PAGINATION_MAT_IMPORTS } from './pagination-imports';
 
 @Component({
   selector: 'daz-pagination',
   imports: [
-    StandaloneCommonModule,
-    MaterialModule
+    CORE_IMPORTS,
+    PAGINATION_MAT_IMPORTS
   ],
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.scss'

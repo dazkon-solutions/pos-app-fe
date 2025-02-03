@@ -37,19 +37,17 @@ import {
 } from 'src/app/store/menu-config';
 import { Resource } from 'src/app/common/enums';
 import { Navigator } from 'src/app/common/services';
-import { 
-  MaterialModule, 
-  StandaloneCommonModule 
-} from 'src/app/common/modules';
+import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { SetMainSearchByResource } from 'src/app/store/main-search';
 import { BottomMenuComponent } from './bottom-menu/bottom-menu.component';
+import { LEFT_PANEL_MAT_IMPORTS } from './left-panel-imports';
 
 
 @Component({
   selector: 'daz-left-panel',
   imports: [
-    StandaloneCommonModule,
-    MaterialModule,
+    CORE_IMPORTS,
+    LEFT_PANEL_MAT_IMPORTS,
     BottomMenuComponent
   ],
   templateUrl: './left-panel.component.html',

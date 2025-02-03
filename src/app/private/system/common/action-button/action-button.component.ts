@@ -19,10 +19,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Observable } from 'rxjs';
-import { 
-  MaterialModule, 
-  StandaloneCommonModule 
-} from 'src/app/common/modules';
+import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { ActionResponse } from 'src/app/common/interfaces';
 import { Resource } from 'src/app/common/enums';
 import { 
@@ -31,13 +28,14 @@ import {
 } from './action-button.interface';
 import { ActionButtonConfigHelper } from './action-button-config.helper';
 import { ActionButtonShape } from './action-button-type.enum';
+import { ACTION_BUTTON_MAT_IMPORTS } from './action-button-imports';
 
 
 @Component({
   selector: 'daz-action-button',
   imports: [
-    StandaloneCommonModule,
-    MaterialModule
+    CORE_IMPORTS,
+    ACTION_BUTTON_MAT_IMPORTS
   ],
   templateUrl: './action-button.component.html',
   styleUrl: './action-button.component.scss',

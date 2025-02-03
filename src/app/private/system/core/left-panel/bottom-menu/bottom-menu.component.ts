@@ -21,19 +21,17 @@ import { Store } from '@ngxs/store';
 import { CdkTree } from '@angular/cdk/tree';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { LeftPanelState } from 'src/app/store/left-panel-config';
-import { 
-  MaterialModule, 
-  StandaloneCommonModule 
-} from 'src/app/common/modules';
+import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { BottomMenuNode } from './bottom-menu.interface';
 import { BottomMenuConfigHelper } from './bottom-menu-config.helper';
+import { LEFT_PANEL_MAT_IMPORTS } from '../left-panel-imports';
 
 
 @Component({
   selector: 'daz-bottom-menu',
   imports: [
-    StandaloneCommonModule,
-    MaterialModule
+    CORE_IMPORTS,
+    LEFT_PANEL_MAT_IMPORTS
   ],
   templateUrl: './bottom-menu.component.html',
   styleUrl: './bottom-menu.component.scss',

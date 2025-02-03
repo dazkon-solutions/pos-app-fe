@@ -15,10 +15,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BehaviorSubject } from 'rxjs';
 import { Store } from '@ngxs/store';
-import { 
-  MaterialModule, 
-  StandaloneCommonModule 
-} from 'src/app/common/modules';
+import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { 
   MenuNode,
   MenuState
@@ -31,13 +28,14 @@ import {
 } from 'src/app/private/system/common/action-button';
 import { ActionResponse } from 'src/app/common/interfaces';
 import { MainSearchComponent } from '../main-search/main-search.component';
+import { CONTROL_BAR_MAT_IMPORTS } from './control-bar-imports';
 
 
 @Component({
   selector: 'daz-control-bar',
   imports: [
-    StandaloneCommonModule,
-    MaterialModule,
+    CORE_IMPORTS,
+    CONTROL_BAR_MAT_IMPORTS,
     MainSearchComponent,
     ActionButtonComponent
   ],

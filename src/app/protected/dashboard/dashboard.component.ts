@@ -9,13 +9,13 @@
 
 import { Component } from '@angular/core';
 import { Resource } from 'src/app/common/enums';
-import { MaterialModule } from 'src/app/common/modules';
 import { Navigator } from 'src/app/common/services';
+import { DASHBOARD_MAT_IMPORTS } from './dashboard-imports';
 
 @Component({
   selector: 'daz-dashboard',
   imports: [
-    MaterialModule
+    DASHBOARD_MAT_IMPORTS
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'

@@ -21,10 +21,7 @@ import {
   HeaderComponent, 
   LeftPanelComponent
 } from 'src/app/private/system/core';
-import { 
-  MaterialModule, 
-  StandaloneCommonModule 
-} from './common/modules';
+import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { 
   IconService, 
   ThemeService 
@@ -36,13 +33,14 @@ import {
 } from './store/menu-config';
 import { MenuNode } from './store/menu-config/menu.interface';
 import { LeftPanelState } from './store/left-panel-config';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @Component({
   selector: 'daz-root',
   imports: [
     RouterOutlet,
-    StandaloneCommonModule,
-    MaterialModule,
+    CORE_IMPORTS,
+    MatSidenavModule,
     HeaderComponent,
     LeftPanelComponent,
     FooterComponent,

@@ -19,7 +19,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { StandaloneCommonModule } from 'src/app/common/modules';
+import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { ThemeService } from 'src/app/common/services';
 import { ArrayUtil } from 'src/app/common/utils';
 import { SkeletonConfigHelper } from '../skeleton-config.helper';
@@ -28,7 +28,7 @@ import { SkeletonConfigHelper } from '../skeleton-config.helper';
 @Component({
   selector: 'daz-table-skeleton-with-image',
   imports: [
-    StandaloneCommonModule,
+    CORE_IMPORTS,
     NgxSkeletonLoaderModule
   ],
   templateUrl: './table-skeleton-with-image.component.html',

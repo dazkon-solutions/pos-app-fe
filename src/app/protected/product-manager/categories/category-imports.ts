@@ -7,5 +7,7 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './standalone-common.module';
-export * from './material.module';
+
+export const CATEGORY_MAT_IMPORTS = [
+
+];

@@ -12,17 +12,14 @@ import {
   OnInit 
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { 
-  MaterialModule, 
-  StandaloneCommonModule 
-} from 'src/app/common/modules';
+import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { DataViewComponent } from 'src/app/private/system/common/data-view/data-view.component';
 import { ActionResponse } from 'src/app/common/interfaces';
 import { Resource } from 'src/app/common/enums';
 import { DynamicTableColumnConfig } from 'src/app/private/system/common/dynamic-table';
-import { CategoriesTableConfigHelper } from './categories-table-config-helper';
 import { DynamicGridItemConfig } from 'src/app/private/system/common/dynamic-grid';
 import { GridConfigHelper } from './grid-config-helper';
+import { CategoriesTableConfigHelper } from './categories-table-config-helper';
 
 interface PeriodicElement {
   photo: string;
@@ -35,8 +32,7 @@ interface PeriodicElement {
 @Component({
   selector: 'daz-categories',
   imports: [
-    StandaloneCommonModule,
-    MaterialModule,
+    CORE_IMPORTS,
     DataViewComponent
   ],
   templateUrl: './categories.component.html',

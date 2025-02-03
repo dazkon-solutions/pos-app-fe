@@ -22,10 +22,7 @@ import {
   Observable,
   of
 } from 'rxjs';
-import { 
-  MaterialModule, 
-  StandaloneCommonModule 
-} from 'src/app/common/modules';
+import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { 
   Action, 
   CustomAction 
@@ -37,12 +34,13 @@ import { DynamicTableColumnType } from './dynamic-table.enum';
 import { ActionButtonComponent } from '../action-button/action-button.component';
 import { ActionButtonConfig } from '../action-button';
 import { TableSkeletonWithImageComponent } from '../skeletons/table-skeleton-with-image/table-skeleton-with-image.component';
+import { DYNAMIC_TABLE_MAT_IMPORTS } from './dynamic-table-imports';
 
 @Component({
   selector: 'daz-dynamic-table',
   imports: [
-    StandaloneCommonModule,
-    MaterialModule,
+    CORE_IMPORTS,
+    DYNAMIC_TABLE_MAT_IMPORTS,
     ActionButtonComponent,
     TableSkeletonWithImageComponent
   ],

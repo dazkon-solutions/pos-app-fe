@@ -19,10 +19,7 @@ import {
   Observable, 
   of 
 } from 'rxjs';
-import { 
-  MaterialModule, 
-  StandaloneCommonModule 
-} from 'src/app/common/modules';
+import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { 
   Action, 
   CustomAction 
@@ -30,12 +27,13 @@ import {
 import { LocaleKeys } from 'src/app/common/constants';
 import { ActionButtonConfig } from '../../action-button';
 import { ActionButtonComponent } from '../../action-button/action-button.component';
+import { DYNAMIC_GRID_MAT_IMPORTS } from '../dynamic-grid-imports';
 
 @Component({
   selector: 'daz-dynamic-grid-item-options',
   imports: [
-    StandaloneCommonModule,
-    MaterialModule,
+    CORE_IMPORTS,
+    DYNAMIC_GRID_MAT_IMPORTS,
     ActionButtonComponent
   ],
   templateUrl: './dynamic-grid-item-options.component.html',

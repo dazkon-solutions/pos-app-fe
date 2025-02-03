@@ -21,10 +21,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { FormHelper } from 'src/app/common/helpers';
-import { 
-  MaterialModule, 
-  StandaloneCommonModule 
-} from 'src/app/common/modules';
+import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { 
   MainSearchConfig,
   MainSearchState, 
@@ -34,13 +31,14 @@ import {
 } from 'src/app/store/main-search';
 import { LocaleKeys } from 'src/app/common/constants';
 import { SearchPanelService } from 'src/app/common/services';
+import { MAIN_SEARCH_MAT_IMPORTS } from './main-search-imports';
 
 
 @Component({
   selector: 'daz-main-search',
   imports: [
-    StandaloneCommonModule,
-    MaterialModule
+    CORE_IMPORTS,
+    MAIN_SEARCH_MAT_IMPORTS
   ],
   templateUrl: './main-search.component.html',
   styleUrl: './main-search.component.scss'

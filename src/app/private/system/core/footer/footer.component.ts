@@ -7,7 +7,10 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Component, OnInit } from '@angular/core';
+import { 
+  Component, 
+  OnInit 
+} from '@angular/core';
 
 @Component({
   selector: 'daz-footer',

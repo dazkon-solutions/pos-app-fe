@@ -14,7 +14,7 @@ import {
   Output 
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { StandaloneCommonModule } from 'src/app/common/modules';
+import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { ActionResponse } from 'src/app/common/interfaces';
 import { DynamicGridItemConfig } from './dynamic-grid.interface';
 import { DynamicGridItemComponent } from './dynamic-grid-item/dynamic-grid-item.component';
@@ -22,7 +22,7 @@ import { DynamicGridItemComponent } from './dynamic-grid-item/dynamic-grid-item.
 @Component({
   selector: 'daz-dynamic-grid',
   imports: [
-    StandaloneCommonModule,
+    CORE_IMPORTS,
     DynamicGridItemComponent
   ],
   templateUrl: './dynamic-grid.component.html',

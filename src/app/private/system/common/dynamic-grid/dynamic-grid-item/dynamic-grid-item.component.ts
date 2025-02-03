@@ -22,10 +22,7 @@ import {
   Observable, 
   of 
 } from 'rxjs';
-import { 
-  MaterialModule, 
-  StandaloneCommonModule 
-} from 'src/app/common/modules';
+import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { LocaleKeys } from 'src/app/common/constants';
 import { 
   Action, 
@@ -41,12 +38,13 @@ import {
 } from '../../action-button';
 import { ActionButtonComponent } from '../../action-button/action-button.component';
 import { DynamicGridItemOptionsComponent } from '../dynamic-grid-item-options/dynamic-grid-item-options.component';
+import { DYNAMIC_GRID_MAT_IMPORTS } from '../dynamic-grid-imports';
 
 @Component({
   selector: 'daz-dynamic-grid-item',
   imports: [
-    StandaloneCommonModule,
-    MaterialModule,
+    CORE_IMPORTS,
+    DYNAMIC_GRID_MAT_IMPORTS,
     ActionButtonComponent
   ],
   templateUrl: './dynamic-grid-item.component.html',

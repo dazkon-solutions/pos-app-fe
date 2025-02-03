@@ -8,24 +8,15 @@
  */
 
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { 
   FormsModule, 
   ReactiveFormsModule 
 } from '@angular/forms';
 
-
-const modules = [
+export const CORE_IMPORTS = [
   CommonModule,
   TranslateModule,
   FormsModule,
   ReactiveFormsModule
 ];
-
-
-@NgModule({
-  imports: modules,
-  exports: modules
-})
-export class StandaloneCommonModule { }
