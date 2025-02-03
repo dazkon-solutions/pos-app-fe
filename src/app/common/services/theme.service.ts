@@ -13,7 +13,7 @@ import {
   Observable 
 } from "rxjs";
 import { Store } from "@ngxs/store";
-import { AppearanceState } from "src/app/store";
+import { AppearanceState } from "src/app/store/appearance";
 
 
 @Injectable({ 

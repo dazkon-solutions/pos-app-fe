@@ -20,7 +20,7 @@ import {
 import { Store } from '@ngxs/store';
 import { CdkTree } from '@angular/cdk/tree';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { LeftPanelState } from 'src/app/store';
+import { LeftPanelState } from 'src/app/store/left-panel-config';
 import { 
   MaterialModule, 
   StandaloneCommonModule 

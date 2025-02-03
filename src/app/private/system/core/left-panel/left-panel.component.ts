@@ -26,20 +26,22 @@ import {
 } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { 
-  MenuState,
   LeftPanelState,
+  ToggleLeftPanel
+} from 'src/app/store/left-panel-config';
+import { 
+  MenuState,
   SelectMenuItem,
   MenuNode,
-  ToggleLeftPanel,
-  SetMenuParent,
-  SetMainSearchByResource
-} from 'src/app/store';
+  SetMenuParent
+} from 'src/app/store/menu-config';
 import { Resource } from 'src/app/common/enums';
 import { Navigator } from 'src/app/common/services';
 import { 
   MaterialModule, 
   StandaloneCommonModule 
 } from 'src/app/common/modules';
+import { SetMainSearchByResource } from 'src/app/store/main-search';
 import { BottomMenuComponent } from './bottom-menu/bottom-menu.component';
 
 

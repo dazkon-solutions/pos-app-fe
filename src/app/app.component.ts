@@ -29,13 +29,13 @@ import {
   IconService, 
   ThemeService 
 } from './common/services';
-import { 
-  LeftPanelState, 
-  MenuNode, 
-  MenuState
-} from './store';
-import { MenuConfigService } from './store/menu-config/menu-config.service';
 import { Resource } from './common/enums';
+import { 
+  MenuConfigService, 
+  MenuState 
+} from './store/menu-config';
+import { MenuNode } from './store/menu-config/menu.interface';
+import { LeftPanelState } from './store/left-panel-config';
 
 @Component({
   selector: 'daz-root',

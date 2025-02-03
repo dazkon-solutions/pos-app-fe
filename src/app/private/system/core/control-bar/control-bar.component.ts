@@ -22,7 +22,7 @@ import {
 import { 
   MenuNode,
   MenuState
-} from 'src/app/store';
+} from 'src/app/store/menu-config';
 import { Resource } from 'src/app/common/enums';
 import { ActionButtonComponent } from 'src/app/private/system/common/action-button/action-button.component';
 import { 

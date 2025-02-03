@@ -8,8 +8,7 @@
  */
 
 import { 
-  Component, 
-  DestroyRef, 
+  Component,
   OnInit
 } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -18,15 +17,15 @@ import {
   MaterialModule, 
   StandaloneCommonModule 
 } from 'src/app/common/modules';
-import { 
-  MainSearchConfig, 
-  ToggleLeftPanel,
-  ToggleTheme,
-  MenuNode,
-  MenuState
-} from 'src/app/store';
+import { ToggleLeftPanel } from 'src/app/store/left-panel-config';
 import { LocaleKeys } from 'src/app/common/constants';
 import { ThemeService } from 'src/app/common/services';
+import { ToggleTheme } from 'src/app/store/appearance';
+import { MainSearchConfig } from 'src/app/store/main-search';
+import { 
+  MenuNode, 
+  MenuState 
+} from 'src/app/store/menu-config';
 
 
 @Component({

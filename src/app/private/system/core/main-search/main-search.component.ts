@@ -31,7 +31,7 @@ import {
   DeactivateMainSearchFilter,
   SetMainSearchTerm,
   MainSearchStateConfigHelper
-} from 'src/app/store';
+} from 'src/app/store/main-search';
 import { LocaleKeys } from 'src/app/common/constants';
 import { SearchPanelService } from 'src/app/common/services';
 

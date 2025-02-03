@@ -28,14 +28,12 @@ import {
   provideHttpClient 
 } from '@angular/common/http';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { 
-  AppearanceState,
-  LeftPanelState,
-  MainSearchState, 
-  MenuState, 
-  NavigationState, 
-  ResourceState
-} from 'src/app/store';
+import { LeftPanelState } from 'src/app/store/left-panel-config';
+import { ResourceState } from 'src/app/store/resource-config';
+import { AppearanceState } from 'src/app/store/appearance';
+import { MainSearchState } from 'src/app/store/main-search';
+import { NavigationState } from 'src/app/store/navigation-config';
+import { MenuState } from 'src/app/store/menu-config';
 
 
 export const appConfig: ApplicationConfig = {
