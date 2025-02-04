@@ -7,8 +7,3 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { MatTableModule } from '@angular/material/table';
-
-export const DYNAMIC_TABLE_MAT_IMPORTS = [
-  MatTableModule
-];

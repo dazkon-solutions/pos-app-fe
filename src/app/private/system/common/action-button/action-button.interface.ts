@@ -9,7 +9,6 @@
 
 import { 
   Action, 
-  CustomAction, 
   Resource 
 } from "src/app/common/enums";
 import { 
@@ -27,7 +26,7 @@ export interface ActionButtonConfig {
 }
 
 export interface ActionButton {
-  action:       Action | CustomAction;
+  action:       Action;
   icon:         string;
   tooltip:      string;
   label:        string;

@@ -11,7 +11,7 @@ import { Resource } from "src/app/common/enums";
 import { ActionButtonType } from "src/app/private/system/common/action-button";
 import { DynamicGridItemConfig } from "src/app/private/system/common/dynamic-grid";
 
-export class GridConfigHelper {
+export class CategoriesGridConfigHelper {
   static create(resource: Resource): DynamicGridItemConfig {
     return {
       titleKey: 'name',

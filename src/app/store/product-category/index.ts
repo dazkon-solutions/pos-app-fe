@@ -7,11 +7,4 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-@use '@angular/material' as mat;
-
-.daz-pagination {
-  @include mat.toolbar-overrides((
-    standard-height: 43px,
-    mobile-height: 43px
-  ));
-}
+export * from './ui/product-category-ui.state';

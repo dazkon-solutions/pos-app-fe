@@ -21,7 +21,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { withNgxsLoggerPlugin } from '@ngxs/logger-plugin';
-import { withNgxsStoragePlugin } from '@ngxs/storage-plugin';
+import { LOCAL_STORAGE_ENGINE, withNgxsStoragePlugin } from '@ngxs/storage-plugin';
 import { provideStore } from '@ngxs/store';
 import { 
   HttpClient, 
@@ -34,6 +34,8 @@ import { AppearanceState } from 'src/app/store/appearance';
 import { MainSearchState } from 'src/app/store/main-search';
 import { NavigationState } from 'src/app/store/navigation-config';
 import { MenuState } from 'src/app/store/menu-config';
+import { PrductCategoryUIState } from './store/product-category';
+import { StateKey } from './store/state-key.token';
 
 
 export const appConfig: ApplicationConfig = {
@@ -49,11 +51,37 @@ export const appConfig: ApplicationConfig = {
         NavigationState,
         MenuState,
         MainSearchState,
-        LeftPanelState
+        LeftPanelState,
+        PrductCategoryUIState
       ],
       withNgxsLoggerPlugin(),
       withNgxsStoragePlugin({
-        keys: '*'
+        keys: [
+          {
+            key: StateKey.RESOURCE,
+            engine: LOCAL_STORAGE_ENGINE
+          },
+          {
+            key: StateKey.APPEARANCE,
+            engine: LOCAL_STORAGE_ENGINE
+          },
+          {
+            key: StateKey.MENU,
+            engine: LOCAL_STORAGE_ENGINE
+          },
+          {
+            key: StateKey.MAIN_SEARCH,
+            engine: LOCAL_STORAGE_ENGINE
+          },
+          {
+            key: StateKey.LEFT_PANEL,
+            engine: LOCAL_STORAGE_ENGINE
+          },
+          {
+            key: StateKey.PRODUCT_CATEGORY_UI,
+            engine: LOCAL_STORAGE_ENGINE
+          }
+        ]
       })
     ),
     importProvidersFrom([

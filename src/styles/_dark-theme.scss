@@ -34,11 +34,11 @@
 
   .daz-container,
   .daz-content {
-    background-color: var.$static-bg-color-2;
+    background-color: var.$static-color-2;
   }
 
   .background-color-with-curve-helper-for-header {
-    background-color: var.$static-bg-color-1;
+    background-color: var.$static-color-1;
   }
 
   .background-color-with-curve-helper-for-control-bar{
@@ -58,31 +58,32 @@
                                   var.$dark-scroll-bg-color,
                                   var.$dark-hover-color);
 
-  @include header.header-styles(var.$static-bg-color-1,
+  @include header.header-styles(var.$static-color-1,
                                 var.$dark-bg-text-color-2);
 
   @include control-bar.control-bar-styles(var.$dark-bg-color,
                                           var.$dark-bg-text-color-1);
 
-  @include footer.footer-styles(var.$static-bg-color-2,
+  @include footer.footer-styles(var.$static-color-2,
                                 var.$dark-bg-text-color-1);
 
   @include form.form-colors(var.$dark-bg-text-color-1);
   @include form.form-colors-dark();
   @include form.form-colors-dark-disabled();
 
-  @include card.card-styles(var.$static-bg-color-2,
-                            var.$static-bg-color-1,
+  @include card.card-styles(var.$static-color-2,
+                            var.$static-color-1,
                             var.$dark-bg-text-color-2);
   @include card.card-colors-dark();
 
-  @include drawer.drawer-styles(var.$static-bg-color-2);
+  @include drawer.drawer-styles(var.$static-color-2);
 
-  @include table.table-colors(var.$static-bg-color-2,
-                              var.$dark-bg-text-color-1,
-                              var.$dark-bg-text-color-2);
+  @include table.table-colors(var.$table-bg-dark-color,
+                              var.$table-header-text-dark-color,
+                              var.$table-body-text-dark-color,
+                              var.$table-row-outline-dark-color);
 
-  @include pagination.pagination-styles(var.$static-bg-color-2,
+  @include pagination.pagination-styles(var.$static-color-2,
                                         var.$dark-bg-text-color-2);
   @include pagination.pagination-colors-dark();
 

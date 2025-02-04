@@ -16,6 +16,7 @@
 @use 'light-theme' as lt;
 @use 'form';
 @use 'table';
+@use 'data-view' as dv;
 
 
 @include mat.typography-hierarchy(theme.$light-theme,
@@ -35,11 +36,12 @@
   ));
   @include mat.fab-overrides((
     extended-container-height: 36px,
-    extended-container-shape: 100px
+    extended-container-shape: 100px,
+    small-container-shape: 100px
   ));
   @include mat.table-overrides((
     header-container-height: 40px,
-    row-item-container-height: 40px
+    row-item-container-height: 47px
   ));
   @include mat.paginator-overrides((
     form-field-container-height: 33px,
@@ -70,3 +72,4 @@ body {
 // Import custom styles
 @include form.form-styles();
 @include table.table-styles();
+@include dv.data-view-styles();

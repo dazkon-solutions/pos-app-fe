@@ -26,7 +26,6 @@ import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { LocaleKeys } from 'src/app/common/constants';
 import { 
   Action, 
-  CustomAction, 
   Resource 
 } from 'src/app/common/enums';
 import { ActionResponse } from 'src/app/common/interfaces';
@@ -95,7 +94,7 @@ export class DynamicGridItemComponent implements OnChanges {
   }
 
   onClick(
-    action: Action | CustomAction, 
+    action: Action, 
     data: any
   ): void {
     this.buttonClicked.emit({ action, data });

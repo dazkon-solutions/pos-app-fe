@@ -12,12 +12,14 @@
 @mixin table-colors(
   $bg-color,
   $text-color-headline,
-  $text-color-body
+  $text-color-body,
+  $row-outline-color
 ) {
   @include mat.table-overrides((
     background-color: $bg-color,
     header-headline-color: $text-color-headline,
-    row-item-label-text-color: $text-color-body
+    row-item-label-text-color: $text-color-body,
+    row-item-outline-color: $row-outline-color
   ));
 }
 
@@ -40,14 +42,6 @@
 
     .header {
       border-bottom-style: none;
-    }
-
-    .left-side-header {
-      border-radius: 12px 0 0 12px;
-    }
-
-    .right-side-header {
-      border-radius: 0px 12px 12px 0;
     }
 
     .cell-image {

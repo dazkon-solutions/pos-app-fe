@@ -9,3 +9,4 @@
 
 export * from './resource.enum';
 export * from './action.enum';
+export * from './table.enum';

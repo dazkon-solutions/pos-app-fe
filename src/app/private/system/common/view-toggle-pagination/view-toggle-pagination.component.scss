@@ -7,18 +7,11 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export enum DynamicTableColumnType {
-  IMAGE,
-  TEXT,
-  DATE,
-  CURRENCY,
-  CHIP,
-  ACTION_BUTTON
-}
+@use '@angular/material' as mat;
 
-// Map with table style class alignments
-export enum TableColumnAlignmentStyleClass {
-  RIGHT = 'content-align-right',
-  CENTER = 'content-align-center',
-  LEFT = 'content-align-left'
+.daz-view-toggle-pagination {
+  @include mat.toolbar-overrides((
+    standard-height: 43px,
+    mobile-height: 43px
+  ));
 }

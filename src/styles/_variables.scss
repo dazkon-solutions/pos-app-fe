@@ -11,6 +11,17 @@ $primary-color: #2196F3;
 
 $dark-disabled: #ffffff20;
 
+// Background
+$light-bg-color-1: #fff;
+$light-bg-color-2: #F3F3F3;
+$light-bg-color-3: #e3e3e3;
+$dark-bg-color: #141414;
+
+// Static colors
+$static-color-1: #1E1E1E;
+$static-color-2: #000100; // for darkest backgrounds
+$static-color-3: #8F9097;
+
 $tertiary-color: #FF6D00; // not used
 $hover-color: #e0e0ff88;
 $active-color: #e0e0ff;
@@ -34,16 +45,15 @@ $btn-primary-dark-color: #2196F3;
 $btn-warn-color: #f32626;
 $btn-warn-dark-color: #f32626;
 
-// Background
-$light-bg-color-1: #fff;
-$light-bg-color-2: #F3F3F3;
-$light-bg-color-3: #e3e3e3;
-$dark-bg-color: #141414;
-
-// Static colors
-$static-bg-color-1: #1E1E1E;
-$static-bg-color-2: #000100; // for darkest backgrounds
-$static-bg-color-3: #8F9097;
+// Table
+$table-bg-color: $light-bg-color-1;
+$table-bg-dark-color: $static-color-2;
+$table-header-text-color: $light-bg-text-color;
+$table-header-text-dark-color: $dark-bg-text-color-1;
+$table-body-text-color: $light-bg-text-color;
+$table-body-text-dark-color: $dark-bg-text-color-2;
+$table-row-outline-color: #e3e3e3;
+$table-row-outline-dark-color: #1E1E1E;
 
 // Main menu
 $menu-panel-text-color: #BBBBBB;

@@ -11,15 +11,24 @@ import {
   Component, 
   OnInit 
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { 
+  BehaviorSubject, 
+  Observable 
+} from 'rxjs';
+import { Store } from '@ngxs/store';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
-import { DataViewComponent } from 'src/app/private/system/common/data-view/data-view.component';
 import { ActionResponse } from 'src/app/common/interfaces';
 import { Resource } from 'src/app/common/enums';
-import { DynamicTableColumnConfig } from 'src/app/private/system/common/dynamic-table';
+import { 
+  PrductCategoryUIState, 
+  ToggleProductCategoryView 
+} from 'src/app/store/product-category';
+import { ViewTogglePaginationComponent } from 'src/app/private/system/common/view-toggle-pagination/view-toggle-pagination.component';
+import { CategoriesTableComponent } from './categories-table/categories-table.component';
+import { CATEGORY_MAT_IMPORTS } from './category-imports';
+import { DynamicGridComponent } from 'src/app/private/system/common/dynamic-grid/dynamic-grid.component';
 import { DynamicGridItemConfig } from 'src/app/private/system/common/dynamic-grid';
-import { GridConfigHelper } from './grid-config-helper';
-import { CategoriesTableConfigHelper } from './categories-table-config-helper';
+import { CategoriesGridConfigHelper } from './categories-grid-config-helper';
 
 interface PeriodicElement {
   photo: string;
@@ -33,7 +42,9 @@ interface PeriodicElement {
   selector: 'daz-categories',
   imports: [
     CORE_IMPORTS,
-    DataViewComponent
+    CATEGORY_MAT_IMPORTS,
+    CategoriesTableComponent,
+    ViewTogglePaginationComponent
   ],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss'
@@ -41,18 +52,22 @@ interface PeriodicElement {
 export class CategoriesComponent implements OnInit {
   private readonly resource = Resource.CATEGORIES;
 
-  tableColumnConfigs$ = new BehaviorSubject<DynamicTableColumnConfig[]>([]);
-  gridItemConfig$ = new BehaviorSubject<DynamicGridItemConfig>(GridConfigHelper.create(this.resource));
+  isListView$!: Observable<boolean>;
   dataSource$ = new BehaviorSubject<PeriodicElement[]>([]);
+  gridItemConfig$ = new BehaviorSubject<DynamicGridItemConfig>(CategoriesGridConfigHelper.create(this.resource));
   isLoading$ = new BehaviorSubject<boolean>(false);
 
+  constructor(private store: Store) { }
+
   ngOnInit(): void {
-    this.tableColumnConfigs$.next(this.tableColumnConfigs);
+    this.syncState();
+    
     this.dataSource$.next(this.dataSource);
   }
-  
-  private tableColumnConfigs = 
-    CategoriesTableConfigHelper.createTableColumns(this.resource);
+
+  private syncState(): void {
+    this.isListView$ = this.store.select(PrductCategoryUIState.isListView);
+  }
 
   private dataSource: PeriodicElement[] = [
     {photo:'https://fastly.picsum.photos/id/2/5000/3333.jpg?hmac=_KDkqQVttXw_nM-RyJfLImIbafFrqLsuGO5YuHqD-qQ' ,position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
@@ -99,5 +114,9 @@ export class CategoriesComponent implements OnInit {
 
   clickResponse(actionResponse: ActionResponse): void {
     console.warn(actionResponse);
+  }
+
+  viewToggled(): void {
+    this.store.dispatch(new ToggleProductCategoryView());
   }
 }

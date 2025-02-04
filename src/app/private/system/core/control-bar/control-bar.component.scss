@@ -14,7 +14,7 @@
   border-radius: 15px 15px 0 0;
 
   @include mat.toolbar-overrides((
-    standard-height: 54px,
-    mobile-height: 54px
+    standard-height: 50px,
+    mobile-height: 50px
   ));
 }

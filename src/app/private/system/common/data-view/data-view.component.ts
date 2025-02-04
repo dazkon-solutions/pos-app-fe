@@ -15,9 +15,7 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActionResponse } from 'src/app/common/interfaces';
-import { DynamicTableColumnConfig } from '../dynamic-table';
-import { DynamicTableComponent } from '../dynamic-table/dynamic-table.component';
-import { PaginationComponent } from '../pagination/pagination.component';
+import { ViewTogglePaginationComponent } from '../view-toggle-pagination/view-toggle-pagination.component';
 import { DynamicGridComponent } from '../dynamic-grid/dynamic-grid.component';
 import { DynamicGridItemConfig } from '../dynamic-grid/dynamic-grid.interface';
 import { DATA_VIEW_MAT_IMPORTS } from './data-view-imports';
@@ -26,16 +24,13 @@ import { DATA_VIEW_MAT_IMPORTS } from './data-view-imports';
   selector: 'daz-data-view',
   imports: [
     DATA_VIEW_MAT_IMPORTS,
-    DynamicTableComponent,
     DynamicGridComponent,
-    PaginationComponent
+    // ViewTogglePaginationComponent
   ],
   templateUrl: './data-view.component.html',
   styleUrl: './data-view.component.scss'
 })
 export class DataViewComponent {
-  @Input('tableColumnConfigs$')
-  tableColumnConfigs$!: Observable<DynamicTableColumnConfig[]>;
 
   @Input('gridItemConfig$')
   gridItemConfig$!: Observable<DynamicGridItemConfig>;

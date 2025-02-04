@@ -38,11 +38,11 @@
   height: 30px;
   border-radius: 100px;
   border: 3px solid;
-  border-color: var.$static-bg-color-3;
+  border-color: var.$static-color-3;
 
   color: var.$dark-bg-text-color-1;
 
-  background-color: var.$static-bg-color-2;
+  background-color: var.$static-color-2;
 
   &:hover {
     filter: brightness(0.95);

@@ -7,8 +7,29 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-<daz-data-view [tableColumnConfigs$]="tableColumnConfigs$"
-               [gridItemConfig$]="gridItemConfig$"
-               [dataSource$]="dataSource$"
-               [isLoading$]="isLoading$"
-               (buttonClicked)="clickResponse($event)" />
+@let isListView = isListView$ | async;
+
+<cdk-virtual-scroll-viewport itemSize="47" 
+                             minBufferPx="564" 
+                             maxBufferPx="600" 
+                             class="daz-data-view" >
+  @if (isListView) {
+    <!-- Table section -->
+    <daz-categories-table [dataSource$]="dataSource$"
+                          [isLoading$]="isLoading$"
+                          (buttonClicked)="clickResponse($event)" />
+    <!-- End of table section -->
+
+  } @else {
+    <!-- Grid section -->
+    <!-- <daz-categories-grid [dataSource$]="dataSource$"
+                         [isLoading$]="isLoading$"
+                         (buttonClicked)="clickResponse($event)" /> -->
+    <!-- End of grid section -->
+  }
+</cdk-virtual-scroll-viewport>
+
+<!-- Pagination section -->
+<daz-view-toggle-pagination [isListView$]="isListView$"
+                            (viewToggled)="viewToggled()" />
+<!-- End of pagination section -->

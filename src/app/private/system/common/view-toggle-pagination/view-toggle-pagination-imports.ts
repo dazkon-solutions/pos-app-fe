@@ -13,7 +13,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-export const PAGINATION_MAT_IMPORTS = [
+export const VIEW_TOGGLE_PAGINATION_MAT_IMPORTS = [
   MatPaginatorModule,
   MatTooltipModule,
   MatIconModule,

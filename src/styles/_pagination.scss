@@ -19,7 +19,7 @@
     container-background-color: $bg-color
   ));
 
-  .daz-pagination {
+  .pagination {
     @include mat.toolbar-overrides((
       container-background-color: $bg-color
     ));
@@ -32,7 +32,7 @@
     enabled-icon-color: var.$dark-bg-text-color-2
   ));
 
-  .daz-pagination {
+  .pagination {
     @include mat.icon-button-overrides((
       icon-color: var.$dark-bg-text-color-2
     ));

@@ -7,19 +7,27 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-<mat-toolbar class="daz-pagination" >
+@let isListView = (isListView$ | async) ?? false;
+
+<mat-toolbar class="daz-view-toggle-pagination pagination" >
   <mat-toolbar-row >
     <!-- List view button -->
     <button mat-icon-button
-            [matTooltip]="LocaleKeys.tooltips.listView | translate" >
-      <mat-icon svgIcon="list-view" />
+            [matTooltip]="LocaleKeys.tooltips.listView | translate"
+            (click)="onClickToggle($event, 
+                                   isListView, 
+                                   ViewType.LIST)" >
+      <mat-icon [svgIcon]="isListView ? 'list-view-filled' : 'list-view'" />
     </button>
     <!-- End of list view button -->
 
     <!-- Grid view button -->
     <button mat-icon-button
-            [matTooltip]="LocaleKeys.tooltips.gridView | translate" >
-      <mat-icon svgIcon="grid-view" />
+            [matTooltip]="LocaleKeys.tooltips.gridView | translate"
+            (click)="onClickToggle($event, 
+                                   isListView,
+                                   ViewType.GRID)" >
+      <mat-icon [svgIcon]="!isListView ? 'grid-view-filled' : 'grid-view'" />
     </button>
     <!-- End of grid view button -->
 
@@ -29,7 +37,7 @@
     <mat-paginator  showFirstLastButtons
                     aria-label="Select page"
                     [length]="200" 
-                    [pageSizeOptions]="[10, 50, 100]" >
+                    [pageSizeOptions]="[ 20, 50, 100 ]" >
     </mat-paginator>
     <!-- End of paginator -->
   </mat-toolbar-row>

@@ -17,9 +17,3 @@ export enum Action {
   PRINT = 'PRINT',
   DOWNLOAD = 'DOWNLOAD',
 }
-
-export enum CustomAction {
-  CUSTOM_1 = 'CUSTOM_1', // Custom action 1
-  CUSTOM_2 = 'CUSTOM_2', // Custom action 2
-  CUSTOM_3 = 'CUSTOM_3', // Custom action 3
-}

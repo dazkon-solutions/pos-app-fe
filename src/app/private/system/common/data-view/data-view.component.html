@@ -13,11 +13,6 @@
                                maxBufferPx="600" 
                                class="daz-data-view" >
     <!-- Table section -->
-    <daz-dynamic-table class="daz-dynamic-table"
-                       [tableColumnConfigs$]="tableColumnConfigs$"
-                       [dataSource$]="dataSource$"
-                       [isLoading$]="isLoading$"
-                       (buttonClicked)="handleActionResponse($event)" />
     <!-- End of table section -->
   </cdk-virtual-scroll-viewport >
 
@@ -36,5 +31,5 @@
 }
 
 <!-- Pagination section -->
-<daz-pagination />
+<!-- <daz-pagination /> -->
 <!-- End of pagination section -->

@@ -26,6 +26,7 @@
       {{ button.label | translate | uppercase }}
     </button>
   }
+
   @case (ActionButtonShape.MINI_FAB) {
     <button mat-mini-fab
             [class]="button.style"
@@ -44,6 +45,7 @@
       {{ button.label | translate }}
     </button>
   }
+  
   @default {
     Invalid button!
   }

@@ -9,19 +9,16 @@
 
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { 
-  Action, 
-  CustomAction 
-} from 'src/app/common/enums';
+import { Action } from 'src/app/common/enums';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DynamicGridItemOptionService {
-  private onClickSubject = new Subject<Action | CustomAction>();
+  private onClickSubject = new Subject<Action>();
   onClick$ = this.onClickSubject.asObservable();
 
-  sendActionResponse(action: Action | CustomAction): void {
+  sendActionResponse(action: Action): void {
     this.onClickSubject.next(action);
   }
 }

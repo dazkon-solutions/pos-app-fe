@@ -7,12 +7,3 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export enum StateKey {
-  MAIN_SEARCH = 'mainSearch',
-  APPEARANCE = 'appearance',
-  MENU = 'menu',
-  NAVIGATION = 'navigation',
-  LEFT_PANEL = 'leftPanel',
-  RESOURCE = 'resource',
-  PRODUCT_CATEGORY_UI = 'productCategoryUI'
-}

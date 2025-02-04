@@ -7,5 +7,15 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './dynamic-table.interface';
-export * from './dynamic-table.enum';
+@use '@angular/material' as mat;
+@use 'variables' as var;
+
+@mixin data-view-styles {
+  .daz-data-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100dvh - 155px);
+    border-radius: 12px 20px 0 0;
+  }
+}

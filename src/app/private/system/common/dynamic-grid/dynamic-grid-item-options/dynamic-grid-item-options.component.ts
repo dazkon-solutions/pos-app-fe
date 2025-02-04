@@ -20,10 +20,7 @@ import {
   of 
 } from 'rxjs';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
-import { 
-  Action, 
-  CustomAction 
-} from 'src/app/common/enums';
+import { Action } from 'src/app/common/enums';
 import { LocaleKeys } from 'src/app/common/constants';
 import { ActionButtonConfig } from '../../action-button';
 import { ActionButtonComponent } from '../../action-button/action-button.component';
@@ -47,7 +44,7 @@ export class DynamicGridItemOptionsComponent {
     @Inject(MAT_DIALOG_DATA) public data: ActionButtonConfig[]
   ) { }
 
-  onClick(action: Action | CustomAction): void {
+  onClick(action: Action): void {
     this.dialogRef.close(action);
   }
 

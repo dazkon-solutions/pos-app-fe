@@ -79,7 +79,7 @@ export class ActionButtonComponent implements OnInit {
       this.resource = config.resource;
     }
 
-    console.warn('changeeeeeeeeeeeee',button)
+    console.warn('button created!',button)
     return button;
   }
 
