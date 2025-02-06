@@ -84,7 +84,8 @@
                               var.$table-row-outline-dark-color);
 
   @include pagination.pagination-styles(var.$static-color-2,
-                                        var.$dark-bg-text-color-2);
+                                        var.$dark-bg-text-color-2,
+                                        var.$table-row-outline-dark-color);
   @include pagination.pagination-colors-dark();
 
   @include button.button-styles(var.$btn-primary-dark-color,

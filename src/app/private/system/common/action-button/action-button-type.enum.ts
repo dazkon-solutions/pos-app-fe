@@ -13,12 +13,14 @@ export enum ActionButtonType {
   UPDATE = 'update',
   VIEW = 'view',
   DELETE = 'delete',
-  DELETE_FAB = 'deleteFab'
+  DELETE_FAB = 'deleteFab',
+  DELETE_MENU_ITEM = 'deleteMenuItem'
 }
 
 export enum ActionButtonShape {
   FAB_EXTENDED = 'FAB_EXTENDED',
-  MINI_FAB = 'MINI_FAB'
+  MINI_FAB = 'MINI_FAB',
+  MENU_ITEM = 'MENU_ITEM'
 }
 
 export enum ActionButtonStyleClass {

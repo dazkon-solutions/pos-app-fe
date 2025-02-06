@@ -8,7 +8,6 @@
  */
 
 import { LocaleKeys } from "src/app/common/constants";
-import { Action } from "src/app/common/enums";
 import { 
   ActionButtonShape, 
   ActionButtonStyleClass 
@@ -21,7 +20,6 @@ import {
 export class ActionButtonConfigHelper {
   private static button = {
     add: {
-      action: Action.CREATE,
       icon: 'add',
       label: LocaleKeys.labels.buttons.addNew,
       tooltip: '',
@@ -29,7 +27,6 @@ export class ActionButtonConfigHelper {
       style: ActionButtonStyleClass.BTN_FAB_PRIMARY
     },
     create: {
-      action: Action.CREATE,
       icon: 'save',
       label: LocaleKeys.labels.buttons.save,
       tooltip: '',
@@ -37,7 +34,6 @@ export class ActionButtonConfigHelper {
       style: ActionButtonStyleClass.BTN_FAB_PRIMARY
     },
     update: {
-      action: Action.UPDATE,
       icon: 'update',
       label: LocaleKeys.labels.buttons.update,
       tooltip: '',
@@ -45,7 +41,6 @@ export class ActionButtonConfigHelper {
       style: ActionButtonStyleClass.BTN_FAB_PRIMARY
     },
     view: {
-      action: Action.VIEW,
       icon: '',
       label: LocaleKeys.labels.buttons.view,
       tooltip: '',
@@ -53,7 +48,6 @@ export class ActionButtonConfigHelper {
       style: ActionButtonStyleClass.BTN_FAB_PRIMARY
     },
     delete: {
-      action: Action.DELETE,
       icon: 'delete',
       label: LocaleKeys.labels.buttons.delete,
       tooltip: '',
@@ -61,12 +55,18 @@ export class ActionButtonConfigHelper {
       style: ActionButtonStyleClass.BTN_FAB_WARN
     },
     deleteFab: {
-      action: Action.DELETE,
       icon: 'delete',
       label: '',
       tooltip: LocaleKeys.tooltips.delete,
       shape: ActionButtonShape.MINI_FAB,
       style: ActionButtonStyleClass.BTN_MINI_FAB_WARN
+    },
+    deleteMenuItem: {
+      icon: 'delete',
+      label: LocaleKeys.labels.buttons.delete,
+      tooltip: '',
+      shape: ActionButtonShape.MENU_ITEM,
+      style: ActionButtonStyleClass.NONE
     }
   }
 
@@ -74,5 +74,18 @@ export class ActionButtonConfigHelper {
     return config.customButton
       ? config.customButton
       : this.button[config.type];
+  }
+
+  static setDisabled(
+    config: ActionButtonConfig,
+    element: any
+  ): ActionButtonConfig {
+    const isDisabled = config.disableCondition 
+      ? config.disableCondition(element)
+      : false;
+
+    config.isDisabled = isDisabled;
+
+    return config;
   }
 }

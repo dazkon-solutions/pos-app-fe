@@ -247,10 +247,10 @@ export class LeftPanelComponent implements
       return current.pid === node.uid
         ? `${node.icon}-filled`
         : (node.icon ?? '');
-    } else {
-      return current.uid === node.uid
-        ? `${node.icon}-filled`
-        : (node.icon ?? '');
     }
+
+    return current.uid === node.uid
+      ? `${node.icon}-filled`
+      : (node.icon ?? '');
   }
 }

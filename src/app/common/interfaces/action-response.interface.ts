@@ -10,6 +10,6 @@
 import { Action } from "../enums";
 
 export interface ActionResponse {
-  action: Action;
-  data:   any;
+  action:   Action;
+  payload:  any;
 }

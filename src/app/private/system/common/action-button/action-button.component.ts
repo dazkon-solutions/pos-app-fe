@@ -14,21 +14,24 @@ import {
   DestroyRef, 
   EventEmitter, 
   Input, 
-  OnInit, 
+  OnInit,
   Output
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Observable } from 'rxjs';
+import { 
+  firstValueFrom, 
+  Observable 
+} from 'rxjs';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
-import { ActionResponse } from 'src/app/common/interfaces';
-import { Resource } from 'src/app/common/enums';
+import { Action } from 'src/app/common/enums';
+import { PermissionService } from 'src/app/common/services';
+import { ACTION_BUTTON_MAT_IMPORTS } from './action-button-imports';
 import { 
   ActionButton, 
   ActionButtonConfig 
 } from './action-button.interface';
 import { ActionButtonConfigHelper } from './action-button-config.helper';
 import { ActionButtonShape } from './action-button-type.enum';
-import { ACTION_BUTTON_MAT_IMPORTS } from './action-button-imports';
 
 
 @Component({
@@ -49,37 +52,45 @@ export class ActionButtonComponent implements OnInit {
   config$!: Observable<ActionButtonConfig>;
 
   @Output('buttonClicked')
-  buttonClicked = new EventEmitter<ActionResponse>(true);
+  buttonClicked = new EventEmitter<Action>(true);
 
   button!: ActionButton;
-  resource = Resource.NONE;
+  isAllowed = false;
+  action = Action.NONE;
   isLoading = false;
   isDisabled = true;
   ActionButtonShape = ActionButtonShape;
 
   constructor(
     private destroyRef: DestroyRef,
+    private permissionSvc: PermissionService,
     private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     this.config$
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(config => this.button = this.createButton(config));
+      .subscribe(async config => {
+        this.button = await this.createButton(config);
+        this.cdr.detectChanges();
+      });
   }
 
-  private createButton(config: ActionButtonConfig): ActionButton {
+  private async createButton(config: ActionButtonConfig): Promise<ActionButton> {
+    this.action = config.action;
     const button = ActionButtonConfigHelper.createButton(config);
-    // check permissions and update button configs.
-    if(this.isDisabled !== config.isDisabled) {
+
+    // Check permission
+    this.isAllowed = await firstValueFrom(
+      this.permissionSvc.hasPermission(config.action));
+
+    this.isDisabled = !this.isAllowed;
+      
+    // Manually disable
+    if(this.isAllowed === config.isDisabled) {
       this.isDisabled = config.isDisabled ?? false;
     }
-
-    if(this.resource !== config.resource) {
-      this.resource = config.resource;
-    }
-
-    console.warn('button created!',button)
+    
     return button;
   }
 
@@ -92,11 +103,7 @@ export class ActionButtonComponent implements OnInit {
     this.isLoading = true;
     this.isDisabled = true;
 
-    const actionResponse: ActionResponse = {
-      action: this.button.action,
-      data: { resource: this.resource }
-    };
-    this.buttonClicked.emit(actionResponse);
+    this.buttonClicked.emit(this.action);
 
     // Simulate an async operation (replace with your actual logic)
     setTimeout(() => {

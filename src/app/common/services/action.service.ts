@@ -7,18 +7,19 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { Action } from 'src/app/common/enums';
+import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
+import { ActionResponse } from "../interfaces";
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class DynamicGridItemOptionService {
-  private onClickSubject = new Subject<Action>();
-  onClick$ = this.onClickSubject.asObservable();
+export class ActionService {
+  private actionSubject = new Subject<ActionResponse>();
+  action$ = this.actionSubject.asObservable();
 
-  sendActionResponse(action: Action): void {
-    this.onClickSubject.next(action);
+  emitAction(actionResponse: ActionResponse) {
+    this.actionSubject.next(actionResponse);
   }
 }

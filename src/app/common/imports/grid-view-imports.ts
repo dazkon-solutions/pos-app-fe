@@ -9,14 +9,16 @@
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-export const DYNAMIC_GRID_MAT_IMPORTS = [
+export const GRID_VIEW_MAT_IMPORTS = [
   MatCardModule,
   MatTooltipModule,
   MatIconModule,
-  MatDialogModule,
-  MatButtonModule
+  MatButtonModule,
+  MatMenuModule,
+  MatDividerModule
 ];

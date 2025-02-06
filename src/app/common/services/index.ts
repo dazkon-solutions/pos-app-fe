@@ -13,3 +13,5 @@ export * from './navigator.service';
 export * from './theme.service';
 export * from './dialog.service';
 export * from './table.service';
+export * from './permission.service';
+export * from './action.service';

@@ -20,13 +20,13 @@ import {
   MenuNode,
   MenuState
 } from 'src/app/store/menu-config';
-import { Resource } from 'src/app/common/enums';
+import { Action } from 'src/app/common/enums';
 import { ActionButtonComponent } from 'src/app/private/system/common/action-button/action-button.component';
 import { 
   ActionButtonConfig, 
   ActionButtonType 
 } from 'src/app/private/system/common/action-button';
-import { ActionResponse } from 'src/app/common/interfaces';
+import { ActionService } from 'src/app/common/services';
 import { MainSearchComponent } from '../main-search/main-search.component';
 import { CONTROL_BAR_MAT_IMPORTS } from './control-bar-imports';
 
@@ -45,13 +45,14 @@ import { CONTROL_BAR_MAT_IMPORTS } from './control-bar-imports';
 export class ControlBarComponent implements OnInit {
   addNewButtonConfig$ = new BehaviorSubject<ActionButtonConfig>({
     type: ActionButtonType.ADD,
-    resource: Resource.NONE
+    action: Action.NONE
   });
   menuCurrent!: MenuNode | null;
 
   constructor(
     private destroyRef: DestroyRef,
-    private store: Store
+    private store: Store,
+    private actionSvc: ActionService
   ) { }
 
   ngOnInit(): void {
@@ -65,19 +66,22 @@ export class ControlBarComponent implements OnInit {
         this.menuCurrent = current;
 
         if(current) { 
-          this.setAddButtonConfig(current.resource);
+          this.setAddButtonConfig(current.action);
         }
       });
   }
 
-  setAddButtonConfig(resource: Resource): void {
+  private setAddButtonConfig(action: Action): void {
     this.addNewButtonConfig$.next({
       type: ActionButtonType.ADD,
-      resource
+      action
     });
   }
 
-  addNewButtonClickHandle(actionResponse: ActionResponse): void {
-    console.warn('add new', actionResponse.data.resource);
+  addNewButtonClickHandle(action: Action): void {
+    this.actionSvc.emitAction({ 
+      action,
+      payload: { }
+    });
   }
 }

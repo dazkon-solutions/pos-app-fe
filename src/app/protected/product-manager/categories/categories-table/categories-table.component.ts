@@ -9,20 +9,16 @@
 
 import { 
   Component, 
-  EventEmitter, 
-  Input, 
-  Output 
+  Input
 } from '@angular/core';
 import { 
-  BehaviorSubject, 
-  Observable 
+  BehaviorSubject,
+  Observable
 } from 'rxjs';
-import { ActionResponse } from 'src/app/common/interfaces';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { ActionButtonComponent } from 'src/app/private/system/common/action-button/action-button.component';
 import { 
   Action, 
-  Resource, 
   TableColumnAlignmentStyleClass 
 } from 'src/app/common/enums';
 import { 
@@ -30,14 +26,14 @@ import {
   ActionButtonType 
 } from 'src/app/private/system/common/action-button';
 import { TableSkeletonWithImageComponent } from 'src/app/private/system/common/skeletons/table-skeleton-with-image/table-skeleton-with-image.component';
-import { TableService } from 'src/app/common/services';
-import { CATEGORY_MAT_IMPORTS } from '../category-imports';
+import { ActionService, TableService } from 'src/app/common/services';
+import { TABLE_VIEW_IMPORTS } from 'src/app/common/imports/table-view-imports';
 
 @Component({
   selector: 'daz-categories-table',
   imports: [
     CORE_IMPORTS,
-    CATEGORY_MAT_IMPORTS,
+    TABLE_VIEW_IMPORTS,
     ActionButtonComponent,
     TableSkeletonWithImageComponent
   ],
@@ -51,16 +47,13 @@ export class CategoriesTableComponent {
   @Input('isLoading$')
   isLoading$!: Observable<boolean>;
 
-  @Output('buttonClicked')
-  buttonClicked = new EventEmitter<ActionResponse>(true);
-
   viewButton$ = new BehaviorSubject<ActionButtonConfig>({
-    resource: Resource.CATEGORIES,
+    action: Action.VIEW_CATEGORY,
     type: ActionButtonType.VIEW
   });
 
   deleteButton$ = new BehaviorSubject<ActionButtonConfig>({
-    resource: Resource.CATEGORIES,
+    action: Action.DELETE_CATEGORY,
     type: ActionButtonType.DELETE_FAB
   });
 
@@ -78,14 +71,20 @@ export class CategoriesTableComponent {
 
   TableColumnAlignmentStyleClass = TableColumnAlignmentStyleClass;
 
-  constructor(private tableSvc: TableService) { 
+  constructor(
+    private tableSvc: TableService,
+    private actionSvc: ActionService
+  ) { 
     this.tableHeaderColor$ = this.tableSvc.tableHeaderColor$;
   }
 
-  onClick(
+  buttonClicked(
     action: Action, 
-    data: any
+    payload: any
   ): void {
-    this.buttonClicked.emit({ action, data });
+    this.actionSvc.emitAction({ 
+      action,
+      payload
+    });
   }
 }

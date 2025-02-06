@@ -7,46 +7,60 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-@switch (button.shape) {
-  @case (ActionButtonShape.FAB_EXTENDED) {
-    <button mat-fab extended 
-            [class]="button.style"
-            [disabled]="isDisabled"
-            [matTooltip]="button.tooltip | translate"
-            (click)="onClick($event)" >
-      @if (isLoading) {
-        <mat-icon >
-          <mat-spinner mode="indeterminate" 
-                       diameter="20" 
-                       strokeWidth="2" />
-        </mat-icon>
-      } @else if (button.icon) {
+@if (button) {
+
+  @switch (button.shape) {
+    @case (ActionButtonShape.FAB_EXTENDED) {
+      <button mat-fab extended 
+              [class]="button.style"
+              [disabled]="isDisabled"
+              [matTooltip]="button.tooltip | translate"
+              (click)="onClick($event)" >
+        @if (isLoading) {
+          <mat-icon >
+            <mat-spinner mode="indeterminate" 
+                         diameter="20" 
+                         strokeWidth="2" />
+          </mat-icon>
+        } @else if (button.icon) {
+          <mat-icon [svgIcon]="button.icon" />
+        }
+        {{ button.label | translate | uppercase }}
+      </button>
+    }
+  
+    @case (ActionButtonShape.MINI_FAB) {
+      <button mat-mini-fab
+              [class]="button.style"
+              [disabled]="isDisabled"
+              [matTooltip]="button.tooltip | translate"
+              (click)="onClick($event)" >
+        @if (isLoading) {
+          <span >
+            <mat-spinner mode="indeterminate" 
+                         diameter="20" 
+                         strokeWidth="2" />
+          </span>
+        } @else {
+          <mat-icon [svgIcon]="button.icon" />
+        }
+        {{ button.label | translate }}
+      </button>
+    }
+
+    @case (ActionButtonShape.MENU_ITEM) {
+      <button mat-menu-item
+              [class]="button.style"
+              [disabled]="isDisabled"
+              (click)="onClick($event)" >
         <mat-icon [svgIcon]="button.icon" />
-      }
-      {{ button.label | translate | uppercase }}
-    </button>
+        <span >{{ button.label | translate }}</span>
+      </button>
+    }
+    
+    @default {
+      Invalid button!
+    }
   }
 
-  @case (ActionButtonShape.MINI_FAB) {
-    <button mat-mini-fab
-            [class]="button.style"
-            [disabled]="isDisabled"
-            [matTooltip]="button.tooltip | translate"
-            (click)="onClick($event)" >
-      @if (isLoading) {
-        <span >
-          <mat-spinner mode="indeterminate" 
-                       diameter="20" 
-                       strokeWidth="2" />
-        </span>
-      } @else {
-        <mat-icon [svgIcon]="button.icon" />
-      }
-      {{ button.label | translate }}
-    </button>
-  }
-  
-  @default {
-    Invalid button!
-  }
 }

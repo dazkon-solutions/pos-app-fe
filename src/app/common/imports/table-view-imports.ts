@@ -7,9 +7,8 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-.daz-dynamic-grid {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-auto-rows: 1fr;
-}
+import { MatTableModule } from '@angular/material/table';
+
+export const TABLE_VIEW_IMPORTS = [
+  MatTableModule
+];

@@ -8,10 +8,8 @@
  */
 
 import { ScrollingModule } from "@angular/cdk/scrolling";
-import { MatTableModule } from "@angular/material/table";
 
 
 export const CATEGORY_MAT_IMPORTS = [
-  MatTableModule,
   ScrollingModule
 ];

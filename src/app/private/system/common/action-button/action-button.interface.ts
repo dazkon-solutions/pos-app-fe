@@ -7,10 +7,7 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { 
-  Action, 
-  Resource 
-} from "src/app/common/enums";
+import { Action } from "src/app/common/enums";
 import { 
   ActionButtonShape, 
   ActionButtonType, 
@@ -19,17 +16,16 @@ import {
 
 export interface ActionButtonConfig {
   type:               ActionButtonType;
-  resource:           Resource;
+  action:             Action;
   isDisabled?:        boolean;
-  disableCondition?:  (rowData: any) => boolean; // Use in dynamic table
+  disableCondition?:  (rowData: any) => boolean; // Use in dynamic grid
   customButton?:      ActionButton;
 }
 
 export interface ActionButton {
-  action:       Action;
-  icon:         string;
-  tooltip:      string;
-  label:        string;
-  shape:        ActionButtonShape;
-  style:        ActionButtonStyleClass;
+  icon:    string;
+  tooltip: string;
+  label:   string;
+  shape:   ActionButtonShape;
+  style:   ActionButtonStyleClass;
 }

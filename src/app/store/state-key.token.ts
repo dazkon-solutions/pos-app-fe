@@ -14,5 +14,6 @@ export enum StateKey {
   NAVIGATION = 'navigation',
   LEFT_PANEL = 'leftPanel',
   RESOURCE = 'resource',
-  PRODUCT_CATEGORY_UI = 'productCategoryUI'
+  PRODUCT_CATEGORY_UI = 'productCategoryUI',
+  PERMISSION = 'permission'
 }

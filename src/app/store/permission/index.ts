@@ -7,3 +7,4 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
+export * from './permission.state';

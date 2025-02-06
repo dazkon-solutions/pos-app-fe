@@ -9,7 +9,7 @@
 
 import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Resource } from 'src/app/common/enums';
+import { Action, Resource } from 'src/app/common/enums';
 import { 
   ActionButtonConfig, 
   ActionButtonType 
@@ -29,6 +29,6 @@ export class ProductsComponent {
 
   createButtonConfig$ = new BehaviorSubject<ActionButtonConfig>({
     type: ActionButtonType.CREATE,
-    resource: this.resource
+    action: Action.NONE
   });
 }

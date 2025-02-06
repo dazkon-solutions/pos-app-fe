@@ -7,7 +7,7 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Resource } from "src/app/common/enums";
+import { Action, Resource } from "src/app/common/enums";
 
 export interface MenuNode {
   uid:          number;
@@ -15,6 +15,7 @@ export interface MenuNode {
   name:         string;
   description:  string;
   resource:     Resource;
+  action:       Action;
   icon?:        string;
   children?:    MenuNode[];
   route?:       string;

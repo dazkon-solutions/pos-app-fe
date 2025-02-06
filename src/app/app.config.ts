@@ -36,6 +36,7 @@ import { NavigationState } from 'src/app/store/navigation-config';
 import { MenuState } from 'src/app/store/menu-config';
 import { PrductCategoryUIState } from './store/product-category';
 import { StateKey } from './store/state-key.token';
+import { PermissionState } from './store/permission';
 
 
 export const appConfig: ApplicationConfig = {
@@ -52,7 +53,8 @@ export const appConfig: ApplicationConfig = {
         MenuState,
         MainSearchState,
         LeftPanelState,
-        PrductCategoryUIState
+        PrductCategoryUIState,
+        PermissionState
       ],
       withNgxsLoggerPlugin(),
       withNgxsStoragePlugin({

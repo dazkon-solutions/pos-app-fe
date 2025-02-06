@@ -21,6 +21,8 @@
 @use 'table';
 @use 'pagination';
 @use 'button';
+@use 'grid';
+@use 'data-view';
 // @use 'dialog';
 // @use 'bottom-sheet' as bs;
 // @use 'table';
@@ -76,11 +78,16 @@
                               var.$table-row-outline-color);
 
   @include pagination.pagination-styles(var.$light-bg-color-1,
-                                        var.$light-bg-text-color);
+                                        var.$light-bg-text-color,
+                                        var.$table-row-outline-color);
 
   @include button.button-styles(var.$btn-primary-color,
                                 var.$btn-warn-color,
                                 var.$btn-text-color);
+
+  @include grid.grid-colors(var.$light-bg-color-2);
+
+  @include data-view.data-view-light();
 
   // @include dialog.dialog-background(var.$light-bg-color-2);
 

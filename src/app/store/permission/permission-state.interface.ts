@@ -7,8 +7,9 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { ScrollingModule } from '@angular/cdk/scrolling';
+import { Action } from "src/app/common/enums";
 
-export const DATA_VIEW_MAT_IMPORTS = [
-  ScrollingModule
-];
+
+export interface PermissionStateModel {
+  list: Action[];
+}

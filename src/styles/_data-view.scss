@@ -11,11 +11,17 @@
 @use 'variables' as var;
 
 @mixin data-view-styles {
-  .daz-data-view {
+  .data-view {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: calc(100dvh - 155px);
     border-radius: 12px 20px 0 0;
+  }
+}
+
+@mixin data-view-light {
+  .data-view {
+    border-top: 1px solid var.$light-bg-color-2;
   }
 }

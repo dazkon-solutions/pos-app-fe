@@ -12,19 +12,17 @@
 <cdk-virtual-scroll-viewport itemSize="47" 
                              minBufferPx="564" 
                              maxBufferPx="600" 
-                             class="daz-data-view" >
+                             class="data-view" >
   @if (isListView) {
     <!-- Table section -->
     <daz-categories-table [dataSource$]="dataSource$"
-                          [isLoading$]="isLoading$"
-                          (buttonClicked)="clickResponse($event)" />
+                          [isLoading$]="isLoading$" />
     <!-- End of table section -->
 
   } @else {
     <!-- Grid section -->
-    <!-- <daz-categories-grid [dataSource$]="dataSource$"
-                         [isLoading$]="isLoading$"
-                         (buttonClicked)="clickResponse($event)" /> -->
+    <daz-categories-grid [dataSource$]="dataSource$"
+                         [isLoading$]="isLoading$" />
     <!-- End of grid section -->
   }
 </cdk-virtual-scroll-viewport>

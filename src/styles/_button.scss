@@ -27,6 +27,12 @@
     foreground-color: $fg-color
   ));
 
+  // Overrides mini fab size
+  .mat-mdc-mini-fab {   
+    height: 36px;
+    width: 36px;
+  }
+
   .btn-fab-primary {
     @include mat.fab-overrides((
       container-color: $primary-bg-color

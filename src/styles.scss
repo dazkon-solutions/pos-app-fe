@@ -17,6 +17,7 @@
 @use 'form';
 @use 'table';
 @use 'data-view' as dv;
+@use 'grid';
 
 
 @include mat.typography-hierarchy(theme.$light-theme,
@@ -48,6 +49,14 @@
     form-field-container-vertical-padding: 4px,
     container-size: 43px
   ));
+  @include mat.menu-overrides((
+    divider-bottom-spacing: 0,
+    divider-top-spacing: 0,
+    item-with-icon-trailing-spacing: 150px,
+    item-label-text-size: 13px,
+    item-icon-size: 20px,
+    container-color: var.$light-bg-color-1
+  ));
 }
 
 html, 
@@ -73,3 +82,4 @@ body {
 @include form.form-styles();
 @include table.table-styles();
 @include dv.data-view-styles();
+@include grid.grid-styles();
