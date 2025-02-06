@@ -23,18 +23,22 @@ import { Action } from 'src/app/common/enums';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { GRID_VIEW_MAT_IMPORTS } from 'src/app/common/imports/grid-view-imports';
 import { ActionService } from 'src/app/common/services';
+import { ArrayUtil } from 'src/app/common/utils';
 import { 
   ActionButtonConfig, 
   ActionButtonType 
 } from 'src/app/private/system/common/action-button';
 import { ActionButtonComponent } from 'src/app/private/system/common/action-button/action-button.component';
+import { GridItemSkeletonType } from 'src/app/private/system/common/skeletons/grid-item-skeleton';
+import { GridItemSkeletonComponent } from 'src/app/private/system/common/skeletons/grid-item-skeleton/grid-item-skeleton.component';
 
 @Component({
   selector: 'daz-categories-grid',
   imports: [
     CORE_IMPORTS,
     GRID_VIEW_MAT_IMPORTS,
-    ActionButtonComponent
+    ActionButtonComponent,
+    GridItemSkeletonComponent
   ],
   templateUrl: './categories-grid.component.html',
   styleUrl: './categories-grid.component.scss',
@@ -49,6 +53,9 @@ export class CategoriesGridComponent {
 
   @Input('isLoading$')
   isLoading$!: Observable<boolean>;
+
+  defaultLoadingItems = ArrayUtil.createFakeArray(25);
+  GridItemSkeletonType = GridItemSkeletonType;
 
   viewButton$ = new BehaviorSubject<ActionButtonConfig>({
     action: Action.VIEW_CATEGORY,

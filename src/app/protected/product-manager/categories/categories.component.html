@@ -8,11 +8,13 @@
 -->
 
 @let isListView = isListView$ | async;
+@let isLoading = isLoading$ | async;
 
 <cdk-virtual-scroll-viewport itemSize="47" 
                              minBufferPx="564" 
                              maxBufferPx="600" 
-                             class="data-view" >
+                             class="data-view"
+                             [style.overflow]="isLoading ? 'unset' : ''" >
   @if (isListView) {
     <!-- Table section -->
     <daz-categories-table [dataSource$]="dataSource$"

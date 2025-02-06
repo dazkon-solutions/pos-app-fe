@@ -8,15 +8,22 @@
 -->
 
 @let dataSource = (dataSource$ | async) ?? [];
+@let isLoading = isLoading$ | async;
 
 <div class="grid" >
+  @if (!isLoading) {
+    @for (item of dataSource; track trackById($index, item)) {
+      <ng-template [ngTemplateOutlet]="GridItemTemplate" 
+                   [ngTemplateOutletContext]="{ item: item }" />
+    }
 
-  @for (item of dataSource; track trackById($index, item)) {
-    <ng-template [ngTemplateOutlet]="GridItemTemplate" 
-                 [ngTemplateOutletContext]="{ item: item }" >
-    </ng-template >
+  } @else {
+    <!-- Loading animation -->
+    @for (item of defaultLoadingItems; track item.id) {
+      <daz-grid-item-skeleton [type]="GridItemSkeletonType.NAME_CARD" />
+    }
+    <!-- End of loading animation -->
   }
-
 </div>
 
 <!-- Grid item template -->
