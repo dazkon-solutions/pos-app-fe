@@ -17,6 +17,12 @@
                    [ngTemplateOutletContext]="{ item: item }" />
     }
 
+    <!-- No data found animation -->
+    @if (dataSource.length < 1) {
+      <daz-animation-player [animationType]="AnimationType.NO_DATA_FOUND" />
+    }
+    <!-- End of no data found animation -->
+
   } @else {
     <!-- Loading animation -->
     @for (item of defaultLoadingItems; track item.id) {

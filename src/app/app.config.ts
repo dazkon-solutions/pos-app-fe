@@ -37,6 +37,10 @@ import { MenuState } from 'src/app/store/menu-config';
 import { PrductCategoryUIState } from './store/product-category';
 import { StateKey } from './store/state-key.token';
 import { PermissionState } from './store/permission';
+import { 
+  provideCacheableAnimationLoader, 
+  provideLottieOptions 
+} from 'ngx-lottie';
 
 
 export const appConfig: ApplicationConfig = {
@@ -99,6 +103,10 @@ export const appConfig: ApplicationConfig = {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'outline' }
     },
+    provideLottieOptions({
+      player: () => import('lottie-web'),
+    }),
+    provideCacheableAnimationLoader()
   ]
 };
 

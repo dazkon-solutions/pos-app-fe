@@ -47,11 +47,10 @@ export class GridItemSkeletonComponent implements
     required: true 
   })
   skeletonType!: GridItemSkeletonType;
-
-  type = GridItemSkeletonType.NAME_CARD;
-
+  
   circleTheme = { };
   lineTheme = { };
+  type = GridItemSkeletonType.NAME_CARD;
   GridItemSkeletonType = GridItemSkeletonType;
 
   constructor(

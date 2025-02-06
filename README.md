@@ -8,4 +8,4 @@
 3. npm i @ngxs/storage-plugin for (persist state)
 4. npm i ngx-translate/core, ngx-translate/http-loader for (language changes)
 5. npm install ngx-skeleton-loader for skeleton loaders
-6. nmp install lottie-web ngx-lottie for animations
+6. npm install lottie-web ngx-lottie for animations

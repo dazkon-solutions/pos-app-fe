@@ -94,9 +94,9 @@
         @if (isLoading) {
           <daz-table-skeleton-with-image [count]="10" />
         } @else {
-          <!-- No data found message -->
-          
-          <!-- End of no data found message -->
+          <!-- No data found animation -->
+          <daz-animation-player [animationType]="AnimationType.NO_DATA_FOUND" />
+          <!-- End of no data found animation -->
         }
     </td>
   </tr>

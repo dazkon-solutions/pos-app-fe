@@ -28,6 +28,8 @@ import {
 import { TableSkeletonWithImageComponent } from 'src/app/private/system/common/skeletons/table-skeleton-with-image/table-skeleton-with-image.component';
 import { ActionService, TableService } from 'src/app/common/services';
 import { TABLE_VIEW_IMPORTS } from 'src/app/common/imports/table-view-imports';
+import { AnimationType } from 'src/app/private/system/common/animation-player';
+import { AnimationPlayerComponent } from 'src/app/private/system/common/animation-player/animation-player.component';
 
 @Component({
   selector: 'daz-categories-table',
@@ -35,7 +37,8 @@ import { TABLE_VIEW_IMPORTS } from 'src/app/common/imports/table-view-imports';
     CORE_IMPORTS,
     TABLE_VIEW_IMPORTS,
     ActionButtonComponent,
-    TableSkeletonWithImageComponent
+    TableSkeletonWithImageComponent,
+    AnimationPlayerComponent
   ],
   templateUrl: './categories-table.component.html',
   styleUrl: './categories-table.component.scss'
@@ -70,6 +73,7 @@ export class CategoriesTableComponent {
   ];
 
   TableColumnAlignmentStyleClass = TableColumnAlignmentStyleClass;
+  AnimationType = AnimationType;
 
   constructor(
     private tableSvc: TableService,

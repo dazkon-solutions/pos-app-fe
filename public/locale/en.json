@@ -8,7 +8,8 @@
     "areYouSureYouWantToDelete": "Are you sure you want to delete this item?",
     "settings": "Settings",
     "helpDesk": "Help Desk",
-    "optionsMenu": "Options Menu"
+    "optionsMenu": "Options Menu",
+    "noDataFound": "No Data Found"
   },
 
   "tooltips": {

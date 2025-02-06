@@ -29,6 +29,8 @@ import {
   ActionButtonType 
 } from 'src/app/private/system/common/action-button';
 import { ActionButtonComponent } from 'src/app/private/system/common/action-button/action-button.component';
+import { AnimationType } from 'src/app/private/system/common/animation-player';
+import { AnimationPlayerComponent } from 'src/app/private/system/common/animation-player/animation-player.component';
 import { GridItemSkeletonType } from 'src/app/private/system/common/skeletons/grid-item-skeleton';
 import { GridItemSkeletonComponent } from 'src/app/private/system/common/skeletons/grid-item-skeleton/grid-item-skeleton.component';
 
@@ -38,7 +40,8 @@ import { GridItemSkeletonComponent } from 'src/app/private/system/common/skeleto
     CORE_IMPORTS,
     GRID_VIEW_MAT_IMPORTS,
     ActionButtonComponent,
-    GridItemSkeletonComponent
+    GridItemSkeletonComponent,
+    AnimationPlayerComponent
   ],
   templateUrl: './categories-grid.component.html',
   styleUrl: './categories-grid.component.scss',
@@ -56,6 +59,7 @@ export class CategoriesGridComponent {
 
   defaultLoadingItems = ArrayUtil.createFakeArray(25);
   GridItemSkeletonType = GridItemSkeletonType;
+  AnimationType = AnimationType;
 
   viewButton$ = new BehaviorSubject<ActionButtonConfig>({
     action: Action.VIEW_CATEGORY,

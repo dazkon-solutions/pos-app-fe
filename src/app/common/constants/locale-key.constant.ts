@@ -24,6 +24,7 @@ export const LocaleKeys = {
     settings: 'titles.settings',
     helpDesk: 'titles.helpDesk',
     optionsMenu: 'titles.optionsMenu',
+    noDataFound: 'titles.noDataFound',
   },
   tooltips: {
     notifications: 'tooltips.notifications',
