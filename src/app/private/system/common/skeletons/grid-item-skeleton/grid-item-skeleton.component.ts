@@ -8,11 +8,14 @@
  */
 
 import { 
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   DestroyRef,
   Input,
-  OnInit
+  OnChanges,
+  OnInit,
+  SimpleChanges
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
@@ -32,14 +35,20 @@ import { GridItemSkeletonType } from './grid-item-skeleton-type.enum';
     NgxSkeletonLoaderModule
   ],
   templateUrl: './grid-item-skeleton.component.html',
-  styleUrl: './grid-item-skeleton.component.scss'
+  styleUrl: './grid-item-skeleton.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GridItemSkeletonComponent implements OnInit {
+export class GridItemSkeletonComponent implements 
+  OnInit,
+  OnChanges
+{
   @Input({ 
-    alias: 'type', 
+    alias: 'skeletonType', 
     required: true 
   })
-  type: GridItemSkeletonType = GridItemSkeletonType.NAME_CARD;
+  skeletonType!: GridItemSkeletonType;
+
+  type = GridItemSkeletonType.NAME_CARD;
 
   circleTheme = { };
   lineTheme = { };
@@ -55,6 +64,12 @@ export class GridItemSkeletonComponent implements OnInit {
     this.themeSvc.isLightTheme$()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(isLightTheme => this.createTheme(isLightTheme));
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if('skeletonType' in changes) {
+      this.type = this.skeletonType;
+    }
   }
 
   private async createTheme(isLightTheme: boolean): Promise<void> {

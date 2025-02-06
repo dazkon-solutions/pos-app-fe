@@ -20,7 +20,7 @@
   } @else {
     <!-- Loading animation -->
     @for (item of defaultLoadingItems; track item.id) {
-      <daz-grid-item-skeleton [type]="GridItemSkeletonType.NAME_CARD" />
+      <daz-grid-item-skeleton [skeletonType]="GridItemSkeletonType.NAME_CARD" />
     }
     <!-- End of loading animation -->
   }
