@@ -30,8 +30,8 @@ import {
   MainSearchStateConfigHelper
 } from 'src/app/store/main-search';
 import { LocaleKeys } from 'src/app/common/constants';
-import { SearchPanelService } from 'src/app/common/services';
 import { MAIN_SEARCH_MAT_IMPORTS } from './main-search-imports';
+import { DynamicFilterService } from '../../common/dynamic-filter/dynamic-filter.service';
 
 
 @Component({
@@ -53,7 +53,7 @@ export class MainSearchComponent implements OnInit {
     private destroyRef: DestroyRef,
     private formBuilder: FormBuilder,
     private store: Store,
-    private searchPanelSvc: SearchPanelService
+    private dynamicFilterSvc: DynamicFilterService
   ) {
     this.form = this.createForm(this.formBuilder);
     this.onSearchValue();
@@ -130,6 +130,6 @@ export class MainSearchComponent implements OnInit {
   }
 
   onClickAdvancedFilter(): void {
-    // this.searchPanelSvc.onClickOpen(this.config.resource);
+    this.dynamicFilterSvc.open();
   }
 }

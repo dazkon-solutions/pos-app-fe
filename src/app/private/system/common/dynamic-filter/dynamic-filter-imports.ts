@@ -7,11 +7,11 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './icon.service';
-export * from './navigator.service';
-export * from './theme.service';
-export * from './dialog.service';
-export * from './table.service';
-export * from './permission.service';
-export * from './action.service';
-export * from './bottom-sheet.service';
+import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule } from "@angular/material/dialog";
+
+
+export const DYNAMIC_FILTER_MAT_IMPORTS = [
+  MatDialogModule,
+  MatButtonModule
+];

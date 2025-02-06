@@ -7,11 +7,14 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './icon.service';
-export * from './navigator.service';
-export * from './theme.service';
-export * from './dialog.service';
-export * from './table.service';
-export * from './permission.service';
-export * from './action.service';
-export * from './bottom-sheet.service';
+@use '@angular/material' as mat;
+
+@mixin bottom-sheet-styles(
+  $bg-color,
+  $text-color
+) {
+  @include mat.bottom-sheet-overrides((
+    container-background-color: $bg-color,
+    container-text-color: $text-color
+  ));
+}

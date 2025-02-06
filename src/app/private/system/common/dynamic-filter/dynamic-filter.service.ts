@@ -8,18 +8,17 @@
  */
 
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
-import { Resource } from "../enums";
+import { BottomSheetService } from "src/app/common/services";
+import { DynamicFilterComponent } from "./dynamic-filter.component";
 
 
 @Injectable({ 
   providedIn: 'root'
 })
-export class SearchPanelService {
-  private onClickOpenSubject = new Subject<Resource>;
-  onOpen$ = this.onClickOpenSubject.asObservable();
+export class DynamicFilterService {
+  constructor(private bottomSheetSvc: BottomSheetService) { }
 
-  onClickOpen(resource: Resource): void {
-    this.onClickOpenSubject.next(resource);
+  open(): void {
+    this.bottomSheetSvc.open(DynamicFilterComponent);
   }
 }

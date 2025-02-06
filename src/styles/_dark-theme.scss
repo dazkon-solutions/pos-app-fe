@@ -22,6 +22,7 @@
 @use 'table';
 @use 'pagination';
 @use 'button';
+@use 'bottom-sheet';
 // @use 'dialog';
 // @use 'bottom-sheet' as bs;
 // @use 'table';
@@ -92,6 +93,9 @@
                                 var.$btn-warn-color,
                                 var.$btn-text-color);
   @include button.button-styles-dark-disabled();
+
+  @include bottom-sheet.bottom-sheet-styles(var.$dark-bg-color,
+                                            var.$dark-bg-text-color-2);
 
   // @include dialog.dialog-background(var.$dark-bg-color);
 

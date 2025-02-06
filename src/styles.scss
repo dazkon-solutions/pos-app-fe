@@ -33,7 +33,8 @@
     outlined-container-shape: 12px,
   ));
   @include mat.button-overrides((
-    filled-container-height: 36px
+    filled-container-height: 36px,
+    outlined-container-height: 36px
   ));
   @include mat.fab-overrides((
     extended-container-height: 36px,
