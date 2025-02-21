@@ -7,14 +7,14 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export enum StateKey {
-  ENDPOINT = 'endPoint',
-  MAIN_SEARCH = 'mainSearch',
-  APPEARANCE = 'appearance',
-  MENU = 'menu',
-  NAVIGATION = 'navigation',
-  LEFT_PANEL = 'leftPanel',
-  RESOURCE = 'resource',
-  PRODUCT_CATEGORY_UI = 'productCategoryUI',
-  PERMISSION = 'permission'
+import { EndpointConfigStateModel } from "./endpoint-config-state.model";
+
+
+export class EndpointStateConfigHelper {
+  static createDefault(): EndpointConfigStateModel {
+    return {
+      isLoaded: false,
+      endpoints: { }
+    };
+  }
 }

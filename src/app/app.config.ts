@@ -10,6 +10,8 @@
 import { 
   ApplicationConfig, 
   importProvidersFrom, 
+  inject, 
+  provideAppInitializer, 
   provideZoneChangeDetection 
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
@@ -21,7 +23,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { withNgxsLoggerPlugin } from '@ngxs/logger-plugin';
-import { LOCAL_STORAGE_ENGINE, withNgxsStoragePlugin } from '@ngxs/storage-plugin';
+import { 
+  LOCAL_STORAGE_ENGINE, 
+  withNgxsStoragePlugin 
+} from '@ngxs/storage-plugin';
 import { provideStore } from '@ngxs/store';
 import { 
   HttpClient, 
@@ -41,6 +46,10 @@ import {
   provideCacheableAnimationLoader, 
   provideLottieOptions 
 } from 'ngx-lottie';
+import { 
+  EndpointConfigService, 
+  EndpointConfigState 
+} from './store/endpoint-config';
 
 
 export const appConfig: ApplicationConfig = {
@@ -51,6 +60,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(), 
     provideStore(
       [
+        EndpointConfigState,
         ResourceState,
         AppearanceState,
         NavigationState,
@@ -63,6 +73,10 @@ export const appConfig: ApplicationConfig = {
       withNgxsLoggerPlugin(),
       withNgxsStoragePlugin({
         keys: [
+          {
+            key: StateKey.ENDPOINT,
+            engine: LOCAL_STORAGE_ENGINE
+          },
           {
             key: StateKey.RESOURCE,
             engine: LOCAL_STORAGE_ENGINE
@@ -99,6 +113,7 @@ export const appConfig: ApplicationConfig = {
         },
       })
     ]),
+    provideAppInitializer(() => initializeApp(inject(EndpointConfigService))),
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'outline' }
@@ -112,4 +127,8 @@ export const appConfig: ApplicationConfig = {
 
 function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, 'locale/', '.json');
+}
+
+function initializeApp(endpointConfig: EndpointConfigService) {
+  return endpointConfig.loadConfig();
 }

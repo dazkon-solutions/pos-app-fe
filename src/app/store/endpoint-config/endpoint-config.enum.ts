@@ -7,14 +7,11 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export enum StateKey {
-  ENDPOINT = 'endPoint',
-  MAIN_SEARCH = 'mainSearch',
-  APPEARANCE = 'appearance',
-  MENU = 'menu',
-  NAVIGATION = 'navigation',
-  LEFT_PANEL = 'leftPanel',
-  RESOURCE = 'resource',
-  PRODUCT_CATEGORY_UI = 'productCategoryUI',
-  PERMISSION = 'permission'
+export enum Endpoint {
+  SERVER_URL = 'serverUrl',
+
+  CATEGORY_CREATE = 'category.create',
+  CATEGORY_VIEW = 'category.view',
+  CATEGORY_UPDATE = 'category.update',
+  CATEGORY_DELETE = 'category.delete',
 }

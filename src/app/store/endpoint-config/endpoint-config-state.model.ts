@@ -7,14 +7,7 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export enum StateKey {
-  ENDPOINT = 'endPoint',
-  MAIN_SEARCH = 'mainSearch',
-  APPEARANCE = 'appearance',
-  MENU = 'menu',
-  NAVIGATION = 'navigation',
-  LEFT_PANEL = 'leftPanel',
-  RESOURCE = 'resource',
-  PRODUCT_CATEGORY_UI = 'productCategoryUI',
-  PERMISSION = 'permission'
+export interface EndpointConfigStateModel {
+  isLoaded:   false;
+  endpoints:  any;
 }
