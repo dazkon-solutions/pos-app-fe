@@ -31,5 +31,8 @@
 
 <!-- Pagination section -->
 <daz-view-toggle-pagination [isListView$]="isListView$"
-                            (viewToggled)="viewToggled()" />
+                            [pagination$]="pagination$"
+                            (viewToggled)="viewToggled()"
+                            (paginationChanged)="paginationChanged($event)"
+                            (refreshClicked)="refreshData()" />
 <!-- End of pagination section -->

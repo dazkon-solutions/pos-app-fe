@@ -15,7 +15,7 @@ import {
   StateContext 
 } from "@ngxs/store";
 import { Action as clickAction } from "src/app/common/enums";
-import { PermissionStateModel } from "./permission-state.interface";
+import { PermissionStateModel } from "./permission-state.model";
 import { PermissionConfigHelper } from "./permission-config.helper";
 import { StateKey } from "../state-key.token";
 

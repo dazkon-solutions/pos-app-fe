@@ -18,10 +18,8 @@ import {
 import { Resource } from "src/app/common/enums";
 import { LocaleKeys } from "src/app/common/constants";
 import { MainSearchStateConfigHelper } from "./main-search-state-config.helper";
-import { 
-  MainSearchConfig, 
-  MainSearchStateModel 
-} from "./main-search-state.interface";
+import { MainSearchStateModel } from "./main-search-state.model";
+import { MainSearchConfig } from "./main-search.interface";
 import { StateKey } from "../state-key.token";
 
 

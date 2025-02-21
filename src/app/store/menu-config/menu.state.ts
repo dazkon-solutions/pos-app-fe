@@ -15,7 +15,7 @@ import {
   StateContext 
 } from "@ngxs/store";
 import { MenuNode } from "src/app/store/menu-config/menu.interface";
-import { MenuStateModel } from "./menu-state.interface";
+import { MenuStateModel } from "./menu-state.model";
 import { MenuStateConfigHelper } from "./menu-state-config.helper";
 import { StateKey } from "../state-key.token";
 

@@ -26,7 +26,10 @@ import {
   ActionButtonType 
 } from 'src/app/private/system/common/action-button';
 import { TableSkeletonWithImageComponent } from 'src/app/private/system/common/skeletons/table-skeleton-with-image/table-skeleton-with-image.component';
-import { ActionService, TableService } from 'src/app/common/services';
+import { 
+  ActionService, 
+  TableService 
+} from 'src/app/common/services';
 import { TABLE_VIEW_IMPORTS } from 'src/app/common/imports/table-view-imports';
 import { AnimationType } from 'src/app/private/system/common/animation-player';
 import { AnimationPlayerComponent } from 'src/app/private/system/common/animation-player/animation-player.component';

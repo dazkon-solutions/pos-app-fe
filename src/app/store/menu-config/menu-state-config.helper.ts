@@ -7,7 +7,7 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { MenuStateModel } from "./menu-state.interface";
+import { MenuStateModel } from "./menu-state.model";
 
 export class MenuStateConfigHelper {
   static createDefault(): MenuStateModel {

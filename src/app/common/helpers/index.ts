@@ -9,3 +9,4 @@
 
 export * from './form.helper';
 export * from './subscription.helper';
+export * from './paginate-config.helper';

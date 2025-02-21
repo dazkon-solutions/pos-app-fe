@@ -9,10 +9,8 @@
 
 import { Resource } from "src/app/common/enums";
 import { LocaleKeys } from "src/app/common/constants";
-import { 
-  MainSearchConfig, 
-  MainSearchStateModel 
-} from "./main-search-state.interface";
+import { MainSearchStateModel } from "./main-search-state.model";
+import { MainSearchConfig } from "./main-search.interface";
 
 
 export class MainSearchStateConfigHelper {

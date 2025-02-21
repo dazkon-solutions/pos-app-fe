@@ -18,21 +18,22 @@ import {
   Observable
 } from 'rxjs';
 import { Store } from '@ngxs/store';
+import { PageEvent } from '@angular/material/paginator';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { ActionResponse } from 'src/app/common/interfaces';
-import { 
-  Action, 
-  Resource 
-} from 'src/app/common/enums';
-import { 
-  PrductCategoryUIState, 
-  ToggleProductCategoryView 
-} from 'src/app/store/product-category';
+import { Action } from 'src/app/common/enums';
+import { PrductCategoryUIState } from 'src/app/store/product-category';
 import { ActionService } from 'src/app/common/services';
 import { ViewTogglePaginationComponent } from 'src/app/private/system/common/view-toggle-pagination/view-toggle-pagination.component';
+import { 
+  SetLoadingStatus, 
+  ToggleView 
+} from 'src/app/store/base-ui';
+import { StateKey } from 'src/app/store/state-key.token';
 import { CategoriesTableComponent } from './categories-table/categories-table.component';
 import { CATEGORY_MAT_IMPORTS } from './category-imports';
 import { CategoriesGridComponent } from './categories-grid/categories-grid.component';
+
 
 interface PeriodicElement {
   photo: string;
@@ -55,11 +56,10 @@ interface PeriodicElement {
   styleUrl: './categories.component.scss'
 })
 export class CategoriesComponent implements OnInit {
-  private readonly resource = Resource.CATEGORIES;
-
   isListView$!: Observable<boolean>;
+  isLoading$!: Observable<boolean>;
   dataSource$ = new BehaviorSubject<PeriodicElement[]>([]);
-  isLoading$ = new BehaviorSubject<boolean>(false);
+  pagination$!: Observable<PageEvent>;
 
   constructor(
     private destroyRef: DestroyRef,
@@ -82,6 +82,7 @@ export class CategoriesComponent implements OnInit {
 
   private syncState(): void {
     this.isListView$ = this.store.select(PrductCategoryUIState.isListView);
+    this.isLoading$ = this.store.select(PrductCategoryUIState.isLoading);
   }
 
   private dataSource: PeriodicElement[] = [
@@ -139,11 +140,20 @@ export class CategoriesComponent implements OnInit {
         console.warn(actionResponse);
         break;
       default:
-        console.warn(`Unhandled action: ${actionResponse.action}`);
+        console.warn('Unhandled action:', actionResponse.action);
     }
   }
 
   viewToggled(): void {
-    this.store.dispatch(new ToggleProductCategoryView());
+    this.store.dispatch(new ToggleView(StateKey.PRODUCT_CATEGORY_UI));
+  }
+
+  paginationChanged(page: PageEvent): void {
+    console.warn('Set pagination & fetch data', page);
+  }
+
+  refreshData(): void {
+    this.store.dispatch(new SetLoadingStatus(StateKey.PRODUCT_CATEGORY_UI, true))
+    console.warn('Fetch data');
   }
 }

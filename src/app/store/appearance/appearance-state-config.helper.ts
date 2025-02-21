@@ -7,7 +7,7 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { AppearanceStateModel } from "./appearance-state.interface";
+import { AppearanceStateModel } from "./appearance-state.model";
 
 
 export class AppearanceStateConfigHelper {

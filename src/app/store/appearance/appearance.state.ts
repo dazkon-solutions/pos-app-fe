@@ -15,7 +15,7 @@ import {
   State, 
   StateContext 
 } from "@ngxs/store";
-import { AppearanceStateModel } from "./appearance-state.interface";
+import { AppearanceStateModel } from "./appearance-state.model";
 import { AppearanceStateConfigHelper } from "./appearance-state-config.helper";
 import { StateKey } from "../state-key.token";
 

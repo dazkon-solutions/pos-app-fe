@@ -19,7 +19,8 @@
     "delete": "Delete",
     "options": "Options",
     "gridView": "Grid view",
-    "listView": "List view"
+    "listView": "List view",
+    "refreshData": "Refresh data"
   },
 
   "alerts": {

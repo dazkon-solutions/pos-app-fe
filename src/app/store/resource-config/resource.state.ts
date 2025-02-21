@@ -20,7 +20,7 @@ import {
 } from "src/app/common/enums";
 import { ResourceAction } from "src/app/common/interfaces";
 import { ResourceStateConfigHelper } from "./resource-state-config.helper";
-import { ResourceStateModel } from "./resource-state.interface";
+import { ResourceStateModel } from "./resource-state.model";
 import { StateKey } from "../state-key.token";
 
 export class SetResources {

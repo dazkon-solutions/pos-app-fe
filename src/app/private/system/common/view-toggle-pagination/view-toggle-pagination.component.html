@@ -31,13 +31,27 @@
     </button>
     <!-- End of grid view button -->
 
+    <span class="divider" >|</span>
+
+    <!-- Refresh button -->
+    <button mat-icon-button
+            [matTooltip]="LocaleKeys.tooltips.refreshData | translate"
+            (click)="onClickRefresh($event)" >
+      <mat-icon svgIcon="refresh" />
+    </button>
+    <!-- End of refresh button -->
+
     <span class="spacer" ></span>
 
     <!-- Paginator -->
-    <mat-paginator  showFirstLastButtons
-                    aria-label="Select page"
-                    [length]="200" 
-                    [pageSizeOptions]="[ 20, 50, 100 ]" >
+    @let pagination = pagination$ | async;
+    <mat-paginator showFirstLastButtons
+                   aria-label="Select page"
+                   [pageSize]="pagination?.pageSize" 
+                   [length]="pagination?.length"
+                   [pageIndex]="pagination?.pageIndex"
+                   [pageSizeOptions]="[ 20, 50, 100 ]"
+                   (page)="onChangePaginations($event)"  >
     </mat-paginator>
     <!-- End of paginator -->
   </mat-toolbar-row>

@@ -8,7 +8,7 @@
  */
 
 import { Action } from "src/app/common/enums";
-import { PermissionStateModel } from "./permission-state.interface";
+import { PermissionStateModel } from "./permission-state.model";
 
 
 export class PermissionConfigHelper {

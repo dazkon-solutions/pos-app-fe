@@ -14,7 +14,7 @@ import {
   State, 
   StateContext 
 } from "@ngxs/store";
-import { NavigationStateModel } from "./navigation-state.interface";
+import { NavigationStateModel } from "./navigation-state.model";
 import { NavigationConfigHelper } from "./navigation-config.helper";
 import { StateKey } from "../state-key.token";
 

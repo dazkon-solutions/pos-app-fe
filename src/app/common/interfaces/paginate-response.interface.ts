@@ -7,12 +7,8 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-@use '@angular/material' as mat;
-@use 'variables' as var;
-
-.daz-control-bar {
-  @include mat.toolbar-overrides((
-    standard-height: 50px,
-    mobile-height: 50px
-  ));
+export interface PaginateResponse {
+  pageNo:   number,
+  pageSize: number,
+  total:    number
 }

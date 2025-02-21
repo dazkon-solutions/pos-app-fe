@@ -8,4 +8,4 @@
  */
 
 export * from './navigation.state';
-export * from './navigation-state.interface';
+export * from './navigation-state.model';

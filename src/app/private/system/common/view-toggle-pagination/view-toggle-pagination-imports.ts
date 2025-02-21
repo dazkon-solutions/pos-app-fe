@@ -8,6 +8,7 @@
  */
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -18,5 +19,6 @@ export const VIEW_TOGGLE_PAGINATION_MAT_IMPORTS = [
   MatTooltipModule,
   MatIconModule,
   MatToolbarModule,
-  MatButtonModule
+  MatButtonModule,
+  MatDividerModule
 ];

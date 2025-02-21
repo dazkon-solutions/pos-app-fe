@@ -14,7 +14,11 @@
   $text-color
 ) {
   .daz-footer {
-    background-color: $bg-color;
-    color: $text-color;
+    .top-layer {
+      .curve {
+        background-color: $bg-color;
+        color: $text-color;
+      }
+    }
   }
 }

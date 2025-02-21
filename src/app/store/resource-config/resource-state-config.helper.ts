@@ -8,7 +8,7 @@
  */
 
 import { Resource } from "src/app/common/enums";
-import { ResourceStateModel } from "./resource-state.interface";
+import { ResourceStateModel } from "./resource-state.model";
 
 
 export class ResourceStateConfigHelper {

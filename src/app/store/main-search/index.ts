@@ -9,4 +9,4 @@
 
 export * from './main-search.state';
 export * from './main-search-state-config.helper';
-export * from './main-search-state.interface';
+export * from './main-search.interface';

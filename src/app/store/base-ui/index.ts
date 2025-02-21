@@ -7,17 +7,5 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Resource } from "src/app/common/enums";
-
-export interface MainSearchConfig {
-  label:             string;
-  resource:          Resource;
-  isFilterAvailable: boolean;
-}
-
-export interface MainSearchStateModel {
-  searchTerm:     string;
-  config:         MainSearchConfig;
-  list:           MainSearchConfig[];
-  isFilterActive: boolean;
-}
+export * from './base-ui.state';
+export * from './base-ui-state.model';

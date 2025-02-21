@@ -7,12 +7,11 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-@use '@angular/material' as mat;
-@use 'variables' as var;
+import { MainSearchConfig } from "./main-search.interface";
 
-.daz-control-bar {
-  @include mat.toolbar-overrides((
-    standard-height: 50px,
-    mobile-height: 50px
-  ));
+export interface MainSearchStateModel {
+  searchTerm:     string;
+  config:         MainSearchConfig;
+  list:           MainSearchConfig[];
+  isFilterActive: boolean;
 }

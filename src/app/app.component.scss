@@ -19,6 +19,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+
+  background-color: var.$dark-bg-color;
 }
 
 .daz-content {
@@ -26,7 +28,8 @@
   
   overflow-y: hidden;
   padding: 0 16px;
-  border-radius: 15px 15px 0 0;
+  border-radius: 10px;
+  height: calc(100% - 108px);
 }
 
 .left-panel {
@@ -51,21 +54,10 @@
   z-index: 0;
 }
 
-.background-color-with-curve-helper {
+.background-color-with-curve-helper-for-control-bar {
   position: absolute;
+  top: 92px;
 
   height: 20px;
   width: 100%;
-}
-
-.background-color-with-curve-helper-for-header {
-  @extend .background-color-with-curve-helper;
-
-  top: 42px;
-}
-
-.background-color-with-curve-helper-for-control-bar {
-  @extend .background-color-with-curve-helper;
-
-  top: 92px;
 }

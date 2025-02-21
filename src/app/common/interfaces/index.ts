@@ -9,3 +9,4 @@
 
 export * from './permission.interface';
 export * from './action-response.interface';
+export * from './paginate-response.interface';

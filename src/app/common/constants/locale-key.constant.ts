@@ -34,6 +34,7 @@ export const LocaleKeys = {
     options: 'tooltips.options',
     gridView: 'tooltips.gridView',
     listView: 'tooltips.listView',
+    refreshData: 'tooltips.refreshData',
   },
   alerts: {
     common: {

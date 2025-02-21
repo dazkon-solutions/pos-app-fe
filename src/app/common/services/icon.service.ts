@@ -62,6 +62,7 @@ export class IconService {
       .addSvgIcon('grid-view-filled', this.setPath(`${this.path}/grid-view-filled.svg`))
       .addSvgIcon('list-view', this.setPath(`${this.path}/list-view-outlined.svg`))
       .addSvgIcon('list-view-filled', this.setPath(`${this.path}/list-view-filled.svg`))
+      .addSvgIcon('refresh', this.setPath(`${this.path}/refresh-outlined.svg`))
   }                
 
   private setPath(url: string): SafeResourceUrl {

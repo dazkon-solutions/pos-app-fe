@@ -13,6 +13,7 @@ import {
   Input, 
   Output 
 } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { LocaleKeys } from 'src/app/common/constants';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
@@ -35,9 +36,18 @@ enum ViewType {
 export class ViewTogglePaginationComponent {
   @Input('isListView$')
   isListView$!: Observable<boolean>;
+
+  @Input('pagination$')
+  pagination$!: Observable<PageEvent>;
     
   @Output('viewToggled')
   viewToggled = new EventEmitter<boolean>(true);
+
+  @Output('refreshClicked')
+  refreshClicked = new EventEmitter<boolean>(true);
+
+  @Output('paginationChanged')
+  paginationChanged = new EventEmitter<PageEvent>(true);
 
   LocaleKeys = LocaleKeys;
   ViewType = ViewType;
@@ -55,5 +65,16 @@ export class ViewTogglePaginationComponent {
     if((viewType === ViewType.GRID) && !isListView) return;
 
     this.viewToggled.emit(true);
+  }
+
+  onClickRefresh(event: MouseEvent): void {
+    event.stopPropagation();
+    event.preventDefault();
+
+    this.refreshClicked.emit(true);
+  }
+
+  async onChangePaginations(page: PageEvent): Promise<void> {
+    this.paginationChanged.emit(page);
   }
 }

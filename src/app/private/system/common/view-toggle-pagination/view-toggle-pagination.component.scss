@@ -11,7 +11,11 @@
 
 .daz-view-toggle-pagination {
   @include mat.toolbar-overrides((
-    standard-height: 43px,
-    mobile-height: 43px
+    standard-height: 49px,
+    mobile-height: 49px
   ));
+
+  .divider {
+    margin: 0 10px;
+  }
 }

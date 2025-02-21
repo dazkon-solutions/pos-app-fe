@@ -8,19 +8,9 @@
  */
 
 import { Resource } from "src/app/common/enums";
-import { LocaleKeys } from "src/app/common/constants";
-import { NavigationStateModel } from "./navigation-state.model";
 
-
-export class NavigationConfigHelper {
-  static createDefault(): NavigationStateModel {
-    return {
-      uid: 1,
-      pid: 0,
-      name: '',
-      description: LocaleKeys.titles.dashboard,
-      route: '',
-      resource: Resource.DASHBOARD
-    };
-  }
+export interface MainSearchConfig {
+  label:             string;
+  resource:          Resource;
+  isFilterAvailable: boolean;
 }
