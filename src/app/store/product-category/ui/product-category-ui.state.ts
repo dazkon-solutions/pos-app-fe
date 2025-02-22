@@ -24,7 +24,9 @@ import { StateKey } from "../../state-key.token";
 })
 @Injectable()
 export class PrductCategoryUIState extends BaseUIState<ProductCategoryUIStateModel> {
-  stateKey = StateKey.PRODUCT_CATEGORY_UI;
+  constructor() {
+    super(StateKey.PRODUCT_CATEGORY_UI);
+  } 
 
   @Selector()
   static isLoading(state: ProductCategoryUIStateModel): boolean {

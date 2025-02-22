@@ -28,7 +28,7 @@ export class ToggleView {
 }
 
 export abstract class BaseUIState<T> {
-  abstract stateKey: StateKey;
+  constructor(private readonly stateKey: StateKey) { }
 
   @Action(SetLoadingStatus)
   setLoadingStatus(
