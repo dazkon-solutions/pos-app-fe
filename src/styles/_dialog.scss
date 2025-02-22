@@ -7,7 +7,14 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './resource.enum';
-export * from './action.enum';
-export * from './table.enum';
-export * from './form-mode.enum';
+@use '@angular/material' as mat;
+
+@mixin dialog-styles(
+  $bg-color,
+  $text-color
+) {
+  @include mat.dialog-overrides((
+    container-color: $bg-color,
+    subhead-color: $text-color
+  ));
+}

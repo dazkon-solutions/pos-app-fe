@@ -27,6 +27,14 @@ export class ToggleView {
   constructor(public StateKey: StateKey) { }
 }
 
+export class SetProcessingStatus {
+  static readonly type = '[UI] Set processing status';
+  constructor(
+    public StateKey: StateKey,
+    public isProcessing: boolean
+  ) { }
+}
+
 export abstract class BaseUIState<T> {
   constructor(private readonly stateKey: StateKey) { }
 
@@ -52,6 +60,18 @@ export abstract class BaseUIState<T> {
     const state = ctx.getState();
     ctx.patchState({ 
       isListView: !state.isListView 
+    });
+  }
+
+  @Action(SetProcessingStatus)
+  setProcessingStatus(
+    ctx: StateContext<BaseUIStateModel>, 
+    action: SetProcessingStatus
+  ): void {
+    if(action.StateKey !== this.stateKey) return;
+   
+    ctx.patchState({ 
+      isProcessing: action.isProcessing 
     });
   }
 }

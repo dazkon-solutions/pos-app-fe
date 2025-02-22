@@ -39,6 +39,13 @@
     ));
   }
 
+  .btn-fab-basic-primary {
+    @include mat.fab-overrides((
+      container-color: none,
+      foreground-color: $primary-bg-color
+    ));
+  }
+
   .btn-fab-warn {
     @include mat.fab-overrides((
       container-color: $warn-bg-color,

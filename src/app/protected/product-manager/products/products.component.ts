@@ -29,6 +29,6 @@ export class ProductsComponent {
 
   createButtonConfig$ = new BehaviorSubject<ActionButtonConfig>({
     type: ActionButtonType.CREATE,
-    action: Action.NONE
+    action: Action.DEFAULT
   });
 }

@@ -47,6 +47,13 @@ export class ActionButtonConfigHelper {
       shape: ActionButtonShape.FAB_EXTENDED,
       style: ActionButtonStyleClass.BTN_FAB_PRIMARY
     },
+    edit: {
+      icon: 'edit',
+      label: LocaleKeys.labels.buttons.edit,
+      tooltip: '',
+      shape: ActionButtonShape.FAB_EXTENDED,
+      style: ActionButtonStyleClass.BTN_FAB_BASIC_PRIMARY
+    },
     delete: {
       icon: 'delete',
       label: LocaleKeys.labels.buttons.delete,
@@ -66,7 +73,7 @@ export class ActionButtonConfigHelper {
       label: LocaleKeys.labels.buttons.delete,
       tooltip: '',
       shape: ActionButtonShape.MENU_ITEM,
-      style: ActionButtonStyleClass.NONE
+      style: ActionButtonStyleClass.DEFAULT
     }
   }
 

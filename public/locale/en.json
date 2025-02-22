@@ -4,6 +4,8 @@
     "dashboard": "Dashboard",
     "products": "Products",
     "categories": "Categories",
+    "category": "Category",
+    "createCategory": "Create Category",
     "brands": "Brands",
     "areYouSureYouWantToDelete": "Are you sure you want to delete this item?",
     "settings": "Settings",
@@ -20,7 +22,8 @@
     "options": "Options",
     "gridView": "Grid view",
     "listView": "List view",
-    "refreshData": "Refresh data"
+    "refreshData": "Refresh data",
+    "close": "Close"
   },
 
   "alerts": {
@@ -52,7 +55,10 @@
       "save": "SAVE",
       "update": "UPDATE",
       "view": "VIEW",
-      "delete": "DELETE"
+      "delete": "DELETE",
+      "cancel": "CANCEL",
+      "ok": "OK",
+      "edit": "EDIT"
     },
     "forms": {
       "filtersAreNotAvailableHere": "Filters are not available here..",

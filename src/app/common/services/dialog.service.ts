@@ -34,9 +34,9 @@ export class DialogService {
     const isLightTheme = await this.themeSvc.isLightThemeAsync();
 
     return this.dialog.open(component, { 
+      disableClose: true,
       ...config,
       panelClass: [
-        'dialog',
         isLightTheme ? 'light-theme' : 'dark-theme',
         ...styleClasses
       ]

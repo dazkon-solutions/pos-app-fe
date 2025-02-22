@@ -7,7 +7,15 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './resource.enum';
-export * from './action.enum';
-export * from './table.enum';
-export * from './form-mode.enum';
+import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatIconModule } from "@angular/material/icon";
+import { MatTooltipModule } from "@angular/material/tooltip";
+
+
+export const DIALOG_MAT_IMPORTS = [
+  MatDialogModule,
+  MatTooltipModule,
+  MatIconModule,
+  MatButtonModule
+];

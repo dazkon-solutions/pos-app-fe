@@ -17,6 +17,7 @@ import {
 export interface ActionButtonConfig {
   type:               ActionButtonType;
   action:             Action;
+  isLoading?:         boolean;
   isDisabled?:        boolean;
   disableCondition?:  (rowData: any) => boolean; // Use in dynamic grid
   customButton?:      ActionButton;

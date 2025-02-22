@@ -56,7 +56,7 @@ export class ActionButtonComponent implements OnInit {
 
   button!: ActionButton;
   isAllowed = false;
-  action = Action.NONE;
+  action = Action.DEFAULT;
   isLoading = false;
   isDisabled = true;
   ActionButtonShape = ActionButtonShape;
@@ -90,6 +90,12 @@ export class ActionButtonComponent implements OnInit {
     if(this.isAllowed === config.isDisabled) {
       this.isDisabled = config.isDisabled ?? false;
     }
+
+    // Loading buttons should disabled
+    if(config.isLoading) {
+      this.isLoading = true;
+      this.isDisabled = true;
+    }
     
     return button;
   }
@@ -100,16 +106,6 @@ export class ActionButtonComponent implements OnInit {
 
     if(this.isLoading) return;
 
-    this.isLoading = true;
-    this.isDisabled = true;
-
     this.buttonClicked.emit(this.action);
-
-    // Simulate an async operation (replace with your actual logic)
-    setTimeout(() => {
-      this.isLoading = false;
-      this.isDisabled = false; // Reset to the button's disabled state
-      this.cdr.detectChanges();
-    }, 1000); // Adjust the timeout as needed
   }
 }

@@ -8,6 +8,7 @@
  */
 
 export interface BaseUIStateModel {
-  isLoading:  boolean;
-  isListView: boolean;
+  isLoading:    boolean;
+  isListView:   boolean;
+  isProcessing: boolean;
 }

@@ -11,7 +11,8 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngxs/store";
 import { 
   map, 
-  Observable 
+  Observable, 
+  of
 } from "rxjs";
 import { PermissionState } from "src/app/store/permission";
 import { Action } from "../enums";
@@ -27,7 +28,10 @@ export class PermissionService {
     this.permissions$ = this.store.select(PermissionState.getList);
   }
 
+  // Action type = DEFAULT; should allow
   hasPermission(action: Action): Observable<boolean> {
+    if(action === Action.DEFAULT) return of(true);
+    
     return this.permissions$.pipe(map(permissions => 
       permissions.includes(action)));
   }

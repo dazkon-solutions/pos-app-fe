@@ -8,7 +8,7 @@
  */
 
 export enum Action {
-  NONE = 'NONE',
+  DEFAULT = 'DEFAULT',
   
   CREATE_PRODUCT = 'CREATE_PRODUCT',
   VIEW_PRODUCT = 'VIEW_PRODUCT',

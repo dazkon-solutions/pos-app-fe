@@ -58,6 +58,10 @@
     item-icon-size: 20px,
     container-color: var.$light-bg-color-1
   ));
+  @include mat.chips-overrides((
+    container-shape-radius: 100px,
+    container-height: 25px
+  ));
 }
 
 html, 

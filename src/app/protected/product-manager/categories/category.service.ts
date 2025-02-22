@@ -7,15 +7,17 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { ProductCategoryUIStateModel } from "./product-category-ui-state.model";
+import { Injectable } from '@angular/core';
+import { DialogService } from 'src/app/common/services';
+import { CategoryComponent } from './category/category.component';
 
+@Injectable({
+  providedIn: 'root'
+})
+export class CategoryService {
+  constructor(private dialogSvc: DialogService) { }
 
-export class ProductCategoryUIStateConfigHelper {
-  static createDefault(): ProductCategoryUIStateModel {
-    return {
-      isLoading: false,
-      isListView: false,
-      isProcessing: false
-    };
+  openForm(): void {
+    this.dialogSvc.open(CategoryComponent, { });
   }
 }

@@ -37,4 +37,9 @@ export class PrductCategoryUIState extends BaseUIState<ProductCategoryUIStateMod
   static isListView(state: ProductCategoryUIStateModel): boolean {
     return state.isListView;
   }
+
+  @Selector()
+  static isProcessing(state: ProductCategoryUIStateModel): boolean {
+    return state.isProcessing;
+  }
 }

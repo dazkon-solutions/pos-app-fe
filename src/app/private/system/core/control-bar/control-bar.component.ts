@@ -45,7 +45,7 @@ import { CONTROL_BAR_MAT_IMPORTS } from './control-bar-imports';
 export class ControlBarComponent implements OnInit {
   addNewButtonConfig$ = new BehaviorSubject<ActionButtonConfig>({
     type: ActionButtonType.ADD,
-    action: Action.NONE
+    action: Action.DEFAULT
   });
   menuCurrent!: MenuNode | null;
 

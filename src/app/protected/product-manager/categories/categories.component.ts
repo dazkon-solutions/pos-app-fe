@@ -33,6 +33,7 @@ import { StateKey } from 'src/app/store/state-key.token';
 import { CategoriesTableComponent } from './categories-table/categories-table.component';
 import { CATEGORY_MAT_IMPORTS } from './category-imports';
 import { CategoriesGridComponent } from './categories-grid/categories-grid.component';
+import { CategoryService } from './category.service';
 
 
 interface PeriodicElement {
@@ -64,7 +65,8 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private destroyRef: DestroyRef,
     private store: Store,
-    private actionSvc: ActionService
+    private actionSvc: ActionService,
+    private service: CategoryService
   ) { }
 
   ngOnInit(): void {
@@ -131,9 +133,10 @@ export class CategoriesComponent implements OnInit {
   private handleAction(actionResponse: ActionResponse) {
     switch (actionResponse.action) {
       case Action.CREATE_CATEGORY:
-        console.warn(actionResponse);
+        this.service.openForm();
         break;
       case Action.VIEW_CATEGORY:
+        this.service.openForm();
         console.warn(actionResponse);
         break;
       case Action.DELETE_CATEGORY:

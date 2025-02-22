@@ -22,7 +22,7 @@ export class MenuTreeConfigHelper {
         icon: 'dashboard',
         route: '',
         resource: Resource.DASHBOARD,
-        action: Action.NONE
+        action: Action.DEFAULT
       },
       {
         uid: 10,
@@ -31,7 +31,7 @@ export class MenuTreeConfigHelper {
         description: LocaleKeys.titles.products,
         icon: 'product',
         resource: Resource.PRODUCT_MANAGER,
-        action: Action.NONE,
+        action: Action.DEFAULT,
         children: [
           {
             uid: 11,

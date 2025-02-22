@@ -1,0 +1,30 @@
+/**
+ * Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+ * All rights reserved. 
+ * This code is proprietary to DAZKON SOLUTIONS. 
+ * Unauthorized use, reproduction, modification, distribution, or sale
+ * without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+ * For inquiries, please contact: info@dazkonsolutions.com
+ */
+
+@use '@angular/material' as mat;
+@use 'variables' as var;
+
+.daz-dialog-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 15px;
+
+  .title {
+    margin: 0;
+  }
+
+  .value {
+    @include mat.chips-overrides((
+      elevated-container-color: var.$static-color-3,
+      outline-width: 0,
+      label-text-color: var.$dark-bg-text-color-1
+    ));
+  }
+}

@@ -19,6 +19,8 @@ export const LocaleKeys = {
     dashboard: 'titles.dashboard',
     products: 'titles.products',
     categories: 'titles.categories',
+    category: 'titles.category',
+    createCategory: 'titles.createCategory',
     brands: 'titles.brands',
     areYouSureYouWantToDelete: 'titles.areYouSureYouWantToDelete',
     settings: 'titles.settings',
@@ -35,6 +37,7 @@ export const LocaleKeys = {
     gridView: 'tooltips.gridView',
     listView: 'tooltips.listView',
     refreshData: 'tooltips.refreshData',
+    close: 'tooltips.close',
   },
   alerts: {
     common: {
@@ -64,6 +67,9 @@ export const LocaleKeys = {
       update: 'labels.buttons.update',
       view: 'labels.buttons.view',
       delete: 'labels.buttons.delete',
+      cancel: 'labels.buttons.cancel',
+      ok: 'labels.buttons.ok',
+      edit: 'labels.buttons.edit',
     },
     forms: {
       filtersAreNotAvailableHere: 'labels.forms.filtersAreNotAvailableHere',

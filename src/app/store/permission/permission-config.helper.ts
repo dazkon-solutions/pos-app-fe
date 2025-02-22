@@ -25,7 +25,7 @@ export class PermissionConfigHelper {
     'VIEW_PRODUCT',
     'UPDATE_PRODUCT',
     'DELETE_PRODUCT',
-    // 'CREATE_CATEGORY',
+    'CREATE_CATEGORY',
     'VIEW_CATEGORY',
     'UPDATE_CATEGORY',
     'DELETE_CATEGORY',

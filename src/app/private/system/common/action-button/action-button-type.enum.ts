@@ -12,6 +12,7 @@ export enum ActionButtonType {
   CREATE = 'create',
   UPDATE = 'update',
   VIEW = 'view',
+  EDIT = 'edit',
   DELETE = 'delete',
   DELETE_FAB = 'deleteFab',
   DELETE_MENU_ITEM = 'deleteMenuItem'
@@ -24,8 +25,9 @@ export enum ActionButtonShape {
 }
 
 export enum ActionButtonStyleClass {
-  NONE = '',
+  DEFAULT = '',
   BTN_FAB_PRIMARY = 'btn-fab-primary',
+  BTN_FAB_BASIC_PRIMARY = 'btn-fab-basic-primary',
   BTN_FAB_WARN = 'btn-fab-warn',
-  BTN_MINI_FAB_WARN = 'btn-mini-fab-warn',
+  BTN_MINI_FAB_WARN = 'btn-mini-fab-warn'
 }

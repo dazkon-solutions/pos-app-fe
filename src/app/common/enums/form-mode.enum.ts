@@ -7,7 +7,8 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './resource.enum';
-export * from './action.enum';
-export * from './table.enum';
-export * from './form-mode.enum';
+export enum FormMode {
+  NEW = 'NEW',
+  EDIT = 'EDIT',
+  VIEW = 'VIEW'
+}

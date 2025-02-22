@@ -1,0 +1,41 @@
+<!-- 
+  Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+  All rights reserved.  
+  This code is proprietary to DAZKON SOLUTIONS. 
+  Unauthorized use, reproduction, modification, distribution, or sale 
+  without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+  For inquiries, please contact: info@dazkonsolutions.com 
+-->
+
+@let isProcessing = (isProcessing$ | async) ?? false;
+
+<div class="daz-dialog-header" mat-dialog-title >
+  @let config = config$ | async;
+
+  <!-- Title -->
+  <span class="mat-headline-small title" >
+    {{ config?.title ?? '' | translate }}
+  </span>
+  <!-- End of title -->
+
+  <!-- Value -->
+  @if (config?.value) {
+    &nbsp;
+    <mat-chip class="value" >
+      {{ config?.value }}
+    </mat-chip>
+  }
+  <!-- End of value -->
+
+  <span class="spacer" ></span>
+
+  <!-- Close button -->
+  <button mat-icon-button
+          mat-dialog-close
+          class="close-btn"
+          [disabled]="isProcessing"
+          [matTooltip]="LocaleKeys.tooltips.close | translate" >
+    <mat-icon svgIcon="close" />
+  </button>
+  <!-- End of close button -->
+</div>

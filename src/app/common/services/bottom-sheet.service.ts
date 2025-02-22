@@ -36,7 +36,6 @@ export class BottomSheetService {
       autoFocus: true,
       data,
       panelClass: [
-        'bottom-sheet',
         isLightTheme ? 'light-theme' : 'dark-theme',
         ...styleClasses
       ]
