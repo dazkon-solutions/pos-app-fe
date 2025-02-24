@@ -9,3 +9,4 @@
 
 export * from './base-ui.state';
 export * from './base-ui-state.model';
+export * from './ui-state.service';

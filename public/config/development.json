@@ -2,6 +2,7 @@
   "endpoints": {
     "serverUrl": "http://localhost:3000/api",
     "categories": {
+      "getPaginated": "categories/get-paginated?page={pageNo}&limit={pageSize}&name={name}",
       "create": "categories",
       "update": "categories/{id}",
       "view": "categories/{id}",

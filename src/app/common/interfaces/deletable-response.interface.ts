@@ -7,5 +7,7 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './array.util';
-export * from './error-handler.util';
+export interface DeletableResponse {
+  isDeletable:    boolean;
+  errorMessages:  string[];
+}

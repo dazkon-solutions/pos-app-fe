@@ -10,3 +10,5 @@
 export * from './permission.interface';
 export * from './action-response.interface';
 export * from './paginate-response.interface';
+export * from './product-category.interface';
+export * from './deletable-response.interface';

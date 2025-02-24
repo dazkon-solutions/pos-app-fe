@@ -32,11 +32,17 @@
     },
     "success": {
       "loginSuccessful": "Login successful",
-      "vehicleCreated": "Vehicle created",
-      "vehicleUpdated": "Vehicle updated"
+      "categoryCreated": "Category created",
+      "categoryUpdated": "Category updated",
+      "categoryDeleted": "Category deleted"
     },
     "failed": {
-      "incorrectUsernamePassword": "Incorrect Username or Password!"
+      "incorrectUsernamePassword": "Incorrect Username or Password!",
+      "categoryListFetchFailed": "Failed to fetch categories",
+      "categoryFetchFailed": "Failed to fetch category",
+      "categoryCreationFailed": "Failed to create category",
+      "categoryUpdateFailed": "Failed to update category",
+      "categoryDeletionFailed": "Failed to delete category"
     }
   },
 

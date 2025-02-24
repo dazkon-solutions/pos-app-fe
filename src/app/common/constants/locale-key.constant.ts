@@ -45,11 +45,17 @@ export const LocaleKeys = {
     },
     success: {
       loginSuccessful: 'alerts.success.loginSuccessful',
-      vehicleCreated: 'alerts.success.vehicleCreated',
-      vehicleUpdated: 'alerts.success.vehicleUpdated',
+      categoryCreated: 'alerts.success.categoryCreated',
+      categoryUpdated: 'alerts.success.categoryUpdated',
+      categoryDeleted: 'alerts.success.categoryDeleted',
     },
     failed: {
       incorrectUsernamePassword: 'alerts.failed.incorrectUsernamePassword',
+      categoryListFetchFailed: 'alerts.failed.categoryListFetchFailed',
+      categoryFetchFailed: 'alerts.failed.categoryFetchFailed',
+      categoryCreationFailed: 'alerts.failed.categoryCreationFailed',
+      categoryUpdateFailed: 'alerts.failed.categoryUpdateFailed',
+      categoryDeletionFailed: 'alerts.failed.categoryDeletionFailed',
     },
   },
   notifications: {

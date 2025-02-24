@@ -39,6 +39,11 @@ export class EndpointConfigState {
   }
 
   @Selector()
+  static getEndpoints(state: EndpointConfigStateModel): any {
+    return state.endpoints;
+  }
+
+  @Selector()
   static isLoaded(state: EndpointConfigStateModel): boolean {
     return state.isLoaded;
   }

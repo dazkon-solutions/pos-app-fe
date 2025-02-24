@@ -23,7 +23,7 @@ import { StateKey } from "../../state-key.token";
   defaults: ProductCategoryUIStateConfigHelper.createDefault()
 })
 @Injectable()
-export class PrductCategoryUIState extends BaseUIState<ProductCategoryUIStateModel> {
+export class ProductCategoryUIState extends BaseUIState<ProductCategoryUIStateModel> {
   constructor() {
     super(StateKey.PRODUCT_CATEGORY_UI);
   } 

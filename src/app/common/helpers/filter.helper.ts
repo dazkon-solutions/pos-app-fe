@@ -7,5 +7,17 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './array.util';
-export * from './error-handler.util';
+
+export class FilterHelper {
+  static isEmpty(filterTerms: any): boolean {
+    let isEmpty = true;
+
+    for(const value of Object.values(filterTerms)) {
+      if(value !== '') {
+        isEmpty = false;
+      }
+    }
+
+    return isEmpty;
+  }
+}

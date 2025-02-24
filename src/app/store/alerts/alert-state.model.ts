@@ -7,5 +7,9 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './array.util';
-export * from './error-handler.util';
+import { Alert } from "./alert.interface";
+
+export interface AlertStateModel {
+  list:  Alert[];
+  count: number;
+}

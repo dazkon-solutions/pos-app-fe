@@ -7,5 +7,12 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './array.util';
-export * from './error-handler.util';
+export enum AlertType {
+  SUCCESS = 'success',
+  ERROR = 'error'
+}
+
+export enum AlertMode {
+  SNACK_BAR = 'SNACK_BAR',
+  DIALOG = 'DIALOG'
+}

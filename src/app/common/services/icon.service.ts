@@ -64,6 +64,8 @@ export class IconService {
       .addSvgIcon('list-view-filled', this.setPath(`${this.path}/list-view-filled.svg`))
       .addSvgIcon('refresh', this.setPath(`${this.path}/refresh-outlined.svg`))
       .addSvgIcon('edit', this.setPath(`${this.path}/edit-outlined.svg`))
+      .addSvgIcon('done', this.setPath(`${this.path}/done-outlined.svg`))
+      .addSvgIcon('error', this.setPath(`${this.path}/error-outlined.svg`))
   }                
 
   private setPath(url: string): SafeResourceUrl {

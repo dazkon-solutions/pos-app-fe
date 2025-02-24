@@ -10,8 +10,10 @@
 export enum Endpoint {
   SERVER_URL = 'serverUrl',
 
-  CATEGORY_CREATE = 'category.create',
-  CATEGORY_VIEW = 'category.view',
-  CATEGORY_UPDATE = 'category.update',
-  CATEGORY_DELETE = 'category.delete',
+  CATEGORIES_GET_PAGINATED = 'categories.getPaginated',
+  CATEGORIES_VIEW = 'categories.view',
+  CATEGORIES_CREATE = 'categories.create',
+  CATEGORIES_UPDATE = 'categories.update',
+  CATEGORIES_IS_DELETABLE = 'categories.isDeletable',
+  CATEGORIES_DELETE = 'categories.delete',
 }

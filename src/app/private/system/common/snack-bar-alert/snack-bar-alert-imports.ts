@@ -7,5 +7,10 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './array.util';
-export * from './error-handler.util';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+export const SNACK_BAR_ALERT_MAT_IMPORTS = [
+  MatSnackBarModule,
+  MatIconModule
+];

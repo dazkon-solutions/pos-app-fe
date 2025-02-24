@@ -39,104 +39,97 @@ export class ApiProviderService {
     private http: HttpClient
   ) { }
 
+  private getNestedValue(obj: any, path: string): any {
+    return path.split('.').reduce((acc, key) => acc && acc[key], obj);
+  }
+  
   private getUrl(
     endpoint: Endpoint, 
     params: Record<string, string | number> = {}
   ): Observable<string> {
-    return this.store.selectOnce(EndpointConfigState.getValues).pipe(
-      map((endpoints: Record<string, string>) => {
+    return this.store.selectOnce(EndpointConfigState.getEndpoints).pipe(
+      map((endpoints: Record<string, any>) => {
         const baseUrl = endpoints[Endpoint.SERVER_URL]; // The base URL from config
-        let url = endpoints[endpoint]; // The specific endpoint path
+        let url = this.getNestedValue(endpoints, endpoint); // The specific endpoint path
 
         if(!url) {
           throw new Error(`API endpoint not found: ${endpoint}`);
         }
 
-        // Replace placeholders with actual params (e.g., {id} in the URL)
+        // Replace path variables (e.g., {id} in the URL)
         Object.keys(params).forEach((key) => {
-          url = url.replace(`{${key}}`, encodeURIComponent(String(params[key])));
+          if (url.includes(`{${key}}`)) {
+            url = url.replace(`{${key}}`, encodeURIComponent(String(params[key])));
+            delete params[key]; // Remove from query params after replacement
+          }
         });
 
-        return `${baseUrl}/${url}`;
+        // Append remaining params as query parameters
+        const queryParams = new URLSearchParams();
+        Object.keys(params).forEach((key) => {
+          queryParams.append(key, String(params[key]));
+        });
+
+        return queryParams.toString() ? `${baseUrl}/${url}?${queryParams}` : `${baseUrl}/${url}`;
       })
     );
   }
 
   get<T>(
     endpoint: Endpoint, 
-    param?: string
+    param?:  Record<string, string | number>
   ): Observable<T> {
-    return this.getUrl(endpoint).pipe(
-      switchMap((url: string) => {
-        url += param ?? '';
-
-        return this.http.get<T>(url, this.httpClientOptions);
-      })
-    );
+    return this.getUrl(endpoint, param)
+      .pipe(switchMap((url: string) => 
+        this.http.get<T>(url, this.httpClientOptions)));
   }
 
   post<T>(
     endpoint: Endpoint,
     payload: any,
-    param?: string
+    param?: Record<string, string | number>
   ): Observable<T> {
-    return this.getUrl(endpoint).pipe(
-      switchMap((url: string) => {
-        url += param ?? '';
-
-        return this.http.post<T>(url, payload, this.httpClientOptions)
-      })
-    );
+    return this.getUrl(endpoint, param)
+      .pipe(switchMap((url: string) => 
+        this.http.post<T>(url, payload, this.httpClientOptions)));
   }
 
   update<T>(
     endpoint: Endpoint,
     payload: any,
-    param?: string
+    param?: Record<string, string | number>
   ): Observable<T> {
-    return this.getUrl(endpoint).pipe(
-      switchMap((url: string) => {
-        url += param ?? '';
-
-        return this.http.patch<T>(url, payload, this.httpClientOptions)
-      })
-    );
+    return this.getUrl(endpoint, param)
+      .pipe(switchMap((url: string) => 
+        this.http.patch<T>(url, payload, this.httpClientOptions)));
   }
 
   delete<T>(
     endpoint: Endpoint,
-    param?: string
+    param?: Record<string, string | number>
   ): Observable<T> {
-    return this.getUrl(endpoint).pipe(
-      switchMap((url: string) => {
-        url += param ?? '';
-
-        return this.http.delete<T>(url, this.httpClientOptions)
-      })
-    );
+    return this.getUrl(endpoint, param)
+      .pipe(switchMap((url: string) => 
+        this.http.delete<T>(url, this.httpClientOptions)));
   }
 
   downloadFile<T>(
     endpoint: Endpoint,
     payload?: any,
-    param?: string
+    param?: Record<string, string | number>
   ): Observable<Blob> {
-    return this.getUrl(endpoint).pipe(
-      switchMap((url: string) => {
-        url += param ?? '';
-
-        return this.http.post(url, payload, { 
+    return this.getUrl(endpoint, param)
+      .pipe(switchMap((url: string) => 
+        this.http.post(url, payload, { 
           ...this.httpClientOptions,
           responseType: 'blob' 
-        })
-      })
-    );
+        })));
   }
 
   uploadFile<T>(
     endpoint: Endpoint,
     payload: any,
-    param?: string
+    param?: Record<string, string | number>
   ): Observable<T> {
     const httpClientOptions = { 
       withCredentials: true,
@@ -146,12 +139,8 @@ export class ApiProviderService {
       }
     };
 
-    return this.getUrl(endpoint).pipe(
-      switchMap((url: string) => {
-
-        url += param ?? '';
-        return this.http.post<T>(url, payload, httpClientOptions)
-      })
-    );
+    return this.getUrl(endpoint, param)
+      .pipe(switchMap((url: string) => 
+        this.http.post<T>(url, payload, httpClientOptions)));
   }
 }

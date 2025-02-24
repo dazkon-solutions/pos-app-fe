@@ -18,6 +18,7 @@
 @use 'table';
 @use 'data-view' as dv;
 @use 'grid';
+@use 'alert-snack-bar' as alertsnck;
 
 
 @include mat.typography-hierarchy(theme.$light-theme,
@@ -88,3 +89,4 @@ body {
 @include table.table-styles();
 @include dv.data-view-styles();
 @include grid.grid-styles();
+@include alertsnck.alert-snack-bar-styles();

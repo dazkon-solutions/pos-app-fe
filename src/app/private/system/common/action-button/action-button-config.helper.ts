@@ -75,7 +75,7 @@ export class ActionButtonConfigHelper {
       shape: ActionButtonShape.MENU_ITEM,
       style: ActionButtonStyleClass.DEFAULT
     }
-  }
+  };
 
   static createButton(config: ActionButtonConfig): ActionButton {
     return config.customButton

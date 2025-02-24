@@ -7,5 +7,14 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './array.util';
-export * from './error-handler.util';
+import { AlertStateModel } from "./alert-state.model";
+
+
+export class AlertStateConfigHelper {
+  static createDefault(): AlertStateModel {
+    return {
+      list: [],
+      count: 0
+    };
+  }
+}

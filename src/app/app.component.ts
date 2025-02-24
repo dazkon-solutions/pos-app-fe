@@ -9,9 +9,12 @@
 
 import { 
   Component, 
+  DestroyRef, 
   OnInit 
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { TranslateService } from '@ngx-translate/core';
@@ -33,7 +36,11 @@ import {
 } from './store/menu-config';
 import { MenuNode } from './store/menu-config/menu.interface';
 import { LeftPanelState } from './store/left-panel-config';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { SnackBarAlertService } from './private/system/common/snack-bar-alert/snack-bar-alert.service';
+import { 
+  AlertMode, 
+  AlertState 
+} from './store/alerts';
 
 @Component({
   selector: 'daz-root',
@@ -60,7 +67,9 @@ export class AppComponent implements OnInit {
     private iconSvc: IconService,
     private menuConfigSvc: MenuConfigService,
     private themeSvc: ThemeService,
+    private snackBarAlertSvc: SnackBarAlertService,
     private store: Store,
+    private destroyRef: DestroyRef
   ) {
     this.translate.setDefaultLang('en');
     this.translate.use('en');
@@ -81,6 +90,18 @@ export class AppComponent implements OnInit {
   private syncState(): void {
     this.isLeftPanelExpanded$ = this.store.select(LeftPanelState.isExpanded);
     this.menuCurrent$ = this.store.select(MenuState.getCurrent);
+
+    this.subscribeToAlerts();
+  }
+  
+  private subscribeToAlerts(): void {
+    this.store.select(AlertState.getNew)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(alert => {
+        if(alert.mode === AlertMode.SNACK_BAR) {
+          this.snackBarAlertSvc.open(alert)
+        }
+      });
   }
 
   isVisibleControlBar(resource: Resource | null): boolean {

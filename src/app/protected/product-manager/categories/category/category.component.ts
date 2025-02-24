@@ -32,7 +32,7 @@ import {
 import { DialogActionsComponent } from 'src/app/private/system/common/dialog/dialog-actions/dialog-actions.component';
 import { DialogHeaderConfig } from 'src/app/private/system/common/dialog/dialog-header';
 import { DialogHeaderComponent } from 'src/app/private/system/common/dialog/dialog-header/dialog-header.component';
-import { PrductCategoryUIState } from 'src/app/store/product-category';
+import { ProductCategoryUIState } from 'src/app/store/product-category';
 
 
 @Component({
@@ -66,7 +66,7 @@ export class CategoryComponent implements OnInit {
   }
 
   private syncState(): void {
-    this.isProcessing$ = this.store.select(PrductCategoryUIState.isProcessing);
+    this.isProcessing$ = this.store.select(ProductCategoryUIState.isProcessing);
     // Set form values from state
     // this.formModeChanged(FormMode.VIEW);
     this.createSaveButton()

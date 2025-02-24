@@ -39,7 +39,7 @@ import { AppearanceState } from 'src/app/store/appearance';
 import { MainSearchState } from 'src/app/store/main-search';
 import { NavigationState } from 'src/app/store/navigation-config';
 import { MenuState } from 'src/app/store/menu-config';
-import { PrductCategoryUIState } from './store/product-category';
+import { ProductCategoryUIState } from './store/product-category';
 import { StateKey } from './store/state-key.token';
 import { PermissionState } from './store/permission';
 import { 
@@ -50,6 +50,9 @@ import {
   EndpointConfigService, 
   EndpointConfigState 
 } from './store/endpoint-config';
+import { ProductCategoryState } from './store/product-category/data/product-category.state';
+import { AlertState } from './store/alerts';
+import { DeletableState } from './store/deletable';
 
 
 export const appConfig: ApplicationConfig = {
@@ -61,14 +64,17 @@ export const appConfig: ApplicationConfig = {
     provideStore(
       [
         EndpointConfigState,
+        PermissionState,
         ResourceState,
         AppearanceState,
         NavigationState,
         MenuState,
         MainSearchState,
         LeftPanelState,
-        PrductCategoryUIState,
-        PermissionState
+        ProductCategoryUIState,
+        ProductCategoryState,
+        AlertState,
+        DeletableState
       ],
       withNgxsLoggerPlugin(),
       withNgxsStoragePlugin({

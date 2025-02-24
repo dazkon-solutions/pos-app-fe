@@ -7,5 +7,14 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './array.util';
-export * from './error-handler.util';
+import { DeletableStateModel } from "./deletable-state.model";
+
+
+export class DeletableStateConfigHelper {
+  static createDefault(): DeletableStateModel {
+    return {
+      isDeletable: false,
+      errorMessages: []
+    };
+  }
+}

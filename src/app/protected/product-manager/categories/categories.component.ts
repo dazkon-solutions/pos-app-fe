@@ -22,18 +22,17 @@ import { PageEvent } from '@angular/material/paginator';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { ActionResponse } from 'src/app/common/interfaces';
 import { Action } from 'src/app/common/enums';
-import { PrductCategoryUIState } from 'src/app/store/product-category';
+import { ProductCategoryUIState } from 'src/app/store/product-category';
 import { ActionService } from 'src/app/common/services';
 import { ViewTogglePaginationComponent } from 'src/app/private/system/common/view-toggle-pagination/view-toggle-pagination.component';
-import { 
-  SetLoadingStatus, 
-  ToggleView 
+import { ToggleView 
 } from 'src/app/store/base-ui';
 import { StateKey } from 'src/app/store/state-key.token';
 import { CategoriesTableComponent } from './categories-table/categories-table.component';
 import { CATEGORY_MAT_IMPORTS } from './category-imports';
 import { CategoriesGridComponent } from './categories-grid/categories-grid.component';
 import { CategoryService } from './category.service';
+import { FetchProductCategoryList, LoadProductCategoryList } from 'src/app/store/product-category/data/product-category.state';
 
 
 interface PeriodicElement {
@@ -74,6 +73,8 @@ export class CategoriesComponent implements OnInit {
     this.syncState();
     
     this.dataSource$.next(this.dataSource);
+
+    this.store.dispatch(new LoadProductCategoryList())
   }
 
   private subscribeToActions(): void {
@@ -83,8 +84,8 @@ export class CategoriesComponent implements OnInit {
   }
 
   private syncState(): void {
-    this.isListView$ = this.store.select(PrductCategoryUIState.isListView);
-    this.isLoading$ = this.store.select(PrductCategoryUIState.isLoading);
+    this.isListView$ = this.store.select(ProductCategoryUIState.isListView);
+    this.isLoading$ = this.store.select(ProductCategoryUIState.isLoading);
   }
 
   private dataSource: PeriodicElement[] = [
@@ -156,7 +157,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   refreshData(): void {
-    this.store.dispatch(new SetLoadingStatus(StateKey.PRODUCT_CATEGORY_UI, true))
+    this.store.dispatch(new FetchProductCategoryList())
     console.warn('Fetch data');
   }
 }

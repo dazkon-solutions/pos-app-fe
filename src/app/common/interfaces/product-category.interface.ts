@@ -7,5 +7,16 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './array.util';
-export * from './error-handler.util';
+export interface ProductCategory {
+  id:   number;
+  name: string;
+}
+
+export interface PaginatedProductCategory {
+  data:  ProductCategory[];
+  total: number;
+}
+
+export interface ProductCategoryFilterTerms {
+  name: string;
+}

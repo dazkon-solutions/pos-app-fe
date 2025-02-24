@@ -7,5 +7,14 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './array.util';
-export * from './error-handler.util';
+import { 
+  AlertMode, 
+  AlertType 
+} from "./alert.enum";
+
+export interface Alert {
+  id:         number;
+  mode:       AlertMode;
+  type:       AlertType;
+  messageKey: string;
+}
