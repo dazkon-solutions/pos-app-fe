@@ -9,6 +9,14 @@
 
 @let isLoading = (isLoading$ | async) ?? false;
 @let isDeletable = (isDeletable$ | async) ?? false;
+@let isProcessing = (isProcessing$ | async) ?? false;
+
+<!-- Waiting -->
+@if (isProcessing) {
+  <daz-waiting-overlay />
+}
+<!-- End of waiting -->
+
 
 <!-- Content -->
 <mat-dialog-content >
@@ -71,17 +79,15 @@
 
 
 <!-- Actions template -->
-@let isProcessing = (isProcessing$ | async) ?? false;
 <ng-template #ActionsTemplate >
   @if (isDeletable) {
     <button mat-button 
-            mat-dialog-close
-            [disabled]="isProcessing" >
+            mat-dialog-close >
       {{ LocaleKeys.labels.buttons.cancel | translate }}
     </button>
     
-    <daz-action-button [config$]="deleteButton$"
-                       (buttonClicked)="deleteClicked($event)" />
+    <daz-action-button [config$]="deleteBtn$"
+                       (buttonClicked)="deleteClicked()" />
 
   } @else {
     <button mat-flat-button 

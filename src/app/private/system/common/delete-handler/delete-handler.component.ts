@@ -9,11 +9,9 @@
 
 import { 
   Component, 
-  DestroyRef, 
   Inject, 
   OnInit 
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { 
   BehaviorSubject,
@@ -34,6 +32,7 @@ import { AnimationPlayerComponent } from '../animation-player/animation-player.c
 import { AnimationType } from '../animation-player';
 import { DeleteHandleSkeletonComponent } from '../skeletons/delete-handler-skeleton/delete-handler-skeleton.component';
 import { DeleteHandlerConfig } from './delete-handler.interface';
+import { WaitingOverlayComponent } from '../waiting-overlay/waiting-overlay.component';
 
 @Component({
   selector: 'daz-delete-handler',
@@ -42,7 +41,8 @@ import { DeleteHandlerConfig } from './delete-handler.interface';
     DELETE_HANDLER_MAT_IMPORTS,
     ActionButtonComponent,
     AnimationPlayerComponent,
-    DeleteHandleSkeletonComponent
+    DeleteHandleSkeletonComponent,
+    WaitingOverlayComponent
   ],
   templateUrl: './delete-handler.component.html',
   styleUrl: './delete-handler.component.scss'
@@ -52,7 +52,7 @@ export class DeleteHandlerComponent implements OnInit {
   isProcessing$!: Observable<boolean>;
   isDeletable$!: Observable<boolean>;
   errorMessages$!: Observable<string[]>;
-  deleteButton$ = new BehaviorSubject<ActionButtonConfig>({
+  deleteBtn$ = new BehaviorSubject<ActionButtonConfig>({
     action: Action.DEFAULT,
     type: ActionButtonType.DELETE,
   });
@@ -62,11 +62,9 @@ export class DeleteHandlerComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DeleteHandlerConfig,
-    private destroyRef: DestroyRef,
     private store: Store
   ) { 
     this.deleteAction = this.data.deleteAction;
-    this.updateDeleteButton();
   }
 
   ngOnInit(): void {
@@ -78,21 +76,9 @@ export class DeleteHandlerComponent implements OnInit {
     this.isDeletable$ = this.store.select(DeleteHandleState.isDeletable);
     this.isProcessing$ = this.store.select(DeleteHandleState.isProcessing);
     this.errorMessages$ = this.store.select(DeleteHandleState.getErrorMessages);
-
-    this.isProcessing$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(isProcessing => this.updateDeleteButton(isProcessing));
   }
 
-  private updateDeleteButton(isLoading?: boolean): void {
-    this.deleteButton$.next({
-      action: this.deleteAction,
-      type: ActionButtonType.DELETE,
-      isLoading
-    });
-  }
-
-  deleteClicked(data: any): void {
+  deleteClicked(): void {
     this.store.dispatch(this.data.deleteActionInstance);
   }
 }

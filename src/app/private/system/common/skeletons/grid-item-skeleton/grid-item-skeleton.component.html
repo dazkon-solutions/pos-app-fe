@@ -11,13 +11,13 @@
   <mat-card-content class="card-content" >
     @switch (type) {
       @case (GridItemSkeletonType.PROFILE_CARD) {
-        <ng-template [ngTemplateOutlet]="ProfileCardTemplate" />
+        <ng-container [ngTemplateOutlet]="ProfileCardTemplate" />
       }
       @case (GridItemSkeletonType.NAME_CARD) {
-        <ng-template [ngTemplateOutlet]="NameCardTemplate" />
+        <ng-container [ngTemplateOutlet]="NameCardTemplate" />
       }
       @default {
-        <ng-template [ngTemplateOutlet]="NameCardTemplate" />
+        <ng-container [ngTemplateOutlet]="NameCardTemplate" />
       }
     }
     
