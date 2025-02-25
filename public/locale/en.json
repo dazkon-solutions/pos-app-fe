@@ -70,7 +70,10 @@
     "forms": {
       "filtersAreNotAvailableHere": "Filters are not available here..",
       "usingAdvancedFilter": "Using advanced filter..",
-      "searchByName": "Search by name"
+      "searchByName": "Search by name",
+      "name": "Name",
+      "description": "Description",
+      "createdAt": "Created at"
     }
   },
 

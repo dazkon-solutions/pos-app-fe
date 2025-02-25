@@ -11,12 +11,14 @@ import {
   Component, 
   OnInit 
 } from '@angular/core';
+import { 
+  FormBuilder, 
+  FormGroup 
+} from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { 
   BehaviorSubject, 
-  firstValueFrom, 
-  Observable, 
-  Subject
+  Observable
 } from 'rxjs';
 import { LocaleKeys } from 'src/app/common/constants';
 import { 
@@ -25,14 +27,15 @@ import {
 } from 'src/app/common/enums';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { DIALOG_MAT_IMPORTS } from 'src/app/common/imports/dialog-imports';
-import { 
-  ActionButtonConfig, 
-  ActionButtonType 
-} from 'src/app/private/system/common/action-button';
+import { ActionButtonConfig } from 'src/app/private/system/common/action-button';
 import { DialogActionsComponent } from 'src/app/private/system/common/dialog/dialog-actions/dialog-actions.component';
 import { DialogHeaderConfig } from 'src/app/private/system/common/dialog/dialog-header';
 import { DialogHeaderComponent } from 'src/app/private/system/common/dialog/dialog-header/dialog-header.component';
 import { ProductCategoryUIState } from 'src/app/store/product-category';
+import { ErrorStatementMatcher } from 'src/app/private/system/common/error-statement-matcher';
+import { FORM_MAT_IMPORTS } from 'src/app/common/imports/form-imports';
+import { WaitingOverlayComponent } from 'src/app/private/system/common/waiting-overlay/waiting-overlay.component';
+import { CategoryFormConfigHelper } from './category-form-config';
 
 
 @Component({
@@ -40,26 +43,31 @@ import { ProductCategoryUIState } from 'src/app/store/product-category';
   imports: [
     CORE_IMPORTS,
     DIALOG_MAT_IMPORTS,
+    FORM_MAT_IMPORTS,
     DialogHeaderComponent,
-    DialogActionsComponent
+    DialogActionsComponent,
+    WaitingOverlayComponent
   ],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss'
 })
 export class CategoryComponent implements OnInit {
   isProcessing$!: Observable<boolean>;
-
-  dialogHeaderConfig$ = new BehaviorSubject<DialogHeaderConfig>({
-    title: LocaleKeys.titles.createCategory,
-    value: 'SAL-23232'
-  });
-  dialogActionsFormMode$ = new BehaviorSubject<FormMode>(FormMode.NEW);
-  actionButton$ = new Subject<ActionButtonConfig>();
-
+  dialogHeaderConfig$ = new BehaviorSubject<DialogHeaderConfig>(CategoryFormConfigHelper.headerConfig);
+  createBtn$ = new BehaviorSubject<ActionButtonConfig>(CategoryFormConfigHelper.createBtnConfig);
+  updateBtn$ = new BehaviorSubject<ActionButtonConfig>(CategoryFormConfigHelper.updateBtnConfig);
+  editBtn$ = new BehaviorSubject<ActionButtonConfig>(CategoryFormConfigHelper.editBtnConfig);
+  matcher = new ErrorStatementMatcher();
+  form: FormGroup;
+  initFormMode = FormMode.NEW;
   LocaleKeys = LocaleKeys;
-  selectedFormMode = FormMode.NEW;
 
-  constructor(private store: Store) { }
+  constructor(
+    private store: Store,
+    private formBuilder: FormBuilder,
+  ) { 
+    this.form = CategoryFormConfigHelper.createForm(this.formBuilder);
+  }
 
   ngOnInit(): void {
     this.syncState();
@@ -68,51 +76,23 @@ export class CategoryComponent implements OnInit {
   private syncState(): void {
     this.isProcessing$ = this.store.select(ProductCategoryUIState.isProcessing);
     // Set form values from state
-    // this.formModeChanged(FormMode.VIEW);
-    this.createSaveButton()
+    this.updateFormConfigByData({id: 1});
   }
 
-  formModeChanged(mode: FormMode): void {
-    this.selectedFormMode = mode;
+  private updateFormConfigByData(formData: any): void {
+    this.initFormMode = formData.id > 0
+      ? FormMode.VIEW
+      : FormMode.NEW;
 
-    switch (mode) {
-      case FormMode.NEW:
-        this.createSaveButton();
-        break;
-
-      case FormMode.EDIT:
-        this.createUpdateButton();
-        this.dialogActionsFormMode$.next(FormMode.EDIT);
-        break;
-
-      case FormMode.VIEW:
-        this.dialogActionsFormMode$.next(FormMode.VIEW);
-        break;
-
-      default:
-        return;
+    if(formData.id > 0) {
+      this.dialogHeaderConfig$.next({
+        title: LocaleKeys.titles.createCategory,
+        value: 'SAL-23232'
+      });
     }
   }
 
   actionClicked(action: Action): void {
     console.warn('dialog action changed', action)
-  }
-
-  private async createSaveButton(): Promise<void> {
-    const isLoading = await firstValueFrom(this.isProcessing$);
-    this.actionButton$.next({
-      action: Action.CREATE_CATEGORY,
-      type: ActionButtonType.CREATE,
-      isLoading
-    });
-  }
-
-  private async createUpdateButton(): Promise<void> {
-    const isLoading = await firstValueFrom(this.isProcessing$);
-    this.actionButton$.next({
-      action: Action.UPDATE_CATEGORY,
-      type: ActionButtonType.UPDATE,
-      isLoading
-    });
   }
 }

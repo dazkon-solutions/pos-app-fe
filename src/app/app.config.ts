@@ -33,6 +33,7 @@ import {
   provideHttpClient 
 } from '@angular/common/http';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MAT_NATIVE_DATE_FORMATS, NativeDateAdapter } from '@angular/material/core';
 import { LeftPanelState } from 'src/app/store/left-panel-config';
 import { ResourceState } from 'src/app/store/resource-config';
 import { AppearanceState } from 'src/app/store/appearance';
@@ -53,6 +54,7 @@ import {
 import { ProductCategoryState } from './store/product-category/data/product-category.state';
 import { AlertState } from './store/alerts';
 import { DeleteHandleState } from './store/delete-handle';
+
 
 
 export const appConfig: ApplicationConfig = {
@@ -123,6 +125,18 @@ export const appConfig: ApplicationConfig = {
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'outline' }
+    },
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'en-GB'
+    },
+    {
+      provide: DateAdapter, 
+      useClass: NativeDateAdapter
+    }, 
+    {
+      provide: MAT_DATE_FORMATS, 
+      useValue: MAT_NATIVE_DATE_FORMATS
     },
     provideLottieOptions({
       player: () => import('lottie-web'),

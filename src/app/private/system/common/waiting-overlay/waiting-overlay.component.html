@@ -1,0 +1,21 @@
+<!-- 
+  Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+  All rights reserved.  
+  This code is proprietary to DAZKON SOLUTIONS. 
+  Unauthorized use, reproduction, modification, distribution, or sale 
+  without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+  For inquiries, please contact: info@dazkonsolutions.com 
+-->
+
+<div class="daz-waiting-overlay" >
+
+  <mat-spinner [diameter]="50" />
+
+  <!-- Title -->
+  @if (title) {
+    <span class="mat-body-large title" >
+      {{ title | translate }}
+    </span>
+  }
+  <!-- End of title -->
+</div>

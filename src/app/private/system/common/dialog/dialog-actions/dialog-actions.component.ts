@@ -11,21 +11,17 @@ import {
   Component, 
   EventEmitter, 
   Input, 
-  Output
+  OnChanges, 
+  Output,
+  SimpleChanges
 } from '@angular/core';
-import { 
-  BehaviorSubject, 
-  Observable 
-} from 'rxjs';
+import { Observable } from 'rxjs';
 import { LocaleKeys } from 'src/app/common/constants';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { Action, FormMode } from 'src/app/common/enums';
 import { DIALOG_MAT_IMPORTS } from '../dialog-imports';
 import { ActionButtonComponent } from '../../action-button/action-button.component';
-import { 
-  ActionButtonConfig, 
-  ActionButtonType 
-} from '../../action-button';
+import { ActionButtonConfig } from '../../action-button';
 
 @Component({
   selector: 'daz-dialog-actions',
@@ -37,32 +33,34 @@ import {
   templateUrl: './dialog-actions.component.html',
   styleUrl: './dialog-actions.component.scss'
 })
-export class DialogActionsComponent {
-  @Input('formMode$')
-  formMode$!: Observable<FormMode>;
+export class DialogActionsComponent implements OnChanges {
+  @Input('initFormMode')
+  initFormMode!: FormMode;
 
-  @Input('actionButtonConfig$')
-  actionButtonConfig$!: Observable<ActionButtonConfig>;
+  @Input('createButton$')
+  createButton$!: Observable<ActionButtonConfig>;
 
-  @Input('isProcessing$')
-  isProcessing$!: Observable<boolean>;
+  @Input('updateButton$')
+  updateButton$!: Observable<ActionButtonConfig>;
 
-  @Output('formModeChanged')
-  formModeChanged = new EventEmitter<FormMode>(true);
+  @Input('editButton$')
+  editButton$!: Observable<ActionButtonConfig>;
 
   @Output('actionClicked')
   actionClicked = new EventEmitter<Action>(true);
 
+  selectedFormMode!: FormMode;
   LocaleKeys = LocaleKeys;
   FormMode = FormMode;
 
-  editButton$ = new BehaviorSubject<ActionButtonConfig>({
-    action: Action.DEFAULT,
-    type: ActionButtonType.EDIT
-  });
+  ngOnChanges(changes: SimpleChanges): void {
+    if('initFormMode' in changes) {
+      this.selectedFormMode = this.initFormMode;
+    }
+  }
 
-  onChangeMode(mode: FormMode): void {
-    this.formModeChanged.emit(mode);
+  onChangeMode(formMode: FormMode): void {
+    this.selectedFormMode = formMode;
   }
 
   actionButtonClicked(action: Action): void {

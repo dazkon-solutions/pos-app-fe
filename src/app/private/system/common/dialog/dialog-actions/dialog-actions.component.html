@@ -7,25 +7,21 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-@let formMode = formMode$ | async;
-@let isProcessing = (isProcessing$ | async) ?? false;
-
 <mat-dialog-actions >
   <!-- New mode -->
-  @if (formMode === FormMode.NEW) {
+  @if (selectedFormMode === FormMode.NEW) {
     <button mat-button 
-            mat-dialog-close
-            [disabled]="isProcessing" >
+            mat-dialog-close >
       {{ LocaleKeys.labels.buttons.cancel | translate }}
     </button>
 
-    <daz-action-button [config$]="actionButtonConfig$"
+    <daz-action-button [config$]="createButton$"
                        (buttonClicked)="actionButtonClicked($event)" />
   }
   <!-- End of new mode -->
 
   <!-- View mode -->
-  @if (formMode === FormMode.VIEW) {
+  @if (selectedFormMode === FormMode.VIEW) {
     <daz-action-button [config$]="editButton$" 
                        (buttonClicked)="onChangeMode(FormMode.EDIT)" />
   
@@ -40,14 +36,13 @@
   <!-- End of view mode -->
 
   <!-- Edit mode -->
-  @if (formMode === FormMode.EDIT) {
-    <button mat-button 
-            [disabled]="isProcessing"
+  @if (selectedFormMode === FormMode.EDIT) {
+    <button mat-button
             (click)="onChangeMode(FormMode.VIEW)" >
       {{ LocaleKeys.labels.buttons.cancel | translate }}
     </button>
 
-    <daz-action-button [config$]="actionButtonConfig$"
+    <daz-action-button [config$]="updateButton$"
                        (buttonClicked)="actionButtonClicked($event)" />
   }
   <!-- End of edit mode -->

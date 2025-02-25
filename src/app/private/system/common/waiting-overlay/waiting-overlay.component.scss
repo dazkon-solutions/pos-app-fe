@@ -7,16 +7,21 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { DeleteHandleStateModel } from "./delete-handle-state.model";
+.daz-waiting-overlay {
+  position: absolute;
+  z-index: 2000;
 
-
-export class DeleteHandleStateConfigHelper {
-  static createDefault(): DeleteHandleStateModel {
-    return {
-      isDeletable: false,
-      errorMessages: [],
-      isLoading: false,
-      isProcessing: false
-    };
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  
+  background-color: rgb(62 62 62 / 32%);
+  
+  .title {
+    margin-top: 10px;
+    color: #fff;
   }
 }

@@ -82,6 +82,9 @@ export const LocaleKeys = {
       filtersAreNotAvailableHere: 'labels.forms.filtersAreNotAvailableHere',
       usingAdvancedFilter: 'labels.forms.usingAdvancedFilter',
       searchByName: 'labels.forms.searchByName',
+      name: 'labels.forms.name',
+      description: 'labels.forms.description',
+      createdAt: 'labels.forms.createdAt',
     },
   },
   errors: {

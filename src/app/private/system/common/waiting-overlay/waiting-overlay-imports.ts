@@ -7,16 +7,8 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { DeleteHandleStateModel } from "./delete-handle-state.model";
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-
-export class DeleteHandleStateConfigHelper {
-  static createDefault(): DeleteHandleStateModel {
-    return {
-      isDeletable: false,
-      errorMessages: [],
-      isLoading: false,
-      isProcessing: false
-    };
-  }
-}
+export const WAITING_OVERLAY_MAT_IMPORTS = [
+  MatProgressSpinnerModule
+];

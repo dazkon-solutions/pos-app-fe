@@ -7,6 +7,14 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
+
+<!-- Waiting -->
+@let isProcessing = (isProcessing$ | async) ?? false;
+@if (isProcessing) {
+  <daz-waiting-overlay />
+}
+<!-- End of waiting -->
+
 <!-- Header -->
 <daz-dialog-header [config$]="dialogHeaderConfig$"
                    [isProcessing$]="isProcessing$" />
@@ -14,15 +22,121 @@
 
 <!-- Content -->
 <mat-dialog-content >
-  <p>category works!</p>
+  <ng-container [ngTemplateOutlet]="FormTemplate" />
 
 </mat-dialog-content>
 <!-- End of content -->
 
 <!-- Actions -->
-<daz-dialog-actions [formMode$]="dialogActionsFormMode$"
-                    [actionButtonConfig$]="actionButton$"
-                    [isProcessing$]="isProcessing$"
-                    (formModeChanged)="formModeChanged($event)"
+<daz-dialog-actions [initFormMode]="initFormMode"
+                    [createButton$]="createBtn$"
+                    [updateButton$]="updateBtn$"
+                    [editButton$]="editBtn$"
                     (actionClicked)="actionClicked($event)" />
 <!-- End of actions -->
+
+
+<!-- Form template -->
+<ng-template #FormTemplate >
+  <form [formGroup]="form" >
+
+    <span class="form-section-title" >hello</span>
+    <div class="form-section" >
+      <mat-form-field class="form-field-width-half" >
+        <mat-label > 
+          {{ LocaleKeys.labels.forms.name | translate }}
+        </mat-label>
+        <input matInput 
+              formControlName="name" 
+              name="name"
+              [errorStateMatcher]="matcher" >
+        @if (form.get('name')?.hasError('required')) {
+          <mat-error>{{ LocaleKeys.errors.required | translate }}</mat-error>
+        }
+        @if (form.get('name')?.hasError('maxlength')) {
+          <mat-error>
+            @let max = form.get('name')?.errors?.['maxlength']?.requiredLength;
+            {{ LocaleKeys.errors.maxlength | translate: { max } }}
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="form-field-width-half" >
+        <mat-label>
+          {{ LocaleKeys.labels.forms.createdAt | translate }}
+        </mat-label>
+        <input matInput 
+              formControlName="createdAt"
+              readonly
+              name="createdAt"
+              [matDatepicker]="datePicker"
+              [errorStateMatcher]="matcher" >
+        <mat-datepicker-toggle  matIconSuffix [for]="datePicker" />
+        <mat-datepicker #datePicker />
+        @if (form.get('createdAt')?.hasError('required')) {
+          <mat-error>{{ LocaleKeys.errors.required | translate }}</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <span class="form-section-title" >hello</span>
+    <div class="form-section" >
+      <mat-form-field class="form-field-width-half" >
+        <mat-label > 
+          {{ LocaleKeys.labels.forms.name | translate }}
+        </mat-label>
+        <input matInput 
+              formControlName="name" 
+              name="name"
+              [errorStateMatcher]="matcher" >
+        @if (form.get('name')?.hasError('required')) {
+          <mat-error>{{ LocaleKeys.errors.required | translate }}</mat-error>
+        }
+        @if (form.get('name')?.hasError('maxlength')) {
+          <mat-error>
+            @let max = form.get('name')?.errors?.['maxlength']?.requiredLength;
+            {{ LocaleKeys.errors.maxlength | translate: { max } }}
+          </mat-error>
+        }
+      </mat-form-field>
+      
+      <mat-form-field class="form-field-width-half" >
+        <mat-label > 
+          {{ LocaleKeys.labels.forms.name | translate }}
+        </mat-label>
+        <input matInput 
+              formControlName="name" 
+              name="name"
+              [errorStateMatcher]="matcher" >
+        @if (form.get('name')?.hasError('required')) {
+          <mat-error>{{ LocaleKeys.errors.required | translate }}</mat-error>
+        }
+        @if (form.get('name')?.hasError('maxlength')) {
+          <mat-error>
+            @let max = form.get('name')?.errors?.['maxlength']?.requiredLength;
+            {{ LocaleKeys.errors.maxlength | translate: { max } }}
+          </mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="form-field-width-full" >
+      <mat-label >
+        {{ LocaleKeys.labels.forms.description | translate }}
+      </mat-label>
+      <textarea matInput 
+                formControlName="description"
+                name="description"
+                [errorStateMatcher]="matcher" >
+      </textarea>
+      @if (form.get('description')?.hasError('maxlength')) {
+        <mat-error>
+          @let max = form.get('description')?.errors?.['maxlength']?.requiredLength;
+          {{ LocaleKeys.errors.maxlength | translate: { max } }}
+        </mat-error>
+      }
+    </mat-form-field>
+
+  </form>
+</ng-template>
+<!-- End of form template -->

@@ -7,16 +7,12 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { DeleteHandleStateModel } from "./delete-handle-state.model";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
-
-export class DeleteHandleStateConfigHelper {
-  static createDefault(): DeleteHandleStateModel {
-    return {
-      isDeletable: false,
-      errorMessages: [],
-      isLoading: false,
-      isProcessing: false
-    };
-  }
-}
+export const FORM_MAT_IMPORTS = [
+  MatFormFieldModule,
+  MatInputModule,
+  MatDatepickerModule
+];
