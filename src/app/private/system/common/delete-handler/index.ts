@@ -7,8 +7,5 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export enum AnimationType {
-  NO_DATA_FOUND,
-  DELETE_CONFIRMATION,
-  DO_NOT
-}
+export * from './delete-handler.service';
+export * from './delete-handler.interface';

@@ -7,8 +7,11 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export enum AnimationType {
-  NO_DATA_FOUND,
-  DELETE_CONFIRMATION,
-  DO_NOT
+import { Action } from "src/app/common/enums";
+
+export interface DeleteHandlerConfig {
+  checkActionInstance:  any;
+  deleteActionInstance: any;
+  deleteAction:         Action;
+  description:          string;
 }

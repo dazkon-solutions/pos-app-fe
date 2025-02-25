@@ -7,8 +7,10 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export enum AnimationType {
-  NO_DATA_FOUND,
-  DELETE_CONFIRMATION,
-  DO_NOT
+
+export interface DeleteHandleStateModel { 
+  isDeletable:    boolean;
+  errorMessages:  string[];
+  isLoading:      boolean;
+  isProcessing:   boolean;
 }

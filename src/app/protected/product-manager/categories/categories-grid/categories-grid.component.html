@@ -13,8 +13,8 @@
 <div class="grid" >
   @if (!isLoading) {
     @for (item of dataSource; track trackById($index, item)) {
-      <ng-template [ngTemplateOutlet]="GridItemTemplate" 
-                   [ngTemplateOutletContext]="{ item: item }" />
+      <ng-container [ngTemplateOutlet]="GridItemTemplate" 
+                    [ngTemplateOutletContext]="{ item: item }" />
     }
 
     <!-- No data found animation -->

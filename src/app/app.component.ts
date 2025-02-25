@@ -98,7 +98,7 @@ export class AppComponent implements OnInit {
     this.store.select(AlertState.getNew)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(alert => {
-        if(alert.mode === AlertMode.SNACK_BAR) {
+        if(alert?.mode === AlertMode.SNACK_BAR) {
           this.snackBarAlertSvc.open(alert)
         }
       });

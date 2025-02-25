@@ -37,7 +37,8 @@ import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
   styleUrl: './animation-player.component.scss'
 })
 export class AnimationPlayerComponent implements 
-  OnChanges
+  OnChanges,
+  OnDestroy
 {
   @Input('animationType')
   animationType!: AnimationType;

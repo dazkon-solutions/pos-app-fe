@@ -19,5 +19,5 @@ export enum StateKey {
   PRODUCT_CATEGORY = 'productCategory',
   PERMISSION = 'permission',
   ALERT = 'alert',
-  DELETABLE = 'deletable'
+  DELETE_HANDLE = 'deleteHandle'
 }

@@ -7,8 +7,16 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export enum AnimationType {
-  NO_DATA_FOUND,
-  DELETE_CONFIRMATION,
-  DO_NOT
+.daz-delete-handler-skeleton {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+
+  .line-wrapper {
+    width: 100%;
+  }
+
+  .actions {
+    width: 100%;
+  }
 }

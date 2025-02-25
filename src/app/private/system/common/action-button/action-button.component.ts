@@ -95,6 +95,8 @@ export class ActionButtonComponent implements OnInit {
     if(config.isLoading) {
       this.isLoading = true;
       this.isDisabled = true;
+    } else {
+      this.isLoading = false;
     }
     
     return button;

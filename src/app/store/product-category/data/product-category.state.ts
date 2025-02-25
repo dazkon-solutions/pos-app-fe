@@ -29,6 +29,11 @@ import {
 import { FilterHelper } from "src/app/common/helpers";
 import { ProductCategoryCtrlService } from "src/app/private/components";
 import { LocaleKeys } from "src/app/common/constants";
+import { 
+  SetDeletableResponse, 
+  SetDeleteHandleLoadingStatus, 
+  SetDeleteHandleProcessingStatus 
+} from "src/app/store/delete-handle";
 import { ProductCategoryStateModel } from "./product-category-state.model";
 import { StateKey } from "../../state-key.token";
 import { ProductCategoryStateConfigHelper } from "./product-category-state-config.helper";
@@ -37,7 +42,6 @@ import {
   AlertService, 
   AlertType 
 } from "../../alerts";
-import { SetDeletableResponse } from "../../deletable";
 
 
 export class FetchProductCategoryList {
@@ -82,8 +86,8 @@ export class UpdateProductCategory {
   constructor(public payload: ProductCategory) { }
 }
 
-export class DeleteProductCategoryById {
-  static readonly type = '[Product category] Delete by id';
+export class DeleteProductCategory {
+  static readonly type = '[Product category] Delete by';
   constructor(public id: number) { }
 }
 
@@ -312,13 +316,13 @@ export class ProductCategoryState {
         }));
   }
 
-  @Action(DeleteProductCategoryById)
-  deleteProductCategoryById(
+  @Action(DeleteProductCategory)
+  deleteProductCategory(
     ctx: StateContext<ProductCategoryStateModel>,
-    action: DeleteProductCategoryById
+    action: DeleteProductCategory
   ): Observable<any> {
-    this.uiStateSvc.setProcessing(StateKey.PRODUCT_CATEGORY_UI, 
-                                  true);
+    ctx.dispatch(new SetDeleteHandleProcessingStatus(true));
+
     return this.productCategoryCtrlSvc.deleteById(action.id)
       .pipe(
         tap(_ => {
@@ -340,8 +344,7 @@ export class ProductCategoryState {
           return EMPTY;
         }),
         finalize(() => {
-          this.uiStateSvc.setProcessing(StateKey.PRODUCT_CATEGORY_UI, 
-                                        false);
+          ctx.dispatch(new SetDeleteHandleProcessingStatus(false));
         }));
   }
 
@@ -350,6 +353,8 @@ export class ProductCategoryState {
     ctx: StateContext<ProductCategoryStateModel>,
     action: CheckProductCategoryDeletable
   ): Observable<any> {
+    ctx.dispatch(new SetDeleteHandleLoadingStatus(true));
+
     return this.productCategoryCtrlSvc.isDeletable(action.id)
       .pipe(
         tap(deletableResponse => {
@@ -360,6 +365,9 @@ export class ProductCategoryState {
           this.alertSvc.setAlert(AlertType.ERROR, 
                                  LocaleKeys.alerts.failed.categoryDeletionFailed);
           return EMPTY;
+        }),
+        finalize(() => {
+          ctx.dispatch(new SetDeleteHandleLoadingStatus(false));
         }));
   }
 

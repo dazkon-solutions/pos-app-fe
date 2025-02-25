@@ -7,14 +7,4 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { DeletableStateModel } from "./deletable-state.model";
-
-
-export class DeletableStateConfigHelper {
-  static createDefault(): DeletableStateModel {
-    return {
-      isDeletable: false,
-      errorMessages: []
-    };
-  }
-}
+export * from './delete-handle.state';

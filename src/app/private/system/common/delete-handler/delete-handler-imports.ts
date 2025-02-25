@@ -7,8 +7,12 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export enum AnimationType {
-  NO_DATA_FOUND,
-  DELETE_CONFIRMATION,
-  DO_NOT
-}
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIcon } from '@angular/material/icon';
+
+export const DELETE_HANDLER_MAT_IMPORTS = [
+  MatDialogModule,
+  MatButtonModule,
+  MatIcon
+];

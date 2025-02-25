@@ -7,4 +7,16 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './deletable.state';
+import { DeleteHandleStateModel } from "./delete-handle-state.model";
+
+
+export class DeleteHandleStateConfigHelper {
+  static createDefault(): DeleteHandleStateModel {
+    return {
+      isDeletable: true,
+      errorMessages: [],
+      isLoading: false,
+      isProcessing: false
+    };
+  }
+}

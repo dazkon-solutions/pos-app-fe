@@ -6,7 +6,8 @@
       "create": "categories",
       "update": "categories/{id}",
       "view": "categories/{id}",
-      "delete": "categories/{id}"
+      "delete": "categories/{id}",
+      "isDeletable": "categories/{id}/is-deletable"
     },
     "brands": {
       "create": "brands",

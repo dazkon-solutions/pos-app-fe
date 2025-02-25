@@ -52,7 +52,7 @@ import {
 } from './store/endpoint-config';
 import { ProductCategoryState } from './store/product-category/data/product-category.state';
 import { AlertState } from './store/alerts';
-import { DeletableState } from './store/deletable';
+import { DeleteHandleState } from './store/delete-handle';
 
 
 export const appConfig: ApplicationConfig = {
@@ -74,7 +74,7 @@ export const appConfig: ApplicationConfig = {
         ProductCategoryUIState,
         ProductCategoryState,
         AlertState,
-        DeletableState
+        DeleteHandleState
       ],
       withNgxsLoggerPlugin(),
       withNgxsStoragePlugin({

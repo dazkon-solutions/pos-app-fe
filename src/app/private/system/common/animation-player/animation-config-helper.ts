@@ -28,6 +28,18 @@ export class AnimationConfigHelper {
         width: '400px',
         height: '400px',
         title: LocaleKeys.titles.noDataFound
+      },
+      {
+        type: AnimationType.DELETE_CONFIRMATION,
+        path: 'animations/delete-confirmation.json',
+        width: '105px',
+        height: '105px'
+      },
+      {
+        type: AnimationType.DO_NOT,
+        path: 'animations/do-not.json',
+        width: '115px',
+        height: '115px'
       }
     ];
   }

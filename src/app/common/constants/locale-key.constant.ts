@@ -23,6 +23,7 @@ export const LocaleKeys = {
     createCategory: 'titles.createCategory',
     brands: 'titles.brands',
     areYouSureYouWantToDelete: 'titles.areYouSureYouWantToDelete',
+    youCannotDelete: 'titles.youCannotDelete',
     settings: 'titles.settings',
     helpDesk: 'titles.helpDesk',
     optionsMenu: 'titles.optionsMenu',

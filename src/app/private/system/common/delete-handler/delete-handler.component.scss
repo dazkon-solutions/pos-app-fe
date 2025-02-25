@@ -7,8 +7,8 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-
-export interface DeletableStateModel { 
-  isDeletable:    boolean;
-  errorMessages:  string[];
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
