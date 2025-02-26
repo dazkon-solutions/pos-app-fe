@@ -35,6 +35,13 @@ export class CategoryFormConfigHelper {
           Validators.maxLength(5)
         ]
       ],
+      category: [
+        {
+          value: null,
+          disabled: false
+        },
+        [Validators.required]
+      ],
       createdAt: [
         {
           value: '',

@@ -18,7 +18,8 @@ import {
 import { Store } from '@ngxs/store';
 import { 
   BehaviorSubject, 
-  Observable
+  Observable,
+  of
 } from 'rxjs';
 import { LocaleKeys } from 'src/app/common/constants';
 import { 
@@ -32,10 +33,11 @@ import { DialogActionsComponent } from 'src/app/private/system/common/dialog/dia
 import { DialogHeaderConfig } from 'src/app/private/system/common/dialog/dialog-header';
 import { DialogHeaderComponent } from 'src/app/private/system/common/dialog/dialog-header/dialog-header.component';
 import { ProductCategoryUIState } from 'src/app/store/product-category';
-import { ErrorStatementMatcher } from 'src/app/private/system/common/error-statement-matcher';
+import { CustomErrorStateMatcher } from 'src/app/private/system/common/error-statement-matcher';
 import { FORM_MAT_IMPORTS } from 'src/app/common/imports/form-imports';
 import { WaitingOverlayComponent } from 'src/app/private/system/common/waiting-overlay/waiting-overlay.component';
 import { CategoryFormConfigHelper } from './category-form-config';
+import { CommonAutoCompleteComponent } from 'src/app/private/system/common/auto-completes/common-auto-complete/common-auto-complete.component';
 
 
 @Component({
@@ -46,7 +48,8 @@ import { CategoryFormConfigHelper } from './category-form-config';
     FORM_MAT_IMPORTS,
     DialogHeaderComponent,
     DialogActionsComponent,
-    WaitingOverlayComponent
+    WaitingOverlayComponent,
+    CommonAutoCompleteComponent
   ],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss'
@@ -57,9 +60,10 @@ export class CategoryComponent implements OnInit {
   createBtn$ = new BehaviorSubject<ActionButtonConfig>(CategoryFormConfigHelper.createBtnConfig);
   updateBtn$ = new BehaviorSubject<ActionButtonConfig>(CategoryFormConfigHelper.updateBtnConfig);
   editBtn$ = new BehaviorSubject<ActionButtonConfig>(CategoryFormConfigHelper.editBtnConfig);
-  matcher = new ErrorStatementMatcher();
+  matcher = new CustomErrorStateMatcher();
   form: FormGroup;
   initFormMode = FormMode.NEW;
+  formTouched = false;
   LocaleKeys = LocaleKeys;
 
   constructor(
@@ -71,6 +75,8 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.syncState();
+
+    this.form.get('category')?.valueChanges.subscribe(v => console.warn('chn',v))
   }
 
   private syncState(): void {
@@ -93,6 +99,48 @@ export class CategoryComponent implements OnInit {
   }
 
   actionClicked(action: Action): void {
+    console.warn('formValue',this.form.value)
+    if(this.form.invalid) {
+      this.form.markAllAsTouched();
+      this.formTouched = true;
+      return;
+    }
+
     console.warn('dialog action changed', action)
+  }
+
+  onFilterCategory(filterTerm: string): void {
+    console.warn('category filter', filterTerm);
+  }
+
+  getCategoryList(): Observable<any[]> {
+    const list = [
+      {
+        id: 1,
+        name: "Electronics",
+        year: 2023
+      },
+      {
+        id: 2,
+        name: "Furniture",
+        year: 2022
+      },
+      {
+        id: 3,
+        name: "Clothing",
+        year: 2024
+      },
+      {
+        id: 4,
+        name: "Automotive",
+        year: 2021
+      },
+      {
+        id: 5,
+        name: "Sports & Outdoors",
+        year: 2023
+      }
+    ];
+    return of(list);
   }
 }

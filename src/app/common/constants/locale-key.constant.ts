@@ -79,6 +79,7 @@ export const LocaleKeys = {
       edit: 'labels.buttons.edit',
     },
     forms: {
+      selectOne: 'labels.forms.selectOne',
       filtersAreNotAvailableHere: 'labels.forms.filtersAreNotAvailableHere',
       usingAdvancedFilter: 'labels.forms.usingAdvancedFilter',
       searchByName: 'labels.forms.searchByName',

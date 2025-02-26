@@ -81,43 +81,12 @@
 
     <span class="form-section-title" >hello</span>
     <div class="form-section" >
-      <mat-form-field class="form-field-width-half" >
-        <mat-label > 
-          {{ LocaleKeys.labels.forms.name | translate }}
-        </mat-label>
-        <input matInput 
-              formControlName="name" 
-              name="name"
-              [errorStateMatcher]="matcher" >
-        @if (form.get('name')?.hasError('required')) {
-          <mat-error>{{ LocaleKeys.errors.required | translate }}</mat-error>
-        }
-        @if (form.get('name')?.hasError('maxlength')) {
-          <mat-error>
-            @let max = form.get('name')?.errors?.['maxlength']?.requiredLength;
-            {{ LocaleKeys.errors.maxlength | translate: { max } }}
-          </mat-error>
-        }
-      </mat-form-field>
-      
-      <mat-form-field class="form-field-width-half" >
-        <mat-label > 
-          {{ LocaleKeys.labels.forms.name | translate }}
-        </mat-label>
-        <input matInput 
-              formControlName="name" 
-              name="name"
-              [errorStateMatcher]="matcher" >
-        @if (form.get('name')?.hasError('required')) {
-          <mat-error>{{ LocaleKeys.errors.required | translate }}</mat-error>
-        }
-        @if (form.get('name')?.hasError('maxlength')) {
-          <mat-error>
-            @let max = form.get('name')?.errors?.['maxlength']?.requiredLength;
-            {{ LocaleKeys.errors.maxlength | translate: { max } }}
-          </mat-error>
-        }
-      </mat-form-field>
+      <daz-common-auto-complete formControlName="category"
+                                displayProperty="name"
+                                [isParentTouched]="formTouched"
+                                [dataSource$]="getCategoryList()"
+                                [validators]="form.get('category')?.validator"
+                                (filterTerm)="onFilterCategory($event)" />
     </div>
 
     <mat-form-field class="form-field-width-full" >

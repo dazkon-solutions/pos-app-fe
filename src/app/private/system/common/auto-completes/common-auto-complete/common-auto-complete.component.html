@@ -1,0 +1,41 @@
+<!-- 
+  Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+  All rights reserved.  
+  This code is proprietary to DAZKON SOLUTIONS. 
+  Unauthorized use, reproduction, modification, distribution, or sale 
+  without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+  For inquiries, please contact: info@dazkonsolutions.com 
+-->
+
+<form >
+  <mat-form-field >
+    <mat-label >{{ ctrlLabel | translate }}</mat-label>
+    <input #input
+           type="text"
+           matInput
+           [placeholder]="LocaleKeys.labels.forms.selectOne | translate"
+           [formControl]="myControl"
+           [matAutocomplete]="auto"
+           [errorStateMatcher]="matcher"
+           (input)="filter()" >
+
+    <mat-autocomplete requireSelection 
+                      #auto="matAutocomplete"
+                      (optionSelected)="onOptionSelected($event)"
+                      [displayWith]="displayFn" >
+      
+      @let dataSource = (dataSource$ | async) ?? [];
+      @for (option of dataSource; track option[ctrlDisplayProperty]) {
+        <mat-option [value]="option" >
+          {{ option[ctrlDisplayProperty] }}
+        </mat-option>
+      }
+
+    </mat-autocomplete>
+    
+    @if (myControl.hasError('required')) {
+      <mat-error>{{ LocaleKeys.errors.required | translate }}</mat-error>
+    }
+
+  </mat-form-field>
+</form>

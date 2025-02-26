@@ -10,9 +10,11 @@
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 export const FORM_MAT_IMPORTS = [
   MatFormFieldModule,
   MatInputModule,
-  MatDatepickerModule
+  MatDatepickerModule,
+  MatAutocompleteModule
 ];
