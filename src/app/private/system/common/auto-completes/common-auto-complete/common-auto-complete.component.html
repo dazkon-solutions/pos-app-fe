@@ -7,17 +7,38 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-<form >
-  <mat-form-field >
+@let isLoading = (isLoading$ | async) ?? false;
+
+<form disabled >
+  <mat-form-field class="form-field-width-full" 
+                  [floatLabel]="isLoading ? 'always' : 'auto'" >
     <mat-label >{{ ctrlLabel | translate }}</mat-label>
-    <input #input
-           type="text"
-           matInput
-           [placeholder]="LocaleKeys.labels.forms.selectOne | translate"
-           [formControl]="myControl"
-           [matAutocomplete]="auto"
-           [errorStateMatcher]="matcher"
-           (input)="filter()" >
+
+    @if (isLoading) {
+      <!-- Loading -->
+      <input type="text" 
+             class="auto-complete-loading"
+             matInput 
+             readonly
+             [value]="LocaleKeys.labels.forms.loadingList | translate" >
+      <!-- End of Loading -->
+
+    } @else {
+      <input #input
+             type="text"
+             matInput
+             [placeholder]="LocaleKeys.labels.forms.selectOne | translate"
+             [formControl]="myControl"
+             [matAutocomplete]="auto"
+             [errorStateMatcher]="matcher"
+             (input)="filter()" >
+    }
+
+    <!-- Action buttons -->
+    @if (!isLoading) {
+      <ng-container [ngTemplateOutlet]="ActionButtonsTemplate" matSuffix />
+    }
+    <!-- End of action buttons -->
 
     <mat-autocomplete requireSelection 
                       #auto="matAutocomplete"
@@ -31,6 +52,14 @@
         </mat-option>
       }
 
+      <!-- No data found message -->
+      @if (dataSource.length < 1) {
+        <mat-option disabled >
+          {{ LocaleKeys.titles.noDataFound | translate }}
+        </mat-option>
+      }
+      <!-- End of no data found message -->
+
     </mat-autocomplete>
     
     @if (myControl.hasError('required')) {
@@ -39,3 +68,28 @@
 
   </mat-form-field>
 </form>
+
+
+<!-- Action buttons template -->
+<ng-template #ActionButtonsTemplate >
+  @if (myControl.value) {
+    <!-- Reset button -->
+    <button mat-icon-button 
+            [matTooltip]="LocaleKeys.tooltips.clear | translate"
+            (click)="onClickReset($event)" >
+      <mat-icon svgIcon="close" />
+    </button>
+    <!-- End of reset button -->
+
+  } @else {
+    <!-- Data fetch button -->
+    <button mat-icon-button 
+            [matTooltip]="LocaleKeys.tooltips.refreshList | translate"
+            (click)="onClickRefetch($event, ButtonEvent.CLICK)"
+            (dblclick)="onClickRefetch($event, ButtonEvent.DOUBLE_CLICK)" >
+      <mat-icon svgIcon="refresh" />
+    </button>
+    <!-- End of data fetch button -->
+  }
+</ng-template>
+<!-- End of action button template -->

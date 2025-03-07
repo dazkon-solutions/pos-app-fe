@@ -7,12 +7,7 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-@use 'variables' as var;
-
-.auto-complete-loading {
-  text-align: center;
-  
-  --mdc-outlined-text-field-input-text-color: var.$dark-bg-text-color-2;
-  font-size: 14px;
-  font-style: italic;
+export enum ButtonEvent {
+  CLICK = 'CLICK',
+  DOUBLE_CLICK = 'DOUBLE_CLICK'
 }

@@ -11,3 +11,4 @@ export * from './resource.enum';
 export * from './action.enum';
 export * from './table.enum';
 export * from './form-mode.enum';
+export * from './button-event.enum';

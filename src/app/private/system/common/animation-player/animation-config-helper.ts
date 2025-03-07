@@ -12,11 +12,12 @@ import { AnimationType } from "./animation-type.enum";
 
 
 export interface CustomAnimationConfig {
-  type:   AnimationType;
-  path:   string;
-  width:  string;
-  height: string;
-  title?: string;
+  type:    AnimationType;
+  path:    string;
+  width:   string;
+  height:  string;
+  loop:    boolean;
+  title?:  string;
 }
 
 export class AnimationConfigHelper {
@@ -27,19 +28,22 @@ export class AnimationConfigHelper {
         path: 'animations/no-data-found.json',
         width: '400px',
         height: '400px',
+        loop: true,
         title: LocaleKeys.titles.noDataFound
       },
       {
         type: AnimationType.DELETE_CONFIRMATION,
         path: 'animations/delete-confirmation.json',
         width: '105px',
-        height: '105px'
+        height: '105px',
+        loop: false
       },
       {
         type: AnimationType.DO_NOT,
         path: 'animations/do-not.json',
         width: '115px',
-        height: '115px'
+        height: '115px',
+        loop: false
       }
     ];
   }

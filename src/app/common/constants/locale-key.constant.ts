@@ -38,6 +38,7 @@ export const LocaleKeys = {
     gridView: 'tooltips.gridView',
     listView: 'tooltips.listView',
     refreshData: 'tooltips.refreshData',
+    refreshList: 'tooltips.refreshList',
     close: 'tooltips.close',
   },
   alerts: {
@@ -86,6 +87,7 @@ export const LocaleKeys = {
       name: 'labels.forms.name',
       description: 'labels.forms.description',
       createdAt: 'labels.forms.createdAt',
+      loadingList: 'labels.forms.loadingList',
     },
   },
   errors: {

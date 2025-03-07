@@ -17,7 +17,11 @@
 
 @mixin form-colors-dark {
   @include mat.form-field-overrides((
-    outlined-hover-outline-color: var.$primary-color
+    outlined-hover-outline-color: var.$primary-color,
+    outlined-focus-label-text-color: var.$primary-color,
+    outlined-hover-label-text-color: var.$primary-color,
+    outlined-error-hover-outline-color: var.$warn-color,
+    outlined-error-hover-label-text-color: var.$warn-color
   ));
 
   @include mat.select-overrides((

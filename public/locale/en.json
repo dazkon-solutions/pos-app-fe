@@ -24,6 +24,7 @@
     "gridView": "Grid view",
     "listView": "List view",
     "refreshData": "Refresh data",
+    "refreshList": "Refresh list",
     "close": "Close"
   },
 
@@ -74,7 +75,8 @@
       "searchByName": "Search by name",
       "name": "Name",
       "description": "Description",
-      "createdAt": "Created at"
+      "createdAt": "Created at",
+      "loadingList": "Loading list..."
     }
   },
 

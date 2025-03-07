@@ -81,12 +81,16 @@
 
     <span class="form-section-title" >hello</span>
     <div class="form-section" >
-      <daz-common-auto-complete formControlName="category"
+      <daz-common-auto-complete class="form-field-width-full" 
+                                formControlName="category"
                                 displayProperty="name"
+                                [label]="LocaleKeys.labels.forms.name"
                                 [isParentTouched]="formTouched"
                                 [dataSource$]="getCategoryList()"
+                                [isLoading$]="isCategoryLoading$"
                                 [validators]="form.get('category')?.validator"
-                                (filterTerm)="onFilterCategory($event)" />
+                                (filterTerm)="onFilterCategory($event)"
+                                (fetchDataClicked)="categoryFetchClicked($event)" />
     </div>
 
     <mat-form-field class="form-field-width-full" >

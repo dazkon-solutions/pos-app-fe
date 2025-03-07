@@ -24,6 +24,7 @@ import {
 import { LocaleKeys } from 'src/app/common/constants';
 import { 
   Action, 
+  ButtonEvent, 
   FormMode 
 } from 'src/app/common/enums';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
@@ -36,8 +37,8 @@ import { ProductCategoryUIState } from 'src/app/store/product-category';
 import { CustomErrorStateMatcher } from 'src/app/private/system/common/error-statement-matcher';
 import { FORM_MAT_IMPORTS } from 'src/app/common/imports/form-imports';
 import { WaitingOverlayComponent } from 'src/app/private/system/common/waiting-overlay/waiting-overlay.component';
-import { CategoryFormConfigHelper } from './category-form-config';
 import { CommonAutoCompleteComponent } from 'src/app/private/system/common/auto-completes/common-auto-complete/common-auto-complete.component';
+import { CategoryFormConfigHelper } from './category-form-config';
 
 
 @Component({
@@ -60,6 +61,9 @@ export class CategoryComponent implements OnInit {
   createBtn$ = new BehaviorSubject<ActionButtonConfig>(CategoryFormConfigHelper.createBtnConfig);
   updateBtn$ = new BehaviorSubject<ActionButtonConfig>(CategoryFormConfigHelper.updateBtnConfig);
   editBtn$ = new BehaviorSubject<ActionButtonConfig>(CategoryFormConfigHelper.editBtnConfig);
+
+  isCategoryLoading$!: Observable<boolean>;
+
   matcher = new CustomErrorStateMatcher();
   form: FormGroup;
   initFormMode = FormMode.NEW;
@@ -111,6 +115,11 @@ export class CategoryComponent implements OnInit {
 
   onFilterCategory(filterTerm: string): void {
     console.warn('category filter', filterTerm);
+  }
+
+  categoryFetchClicked(buttonEvent: ButtonEvent): void {
+    this.isCategoryLoading$ = of(true);
+    console.warn('fetch category', buttonEvent);
   }
 
   getCategoryList(): Observable<any[]> {

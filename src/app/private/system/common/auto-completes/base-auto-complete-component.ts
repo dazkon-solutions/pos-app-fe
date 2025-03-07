@@ -31,6 +31,7 @@ import {
   Subject 
 } from 'rxjs';
 import { LocaleKeys } from 'src/app/common/constants';
+import { ButtonEvent } from 'src/app/common/enums';
 import { CustomErrorStateMatcher } from '../error-statement-matcher';
 
 @Component({
@@ -47,6 +48,9 @@ export abstract class BaseAutoCompleteComponent implements
   @Input('dataSource$') 
   dataSource$!: Observable<any[]>;
 
+  @Input('isLoading$') 
+  isLoading$!: Observable<boolean>;
+
   @Input('label') 
   label!: string ;
   
@@ -61,14 +65,20 @@ export abstract class BaseAutoCompleteComponent implements
 
   @Output('filterTerm') 
   filterTerm = new EventEmitter<string>(true);
+
+  @Output('fetchDataClicked') 
+  fetchDataClicked = new EventEmitter<ButtonEvent>(true);
   
   filterSubject$ = new Subject<string>();
+  clickTimeout: any;
   ctrlLabel = 'name';
   ctrlDisplayProperty = 'name';
   ctrlFilterProperty = 'name';
   LocaleKeys = LocaleKeys;
+  ButtonEvent = ButtonEvent;
   myControl = new FormControl();
   matcher = new CustomErrorStateMatcher();
+  isRefetchDoubleClicked = false; 
 
   onChange: any = () => {};
   onTouched: any = () => {};
@@ -107,6 +117,41 @@ export abstract class BaseAutoCompleteComponent implements
   filter(): void {
     const filterValue = this.input?.nativeElement.value.toLowerCase();
     this.filterSubject$.next(filterValue);
+  }
+
+  onClickReset(event: MouseEvent): void {
+    event.stopPropagation();
+    event.preventDefault();
+
+    this.myControl.reset(null);
+  }
+
+  // Use a method to identify single click and double click
+  onClickRefetch(
+    event: MouseEvent,
+    buttonEvent: ButtonEvent
+  ): void {
+    event.stopPropagation();
+    event.preventDefault();
+
+    if(buttonEvent === ButtonEvent.DOUBLE_CLICK) {
+      this.isRefetchDoubleClicked = true;
+      clearTimeout(this.clickTimeout);
+      this.fetchDataClicked.emit(buttonEvent);
+      
+      setTimeout(() => {
+        this.isRefetchDoubleClicked = false;
+      }, 300);
+      return;
+    }
+  
+    if(this.isRefetchDoubleClicked) return;
+
+    this.clickTimeout = setTimeout(() => {
+      if(!this.isRefetchDoubleClicked) {
+        this.fetchDataClicked.emit(buttonEvent);
+      }
+    }, 300); 
   }
 
   private markAsTouched(): void {

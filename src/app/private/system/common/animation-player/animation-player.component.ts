@@ -44,9 +44,7 @@ export class AnimationPlayerComponent implements
   animationType!: AnimationType;
 
   config: CustomAnimationConfig = AnimationConfigHelper.createDefault();
-  options: AnimationOptions = {
-    path: ''
-  };
+  options: AnimationOptions = { };
 
   private animation!: AnimationItem;
 
@@ -56,9 +54,11 @@ export class AnimationPlayerComponent implements
         .createByAnimationType(this.animationType);
 
       this.options ={
-        ...this.options,
-        path: this.config.path
+        path: this.config.path,
+        loop: this.config.loop
       };
+
+      console.warn(this.options)
     }
   }
 
