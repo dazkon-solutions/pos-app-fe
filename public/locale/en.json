@@ -76,7 +76,8 @@
       "name": "Name",
       "description": "Description",
       "createdAt": "Created at",
-      "loadingList": "Loading list..."
+      "loadingList": "Loading list...",
+      "title": "Title"
     }
   },
 

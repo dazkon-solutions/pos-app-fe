@@ -88,6 +88,7 @@ export const LocaleKeys = {
       description: 'labels.forms.description',
       createdAt: 'labels.forms.createdAt',
       loadingList: 'labels.forms.loadingList',
+      title: 'labels.forms.title',
     },
   },
   errors: {

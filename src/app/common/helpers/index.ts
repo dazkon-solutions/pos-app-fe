@@ -11,3 +11,4 @@ export * from './form.helper';
 export * from './subscription.helper';
 export * from './paginate-config.helper';
 export * from './filter.helper';
+export * from './person-title-config-helper';

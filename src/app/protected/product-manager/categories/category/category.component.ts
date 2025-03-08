@@ -39,6 +39,7 @@ import { FORM_MAT_IMPORTS } from 'src/app/common/imports/form-imports';
 import { WaitingOverlayComponent } from 'src/app/private/system/common/waiting-overlay/waiting-overlay.component';
 import { CommonAutoCompleteComponent } from 'src/app/private/system/common/auto-completes/common-auto-complete/common-auto-complete.component';
 import { CategoryFormConfigHelper } from './category-form-config';
+import { PersonAutoCompleteComponent } from 'src/app/private/system/common/auto-completes/person-auto-complete/person-auto-complete.component';
 
 
 @Component({
@@ -50,7 +51,8 @@ import { CategoryFormConfigHelper } from './category-form-config';
     DialogHeaderComponent,
     DialogActionsComponent,
     WaitingOverlayComponent,
-    CommonAutoCompleteComponent
+    CommonAutoCompleteComponent,
+    PersonAutoCompleteComponent
   ],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss'
@@ -148,6 +150,37 @@ export class CategoryComponent implements OnInit {
         id: 5,
         name: "Sports & Outdoors",
         year: 2023
+      }
+    ];
+    return of(list);
+  }
+
+  getCustomerList(): Observable<any[]> {
+    const list = [
+      {
+        id: 1,
+        name: "Samantha rathnayake",
+        title: 'MR'
+      },
+      {
+        id: 2,
+        name: "Sugath bandara",
+        title: 'MR'
+      },
+      {
+        id: 3,
+        name: "Nimesha ranathunga",
+        title: 'MISS'
+      },
+      {
+        id: 4,
+        name: "Sarath dassanayake",
+        title: 'MR'
+      },
+      {
+        id: 5,
+        name: "Mahesh bandara",
+        title: 'MR'
       }
     ];
     return of(list);

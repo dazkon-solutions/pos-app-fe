@@ -7,9 +7,16 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './resource.enum';
-export * from './action.enum';
-export * from './table.enum';
-export * from './form-mode.enum';
-export * from './button-event.enum';
-export * from './person-title.enum';
+export enum PersonTitle {
+  MR = 'MR',
+  MS = 'MS',
+  MISS = 'MISS',
+  MRS = 'MRS',
+  REV = 'REV'
+}
+
+export enum PersonType {
+  EMPLOYEE = 'employee',
+  CUSTOMER = 'customer',
+  SUPPLIER = 'supplier'
+}

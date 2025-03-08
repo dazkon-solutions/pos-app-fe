@@ -42,6 +42,13 @@ export class CategoryFormConfigHelper {
         },
         [Validators.required]
       ],
+      customer: [
+        {
+          value: null,
+          disabled: false
+        },
+        [Validators.required]
+      ],
       createdAt: [
         {
           value: '',

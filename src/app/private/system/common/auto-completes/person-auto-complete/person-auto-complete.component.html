@@ -9,7 +9,7 @@
 
 @let isLoading = (isLoading$ | async) ?? false;
 
-<form >
+<form disabled >
   <mat-form-field class="form-field-width-full" 
                   [floatLabel]="isLoading ? 'always' : 'auto'" >
     <mat-label >{{ ctrlLabel | translate }}</mat-label>
@@ -48,7 +48,7 @@
       @let dataSource = (dataSource$ | async) ?? [];
       @for (option of dataSource; track option[ctrlDisplayProperty]) {
         <mat-option [value]="option" >
-          {{ option[ctrlDisplayProperty] }}
+          {{ option.title }}. {{ option[ctrlDisplayProperty] }}
         </mat-option>
       }
 
