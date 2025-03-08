@@ -64,7 +64,7 @@
         <!-- End of main button -->
         
         <!-- Secondary button -->
-        <daz-action-button [config$]="deleteButton$"
+        <daz-action-button [config$]="viewButton$" 
                            (buttonClicked)="buttonClicked($event, 
                                                           item)" />
         <!-- End of secondary button -->
@@ -92,7 +92,7 @@
 <mat-menu #optionMenu="matMenu" 
           xPosition="before" >
   <ng-template matMenuContent let-item="item" >
-    <daz-action-button [config$]="deleteMenuItemButton$"
+    <daz-action-button [config$]="deleteButton$"
                        (buttonClicked)="buttonClicked($event, 
                                                       item)" />
   </ng-template>
