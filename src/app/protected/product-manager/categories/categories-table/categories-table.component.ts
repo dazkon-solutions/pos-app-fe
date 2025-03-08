@@ -7,32 +7,19 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { 
-  Component, 
-  Input
-} from '@angular/core';
-import { 
-  BehaviorSubject,
-  Observable
-} from 'rxjs';
+import { Component } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { ActionButtonComponent } from 'src/app/private/system/common/action-button/action-button.component';
-import { 
-  Action, 
-  TableColumnAlignmentStyleClass 
-} from 'src/app/common/enums';
+import { Action } from 'src/app/common/enums';
 import { 
   ActionButtonConfig, 
   ActionButtonType 
 } from 'src/app/private/system/common/action-button';
 import { TableSkeletonWithImageComponent } from 'src/app/private/system/common/skeletons/table-skeleton-with-image/table-skeleton-with-image.component';
-import { 
-  ActionService, 
-  TableService 
-} from 'src/app/common/services';
 import { TABLE_VIEW_IMPORTS } from 'src/app/common/imports/table-view-imports';
-import { AnimationType } from 'src/app/private/system/common/animation-player';
 import { AnimationPlayerComponent } from 'src/app/private/system/common/animation-player/animation-player.component';
+import { BaseTableViewComponent } from 'src/app/private/system/common/base-table-view-component';
 
 @Component({
   selector: 'daz-categories-table',
@@ -46,52 +33,28 @@ import { AnimationPlayerComponent } from 'src/app/private/system/common/animatio
   templateUrl: './categories-table.component.html',
   styleUrl: './categories-table.component.scss'
 })
-export class CategoriesTableComponent {
-  @Input('dataSource$')
-  dataSource$!: Observable<any[]>;
-
-  @Input('isLoading$')
-  isLoading$!: Observable<boolean>;
-
-  viewButton$ = new BehaviorSubject<ActionButtonConfig>({
-    action: Action.VIEW_CATEGORY,
-    type: ActionButtonType.VIEW
-  });
-
-  deleteButton$ = new BehaviorSubject<ActionButtonConfig>({
-    action: Action.DELETE_CATEGORY,
-    type: ActionButtonType.DELETE_FAB
-  });
-
-  tableHeaderColor$: Observable<string>; 
-
-  displayedColumns: string[] = [
-    'photo', 
-    'position', 
-    'name', 
-    'weight', 
-    'symbol',
-    'viewAction',
-    'deleteAction'
-  ];
-
-  TableColumnAlignmentStyleClass = TableColumnAlignmentStyleClass;
-  AnimationType = AnimationType;
-
-  constructor(
-    private tableSvc: TableService,
-    private actionSvc: ActionService
-  ) { 
-    this.tableHeaderColor$ = this.tableSvc.tableHeaderColor$;
+export class CategoriesTableComponent extends BaseTableViewComponent<any> {
+  protected setDisplayedColumns(): string[] {
+    return [
+      'photo', 
+      'position', 
+      'name', 
+      'weight', 
+      'symbol',
+      'viewAction',
+      'deleteAction'
+    ];
   }
 
-  buttonClicked(
-    action: Action, 
-    payload: any
-  ): void {
-    this.actionSvc.emitAction({ 
-      action,
-      payload
+  protected initializeButtons(): void {
+    this.viewButton$ = new BehaviorSubject<ActionButtonConfig>({
+      action: Action.VIEW_CATEGORY,
+      type: ActionButtonType.VIEW
+    });
+  
+    this.deleteButton$ = new BehaviorSubject<ActionButtonConfig>({
+      action: Action.DELETE_CATEGORY,
+      type: ActionButtonType.DELETE_FAB
     });
   }
 }
