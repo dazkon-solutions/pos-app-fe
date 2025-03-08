@@ -14,4 +14,15 @@
   flex-direction: row;
   align-items: center;
   gap: 10px;
+
+  @include mat.form-field-overrides((
+    container-height: 34px,
+    container-vertical-padding: 5px,
+    outlined-container-shape: 12px,
+    container-text-size: 14px
+  ));
+
+  .clear-btn {
+    cursor: pointer;
+  }
 }

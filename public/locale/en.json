@@ -17,7 +17,6 @@
 
   "tooltips": {
     "notifications": "Notifications",
-    "advancedFilter": "Advanced filter",
     "clear": "Clear",
     "delete": "Delete",
     "options": "Options",
@@ -66,7 +65,8 @@
       "delete": "DELETE",
       "cancel": "CANCEL",
       "ok": "OK",
-      "edit": "EDIT"
+      "edit": "EDIT",
+      "deepSearch": "DEEP SEARCH"
     },
     "forms": {
       "selectOne": "Select one",

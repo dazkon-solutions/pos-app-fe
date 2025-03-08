@@ -13,22 +13,6 @@
     <mat-form-field class="search-field" 
                     subscriptSizing="dynamic" >
 
-      <!-- Advanced filter button -->
-      <button matPrefix 
-              mat-icon-button
-              [disabled]="!config.isFilterAvailable"
-              [matTooltip]="LocaleKeys.tooltips.advancedFilter | translate"
-              (click)="onClickAdvancedFilter()" >
-        <mat-icon svgIcon="tune"
-                  class="primary-badge"
-                  matBadge="1"
-                  matBadgeSize="small" 
-                  matBadgeOverlap="true"
-                  aria-hidden="false"
-                  [matBadgeHidden]="!isFiltered" />
-      </button>
-      <!-- End of advanced filter button -->
-      
       <input matInput 
              formControlName="search"
              name="search"
@@ -37,22 +21,29 @@
 
       @if (hasSearchValue() || isFiltered) {
         <!-- Clear button -->
-        <button matSuffix 
-                mat-icon-button
-                [matTooltip]="LocaleKeys.tooltips.clear | translate"
-                (click)="onClickClearForm()" >
-          <mat-icon svgIcon="close" />
-        </button>
+        <mat-icon svgIcon="close" 
+                  class="clear-btn"
+                  matSuffix
+                  matRipple 
+                  [matTooltip]="LocaleKeys.tooltips.clear | translate"
+                  (click)="onClickClearForm()" />
         <!-- End of clear button -->
          
       } @else {
-        <button matSuffix 
-                mat-icon-button 
-                disabled >
-          <mat-icon svgIcon="search" />
-        </button>
+        <mat-icon svgIcon="search" matSuffix />
       }
 
     </mat-form-field>
   </form>
+
+  <!-- Advanced filter button -->
+  <button matPrefix 
+          mat-fab extended 
+          class="btn-fab-basic-primary"
+          [disabled]="!config.isFilterAvailable"
+          (click)="onClickAdvancedFilter()" >
+    <mat-icon svgIcon="deep-search" />
+    {{ LocaleKeys.labels.buttons.deepSearch | translate }}
+  </button>
+  <!-- End of advanced filter button -->
 </span>

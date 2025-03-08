@@ -31,7 +31,6 @@ export const LocaleKeys = {
   },
   tooltips: {
     notifications: 'tooltips.notifications',
-    advancedFilter: 'tooltips.advancedFilter',
     clear: 'tooltips.clear',
     delete: 'tooltips.delete',
     options: 'tooltips.options',
@@ -78,6 +77,7 @@ export const LocaleKeys = {
       cancel: 'labels.buttons.cancel',
       ok: 'labels.buttons.ok',
       edit: 'labels.buttons.edit',
+      deepSearch: 'labels.buttons.deepSearch',
     },
     forms: {
       selectOne: 'labels.forms.selectOne',
