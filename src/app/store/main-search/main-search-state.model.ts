@@ -10,8 +10,7 @@
 import { MainSearchConfig } from "./main-search.interface";
 
 export interface MainSearchStateModel {
-  searchTerm:     string;
-  config:         MainSearchConfig;
-  list:           MainSearchConfig[];
-  isFilterActive: boolean;
+  searchTerm:      string;
+  config:          MainSearchConfig;
+  isFilterActived: boolean;
 }

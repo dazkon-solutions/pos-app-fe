@@ -136,6 +136,9 @@ export class CategoriesComponent implements OnInit {
 
   private handleAction(actionResponse: ActionResponse) {
     switch (actionResponse.action) {
+      case Action.OPEN_ADVANCED_FILTER:
+        this.service.openFilter();
+        break;
       case Action.CREATE_CATEGORY:
         this.service.openForm();
         break;

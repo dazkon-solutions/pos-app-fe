@@ -38,7 +38,6 @@ import {
 import { Resource } from 'src/app/common/enums';
 import { Navigator } from 'src/app/common/services';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
-import { SetMainSearchByResource } from 'src/app/store/main-search';
 import { BottomMenuComponent } from './bottom-menu/bottom-menu.component';
 import { LEFT_PANEL_MAT_IMPORTS } from './left-panel-imports';
 
@@ -164,10 +163,7 @@ export class LeftPanelComponent implements
 
     this.navigateTo(menuNode.route);
 
-    this.store.dispatch([
-      new SelectMenuItem(menuNode),
-      new SetMainSearchByResource(resource) // Set main search
-    ]);
+    this.store.dispatch(new SelectMenuItem(menuNode));
 
     this.expandParent();
 

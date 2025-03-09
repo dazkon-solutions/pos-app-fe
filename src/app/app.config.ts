@@ -33,7 +33,13 @@ import {
   provideHttpClient 
 } from '@angular/common/http';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MAT_NATIVE_DATE_FORMATS, NativeDateAdapter } from '@angular/material/core';
+import { 
+  DateAdapter, 
+  MAT_DATE_FORMATS, 
+  MAT_DATE_LOCALE, 
+  MAT_NATIVE_DATE_FORMATS, 
+  NativeDateAdapter 
+} from '@angular/material/core';
 import { LeftPanelState } from 'src/app/store/left-panel-config';
 import { ResourceState } from 'src/app/store/resource-config';
 import { AppearanceState } from 'src/app/store/appearance';
@@ -95,10 +101,6 @@ export const appConfig: ApplicationConfig = {
           },
           {
             key: StateKey.MENU,
-            engine: LOCAL_STORAGE_ENGINE
-          },
-          {
-            key: StateKey.MAIN_SEARCH,
             engine: LOCAL_STORAGE_ENGINE
           },
           {

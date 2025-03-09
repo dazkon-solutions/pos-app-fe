@@ -7,6 +7,8 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
+@let config = config$ | async;
+
 <span class="daz-main-search-field" >
 
   <form [formGroup]="form" >
@@ -17,7 +19,7 @@
              formControlName="search"
              name="search"
              maxlength="255"
-             [placeholder]="config.label | translate" >
+             [placeholder]="config?.label ?? '' | translate" >
 
       @if (hasSearchValue() || isFiltered) {
         <!-- Clear button -->
@@ -39,8 +41,9 @@
   <!-- Advanced filter button -->
   <button matPrefix 
           mat-fab extended 
-          class="btn-fab-basic-primary"
-          [disabled]="!config.isFilterAvailable"
+          class="btn-fab-basic-primary advanced-filter-btn"
+          [class.advanced-filter-active]="isFiltered"
+          [disabled]="!config?.hasFilter"
           (click)="onClickAdvancedFilter()" >
     <mat-icon svgIcon="deep-search" />
     {{ LocaleKeys.labels.buttons.deepSearch | translate }}

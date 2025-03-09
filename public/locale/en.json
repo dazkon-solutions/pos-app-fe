@@ -70,8 +70,8 @@
     },
     "forms": {
       "selectOne": "Select one",
-      "filtersAreNotAvailableHere": "Filters are not available here..",
-      "usingAdvancedFilter": "Using advanced filter..",
+      "search": "Search",
+      "usingDeepSearch": "Using deep search..",
       "searchByName": "Search by name",
       "name": "Name",
       "description": "Description",

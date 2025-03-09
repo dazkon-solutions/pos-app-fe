@@ -71,8 +71,8 @@ export class MainSearchState {
   }
 
   @Selector()
-  static isFiltered(state: MainSearchStateModel): boolean {
-    return state.isFilterActive;
+  static isFilterActived(state: MainSearchStateModel): boolean {
+    return state.isFilterActived;
   }
 
   @Action(SetMainSearchByResource)
@@ -80,12 +80,8 @@ export class MainSearchState {
     ctx: StateContext<MainSearchStateModel>,
     action: SetMainSearchByResource
   ): void {
-    const state = ctx.getState();
-    const selectedConfig = state.list.find(config => 
-      config.resource === action.resource);
-
     ctx.patchState({
-      config: selectedConfig ?? MainSearchStateConfigHelper.defaultConfig()
+      config: MainSearchStateConfigHelper.getConfigByResource(action.resource)
     });
   }
 
@@ -106,10 +102,10 @@ export class MainSearchState {
     if(!state.config) return;
 
     ctx.patchState({
-      isFilterActive: true,
+      isFilterActived: true,
       config: {
         ...state.config,
-        label: LocaleKeys.labels.forms.usingAdvancedFilter
+        label: LocaleKeys.labels.forms.usingDeepSearch
       }
     });
   }
@@ -119,7 +115,7 @@ export class MainSearchState {
     const state = ctx.getState();
     
     ctx.patchState({
-      isFilterActive: false
+      isFilterActived: false
     });
 
     // Set value to config.label

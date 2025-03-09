@@ -18,41 +18,40 @@ export class MainSearchStateConfigHelper {
     return {
       searchTerm: '',
       config: this.defaultConfig(),
-      list: this.createConfigList(),
-      isFilterActive: false
+      isFilterActived: false
     };
   }
 
   static defaultConfig(): MainSearchConfig {
     return {
-      label: LocaleKeys.labels.forms.filtersAreNotAvailableHere,
+      label: LocaleKeys.labels.forms.search,
       resource: Resource.NONE,
-      isFilterAvailable: false
+      hasFilter: false
     }
   }
 
   static createConfigList(): MainSearchConfig[] {
     return [
       // {
-      //   label: LocaleKeys.labels.forms.productsFilter,
-      //   resource: Resource.PRODUCTS,
-      //   isFilterAvailable: false
+      //   label: LocaleKeys.labels.forms.searchByName,
+      //   resource: Resource.PRODUCTS
       // },
-      // {
-      //   label: LocaleKeys.labels.forms.searchTeachers,
-      //   resource: Resource.TEACHERS,
-      //   isFilterAvailable: true
-      // },
-      {
-        label: LocaleKeys.labels.forms.searchByName,
-        resource: Resource.PRODUCTS,
-        isFilterAvailable: true
-      },
       {
         label: LocaleKeys.labels.forms.searchByName,
         resource: Resource.CATEGORIES,
-        isFilterAvailable: true
+        hasFilter: true
+      },
+      {
+        label: LocaleKeys.labels.forms.searchByName,
+        resource: Resource.BRANDS,
+        hasFilter: true
       },
     ];
+  }
+
+  static getConfigByResource(resource: Resource): MainSearchConfig {
+    const configList = this.createConfigList();
+    return configList.find(config => config.resource === resource) 
+      ?? this.defaultConfig();
   }
 }

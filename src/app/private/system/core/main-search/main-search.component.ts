@@ -18,7 +18,10 @@ import {
   Validators
 } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { distinctUntilChanged } from 'rxjs';
+import { 
+  distinctUntilChanged, 
+  Observable 
+} from 'rxjs';
 import { Store } from '@ngxs/store';
 import { FormHelper } from 'src/app/common/helpers';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
@@ -27,11 +30,16 @@ import {
   MainSearchState, 
   DeactivateMainSearchFilter,
   SetMainSearchTerm,
-  MainSearchStateConfigHelper
+  SetMainSearchByResource
 } from 'src/app/store/main-search';
 import { LocaleKeys } from 'src/app/common/constants';
+import { MenuState } from 'src/app/store/menu-config';
+import { 
+  Action, 
+  Resource 
+} from 'src/app/common/enums';
+import { ActionService } from 'src/app/common/services';
 import { MAIN_SEARCH_MAT_IMPORTS } from './main-search-imports';
-import { DynamicFilterService } from '../../common/dynamic-filter/dynamic-filter.service';
 
 
 @Component({
@@ -44,7 +52,7 @@ import { DynamicFilterService } from '../../common/dynamic-filter/dynamic-filter
   styleUrl: './main-search.component.scss'
 })
 export class MainSearchComponent implements OnInit {
-  config: MainSearchConfig = MainSearchStateConfigHelper.defaultConfig();
+  config$!: Observable<MainSearchConfig>;
   form: FormGroup;
   LocaleKeys = LocaleKeys;
   isFiltered = false;
@@ -53,7 +61,7 @@ export class MainSearchComponent implements OnInit {
     private destroyRef: DestroyRef,
     private formBuilder: FormBuilder,
     private store: Store,
-    private dynamicFilterSvc: DynamicFilterService
+    private actionSvc: ActionService
   ) {
     this.form = this.createForm(this.formBuilder);
     this.onSearchValue();
@@ -65,16 +73,28 @@ export class MainSearchComponent implements OnInit {
   }
 
   private syncState(): void {
-    this.store.select(MainSearchState.getConfig)
+    this.config$ = this.store.select(MainSearchState.getConfig);
+
+    this.store.select(MenuState.getCurrent)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(current => {
+        if(current) { 
+          this.store.dispatch(new SetMainSearchByResource(current.resource));
+          this.store.dispatch(new DeactivateMainSearchFilter()); // Reset for new page
+        }
+      });
+
+    this.config$
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(config => {
-        this.config = config;
-        this.handleFormActivation(!config.isFilterAvailable);
-      });
+        config.resource === Resource.NONE
+          ? this.form.disable()
+          : this.form.enable();
+      })
   }
 
   private syncFilterChanges(): void {
-    this.store.select(MainSearchState.isFiltered)
+    this.store.select(MainSearchState.isFilterActived)
       .pipe(
         takeUntilDestroyed(this.destroyRef), 
         distinctUntilChanged())
@@ -130,6 +150,9 @@ export class MainSearchComponent implements OnInit {
   }
 
   onClickAdvancedFilter(): void {
-    this.dynamicFilterSvc.open();
+    this.actionSvc.emitAction({
+      action: Action.OPEN_ADVANCED_FILTER,
+      payload: null
+    });
   }
 }

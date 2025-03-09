@@ -15,6 +15,7 @@ import { Store } from '@ngxs/store';
 import { LocaleKeys } from 'src/app/common/constants';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { FILTER_MAT_IMPORTS } from 'src/app/common/imports/filter-imports';
+import { ActivateMainSearchFilter, DeactivateMainSearchFilter } from 'src/app/store/main-search';
 
 
 @Component({
@@ -41,10 +42,10 @@ export class CategoryFilterComponent implements OnInit {
   }
   
   onClickSearch(): void {
-    //
+    this.store.dispatch(new ActivateMainSearchFilter());
   }
 
   onClickReset(): void {
-    //
+    this.store.dispatch(new DeactivateMainSearchFilter());
   }
 }

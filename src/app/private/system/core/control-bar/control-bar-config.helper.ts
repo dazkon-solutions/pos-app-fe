@@ -7,7 +7,10 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Action, Resource } from "src/app/common/enums";
+import { 
+  Action, 
+  Resource 
+} from "src/app/common/enums";
 
 
 export class ControlBarConfigHelper {

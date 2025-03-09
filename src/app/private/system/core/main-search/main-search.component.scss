@@ -25,4 +25,31 @@
   .clear-btn {
     cursor: pointer;
   }
+
+  .advanced-filter-active {
+    animation: change-color 2s infinite;
+
+    @keyframes change-color {
+      0% {
+      color: blue;
+      }
+      33% {
+      color: rgb(255, 0, 255);
+      }
+      66% {
+      color: rgb(255, 187, 0);
+      }
+      100% {
+      color: blue;
+      }
+    }
+  }
+
+  .advanced-filter-btn {
+    @include mat.fab-overrides((
+      disabled-state-container-color: none,
+      focus-state-layer-opacity: 0,
+      hover-state-layer-opacity: 0
+    ));
+  }
 }

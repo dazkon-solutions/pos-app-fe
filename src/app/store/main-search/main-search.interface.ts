@@ -10,7 +10,7 @@
 import { Resource } from "src/app/common/enums";
 
 export interface MainSearchConfig {
-  label:             string;
-  resource:          Resource;
-  isFilterAvailable: boolean;
+  label:      string;
+  resource:   Resource;
+  hasFilter:  boolean;
 }

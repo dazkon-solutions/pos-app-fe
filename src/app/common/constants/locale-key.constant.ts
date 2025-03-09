@@ -81,8 +81,8 @@ export const LocaleKeys = {
     },
     forms: {
       selectOne: 'labels.forms.selectOne',
-      filtersAreNotAvailableHere: 'labels.forms.filtersAreNotAvailableHere',
-      usingAdvancedFilter: 'labels.forms.usingAdvancedFilter',
+      search: 'labels.forms.search',
+      usingDeepSearch: 'labels.forms.usingDeepSearch',
       searchByName: 'labels.forms.searchByName',
       name: 'labels.forms.name',
       description: 'labels.forms.description',
