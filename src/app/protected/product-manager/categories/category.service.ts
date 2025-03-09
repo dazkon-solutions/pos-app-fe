@@ -8,7 +8,10 @@
  */
 
 import { Injectable } from '@angular/core';
-import { DialogService } from 'src/app/common/services';
+import { 
+  BottomSheetService, 
+  DialogService 
+} from 'src/app/common/services';
 import { 
   DeleteHandlerConfig, 
   DeleteHandlerService 
@@ -26,11 +29,17 @@ import { CategoryComponent } from './category/category.component';
 export class CategoryService {
   constructor(
     private dialogSvc: DialogService,
-    private deleteHandlerSvc: DeleteHandlerService
+    private deleteHandlerSvc: DeleteHandlerService,
+    private bottomSheetSvc: BottomSheetService
   ) { }
 
   openForm(): void {
     this.dialogSvc.open(CategoryComponent, { });
+  }
+
+  async openFilter(): Promise<void> {
+    const { CategoryFilterComponent } = await import('./category-filter/category-filter.component');
+    this.bottomSheetSvc.open(CategoryFilterComponent);
   }
 
   delete(category: any): void {
