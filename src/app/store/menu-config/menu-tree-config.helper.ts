@@ -7,7 +7,7 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Action, Resource } from "src/app/common/enums";
+import { Resource } from "src/app/common/enums";
 import { LocaleKeys } from "src/app/common/constants";
 import { MenuNode } from "./menu.interface";
 
@@ -21,8 +21,7 @@ export class MenuTreeConfigHelper {
         description: LocaleKeys.titles.dashboard,
         icon: 'dashboard',
         route: '',
-        resource: Resource.DASHBOARD,
-        action: Action.DEFAULT
+        resource: Resource.DASHBOARD
       },
       {
         uid: 10,
@@ -31,7 +30,6 @@ export class MenuTreeConfigHelper {
         description: LocaleKeys.titles.products,
         icon: 'product',
         resource: Resource.PRODUCT_MANAGER,
-        action: Action.DEFAULT,
         children: [
           {
             uid: 11,
@@ -39,8 +37,7 @@ export class MenuTreeConfigHelper {
             name: LocaleKeys.titles.products,
             description: LocaleKeys.titles.products,
             route: 'products',
-            resource: Resource.PRODUCTS,
-            action: Action.CREATE_PRODUCT
+            resource: Resource.PRODUCTS
           }, 
           {
             uid: 12,
@@ -48,8 +45,7 @@ export class MenuTreeConfigHelper {
             name: LocaleKeys.titles.categories,
             description: LocaleKeys.titles.categories,
             route: 'products/categories',
-            resource: Resource.CATEGORIES,
-            action: Action.CREATE_CATEGORY
+            resource: Resource.CATEGORIES
           },
           {
             uid: 13,
@@ -57,8 +53,7 @@ export class MenuTreeConfigHelper {
             name: LocaleKeys.titles.brands,
             description: LocaleKeys.titles.brands,
             route: 'brands',
-            resource: Resource.BRANDS,
-            action: Action.CREATE_BRAND
+            resource: Resource.BRANDS
           }
         ]
       },

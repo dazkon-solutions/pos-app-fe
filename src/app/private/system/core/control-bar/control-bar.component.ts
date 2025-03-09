@@ -20,7 +20,7 @@ import {
   MenuNode,
   MenuState
 } from 'src/app/store/menu-config';
-import { Action } from 'src/app/common/enums';
+import { Action, Resource } from 'src/app/common/enums';
 import { ActionButtonComponent } from 'src/app/private/system/common/action-button/action-button.component';
 import { 
   ActionButtonConfig, 
@@ -29,6 +29,7 @@ import {
 import { ActionService } from 'src/app/common/services';
 import { MainSearchComponent } from '../main-search/main-search.component';
 import { CONTROL_BAR_MAT_IMPORTS } from './control-bar-imports';
+import { ControlBarConfigHelper } from './control-bar-config.helper';
 
 
 @Component({
@@ -66,12 +67,14 @@ export class ControlBarComponent implements OnInit {
         this.menuCurrent = current;
 
         if(current) { 
-          this.setAddButtonConfig(current.action);
+          this.setAddButtonConfig(current.resource);
         }
       });
   }
 
-  private setAddButtonConfig(action: Action): void {
+  private setAddButtonConfig(resource: Resource): void {
+    const action = ControlBarConfigHelper.getCreateActionForResource(resource);
+
     this.addNewButtonConfig$.next({
       type: ActionButtonType.ADD,
       action
