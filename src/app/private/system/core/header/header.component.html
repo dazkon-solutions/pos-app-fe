@@ -27,6 +27,12 @@
   <!-- Button section -->
   <section class="button-section" >
     <button mat-icon-button
+            [matTooltip]="LocaleKeys.tooltips.openPos | translate"
+            (click)="onClickPos()" >
+      <mat-icon svgIcon="pos" />
+    </button>
+
+    <button mat-icon-button
             [matTooltip]="LocaleKeys.tooltips.notifications | translate"
             (click)="onClickNotifications()" >
       <mat-icon svgIcon="bell" 

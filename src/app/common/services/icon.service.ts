@@ -67,6 +67,8 @@ export class IconService {
       .addSvgIcon('done', this.setPath(`${this.path}/done-outlined.svg`))
       .addSvgIcon('error', this.setPath(`${this.path}/error-outlined.svg`))
       .addSvgIcon('deep-search', this.setPath(`${this.path}/deep-search-outlined.svg`))
+      .addSvgIcon('deep-search-filled', this.setPath(`${this.path}/deep-search-filled.svg`))
+      .addSvgIcon('pos', this.setPath(`${this.path}/pos-outlined.svg`))
   }                
 
   private setPath(url: string): SafeResourceUrl {

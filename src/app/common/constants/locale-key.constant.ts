@@ -39,6 +39,8 @@ export const LocaleKeys = {
     refreshData: 'tooltips.refreshData',
     refreshList: 'tooltips.refreshList',
     close: 'tooltips.close',
+    openPos: 'tooltips.openPos',
+    deepSearch: 'tooltips.deepSearch',
   },
   alerts: {
     common: {
@@ -77,7 +79,6 @@ export const LocaleKeys = {
       cancel: 'labels.buttons.cancel',
       ok: 'labels.buttons.ok',
       edit: 'labels.buttons.edit',
-      deepSearch: 'labels.buttons.deepSearch',
     },
     forms: {
       selectOne: 'labels.forms.selectOne',

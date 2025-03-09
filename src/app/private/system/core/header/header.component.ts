@@ -24,6 +24,7 @@ import {
   MenuState 
 } from 'src/app/store/menu-config';
 import { HEADER_MAT_IMPORTS } from './header-imports';
+import { PosService } from 'src/app/protected/pos/pos.service';
 
 
 @Component({
@@ -46,7 +47,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private themeSvc: ThemeService
+    private themeSvc: ThemeService,
+    private posSvc: PosService
   ) { }
 
   ngOnInit(): void {
@@ -73,6 +75,10 @@ export class HeaderComponent implements OnInit {
 
   onToggleTheme(): void {
     this.store.dispatch(new ToggleTheme());
+  }
+
+  onClickPos(): void {
+    this.posSvc.open();
   }
 
   getUsername(type: 'SHORT' | 'FULL'): string {

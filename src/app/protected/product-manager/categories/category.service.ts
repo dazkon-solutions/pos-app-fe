@@ -33,7 +33,8 @@ export class CategoryService {
     private bottomSheetSvc: BottomSheetService
   ) { }
 
-  openForm(): void {
+  async openForm(): Promise<void> {
+    const { CategoryComponent } = await import('./category/category.component');
     this.dialogSvc.open(CategoryComponent, { });
   }
 

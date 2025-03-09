@@ -7,10 +7,6 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { MainSearchConfig } from "./main-search.interface";
-
-export interface MainSearchStateModel {
-  searchTerm:      string;
-  config:          MainSearchConfig;
-  isFilterActivated: boolean;
+.daz-pos-header {
+  background-color: red;
 }

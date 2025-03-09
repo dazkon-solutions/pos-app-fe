@@ -12,8 +12,8 @@
 <span class="daz-main-search-field" >
 
   <form [formGroup]="form" >
-    <mat-form-field class="search-field" 
-                    subscriptSizing="dynamic" >
+    <mat-form-field subscriptSizing="dynamic"
+                    [class.search-field]="isFilterActivated" >
 
       <input matInput 
              formControlName="search"
@@ -21,7 +21,7 @@
              maxlength="255"
              [placeholder]="config?.label ?? '' | translate" >
 
-      @if (hasSearchValue() || isFiltered) {
+      @if (hasSearchValue() || isFilterActivated) {
         <!-- Clear button -->
         <mat-icon svgIcon="close" 
                   class="clear-btn"
@@ -39,14 +39,13 @@
   </form>
 
   <!-- Advanced filter button -->
-  <button matPrefix 
-          mat-fab extended 
-          class="btn-fab-basic-primary advanced-filter-btn"
-          [class.advanced-filter-active]="isFiltered"
+  <button mat-icon-button
+          class="advanced-filter-btn"
+          [class.advanced-filter-active]="isFilterActivated"
+          [matTooltip]="LocaleKeys.tooltips.deepSearch | translate"
           [disabled]="!config?.hasFilter"
           (click)="onClickAdvancedFilter()" >
-    <mat-icon svgIcon="deep-search" />
-    {{ LocaleKeys.labels.buttons.deepSearch | translate }}
+    <mat-icon [svgIcon]="isFilterActivated ? 'deep-search-filled' : 'deep-search'" />
   </button>
   <!-- End of advanced filter button -->
 </span>

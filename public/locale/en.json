@@ -24,7 +24,9 @@
     "listView": "List view",
     "refreshData": "Refresh data",
     "refreshList": "Refresh list",
-    "close": "Close"
+    "close": "Close",
+    "openPos": "Open POS",
+    "deepSearch": "Open deep search"
   },
 
   "alerts": {
@@ -65,8 +67,7 @@
       "delete": "DELETE",
       "cancel": "CANCEL",
       "ok": "OK",
-      "edit": "EDIT",
-      "deepSearch": "DEEP SEARCH"
+      "edit": "EDIT"
     },
     "forms": {
       "selectOne": "Select one",

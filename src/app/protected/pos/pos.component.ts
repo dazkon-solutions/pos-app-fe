@@ -7,20 +7,20 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-@use '@angular/material' as mat;
+import { Component } from '@angular/core';
+import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
+import { POS_MAT_IMPORTS } from './pos-imports';
 
-@mixin dialog-styles(
-  $bg-color,
-  $text-color
-) {
-  @include mat.dialog-overrides((
-    container-color: $bg-color,
-    subhead-color: $text-color
-  ));
-}
 
-.daz-pos {
-  @include mat.dialog-overrides((
-    container-shape: 0px
-  ));
+@Component({
+  selector: 'daz-pos',
+  imports: [
+    CORE_IMPORTS,
+    POS_MAT_IMPORTS
+  ],
+  templateUrl: './pos.component.html',
+  styleUrl: './pos.component.scss'
+})
+export class PosComponent {
+
 }

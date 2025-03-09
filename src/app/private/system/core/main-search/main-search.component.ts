@@ -55,7 +55,7 @@ export class MainSearchComponent implements OnInit {
   config$!: Observable<MainSearchConfig>;
   form: FormGroup;
   LocaleKeys = LocaleKeys;
-  isFiltered = false;
+  isFilterActivated = false;
 
   constructor(
     private destroyRef: DestroyRef,
@@ -94,13 +94,13 @@ export class MainSearchComponent implements OnInit {
   }
 
   private syncFilterChanges(): void {
-    this.store.select(MainSearchState.isFilterActived)
+    this.store.select(MainSearchState.isFilterActivated)
       .pipe(
         takeUntilDestroyed(this.destroyRef), 
         distinctUntilChanged())
-      .subscribe(filtered => {
-        this.isFiltered = filtered;
-        this.handleFormActivation(filtered);
+      .subscribe(isFilterActivated => {
+        this.isFilterActivated = isFilterActivated;
+        this.handleFormActivation(isFilterActivated);
         this.clearForm();
       });
   }

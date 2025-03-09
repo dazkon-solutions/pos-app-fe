@@ -7,10 +7,10 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { MainSearchConfig } from "./main-search.interface";
+import { MatDialogModule } from "@angular/material/dialog";
 
-export interface MainSearchStateModel {
-  searchTerm:      string;
-  config:          MainSearchConfig;
-  isFilterActivated: boolean;
-}
+
+
+export const POS_MAT_IMPORTS = [
+  MatDialogModule
+];

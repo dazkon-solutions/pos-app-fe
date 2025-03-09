@@ -71,8 +71,8 @@ export class MainSearchState {
   }
 
   @Selector()
-  static isFilterActived(state: MainSearchStateModel): boolean {
-    return state.isFilterActived;
+  static isFilterActivated(state: MainSearchStateModel): boolean {
+    return state.isFilterActivated;
   }
 
   @Action(SetMainSearchByResource)
@@ -102,7 +102,7 @@ export class MainSearchState {
     if(!state.config) return;
 
     ctx.patchState({
-      isFilterActived: true,
+      isFilterActivated: true,
       config: {
         ...state.config,
         label: LocaleKeys.labels.forms.usingDeepSearch
@@ -115,7 +115,7 @@ export class MainSearchState {
     const state = ctx.getState();
     
     ctx.patchState({
-      isFilterActived: false
+      isFilterActivated: false
     });
 
     // Set value to config.label

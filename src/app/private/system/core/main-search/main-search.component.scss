@@ -31,25 +31,46 @@
 
     @keyframes change-color {
       0% {
-      color: blue;
+        color: blue;
       }
       33% {
-      color: rgb(255, 0, 255);
+        color: rgb(255, 0, 255);
       }
       66% {
-      color: rgb(255, 187, 0);
+        color: rgb(255, 187, 0);
       }
       100% {
-      color: blue;
+        color: blue;
+      }
+    }
+  }
+
+  .search-field {
+    border: 1px solid;
+    border-radius: 14px;
+    animation: change-border-color 2s infinite;
+
+    @keyframes change-border-color {
+      0% {
+        border-color: blue;
+      }
+      33% {
+        border-color: rgb(255, 0, 255);
+      }
+      66% {
+        border-color: rgb(255, 187, 0);
+      }
+      100% {
+        border-color: blue;
       }
     }
   }
 
   .advanced-filter-btn {
-    @include mat.fab-overrides((
-      disabled-state-container-color: none,
-      focus-state-layer-opacity: 0,
-      hover-state-layer-opacity: 0
+    margin-right: 10px;
+
+    @include mat.icon-button-overrides((
+      focus-state-layer-opacity: 0
     ));
   }
 }

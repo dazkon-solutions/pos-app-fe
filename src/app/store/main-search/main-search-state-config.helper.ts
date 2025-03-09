@@ -18,7 +18,7 @@ export class MainSearchStateConfigHelper {
     return {
       searchTerm: '',
       config: this.defaultConfig(),
-      isFilterActived: false
+      isFilterActivated: false
     };
   }
 
