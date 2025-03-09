@@ -7,7 +7,10 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Component } from '@angular/core';
+import { 
+  ChangeDetectionStrategy, 
+  Component 
+} from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Action } from 'src/app/common/enums';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
@@ -31,7 +34,8 @@ import { GridItemSkeletonComponent } from 'src/app/private/system/common/skeleto
     AnimationPlayerComponent
   ],
   templateUrl: './categories-grid.component.html',
-  styleUrl: './categories-grid.component.scss'
+  styleUrl: './categories-grid.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoriesGridComponent extends BaseGridViewComponent<any> {
   protected initializeButtons(): void {

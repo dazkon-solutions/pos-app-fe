@@ -175,7 +175,7 @@ export abstract class BaseAutoCompleteComponent implements
   // Control how the selected value is displayed in the input field
   displayFn = (option: any): string => {
     return option 
-      ? `${option.title}. ${option[this.ctrlDisplayProperty]}` 
+      ? option[this.ctrlDisplayProperty] 
       : '';
   };
 

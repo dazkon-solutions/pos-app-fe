@@ -36,5 +36,9 @@ import { BaseAutoCompleteComponent } from '../base-auto-complete-component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PersonAutoCompleteComponent extends BaseAutoCompleteComponent {
-  //
+  override displayFn = (option: any): string => {
+    return option 
+      ? `${option.title}. ${option[this.ctrlDisplayProperty]}` 
+      : '';
+  };
 }

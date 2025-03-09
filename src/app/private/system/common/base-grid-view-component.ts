@@ -8,7 +8,6 @@
  */
 
 import { 
-  ChangeDetectionStrategy,
   Component, 
   Input,
   ViewChild
@@ -27,8 +26,7 @@ import { AnimationType } from './animation-player';
 import { GridItemSkeletonType } from './skeletons/grid-item-skeleton';
 
 @Component({
-  template: '',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  template: ''
 })
 export abstract class BaseGridViewComponent<T> {
   @ViewChild(MatMenuTrigger) 
