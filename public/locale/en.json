@@ -12,7 +12,8 @@
     "settings": "Settings",
     "helpDesk": "Help Desk",
     "optionsMenu": "Options Menu",
-    "noDataFound": "No Data Found"
+    "noDataFound": "No Data Found",
+    "calculator": "Calculator"
   },
 
   "tooltips": {
@@ -26,7 +27,8 @@
     "refreshList": "Refresh list",
     "close": "Close",
     "openPos": "Open POS",
-    "deepSearch": "Open deep search"
+    "deepSearch": "Open deep search",
+    "calculator": "Calculator"
   },
 
   "alerts": {

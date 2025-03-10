@@ -1,0 +1,45 @@
+<!-- 
+  Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+  All rights reserved.  
+  This code is proprietary to DAZKON SOLUTIONS. 
+  Unauthorized use, reproduction, modification, distribution, or sale 
+  without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+  For inquiries, please contact: info@dazkonsolutions.com 
+-->
+
+<daz-dialog-header [config$]="headerConfig$" />
+
+<mat-dialog-content class="daz-calculator" >
+  <!-- Display section -->
+  <div >
+    <p class="display mat-title-large" >{{ historyDisplay }}</p>
+    <p class="display mat-headline-large" >{{ resultDisplay }}</p>
+  </div>
+  <!-- End of display section -->
+
+  <!-- Button section -->
+  <div class="clear-btn-section">
+    <button mat-fab
+            class="operator-btn"
+            (click)="clearAll()" >
+      C
+    </button>
+    <button mat-fab
+            class="operator-btn"
+            (click)="backspace()" >
+      <mat-icon svgIcon="backspace" />
+    </button>
+  </div>
+
+  <div class="btn-section" >
+    @for (btn of btnConfigList; track $index) {
+      <button mat-fab
+              [class.operator-btn]="btn.type === ButtonType.OPERATOR"
+              [class.number-btn]="btn.type === ButtonType.NUMBER"
+              (click)="onClickBtn(btn)" >
+        {{ btn.value }}
+      </button>
+    }
+  </div>
+  <!-- End of button section -->
+</mat-dialog-content>

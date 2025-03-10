@@ -16,6 +16,7 @@ import { LocaleKeys } from 'src/app/common/constants';
 import { Navigator } from 'src/app/common/services';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { POS_MAT_IMPORTS } from '../pos-imports';
+import { CalculatorService } from '../../calculator/category.service';
 
 @Component({
   selector: 'daz-pos-header',
@@ -39,7 +40,10 @@ export class PosHeaderComponent implements
 
   LocaleKeys = LocaleKeys;
 
-  constructor(private navigateSvc: Navigator) { }
+  constructor(
+    private navigateSvc: Navigator,
+    private calSvc: CalculatorService
+  ) { }
 
   ngOnInit(): void {
     this.updateDate();
@@ -68,6 +72,10 @@ export class PosHeaderComponent implements
 
   navigateToDashboard(): void {
     this.navigateSvc.navigateToDashboardWithUpdatingMenu();
+  }
+
+  openCalculator(): void {
+    this.calSvc.open();
   }
 
   ngOnDestroy(): void {

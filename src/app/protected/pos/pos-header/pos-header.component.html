@@ -21,6 +21,14 @@
   </span>
   <!-- End of date and time -->
 
+  <!-- Calculator button -->
+  <button mat-icon-button
+          [matTooltip]="LocaleKeys.tooltips.calculator | translate"
+          (click)="openCalculator()" >
+    <mat-icon svgIcon="calculator" />
+  </button>
+  <!-- End of calculator button -->
+
   <!-- Close button -->
   <button mat-icon-button
           [matTooltip]="LocaleKeys.tooltips.close | translate"

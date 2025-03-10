@@ -28,6 +28,7 @@ export const LocaleKeys = {
     helpDesk: 'titles.helpDesk',
     optionsMenu: 'titles.optionsMenu',
     noDataFound: 'titles.noDataFound',
+    calculator: 'titles.calculator',
   },
   tooltips: {
     notifications: 'tooltips.notifications',
@@ -41,6 +42,7 @@ export const LocaleKeys = {
     close: 'tooltips.close',
     openPos: 'tooltips.openPos',
     deepSearch: 'tooltips.deepSearch',
+    calculator: 'tooltips.calculator',
   },
   alerts: {
     common: {
