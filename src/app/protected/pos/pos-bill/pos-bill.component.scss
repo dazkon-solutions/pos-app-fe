@@ -7,22 +7,6 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-.daz-pos-container {
-  display: flex;
-  flex-direction: row;
-  height: calc(100dvh - 102px);
-}
-
-.daz-pos-left-section {
-  flex: 1.3;
-}
-
-.daz-pos-right-section {
-  flex: 1;
-  background-color: rgb(66, 66, 84);
-}
-
-.daz-pos-footer {
-  height: 60px;
-  background-color: rgb(130, 81, 81);
+.daz-pos-bill {
+  height: calc(100dvh - 172px);
 }

@@ -71,6 +71,7 @@ export class IconService {
       .addSvgIcon('pos', this.setPath(`${this.path}/pos-outlined.svg`))
       .addSvgIcon('calculator', this.setPath(`${this.path}/calculator-outlined.svg`))
       .addSvgIcon('backspace', this.setPath(`${this.path}/backspace-outlined.svg`))
+      .addSvgIcon('person-add', this.setPath(`${this.path}/person-add-outlined.svg`))
   }                
 
   private setPath(url: string): SafeResourceUrl {

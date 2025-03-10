@@ -11,13 +11,19 @@ import { Component } from '@angular/core';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { LocaleKeys } from 'src/app/common/constants';
 import { PosHeaderComponent } from './pos-header/pos-header.component';
+import { PosBillComponent } from './pos-bill/pos-bill.component';
+import { PosCustomerAndProductComponent } from './pos-customer-and-product/pos-customer-and-product.component';
+import { POS_MAT_IMPORTS } from './pos-imports';
 
 
 @Component({
   selector: 'daz-pos',
   imports: [
     CORE_IMPORTS,
-    PosHeaderComponent
+    POS_MAT_IMPORTS,
+    PosHeaderComponent,
+    PosBillComponent,
+    PosCustomerAndProductComponent
   ],
   templateUrl: './pos.component.html',
   styleUrl: './pos.component.scss'

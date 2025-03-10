@@ -7,22 +7,12 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-.daz-pos-container {
-  display: flex;
-  flex-direction: row;
-  height: calc(100dvh - 102px);
-}
+@use '@angular/material' as mat;
 
-.daz-pos-left-section {
-  flex: 1.3;
-}
+.form-section {
+  padding: 10px 10px 0 10px;
 
-.daz-pos-right-section {
-  flex: 1;
-  background-color: rgb(66, 66, 84);
-}
-
-.daz-pos-footer {
-  height: 60px;
-  background-color: rgb(130, 81, 81);
+  @include mat.fab-overrides((
+    small-container-shape: 12px
+  ));
 }

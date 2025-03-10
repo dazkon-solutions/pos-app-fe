@@ -1,0 +1,85 @@
+<!-- 
+  Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+  All rights reserved.  
+  This code is proprietary to DAZKON SOLUTIONS. 
+  Unauthorized use, reproduction, modification, distribution, or sale 
+  without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+  For inquiries, please contact: info@dazkonsolutions.com 
+-->
+
+<cdk-virtual-scroll-viewport itemSize="47" 
+                             minBufferPx="564" 
+                             maxBufferPx="600"
+                             class="daz-pos-bill" >
+  <table mat-table 
+         [dataSource]="productList" 
+         class="mat-elevation-z8" >
+
+    <ng-container matColumnDef="id" >
+      <th mat-header-cell *matHeaderCellDef > 
+        No. 
+      </th>
+      <td mat-cell *matCellDef="let element" > {{ element.id }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="product" >
+      <th mat-header-cell *matHeaderCellDef > 
+        product
+      </th>
+      <td mat-cell *matCellDef="let element" > 
+        <span><strong>{{ element.name }}</strong></span> <br>
+        <span class="mat-body-small" >
+          {{ element.price | currency: 'Rs.' }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="qty" >
+      <th mat-header-cell *matHeaderCellDef > 
+        qty 
+      </th>
+      <td mat-cell *matCellDef="let element" > 
+        {{ element.qty }} 
+        <span class="mat-body-small" >{{ element.unitOfMeasure }}</span> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="total" >
+      <th mat-header-cell *matHeaderCellDef > 
+        total 
+      </th>
+      <td mat-cell *matCellDef="let element" > {{ element.total | currency: ' ' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="discount" >
+      <th mat-header-cell *matHeaderCellDef > 
+        discount 
+      </th>
+      <td mat-cell *matCellDef="let element" > 
+        @if (element.discountAmount > 0) {
+          {{ element.discountAmount | currency: 'Rs.' }}
+        } @else if (element.discountPercentage > 0) {
+          {{ element.discountPercentage }} %
+        } @else {
+          0
+        }
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="subtotal" >
+      <th mat-header-cell *matHeaderCellDef > 
+        subtotal 
+      </th>
+      <td mat-cell *matCellDef="let element" > {{ element.subtotal | currency: ' ' }} </td>
+    </ng-container>
+
+    <!-- Header and rows section -->
+    @let tableHeaderColor = tableHeaderColor$ | async;
+    <tr mat-header-row 
+        *matHeaderRowDef="displayedColumns sticky: true"
+        [style.background-color]="tableHeaderColor" >
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+    <!-- End of header and rows section -->
+  </table>
+
+</cdk-virtual-scroll-viewport>

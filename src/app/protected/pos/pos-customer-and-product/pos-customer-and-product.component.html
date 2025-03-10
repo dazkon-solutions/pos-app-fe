@@ -1,0 +1,38 @@
+<!-- 
+  Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+  All rights reserved.  
+  This code is proprietary to DAZKON SOLUTIONS. 
+  Unauthorized use, reproduction, modification, distribution, or sale 
+  without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+  For inquiries, please contact: info@dazkonsolutions.com 
+-->
+
+<form [formGroup]="form" >
+  <div class="form-section" >
+    <button mat-mini-fab
+            [matTooltip]="LocaleKeys.tooltips.addNewCustomer | translate"
+            (click)="openCustomerRegister()" >
+      <mat-icon svgIcon="person-add" />
+    </button>
+
+    <daz-person-auto-complete class="form-field-width-full" 
+                              formControlName="customer"
+                              displayProperty="name"
+                              [label]="LocaleKeys.labels.forms.customer"
+                              [dataSource$]="getCustomerList()"
+                              [isLoading$]="isCustomerLoading$"
+                              [validators]="form.get('customer')?.validator"
+                              (filterTerm)="onFilterCustomer($event)"
+                              (fetchDataClicked)="customerFetchClicked($event)" />
+    <!-- </div> -->
+  
+    <daz-common-auto-complete class="form-field-width-full" 
+                              formControlName="product"
+                              displayProperty="name"
+                              [label]="LocaleKeys.labels.forms.product"
+                              [dataSource$]="getProductList()"
+                              [isLoading$]="isProductLoading$"
+                              (filterTerm)="onFilterProduct($event)"
+                              (fetchDataClicked)="productFetchClicked($event)" />
+  </div>
+</form>

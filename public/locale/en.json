@@ -28,7 +28,8 @@
     "close": "Close",
     "openPos": "Open POS",
     "deepSearch": "Open deep search",
-    "calculator": "Calculator"
+    "calculator": "Calculator",
+    "addNewCustomer": "Add new customer"
   },
 
   "alerts": {
@@ -80,7 +81,9 @@
       "description": "Description",
       "createdAt": "Created at",
       "loadingList": "Loading list...",
-      "title": "Title"
+      "title": "Title",
+      "customer": "Customer",
+      "product": "Product"
     }
   },
 

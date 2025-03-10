@@ -43,6 +43,7 @@ export const LocaleKeys = {
     openPos: 'tooltips.openPos',
     deepSearch: 'tooltips.deepSearch',
     calculator: 'tooltips.calculator',
+    addNewCustomer: 'tooltips.addNewCustomer',
   },
   alerts: {
     common: {
@@ -92,6 +93,8 @@ export const LocaleKeys = {
       createdAt: 'labels.forms.createdAt',
       loadingList: 'labels.forms.loadingList',
       title: 'labels.forms.title',
+      customer: 'labels.forms.customer',
+      product: 'labels.forms.product',
     },
   },
   errors: {
