@@ -28,7 +28,7 @@ export class ResetNavigation {
   static readonly type = '[Navigation] Reset';
 }
 
-
+// TODO: REMOVE
 @State<NavigationStateModel>({
   name: StateKey.NAVIGATION,
   defaults: NavigationConfigHelper.createDefault()

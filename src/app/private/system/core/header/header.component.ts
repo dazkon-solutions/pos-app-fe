@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
+import { Router } from '@angular/router';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { ToggleLeftPanel } from 'src/app/store/left-panel-config';
 import { LocaleKeys } from 'src/app/common/constants';
@@ -24,7 +25,6 @@ import {
   MenuState 
 } from 'src/app/store/menu-config';
 import { HEADER_MAT_IMPORTS } from './header-imports';
-import { PosService } from 'src/app/protected/pos/pos.service';
 
 
 @Component({
@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private store: Store,
     private themeSvc: ThemeService,
-    private posSvc: PosService
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -78,7 +78,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onClickPos(): void {
-    this.posSvc.open();
+    this.router.navigate(['pos']);
   }
 
   getUsername(type: 'SHORT' | 'FULL'): string {

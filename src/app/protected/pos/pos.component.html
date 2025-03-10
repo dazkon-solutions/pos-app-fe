@@ -7,8 +7,14 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-<div class="daz-pos-header" >pos system</div>
-<!-- <h2 mat-dialog-title >Install Angular</h2> -->
-<mat-dialog-content >
-  pos
-</mat-dialog-content>
+<mat-toolbar class="daz-header" >
+  <span >POINT OF SALE</span>
+
+  <span class="spacer" ></span>
+
+  <button mat-icon-button
+          [matTooltip]="LocaleKeys.tooltips.close | translate"
+          (click)="navigateToDashboard()" >
+    <mat-icon svgIcon="close" />
+  </button>
+</mat-toolbar>

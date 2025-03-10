@@ -8,10 +8,13 @@
 -->
   
 @let isLightTheme = isLightTheme$ | async;
+
+<!-- This section should hide when directed to the POS route -->
 <mat-drawer-container class="drawer-container" 
                       [ngClass]="isLightTheme ? 'light-theme' : 'dark-theme'"
                       autosize 
-                      hasBackdrop="false" > 
+                      hasBackdrop="false"
+                      *ngIf="!isPosRoute()" > 
   <!-- left panel -->
   @let isLeftPanelExpanded = (isLeftPanelExpanded$ | async) ?? false;
   <mat-drawer #drawer
@@ -58,3 +61,12 @@
   </div>
 
 </mat-drawer-container>
+
+
+<!-- POS-end -->
+@if (isPosRoute()) {
+  <div [ngClass]="isLightTheme ? 'light-theme' : 'dark-theme'" >
+    <router-outlet />
+  </div>
+}
+<!-- End of POS-end -->

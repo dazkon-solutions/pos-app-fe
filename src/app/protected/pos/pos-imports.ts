@@ -7,10 +7,15 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { MatDialogModule } from "@angular/material/dialog";
-
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 
 export const POS_MAT_IMPORTS = [
-  MatDialogModule
+  MatToolbarModule,
+  MatIconModule,
+  MatButtonModule,
+  MatTooltipModule
 ];

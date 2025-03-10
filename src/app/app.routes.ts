@@ -16,6 +16,11 @@ export const routes: Routes = [
       .then(m => m.DashboardComponent)
   },
   { 
+    path: 'pos', 
+    loadComponent: () => import('./protected/pos/pos.component')
+      .then(m => m.PosComponent)
+  },
+  { 
     path: 'products', 
     loadChildren: () => import('./protected/product-manager/product.routes')
       .then(m => m.PRODUCT_MANAGER_ROUTS)

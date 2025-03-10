@@ -10,6 +10,8 @@
 import { Component } from '@angular/core';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { POS_MAT_IMPORTS } from './pos-imports';
+import { LocaleKeys } from 'src/app/common/constants';
+import { Navigator } from 'src/app/common/services';
 
 
 @Component({
@@ -22,5 +24,13 @@ import { POS_MAT_IMPORTS } from './pos-imports';
   styleUrl: './pos.component.scss'
 })
 export class PosComponent {
+  LocaleKeys = LocaleKeys;
 
+  constructor(
+    private navigateSvc: Navigator
+  ) { }
+
+  navigateToDashboard(): void {
+    this.navigateSvc.navigateToDashboardWithUpdatingMenu();
+  }
 }

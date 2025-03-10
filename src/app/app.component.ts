@@ -12,7 +12,7 @@ import {
   DestroyRef, 
   OnInit 
 } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Observable } from 'rxjs';
@@ -69,7 +69,8 @@ export class AppComponent implements OnInit {
     private themeSvc: ThemeService,
     private snackBarAlertSvc: SnackBarAlertService,
     private store: Store,
-    private destroyRef: DestroyRef
+    private destroyRef: DestroyRef,
+    private router: Router
   ) {
     this.translate.setDefaultLang('en');
     this.translate.use('en');
@@ -113,5 +114,9 @@ export class AppComponent implements OnInit {
     ];
 
     return !avoidResources.includes(resource);
+  }
+
+  isPosRoute(): boolean {
+    return this.router.url === '/pos';
   }
 }
