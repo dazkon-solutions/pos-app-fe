@@ -1,0 +1,31 @@
+<!-- 
+  Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+  All rights reserved.  
+  This code is proprietary to DAZKON SOLUTIONS. 
+  Unauthorized use, reproduction, modification, distribution, or sale 
+  without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+  For inquiries, please contact: info@dazkonsolutions.com 
+-->
+
+<mat-toolbar class="daz-header daz-pos-header" >
+  <span class="mat-title-medium" >POINT OF SALE</span>
+
+  <span class="spacer" ></span>
+
+  <!-- Date and time -->
+  <span class="mat-title-small dateTime" >
+    {{ date }} &nbsp;
+    {{ hour | number:'2.0' }} : 
+    {{ minute | number:'2.0' }} : 
+    {{ second | number:'2.0' }}
+  </span>
+  <!-- End of date and time -->
+
+  <!-- Close button -->
+  <button mat-icon-button
+          [matTooltip]="LocaleKeys.tooltips.close | translate"
+          (click)="navigateToDashboard()" >
+    <mat-icon svgIcon="close" />
+  </button>
+  <!-- End of close button -->
+</mat-toolbar>

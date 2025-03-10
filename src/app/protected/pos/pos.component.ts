@@ -9,16 +9,15 @@
 
 import { Component } from '@angular/core';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
-import { POS_MAT_IMPORTS } from './pos-imports';
 import { LocaleKeys } from 'src/app/common/constants';
-import { Navigator } from 'src/app/common/services';
+import { PosHeaderComponent } from './pos-header/pos-header.component';
 
 
 @Component({
   selector: 'daz-pos',
   imports: [
     CORE_IMPORTS,
-    POS_MAT_IMPORTS
+    PosHeaderComponent
   ],
   templateUrl: './pos.component.html',
   styleUrl: './pos.component.scss'
@@ -26,11 +25,5 @@ import { Navigator } from 'src/app/common/services';
 export class PosComponent {
   LocaleKeys = LocaleKeys;
 
-  constructor(
-    private navigateSvc: Navigator
-  ) { }
-
-  navigateToDashboard(): void {
-    this.navigateSvc.navigateToDashboardWithUpdatingMenu();
-  }
+  constructor() { }
 }

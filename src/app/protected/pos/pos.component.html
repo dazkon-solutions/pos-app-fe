@@ -7,14 +7,4 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-<mat-toolbar class="daz-header" >
-  <span >POINT OF SALE</span>
-
-  <span class="spacer" ></span>
-
-  <button mat-icon-button
-          [matTooltip]="LocaleKeys.tooltips.close | translate"
-          (click)="navigateToDashboard()" >
-    <mat-icon svgIcon="close" />
-  </button>
-</mat-toolbar>
+<daz-pos-header />

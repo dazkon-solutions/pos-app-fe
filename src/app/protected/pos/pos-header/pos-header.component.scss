@@ -7,4 +7,19 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
+@use '@angular/material' as mat;
+@use 'variables' as var;
 
+.daz-pos-header {
+  .dateTime {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+  }
+
+  @include mat.toolbar-overrides((
+    standard-height: 42px,
+    mobile-height: 42px
+  ));
+}
