@@ -95,6 +95,8 @@ export const LocaleKeys = {
       title: 'labels.forms.title',
       customer: 'labels.forms.customer',
       product: 'labels.forms.product',
+      category: 'labels.forms.category',
+      brand: 'labels.forms.brand',
     },
   },
   errors: {

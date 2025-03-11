@@ -24,6 +24,7 @@
 @use 'button';
 @use 'bottom-sheet';
 @use 'dialog';
+@use 'pos';
 // @use 'dialog';
 // @use 'bottom-sheet' as bs;
 // @use 'table';
@@ -100,6 +101,9 @@
 
   @include dialog.dialog-styles(var.$dark-bg-color,
                                 var.$dark-bg-text-color-2);
+
+  @include pos.pos-styles(var.$dark-bg-color,
+                          var.$dark-bg-text-color-2);
 
   // @include dialog.dialog-background(var.$dark-bg-color);
 

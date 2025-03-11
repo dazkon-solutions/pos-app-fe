@@ -18,17 +18,17 @@
     <daz-person-auto-complete class="form-field-width-full" 
                               formControlName="customer"
                               displayProperty="name"
+                              subscriptSizing="dynamic"
                               [label]="LocaleKeys.labels.forms.customer"
                               [dataSource$]="getCustomerList()"
                               [isLoading$]="isCustomerLoading$"
-                              [validators]="form.get('customer')?.validator"
                               (filterTerm)="onFilterCustomer($event)"
                               (fetchDataClicked)="customerFetchClicked($event)" />
-    <!-- </div> -->
   
     <daz-common-auto-complete class="form-field-width-full" 
                               formControlName="product"
                               displayProperty="name"
+                              subscriptSizing="dynamic"
                               [label]="LocaleKeys.labels.forms.product"
                               [dataSource$]="getProductList()"
                               [isLoading$]="isProductLoading$"

@@ -83,7 +83,9 @@
       "loadingList": "Loading list...",
       "title": "Title",
       "customer": "Customer",
-      "product": "Product"
+      "product": "Product",
+      "category": "Category",
+      "brand": "Brand"
     }
   },
 

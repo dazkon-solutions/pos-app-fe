@@ -18,9 +18,3 @@
     subhead-color: $text-color
   ));
 }
-
-.daz-pos {
-  @include mat.dialog-overrides((
-    container-shape: 0px
-  ));
-}

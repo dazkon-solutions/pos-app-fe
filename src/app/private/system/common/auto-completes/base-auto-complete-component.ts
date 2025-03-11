@@ -63,6 +63,9 @@ export abstract class BaseAutoCompleteComponent implements
   @Input('isParentTouched')
   isParentTouched = false;
 
+  @Input('subscriptSizing') 
+  subscriptSizing: 'fixed'|'dynamic' = 'fixed' ;
+
   @Output('filterTerm') 
   filterTerm = new EventEmitter<string>(true);
 

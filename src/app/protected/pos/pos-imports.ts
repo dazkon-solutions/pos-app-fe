@@ -9,6 +9,7 @@
 
 import { ScrollingModule } from "@angular/cdk/scrolling";
 import { MatButtonModule } from "@angular/material/button";
+import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -21,5 +22,6 @@ export const POS_MAT_IMPORTS = [
   MatIconModule,
   MatButtonModule,
   MatTooltipModule,
-  ScrollingModule
+  ScrollingModule,
+  MatCardModule
 ];

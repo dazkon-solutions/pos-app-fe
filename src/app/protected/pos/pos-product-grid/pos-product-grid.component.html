@@ -1,0 +1,69 @@
+<!-- 
+  Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+  All rights reserved.  
+  This code is proprietary to DAZKON SOLUTIONS. 
+  Unauthorized use, reproduction, modification, distribution, or sale 
+  without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+  For inquiries, please contact: info@dazkonsolutions.com 
+-->
+
+<!-- Filter section -->
+<form [formGroup]="form" >
+  <div class="form-section" >
+    <daz-common-auto-complete class="form-field-width-half" 
+                              formControlName="category"
+                              displayProperty="name"
+                              subscriptSizing="dynamic"
+                              [label]="LocaleKeys.labels.forms.category"
+                              [dataSource$]="getCategoryList()"
+                              [isLoading$]="isCategoryLoading$"
+                              (filterTerm)="onFilterCategory($event)"
+                              (fetchDataClicked)="categoryFetchClicked($event)" />
+
+    <daz-common-auto-complete class="form-field-width-half" 
+                              formControlName="brand"
+                              displayProperty="name"
+                              subscriptSizing="dynamic"
+                              [label]="LocaleKeys.labels.forms.brand"
+                              [dataSource$]="getBrandList()"
+                              [isLoading$]="isBrandLoading$"
+                              (filterTerm)="onFilterBrand($event)"
+                              (fetchDataClicked)="brandFetchClicked($event)" />
+
+    <mat-form-field class="form-field-width-full"
+                    subscriptSizing="dynamic" >
+      <mat-label >{{ LocaleKeys.labels.forms.product | translate }}</mat-label>
+      <input matInput 
+             formControlName="product" 
+             name="product" >
+      </mat-form-field>
+  </div>
+</form>
+<!-- End of filter section -->
+
+
+<!-- Product grid section -->
+<cdk-virtual-scroll-viewport itemSize="47" 
+                             minBufferPx="564" 
+                             maxBufferPx="600"
+                             class="daz-product-grid" >
+  
+  <div class="container" >
+    @for (item of productList; track $index) {
+      <mat-card class="card" >
+        <mat-card-content class="content" >
+          <img class="image" 
+               [src]="item.image === '' 
+                ? 'images/image-not-found.svg'
+                : item.image"
+               alt="image" >
+          <span class="mat-body-medium" ><strong>{{ item.name }}</strong></span>
+          <span class="mat-body-small" >{{ item.price | currency: 'Rs.' }}</span>
+          <span class="mat-body-small" >[ {{ item.code }} ]</span>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+
+</cdk-virtual-scroll-viewport>
+<!-- End of product grid section -->
