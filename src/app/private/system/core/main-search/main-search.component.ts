@@ -18,10 +18,7 @@ import {
   Validators
 } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { 
-  distinctUntilChanged, 
-  Observable 
-} from 'rxjs';
+import { distinctUntilChanged } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { FormHelper } from 'src/app/common/helpers';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
@@ -52,7 +49,7 @@ import { MAIN_SEARCH_MAT_IMPORTS } from './main-search-imports';
   styleUrl: './main-search.component.scss'
 })
 export class MainSearchComponent implements OnInit {
-  config$!: Observable<MainSearchConfig>;
+  config!: MainSearchConfig;
   form: FormGroup;
   LocaleKeys = LocaleKeys;
   isFilterActivated = false;
@@ -73,8 +70,6 @@ export class MainSearchComponent implements OnInit {
   }
 
   private syncState(): void {
-    this.config$ = this.store.select(MainSearchState.getConfig);
-
     this.store.select(MenuState.getCurrent)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(current => {
@@ -84,13 +79,16 @@ export class MainSearchComponent implements OnInit {
         }
       });
 
-    this.config$
+    this.store.select(MainSearchState.getConfig)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(config => {
+        this.config = config;
+
+        // Disable filter form-field if not available filter for the page
         config.resource === Resource.NONE
           ? this.form.disable()
           : this.form.enable();
-      })
+      });
   }
 
   private syncFilterChanges(): void {
@@ -106,6 +104,10 @@ export class MainSearchComponent implements OnInit {
   }
 
   private handleFormActivation(isFilterd: boolean): void {
+    if(!this.config.resource) return;
+    
+    if(this.config.resource === Resource.NONE) return;
+
     isFilterd 
       ? this.form.disable() 
       : this.form.enable();

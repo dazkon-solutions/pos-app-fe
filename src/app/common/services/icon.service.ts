@@ -34,7 +34,6 @@ export class IconService {
     this.matIconReg
       .addSvgIcon('bell', this.setPath(`${this.path}/bell-outlined.svg`))
       .addSvgIcon('close', this.setPath(`${this.path}/close-outlined.svg`))
-      .addSvgIcon('tune', this.setPath(`${this.path}/tune-outlined.svg`))
       .addSvgIcon('search', this.setPath(`${this.path}/search-outlined.svg`))
       .addSvgIcon('menu', this.setPath(`${this.path}/menu-outlined.svg`))
       .addSvgIcon('expand-more', this.setPath(`${this.path}/expand-more-outlined.svg`))
@@ -66,12 +65,12 @@ export class IconService {
       .addSvgIcon('edit', this.setPath(`${this.path}/edit-outlined.svg`))
       .addSvgIcon('done', this.setPath(`${this.path}/done-outlined.svg`))
       .addSvgIcon('error', this.setPath(`${this.path}/error-outlined.svg`))
-      .addSvgIcon('deep-search', this.setPath(`${this.path}/deep-search-outlined.svg`))
-      .addSvgIcon('deep-search-filled', this.setPath(`${this.path}/deep-search-filled.svg`))
       .addSvgIcon('pos', this.setPath(`${this.path}/pos-outlined.svg`))
       .addSvgIcon('calculator', this.setPath(`${this.path}/calculator-outlined.svg`))
       .addSvgIcon('backspace', this.setPath(`${this.path}/backspace-outlined.svg`))
       .addSvgIcon('person-add', this.setPath(`${this.path}/person-add-outlined.svg`))
+      .addSvgIcon('advanced-filter', this.setPath(`${this.path}/advanced-filter-outlined.svg`))
+      .addSvgIcon('advanced-filter-filled', this.setPath(`${this.path}/advanced-filter-filled.svg`))
   }                
 
   private setPath(url: string): SafeResourceUrl {

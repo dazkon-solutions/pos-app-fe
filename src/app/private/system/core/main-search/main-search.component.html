@@ -7,9 +7,26 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-@let config = config$ | async;
-
 <span class="daz-main-search-field" >
+
+  <!-- Advanced filter button -->
+  <button mat-icon-button
+          matPrefix
+          [class.advanced-filter-active]="isFilterActivated"
+          [matTooltip]="LocaleKeys.tooltips.advancedFilter | translate"
+          [disabled]="!config.hasFilter"
+          (click)="onClickAdvancedFilter()" >
+    <mat-icon matBadge="Active"
+              matBadgeSize="medium"
+              matBadgePosition="above before"
+              matBadgeOverlap="false"
+              aria-hidden="false"
+              [matBadgeHidden]="!isFilterActivated"
+              [svgIcon]="isFilterActivated 
+                ? 'advanced-filter-filled' 
+                : 'advanced-filter'" />
+  </button>
+  <!-- End of advanced filter button -->
 
   <form [formGroup]="form" >
     <mat-form-field subscriptSizing="dynamic"
@@ -19,18 +36,18 @@
              formControlName="search"
              name="search"
              maxlength="255"
-             [placeholder]="config?.label ?? '' | translate" >
+             [placeholder]="config.label | translate" >
 
       @if (hasSearchValue() || isFilterActivated) {
         <!-- Clear button -->
-        <mat-icon svgIcon="close" 
-                  class="clear-btn"
-                  matSuffix
-                  matRipple 
-                  [matTooltip]="LocaleKeys.tooltips.clear | translate"
-                  (click)="onClickClearForm()" />
+        <button mat-icon-button 
+                matSuffix 
+                class="clear-btn" >
+          <mat-icon svgIcon="close" 
+                    [matTooltip]="LocaleKeys.tooltips.clear | translate"
+                    (click)="onClickClearForm()" />
+        </button>
         <!-- End of clear button -->
-         
       } @else {
         <mat-icon svgIcon="search" matSuffix />
       }
@@ -38,14 +55,4 @@
     </mat-form-field>
   </form>
 
-  <!-- Advanced filter button -->
-  <button mat-icon-button
-          class="advanced-filter-btn"
-          [class.advanced-filter-active]="isFilterActivated"
-          [matTooltip]="LocaleKeys.tooltips.deepSearch | translate"
-          [disabled]="!config?.hasFilter"
-          (click)="onClickAdvancedFilter()" >
-    <mat-icon [svgIcon]="isFilterActivated ? 'deep-search-filled' : 'deep-search'" />
-  </button>
-  <!-- End of advanced filter button -->
 </span>

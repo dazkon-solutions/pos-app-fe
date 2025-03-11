@@ -44,7 +44,7 @@ export class MainSearchStateConfigHelper {
       {
         label: LocaleKeys.labels.forms.searchByName,
         resource: Resource.BRANDS,
-        hasFilter: true
+        hasFilter: false
       },
     ];
   }

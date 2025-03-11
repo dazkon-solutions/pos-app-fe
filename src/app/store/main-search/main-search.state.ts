@@ -105,7 +105,7 @@ export class MainSearchState {
       isFilterActivated: true,
       config: {
         ...state.config,
-        label: LocaleKeys.labels.forms.usingDeepSearch
+        label: LocaleKeys.labels.forms.usingAdvancedFilter
       }
     });
   }

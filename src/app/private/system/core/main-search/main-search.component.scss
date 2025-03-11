@@ -14,6 +14,7 @@
   flex-direction: row;
   align-items: center;
   gap: 10px;
+  margin-right: 10px;
 
   @include mat.form-field-overrides((
     container-height: 34px,
@@ -23,7 +24,9 @@
   ));
 
   .clear-btn {
-    cursor: pointer;
+    @include mat.icon-button-overrides((
+      state-layer-size: 34px
+    ));
   }
 
   .advanced-filter-active {
@@ -64,13 +67,5 @@
         border-color: blue;
       }
     }
-  }
-
-  .advanced-filter-btn {
-    margin-right: 10px;
-
-    @include mat.icon-button-overrides((
-      focus-state-layer-opacity: 0
-    ));
   }
 }

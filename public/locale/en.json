@@ -27,7 +27,7 @@
     "refreshList": "Refresh list",
     "close": "Close",
     "openPos": "Open POS",
-    "deepSearch": "Open deep search",
+    "advancedFilter": "Open advanced filter",
     "calculator": "Calculator",
     "addNewCustomer": "Add new customer"
   },
@@ -75,7 +75,7 @@
     "forms": {
       "selectOne": "Select one",
       "search": "Search",
-      "usingDeepSearch": "Using deep search..",
+      "usingAdvancedFilter": "Using advanced filter..",
       "searchByName": "Search by name",
       "name": "Name",
       "description": "Description",

@@ -41,7 +41,7 @@ export const LocaleKeys = {
     refreshList: 'tooltips.refreshList',
     close: 'tooltips.close',
     openPos: 'tooltips.openPos',
-    deepSearch: 'tooltips.deepSearch',
+    advancedFilter: 'tooltips.advancedFilter',
     calculator: 'tooltips.calculator',
     addNewCustomer: 'tooltips.addNewCustomer',
   },
@@ -86,7 +86,7 @@ export const LocaleKeys = {
     forms: {
       selectOne: 'labels.forms.selectOne',
       search: 'labels.forms.search',
-      usingDeepSearch: 'labels.forms.usingDeepSearch',
+      usingAdvancedFilter: 'labels.forms.usingAdvancedFilter',
       searchByName: 'labels.forms.searchByName',
       name: 'labels.forms.name',
       description: 'labels.forms.description',
