@@ -15,6 +15,7 @@ import { PosBillComponent } from './pos-bill/pos-bill.component';
 import { PosCustomerAndProductComponent } from './pos-customer-and-product/pos-customer-and-product.component';
 import { POS_MAT_IMPORTS } from './pos-imports';
 import { PosProductGridComponent } from './pos-product-grid/pos-product-grid.component';
+import { PosBillValueComponent } from './pos-bill-value/pos-bill-value.component';
 
 
 @Component({
@@ -25,7 +26,8 @@ import { PosProductGridComponent } from './pos-product-grid/pos-product-grid.com
     PosHeaderComponent,
     PosBillComponent,
     PosCustomerAndProductComponent,
-    PosProductGridComponent
+    PosProductGridComponent,
+    PosBillValueComponent
   ],
   templateUrl: './pos.component.html',
   styleUrl: './pos.component.scss'

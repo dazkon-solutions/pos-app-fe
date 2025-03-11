@@ -7,7 +7,8 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-.daz-pos-bill {
-  margin-left: 10px;
-  height: calc(100dvh - 212px);
+
+export class Env {
+  static version = '1.0.0-beta.1';
+  static build = '250311-1919';
 }

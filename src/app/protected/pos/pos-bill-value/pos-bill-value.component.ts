@@ -7,7 +7,14 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-.daz-pos-bill {
-  margin-left: 10px;
-  height: calc(100dvh - 212px);
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'daz-pos-bill-value',
+  imports: [],
+  templateUrl: './pos-bill-value.component.html',
+  styleUrl: './pos-bill-value.component.scss'
+})
+export class PosBillValueComponent {
+
 }
