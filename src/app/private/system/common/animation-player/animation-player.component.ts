@@ -8,23 +8,17 @@
  */
 
 import { 
+  ChangeDetectionStrategy,
   Component, 
-  Input, 
-  OnChanges, 
-  OnDestroy, 
-  SimpleChanges
+  computed, 
+  input, 
+  OnDestroy
 } from '@angular/core';
-import { 
-  AnimationOptions, 
-  LottieComponent 
-} from 'ngx-lottie';
+import { LottieComponent } from 'ngx-lottie';
 import { AnimationItem } from 'lottie-web';
-import { AnimationType } from './animation-type.enum';
-import { 
-  AnimationConfigHelper, 
-  CustomAnimationConfig 
-} from './animation-config-helper';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
+import { AnimationType } from './animation-type.enum';
+import { AnimationConfigHelper } from './animation-config-helper';
 
 
 @Component({
@@ -34,33 +28,23 @@ import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
     LottieComponent
   ],
   templateUrl: './animation-player.component.html',
-  styleUrl: './animation-player.component.scss'
+  styleUrl: './animation-player.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AnimationPlayerComponent implements 
-  OnChanges,
-  OnDestroy
-{
-  @Input('animationType')
-  animationType!: AnimationType;
+export class AnimationPlayerComponent implements OnDestroy {
+  animationType = input.required<AnimationType>();
 
-  config: CustomAnimationConfig = AnimationConfigHelper.createDefault();
-  options: AnimationOptions = { };
+  config = computed(() => 
+    AnimationConfigHelper.createByAnimationType(this.animationType()));
+
+  options = computed(() => {
+    return {
+      path: this.config().path,
+      loop: this.config().loop
+    };
+  });
 
   private animation!: AnimationItem;
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if('animationType' in changes) {
-      this.config = AnimationConfigHelper
-        .createByAnimationType(this.animationType);
-
-      this.options ={
-        path: this.config.path,
-        loop: this.config.loop
-      };
-
-      console.warn(this.options)
-    }
-  }
 
   handleAnimation(animation: AnimationItem) {
     this.animation = animation;

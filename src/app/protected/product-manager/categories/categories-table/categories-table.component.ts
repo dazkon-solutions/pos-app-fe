@@ -7,31 +7,37 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Component } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
-import { ActionButtonComponent } from 'src/app/private/system/common/action-button/action-button.component';
-import { Action } from 'src/app/common/enums';
 import { 
-  ActionButtonConfig, 
-  ActionButtonType 
-} from 'src/app/private/system/common/action-button';
+  ChangeDetectionStrategy,
+  Component, 
+  signal 
+} from '@angular/core';
+import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
+import { Permission } from 'src/app/common/enums';
 import { TableSkeletonWithImageComponent } from 'src/app/private/system/common/skeletons/table-skeleton-with-image/table-skeleton-with-image.component';
 import { TABLE_VIEW_IMPORTS } from 'src/app/common/imports/table-view-imports';
 import { AnimationPlayerComponent } from 'src/app/private/system/common/animation-player/animation-player.component';
 import { BaseTableViewComponent } from 'src/app/private/system/common/base-table-view-component';
+import { 
+  ButtonConfig, 
+  ButtonStyleClass, 
+  ButtonType 
+} from 'src/app/private/system/common/button';
+import { LocaleKeys } from 'src/app/common/constants';
+import { ButtonComponent } from 'src/app/private/system/common/button/button.component';
 
 @Component({
   selector: 'daz-categories-table',
   imports: [
     CORE_IMPORTS,
     TABLE_VIEW_IMPORTS,
-    ActionButtonComponent,
     TableSkeletonWithImageComponent,
-    AnimationPlayerComponent
+    AnimationPlayerComponent,
+    ButtonComponent
   ],
   templateUrl: './categories-table.component.html',
-  styleUrl: './categories-table.component.scss'
+  styleUrl: './categories-table.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoriesTableComponent extends BaseTableViewComponent<any> {
   protected setDisplayedColumns(): string[] {
@@ -46,15 +52,17 @@ export class CategoriesTableComponent extends BaseTableViewComponent<any> {
     ];
   }
 
-  protected initializeButtons(): void {
-    this.viewButton$ = new BehaviorSubject<ActionButtonConfig>({
-      action: Action.VIEW_CATEGORY,
-      type: ActionButtonType.VIEW
-    });
-  
-    this.deleteButton$ = new BehaviorSubject<ActionButtonConfig>({
-      action: Action.DELETE_CATEGORY,
-      type: ActionButtonType.DELETE_FAB
-    });
-  }
+  protected viewButton = signal<ButtonConfig>({
+    type: ButtonType.FLAT,
+    permission: Permission.VIEW_CATEGORY,
+    label: LocaleKeys.labels.buttons.view
+  });
+
+  protected deleteButton = signal<ButtonConfig>({
+    type: ButtonType.MINI_FAB,
+    icon: 'delete',
+    tooltip: LocaleKeys.tooltips.delete,
+    permission: Permission.CAN_DELETE_CATEGORY,
+    styleClass: ButtonStyleClass.BTN_WARN
+  });
 }

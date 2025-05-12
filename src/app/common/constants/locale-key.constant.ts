@@ -29,6 +29,7 @@ export const LocaleKeys = {
     optionsMenu: 'titles.optionsMenu',
     noDataFound: 'titles.noDataFound',
     calculator: 'titles.calculator',
+    loadingList: 'titles.loadingList',
   },
   tooltips: {
     notifications: 'tooltips.notifications',
@@ -79,6 +80,7 @@ export const LocaleKeys = {
       update: 'labels.buttons.update',
       view: 'labels.buttons.view',
       delete: 'labels.buttons.delete',
+      yesDeleteIt: 'labels.buttons.yesDeleteIt',
       cancel: 'labels.buttons.cancel',
       ok: 'labels.buttons.ok',
       edit: 'labels.buttons.edit',
@@ -87,7 +89,6 @@ export const LocaleKeys = {
       selectOne: 'labels.forms.selectOne',
       search: 'labels.forms.search',
       usingAdvancedFilter: 'labels.forms.usingAdvancedFilter',
-      searchByName: 'labels.forms.searchByName',
       name: 'labels.forms.name',
       description: 'labels.forms.description',
       createdAt: 'labels.forms.createdAt',

@@ -73,10 +73,8 @@
     </ng-container>
 
     <!-- Header and rows section -->
-    @let tableHeaderColor = tableHeaderColor$ | async;
     <tr mat-header-row 
-        *matHeaderRowDef="displayedColumns sticky: true"
-        [style.background-color]="tableHeaderColor" >
+        *matHeaderRowDef="displayedColumns sticky: true" >
     </tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
     <!-- End of header and rows section -->

@@ -9,14 +9,12 @@
 
 import { 
   FormBuilder, 
+  FormGroup, 
   Validators 
 } from "@angular/forms";
-import { LocaleKeys } from "src/app/common/constants";
-import { Action } from "src/app/common/enums";
-import { ActionButtonType } from "src/app/private/system/common/action-button";
 
 export class CategoryFormConfigHelper {
-  static createForm(formBuilder: FormBuilder): any {
+  static createForm(formBuilder: FormBuilder): FormGroup {
     return formBuilder.group({
       id: [
         {
@@ -65,24 +63,4 @@ export class CategoryFormConfigHelper {
       ]
     });
   }
-
-  static headerConfig = {
-    title: LocaleKeys.titles.createCategory,
-    value: 'SAL-23232'
-  };
-
-  static createBtnConfig = {
-    action: Action.CREATE_CATEGORY,
-    type: ActionButtonType.CREATE
-  };
-  
-  static updateBtnConfig = {
-    action: Action.UPDATE_CATEGORY,
-    type: ActionButtonType.UPDATE
-  };
-
-  static editBtnConfig = {
-    action: Action.UPDATE_CATEGORY,
-    type: ActionButtonType.EDIT
-  };
 }

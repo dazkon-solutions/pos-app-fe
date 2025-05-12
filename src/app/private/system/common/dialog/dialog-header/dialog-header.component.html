@@ -7,22 +7,18 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-@let isProcessing = (isProcessing$ | async) ?? false;
-
 <div class="daz-dialog-header" mat-dialog-title >
-  @let config = config$ | async;
-
   <!-- Title -->
   <span class="mat-headline-small title" >
-    {{ config?.title ?? '' | translate }}
+    {{ config().title | translate }}
   </span>
   <!-- End of title -->
 
   <!-- Value -->
-  @if (config?.value) {
+  @if (config().value) {
     &nbsp;
     <mat-chip class="value" >
-      {{ config?.value }}
+      {{ config().value }}
     </mat-chip>
   }
   <!-- End of value -->
@@ -32,8 +28,7 @@
   <!-- Close button -->
   <button mat-icon-button
           mat-dialog-close
-          class="close-btn"
-          [disabled]="isProcessing"
+          [disabled]="isProcessing()"
           [matTooltip]="LocaleKeys.tooltips.close | translate" >
     <mat-icon svgIcon="close" />
   </button>

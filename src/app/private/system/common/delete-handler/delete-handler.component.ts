@@ -8,77 +8,123 @@
  */
 
 import { 
+  ChangeDetectionStrategy,
   Component, 
-  Inject, 
-  OnInit 
+  effect, 
+  inject, 
+  OnDestroy, 
+  signal
 } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogRef } from '@angular/cdk/dialog';
 import { 
-  BehaviorSubject,
-  Observable
-} from 'rxjs';
+  MAT_DIALOG_DATA, 
+  MatDialogModule 
+} from '@angular/material/dialog';
+import { firstValueFrom } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { LocaleKeys } from 'src/app/common/constants';
-import { DeleteHandleState } from 'src/app/store/delete-handle';
-import { Action } from 'src/app/common/enums';
-import { DELETE_HANDLER_MAT_IMPORTS } from './delete-handler-imports';
 import { 
-  ActionButtonConfig, 
-  ActionButtonType 
-} from '../action-button';
-import { ActionButtonComponent } from '../action-button/action-button.component';
+  DeleteHandleState, 
+  ResetDeleteHandleState 
+} from 'src/app/store/delete-handle';
+import { DeletableResponse } from 'src/app/common/interfaces';
+import { DeleteHandlerConfig } from './delete-handler.interface';
 import { AnimationPlayerComponent } from '../animation-player/animation-player.component';
 import { AnimationType } from '../animation-player';
 import { DeleteHandleSkeletonComponent } from '../skeletons/delete-handler-skeleton/delete-handler-skeleton.component';
-import { DeleteHandlerConfig } from './delete-handler.interface';
-import { WaitingOverlayComponent } from '../waiting-overlay/waiting-overlay.component';
+import { ButtonComponent } from '../button/button.component';
+import { 
+  ButtonConfig, 
+  ButtonStyleClass, 
+  ButtonType 
+} from '../button';
+
+enum DeleteHandlerStatus {
+  INIT,
+  DELETABLE,
+  NOT_DELETABLE
+};
 
 @Component({
   selector: 'daz-delete-handler',
   imports: [
     CORE_IMPORTS,
-    DELETE_HANDLER_MAT_IMPORTS,
-    ActionButtonComponent,
+    MatDialogModule,
+    ButtonComponent,
     AnimationPlayerComponent,
     DeleteHandleSkeletonComponent,
-    WaitingOverlayComponent
   ],
   templateUrl: './delete-handler.component.html',
-  styleUrl: './delete-handler.component.scss'
+  styleUrl: './delete-handler.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush 
 })
-export class DeleteHandlerComponent implements OnInit {
-  isLoading$!: Observable<boolean>;
-  isProcessing$!: Observable<boolean>;
-  isDeletable$!: Observable<boolean>;
-  errorMessages$!: Observable<string[]>;
-  deleteBtn$ = new BehaviorSubject<ActionButtonConfig>({
-    action: Action.DEFAULT,
-    type: ActionButtonType.DELETE,
+export class DeleteHandlerComponent implements OnDestroy {
+  public data: DeleteHandlerConfig = inject(MAT_DIALOG_DATA);
+  private dialogRef = inject(DialogRef);
+  private store = inject(Store);
+
+  isProcessing = this.store.selectSignal(DeleteHandleState.isProcessing);
+  private deleteResponse = this.store.selectSignal(DeleteHandleState.getResponse);
+  
+  messages = signal<string[]>([]);
+  deleteHandlerStatus = signal<DeleteHandlerStatus>(DeleteHandlerStatus.INIT);
+  protected deleteButton = signal<ButtonConfig>({
+    type: ButtonType.FLAT,
+    icon: 'delete',
+    label: LocaleKeys.labels.buttons.yesDeleteIt,
+    styleClass: ButtonStyleClass.BTN_WARN
   });
-  deleteAction = Action.DEFAULT;
+  protected cancelButton = signal<ButtonConfig>({
+    type: ButtonType.BASIC,
+    label: LocaleKeys.labels.buttons.cancel
+  });
+  protected okButton = signal<ButtonConfig>({
+    type: ButtonType.FLAT,
+    label: LocaleKeys.labels.buttons.ok
+  });
+  
   LocaleKeys = LocaleKeys;
   AnimationType = AnimationType;
+  DeleteHandlerStatus = DeleteHandlerStatus;
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: DeleteHandlerConfig,
-    private store: Store
-  ) { 
-    this.deleteAction = this.data.deleteAction;
+  constructor() {
+    effect(() => {
+      this.setDeleteHandlerStatus(this.deleteResponse());
+    });
   }
 
-  ngOnInit(): void {
-    this.syncState();
-  }
-  
-  private syncState(): void {
-    this.isLoading$ = this.store.select(DeleteHandleState.isLoading);
-    this.isDeletable$ = this.store.select(DeleteHandleState.isDeletable);
-    this.isProcessing$ = this.store.select(DeleteHandleState.isProcessing);
-    this.errorMessages$ = this.store.select(DeleteHandleState.getErrorMessages);
+  private setDeleteHandlerStatus(
+    response: DeletableResponse | null
+  ): void {
+    if (!response) {
+      this.deleteHandlerStatus.set(DeleteHandlerStatus.INIT);
+      return;
+    }
+
+    if (response.isDeletable) {
+      this.deleteHandlerStatus.set(DeleteHandlerStatus.DELETABLE);
+      return;
+    }
+
+    this.messages.set(response.messages);
+    this.deleteHandlerStatus.set(DeleteHandlerStatus.NOT_DELETABLE);
   }
 
-  deleteClicked(): void {
-    this.store.dispatch(this.data.deleteActionInstance);
+  async deleteClicked(): Promise<void> {
+    try {
+      await firstValueFrom(this.store.dispatch(this.data.deleteActionInstance));
+      this.dialogRef.close();
+    } catch (error) { 
+      console.error('Error on deletion', error);
+    }
+  }
+
+  cancelClicked(): void {
+    this.dialogRef.close();
+  }
+
+  ngOnDestroy(): void {
+    this.store.dispatch(new ResetDeleteHandleState());
   }
 }

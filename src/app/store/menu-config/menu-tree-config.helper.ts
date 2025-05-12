@@ -7,9 +7,10 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Resource } from "src/app/common/enums";
+import { Permission } from "src/app/common/enums";
 import { LocaleKeys } from "src/app/common/constants";
 import { MenuNode } from "./menu.interface";
+import { RoutePaths } from "src/app/common/navigation";
 
 export class MenuTreeConfigHelper {
   static createTree(): MenuNode[] {
@@ -20,8 +21,8 @@ export class MenuTreeConfigHelper {
         name: LocaleKeys.titles.dashboard,
         description: LocaleKeys.titles.dashboard,
         icon: 'dashboard',
-        route: '',
-        resource: Resource.DASHBOARD
+        routePath: RoutePaths.DASHBOARD,
+        permission: Permission.VIEW_DASHBOARD
       },
       {
         uid: 10,
@@ -29,31 +30,31 @@ export class MenuTreeConfigHelper {
         name: LocaleKeys.titles.products,
         description: LocaleKeys.titles.products,
         icon: 'product',
-        resource: Resource.PRODUCT_MANAGER,
+        permission: Permission.VIEW_PRODUCTS_SECTION,
         children: [
           {
             uid: 11,
             pid: 10,
             name: LocaleKeys.titles.products,
             description: LocaleKeys.titles.products,
-            route: 'products',
-            resource: Resource.PRODUCTS
+            routePath: RoutePaths.PRODUCT_LIST_PAGE,
+            permission: Permission.VIEW_PRODUCT_LIST_PAGE
           }, 
           {
             uid: 12,
             pid: 10,
             name: LocaleKeys.titles.categories,
             description: LocaleKeys.titles.categories,
-            route: 'products/categories',
-            resource: Resource.CATEGORIES
+            routePath: RoutePaths.CATEGORY_LIST_PAGE,
+            permission: Permission.VIEW_CATEGORY_LIST_PAGE
           },
           {
             uid: 13,
             pid: 10,
             name: LocaleKeys.titles.brands,
             description: LocaleKeys.titles.brands,
-            route: 'brands',
-            resource: Resource.BRANDS
+            routePath: RoutePaths.BRAND_LIST_PAGE,
+            permission: Permission.VIEW_BRAND_LIST_PAGE
           }
         ]
       },

@@ -25,11 +25,6 @@ export class SetDeletableResponse {
   constructor(public payload: DeletableResponse) { }
 }
 
-export class SetDeleteHandleLoadingStatus {
-  static readonly type = '[DeleteHandle] Set loading status';
-  constructor(public isProcessing: boolean) { }
-}
-
 export class SetDeleteHandleProcessingStatus {
   static readonly type = '[DeleteHandle] Set processing status';
   constructor(public isProcessing: boolean) { }
@@ -46,18 +41,8 @@ export class ResetDeleteHandleState {
 @Injectable()
 export class DeleteHandleState {
   @Selector()
-  static isDeletable(state: DeleteHandleStateModel): boolean {
-    return state.isDeletable;
-  }
-
-  @Selector()
-  static getErrorMessages(state: DeleteHandleStateModel): string[] {
-    return state.errorMessages;
-  }
-
-  @Selector()
-  static isLoading(state: DeleteHandleStateModel): boolean {
-    return state.isLoading;
+  static getResponse(state: DeleteHandleStateModel): DeletableResponse | null {
+    return state.response;
   }
 
   @Selector()
@@ -70,12 +55,9 @@ export class DeleteHandleState {
     ctx: StateContext<DeleteHandleStateModel>,
     action: SetDeletableResponse
   ): void {
-    const { isDeletable, errorMessages } = action.payload;
     ctx.setState({
-      isDeletable,
-      errorMessages,
-      isProcessing: false,
-      isLoading: false
+      response: action.payload,
+      isProcessing: false
     });
   }
 

@@ -7,32 +7,26 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Injectable } from "@angular/core";
-import { Store } from "@ngxs/store";
 import { 
-  map, 
-  Observable, 
-  of
-} from "rxjs";
+  inject, 
+  Injectable 
+} from "@angular/core";
+import { Store } from "@ngxs/store";
 import { PermissionState } from "src/app/store/permission";
-import { Action } from "../enums";
+import { Permission } from "../enums";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class PermissionService {
-  private permissions$: Observable<Action[]>;
-
-  constructor(private store: Store) { 
-    this.permissions$ = this.store.select(PermissionState.getList);
-  }
-
+  private store = inject(Store);
+  private permissions = this.store.selectSignal(PermissionState.getList);
+  
   // Action type = DEFAULT; should allow
-  hasPermission(action: Action): Observable<boolean> {
-    if(action === Action.DEFAULT) return of(true);
+  hasPermission(permission: Permission): boolean {
+    if (permission === Permission.DEFAULT) return true;
     
-    return this.permissions$.pipe(map(permissions => 
-      permissions.includes(action)));
+    return this.permissions().includes(permission) ?? false;
   }
 }

@@ -12,23 +12,29 @@ import {
   Action, 
   Selector, 
   State, 
-  StateContext 
+  StateContext
 } from "@ngxs/store";
+import { Resource } from "src/app/common/enums";
 import { NavigationStateModel } from "./navigation-state.model";
 import { NavigationConfigHelper } from "./navigation-config.helper";
 import { StateKey } from "../state-key.token";
+import { SetMainSearchConfigByResource } from "../main-search";
 
 
-export class SetNavigation {
-  static readonly type = '[Navigation] Set navigation';
-  constructor(public payload: NavigationStateModel) { }
+export class SetNavigationRoutePath {
+  static readonly type = '[Navigation] Set route path';
+  constructor(public routePath: string) { }
+}
+
+export class SetResource {
+  static readonly type = '[Navigation] Set resource';
+  constructor(public resource: Resource) { }
 }
 
 export class ResetNavigation {
   static readonly type = '[Navigation] Reset';
 }
 
-// TODO: REMOVE
 @State<NavigationStateModel>({
   name: StateKey.NAVIGATION,
   defaults: NavigationConfigHelper.createDefault()
@@ -36,16 +42,42 @@ export class ResetNavigation {
 @Injectable()
 export class NavigationState {
   @Selector()
-  static navigation(state: NavigationStateModel): NavigationStateModel {
-    return state;
+  static getCurrentRoutePath(state: NavigationStateModel): string {
+    return state.routePath;
   }
 
-  @Action(SetNavigation)
-  setNavigation(
+  @Selector()
+  static getCurrentResource(state: NavigationStateModel): Resource | null {
+    return state.resource;
+  }
+
+  @Action(SetNavigationRoutePath)
+  setNavigationRoutePath(
     ctx: StateContext<NavigationStateModel>,
-    action: SetNavigation
-  ) {
-    ctx.patchState(action.payload);
+    action: SetNavigationRoutePath
+  ): void {
+    const currentState = ctx.getState();
+    if (currentState.routePath === action.routePath) return;
+
+    ctx.patchState({
+      routePath: action.routePath,
+      resource: null
+    });
+  }
+
+  @Action(SetResource)
+  setResource(
+    ctx: StateContext<NavigationStateModel>,
+    action: SetResource
+  ): void {
+    const currentState = ctx.getState();
+    if (currentState.resource === action.resource) return;
+
+    ctx.patchState({
+      resource: action.resource
+    });
+
+    ctx.dispatch(new SetMainSearchConfigByResource(action.resource));
   }
 
   @Action(ResetNavigation)

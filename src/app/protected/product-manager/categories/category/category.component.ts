@@ -8,29 +8,28 @@
  */
 
 import { 
+  ChangeDetectionStrategy,
   Component, 
-  OnInit 
+  DestroyRef, 
+  effect, 
+  inject, 
+  OnInit, 
+  signal
 } from '@angular/core';
 import { 
   FormBuilder, 
   FormGroup 
 } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Store } from '@ngxs/store';
-import { 
-  BehaviorSubject, 
-  Observable,
-  of
-} from 'rxjs';
 import { LocaleKeys } from 'src/app/common/constants';
 import { 
-  Action, 
   ButtonEvent, 
-  FormMode 
+  Permission
 } from 'src/app/common/enums';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
-import { DIALOG_MAT_IMPORTS } from 'src/app/common/imports/dialog-imports';
-import { ActionButtonConfig } from 'src/app/private/system/common/action-button';
-import { DialogActionsComponent } from 'src/app/private/system/common/dialog/dialog-actions/dialog-actions.component';
+import { DialogFormActionsComponent } from 'src/app/private/system/common/dialog/dialog-form-actions/dialog-form-actions.component';
 import { DialogHeaderConfig } from 'src/app/private/system/common/dialog/dialog-header';
 import { DialogHeaderComponent } from 'src/app/private/system/common/dialog/dialog-header/dialog-header.component';
 import { ProductCategoryUIState } from 'src/app/store/product-category';
@@ -38,93 +37,121 @@ import { CustomErrorStateMatcher } from 'src/app/private/system/common/error-sta
 import { FORM_MAT_IMPORTS } from 'src/app/common/imports/form-imports';
 import { WaitingOverlayComponent } from 'src/app/private/system/common/waiting-overlay/waiting-overlay.component';
 import { CommonAutoCompleteComponent } from 'src/app/private/system/common/auto-completes/common-auto-complete/common-auto-complete.component';
-import { CategoryFormConfigHelper } from './category-form-config';
 import { PersonAutoCompleteComponent } from 'src/app/private/system/common/auto-completes/person-auto-complete/person-auto-complete.component';
+import { 
+  CreateProductCategory, 
+  ProductCategoryState, 
+  UpdateProductCategory 
+} from 'src/app/store/product-category/data/product-category.state';
+import { CategoryFormConfigHelper } from './category-form-config';
 
 
 @Component({
   selector: 'daz-category',
   imports: [
     CORE_IMPORTS,
-    DIALOG_MAT_IMPORTS,
     FORM_MAT_IMPORTS,
+    MatDialogModule,
     DialogHeaderComponent,
-    DialogActionsComponent,
+    DialogFormActionsComponent,
     WaitingOverlayComponent,
     CommonAutoCompleteComponent,
     PersonAutoCompleteComponent
   ],
   templateUrl: './category.component.html',
-  styleUrl: './category.component.scss'
+  styleUrl: './category.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoryComponent implements OnInit {
-  isProcessing$!: Observable<boolean>;
-  dialogHeaderConfig$ = new BehaviorSubject<DialogHeaderConfig>(CategoryFormConfigHelper.headerConfig);
-  createBtn$ = new BehaviorSubject<ActionButtonConfig>(CategoryFormConfigHelper.createBtnConfig);
-  updateBtn$ = new BehaviorSubject<ActionButtonConfig>(CategoryFormConfigHelper.updateBtnConfig);
-  editBtn$ = new BehaviorSubject<ActionButtonConfig>(CategoryFormConfigHelper.editBtnConfig);
+  private destroyRef = inject(DestroyRef);
+  private store = inject(Store);
+  private formBuilder = inject(FormBuilder);
 
-  isCategoryLoading$!: Observable<boolean>;
+  dialogHeaderConfig = signal<DialogHeaderConfig>({
+    title: LocaleKeys.titles.createCategory
+  });
 
-  matcher = new CustomErrorStateMatcher();
+  isProcessing = this.store.selectSignal(ProductCategoryUIState.isProcessing);
+  currentItem = this.store.selectSignal(ProductCategoryState.getCurrent);
+  isCategoryLoading = this.store.selectSignal(ProductCategoryUIState.isLoading);
+
+  createPermission = signal<Permission>(Permission.CAN_CREATE_CATEGORY);
+  updatePermission = signal<Permission>(Permission.CAN_UPDATE_CATEGORY);
+  isFormEditable = signal<boolean>(false);
+  isCreateMode = signal<boolean>(false);
+
   form: FormGroup;
-  initFormMode = FormMode.NEW;
+  matcher = new CustomErrorStateMatcher();
   formTouched = false;
   LocaleKeys = LocaleKeys;
 
-  constructor(
-    private store: Store,
-    private formBuilder: FormBuilder,
-  ) { 
+  constructor() {
     this.form = CategoryFormConfigHelper.createForm(this.formBuilder);
+
+    effect(() => {
+      const currentItem = this.currentItem();
+      const hasId = !!currentItem?.id;
+      
+      this.isFormEditable.set(!hasId);
+      this.isCreateMode.set(!hasId);
+      
+      if (currentItem) {
+        this.setFormData(currentItem);
+      }
+
+      this.isFormEditable() ? this.form.enable() : this.form.disable();
+    });
   }
 
   ngOnInit(): void {
-    this.syncState();
-
-    this.form.get('category')?.valueChanges.subscribe(v => console.warn('chn',v))
+    this.form.get('category')?.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((v:any) => console.warn('chn',v));
   }
 
-  private syncState(): void {
-    this.isProcessing$ = this.store.select(ProductCategoryUIState.isProcessing);
-    // Set form values from state
-    this.updateFormConfigByData({id: 1});
+  private setFormData(formData: any): void {
+    this.dialogHeaderConfig.set({
+      title: LocaleKeys.titles.category,
+      value: 'SAL-23232'
+    });
+    
+    this.form.patchValue({
+      // set form date
+
+    }, { emitEvent: false });
   }
 
-  private updateFormConfigByData(formData: any): void {
-    this.initFormMode = formData.id > 0
-      ? FormMode.VIEW
-      : FormMode.NEW;
-
-    if(formData.id > 0) {
-      this.dialogHeaderConfig$.next({
-        title: LocaleKeys.titles.createCategory,
-        value: 'SAL-23232'
-      });
-    }
-  }
-
-  actionClicked(action: Action): void {
+  onSubmit(): void {
     console.warn('formValue',this.form.value)
-    if(this.form.invalid) {
+    if (this.form.invalid) {
       this.form.markAllAsTouched();
       this.formTouched = true;
       return;
     }
 
-    console.warn('dialog action changed', action)
+    const action = (this.form.value.id > 0)
+      ? new UpdateProductCategory(this.form.value)
+      : new CreateProductCategory(this.form.value);
+
+    this.store.dispatch(action);
+
+    console.warn('dialog action changed')
   }
+
+  onToggleEditability(): void {
+    this.isFormEditable.set(!this.isFormEditable());
+  } 
 
   onFilterCategory(filterTerm: string): void {
     console.warn('category filter', filterTerm);
   }
 
   categoryFetchClicked(buttonEvent: ButtonEvent): void {
-    this.isCategoryLoading$ = of(true);
+    // this.isCategoryLoading$ = of(true);
     console.warn('fetch category', buttonEvent);
   }
 
-  getCategoryList(): Observable<any[]> {
+  getCategoryList(): any[] {
     const list = [
       {
         id: 1,
@@ -152,10 +179,10 @@ export class CategoryComponent implements OnInit {
         year: 2023
       }
     ];
-    return of(list);
+    return list;
   }
 
-  getCustomerList(): Observable<any[]> {
+  getCustomerList(): any[] {
     const list = [
       {
         id: 1,
@@ -183,6 +210,6 @@ export class CategoryComponent implements OnInit {
         title: 'MR'
       }
     ];
-    return of(list);
+    return list;
   }
 }

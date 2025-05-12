@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { POS_MAT_IMPORTS } from '../pos-imports';
 import { Observable } from 'rxjs';
-import { TableService } from 'src/app/common/services';
 
 @Component({
   selector: 'daz-pos-bill',
@@ -23,7 +22,6 @@ import { TableService } from 'src/app/common/services';
   styleUrl: './pos-bill.component.scss'
 })
 export class PosBillComponent {
-  tableHeaderColor$: Observable<string>;
   displayedColumns = [
     'id',
     'product',
@@ -33,8 +31,7 @@ export class PosBillComponent {
     'subtotal'
   ];
 
-  constructor(protected tableSvc: TableService) { 
-    this.tableHeaderColor$ = this.tableSvc.tableHeaderColor$;
+  constructor() { 
   }
 
   

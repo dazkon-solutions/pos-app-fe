@@ -7,11 +7,9 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Action } from "src/app/common/enums";
 
 export interface DeleteHandlerConfig {
-  checkActionInstance:  any;
+  checkActionInstance:  any | null; // Set null for prevent to check deletable
   deleteActionInstance: any;
-  deleteAction:         Action;
   description:          string;
 }

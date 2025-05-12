@@ -7,23 +7,33 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Component } from '@angular/core';
+import { 
+  Component, 
+  inject, 
+  OnInit 
+} from '@angular/core';
+import { Store } from '@ngxs/store';
+import { SetResource } from 'src/app/store/navigation-config';
 import { Resource } from 'src/app/common/enums';
-import { Navigator } from 'src/app/common/services';
-import { DASHBOARD_MAT_IMPORTS } from './dashboard-imports';
 
 @Component({
   selector: 'daz-dashboard',
   imports: [
-    DASHBOARD_MAT_IMPORTS
+    //
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
-export class DashboardComponent {
-  constructor(private navigateSvc: Navigator) { }
+export class DashboardComponent implements OnInit {
+  private store = inject(Store);
 
-  onClickTest(): void {
-    this.navigateSvc.navigateTo(Resource.PRODUCTS);
+  private resource = Resource.DASHBOARD;
+
+  ngOnInit(): void {
+    this.init();    
+  }
+
+  private init(): void {
+    this.store.dispatch(new SetResource(this.resource));
   }
 }

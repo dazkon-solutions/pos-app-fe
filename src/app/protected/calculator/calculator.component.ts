@@ -7,13 +7,18 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Component } from '@angular/core';
+import { 
+  ChangeDetectionStrategy, 
+  Component, 
+  signal
+} from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { evaluate } from 'mathjs';
-import { BehaviorSubject } from 'rxjs';
 import { DialogHeaderComponent } from 'src/app/private/system/common/dialog/dialog-header/dialog-header.component';
 import { LocaleKeys } from 'src/app/common/constants';
 import { DialogHeaderConfig } from 'src/app/private/system/common/dialog/dialog-header';
-import { CALCULATOR_MAT_IMPORTS } from './calculator-imports';
 
 enum ButtonType {
   NUMBER,
@@ -28,22 +33,27 @@ interface CalculatorBtnConfig {
 @Component({
   selector: 'daz-calculator',
   imports: [
-    CALCULATOR_MAT_IMPORTS,
+    MatIconModule,
+    MatButtonModule,
+    MatDialogModule,
     DialogHeaderComponent
   ],
   templateUrl: './calculator.component.html',
-  styleUrl: './calculator.component.scss'
+  styleUrl: './calculator.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalculatorComponent {
-  headerConfig$ = new BehaviorSubject<DialogHeaderConfig>({
+  headerConfig = signal<DialogHeaderConfig>({
     title: LocaleKeys.titles.calculator
   });
-  historyDisplay = ' ';
-  resultDisplay = '0';
-  result = 0;
+
+  historyDisplay = signal<string>(' ');
+  resultDisplay = signal<string>('0');
+  result = signal<number>(0);
+
   ButtonType = ButtonType;
 
-  btnConfigList: CalculatorBtnConfig[] = [
+  btnConfigList = <CalculatorBtnConfig[]> [
     {
       value: 7,
       type: ButtonType.NUMBER
@@ -114,34 +124,36 @@ export class CalculatorComponent {
     if (btn.value === '=') {
       this.calculateResult();
     } else {
-      btn.type === ButtonType.OPERATOR
-        ? this.resultDisplay += ` ${btn.value} `
-        : this.resultDisplay += btn.value;
+      const result = btn.type === ButtonType.OPERATOR
+        ? this.resultDisplay() + ` ${btn.value} `
+        : this.resultDisplay() + btn.value;
+
+      this.resultDisplay.set(result);
     }
   }
 
   calculateResult(): void {
     try {
-      const expression = this.resultDisplay.replace(/x/g, '*').replace(/\s+/g, '');
-      this.result = evaluate(expression);
-      this.historyDisplay = this.resultDisplay;
-      this.resultDisplay = this.result.toString();
+      const expression = this.resultDisplay().replace(/x/g, '*').replace(/\s+/g, '');
+      this.result.set(evaluate(expression));
+      this.historyDisplay.set(this.resultDisplay());
+      this.resultDisplay.set(this.result().toString());
     } catch (error) {
-      this.resultDisplay = 'Error';
+      this.resultDisplay.set('Error');
     }
   }
 
   clearAll(): void {
-    this.historyDisplay = ' ';
-    this.resultDisplay = '0';
-    this.result = 0;
+    this.historyDisplay.set(' ');
+    this.resultDisplay.set('0');
+    this.result.set(0);
   }
 
   backspace(): void {
-    if (this.resultDisplay.length > 1) {
-      this.resultDisplay = this.resultDisplay.slice(0, -1).trim();
-    } else {
-      this.resultDisplay = '0';
-    }
+    const result = this.resultDisplay().length > 1
+      ? this.resultDisplay().slice(0, -1).trim()
+      : '0';
+
+    this.resultDisplay.set(result);
   }
 }

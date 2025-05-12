@@ -7,91 +7,25 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-// @use 'dazkon-theme' as theme;
+@use '@angular/material' as mat;
+@use 'theme-colors' as theme;
 @use 'variables' as var;
-// @use 'mat-component';
-// @use 'common';
 @use 'scroll';
 @use 'header';
-@use 'control-bar';
-@use 'footer';
-@use 'form';
-@use 'card';
-@use 'drawer';
-@use 'table';
-@use 'pagination';
 @use 'button';
-@use 'grid';
-@use 'data-view';
-// @use 'dialog';
-// @use 'bottom-sheet' as bs;
-// @use 'table';
+@use 'table';
 
+@mixin light-theme() {
+  @include scroll.scroller-themes(var.$scroll-bg-color-light, 
+                                  var.$scroll-thumb-color-light,
+                                  var.$scroll-bg-color-light,
+                                  var.$scroll-hover-color-light);
 
-@mixin light-theme-styles() {
-  // $theme: theme.$light-theme;
+  @include header.header-themes(var.$header-color-light);
+  
+  @include button.button-themes(var.$warn-color-light);
 
-  .daz-container,
-  .daz-content {
-    background-color: var.$light-bg-color-1;
-  }
-
-  .background-color-with-curve-helper-for-header {
-    background-color: var.$light-bg-color-2;
-  }
-
-  .background-color-with-curve-helper-for-control-bar{
-    background-color: var.$light-bg-color-1;
-  }
-
-  // @include mat-component.mat-component-color-variants($theme);
-
-  // @include common.hover-layer-color(var.$hover-color);
-
-  // @include common.active-layer-color(var.$active-color);
-
-  @include scroll.scroller-styles(var.$scroll-bg-color, 
-                                  var.$scroll-thumb-color,
-                                  var.$scroll-bg-color,
-                                  var.$hover-color);
-
-  @include header.header-styles(var.$light-bg-color-2,
-                                var.$light-bg-text-color);
-
-  @include control-bar.control-bar-styles(var.$light-bg-color-1,
-                                          var.$light-bg-text-color);
-
-  @include footer.footer-styles(var.$light-bg-color-1,
-                                var.$light-bg-text-color);
-
-  @include form.form-colors(var.$light-bg-text-color);
-
-  @include card.card-styles(var.$light-bg-color-1,
-                            var.$light-bg-color-3,
-                            var.$light-bg-text-color);
-
-  @include drawer.drawer-styles(var.$light-bg-color-2);
-
-  @include table.table-colors(var.$table-bg-color,
-                              var.$table-header-text-color,
-                              var.$table-header-text-color,
-                              var.$table-row-outline-color);
-
-  @include pagination.pagination-styles(var.$light-bg-color-1,
-                                        var.$light-bg-text-color,
-                                        var.$table-row-outline-color);
-
-  @include button.button-styles(var.$btn-primary-color,
-                                var.$btn-warn-color,
-                                var.$btn-text-color);
-
-  @include grid.grid-colors(var.$light-bg-color-2);
-
-  @include data-view.data-view-light();
-
-  // @include dialog.dialog-background(var.$light-bg-color-2);
-
-  // @include bs.bottom-sheet-background(var.$light-bg-color-2);
-
-  // @include table.table-background(var.$light-bg-color-2);
+  @include table.table-themes(var.$table-header-color-light,
+                              var.$table-row-outline-color-light, 
+                              var.$table-row-hover-color-light);
 }

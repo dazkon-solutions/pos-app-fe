@@ -7,9 +7,17 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Action } from "../enums";
+import { 
+  Action, 
+  Permission 
+} from "../enums";
 
 export interface ActionResponse {
   action:   Action;
   payload:  any;
+}
+
+export interface ActionPermission {
+  action:     Action;
+  permission: Permission;
 }

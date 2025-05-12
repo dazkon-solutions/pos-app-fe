@@ -27,8 +27,8 @@ import { POS_MAT_IMPORTS } from '../pos-imports';
   imports: [
     CORE_IMPORTS,
     POS_MAT_IMPORTS,
-    PersonAutoCompleteComponent,
-    CommonAutoCompleteComponent
+    // PersonAutoCompleteComponent,
+    // CommonAutoCompleteComponent
   ],
   templateUrl: './pos-customer-and-product.component.html',
   styleUrl: './pos-customer-and-product.component.scss'

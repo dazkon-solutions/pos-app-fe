@@ -7,31 +7,35 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Component } from '@angular/core';
 import { 
-  MatSnackBarConfig, 
-  MatSnackBarRef 
-} from '@angular/material/snack-bar';
+  ChangeDetectionStrategy, 
+  Component, 
+  computed, 
+  inject 
+} from '@angular/core';
+import { MatSnackBarRef } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { LocaleKeys } from 'src/app/common/constants';
-import { SNACK_BAR_ALERT_MAT_IMPORTS } from './snack-bar-alert-imports';
 
 @Component({
   selector: 'daz-snack-bar-alert',
   imports: [
     CORE_IMPORTS,
-    SNACK_BAR_ALERT_MAT_IMPORTS
+    MatSnackBarModule,
+    MatIconModule
   ],
   templateUrl: './snack-bar-alert.component.html',
-  styleUrl: './snack-bar-alert.component.scss'
+  styleUrl: './snack-bar-alert.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SnackBarAlertComponent {
-  config!: MatSnackBarConfig;
-  LocaleKeys = LocaleKeys;
+  private snackBarRef = inject(MatSnackBarRef<SnackBarAlertComponent>)
 
-  constructor(private snackBarRef: MatSnackBarRef<SnackBarAlertComponent>) { 
-    this.config = this.snackBarRef.containerInstance.snackBarConfig;
-  }
+  config = computed(() => this.snackBarRef.containerInstance.snackBarConfig);
+
+  LocaleKeys = LocaleKeys;
 
   onClickClose(event: MouseEvent): void {
     event.stopPropagation();

@@ -26,9 +26,16 @@
 
 <!-- Action button section -->
 <div align="right" >
-  <button mat-stroked-button
+  <button mat-stroked-button class="btn-warn"
           (click)="onClickReset()" >
     RESET
   </button>
+
+  <daz-button [type]="buttonToAddNew.type"
+              [label]="buttonToAddNew.label"
+              [icon]="buttonToAddNew.icon"
+              [isDisabled]="true"
+              [styleClass]="buttonToAddNew.styleClass"
+              [permission]="buttonToAddNew.permission" />
 </div>
 <!-- End of action button section -->

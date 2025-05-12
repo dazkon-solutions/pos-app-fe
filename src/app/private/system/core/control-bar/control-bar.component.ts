@@ -8,82 +8,72 @@
  */
 
 import { 
+  ChangeDetectionStrategy,
   Component, 
-  DestroyRef, 
-  OnInit
+  computed, 
+  inject,
+  input,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { BehaviorSubject } from 'rxjs';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { Store } from '@ngxs/store';
+import { MenuState } from 'src/app/store/menu-config';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { 
-  MenuNode,
-  MenuState
-} from 'src/app/store/menu-config';
-import { Action, Resource } from 'src/app/common/enums';
-import { ActionButtonComponent } from 'src/app/private/system/common/action-button/action-button.component';
-import { 
-  ActionButtonConfig, 
-  ActionButtonType 
-} from 'src/app/private/system/common/action-button';
+  Action, 
+  Resource
+} from 'src/app/common/enums';
 import { ActionService } from 'src/app/common/services';
+import { LocaleKeys } from 'src/app/common/constants';
 import { MainSearchComponent } from '../main-search/main-search.component';
-import { CONTROL_BAR_MAT_IMPORTS } from './control-bar-imports';
 import { ControlBarConfigHelper } from './control-bar-config.helper';
+import { ButtonComponent } from '../../common/button/button.component';
+import { 
+  ButtonConfig, 
+  ButtonType 
+} from '../../common/button';
+import { MainSearchState } from 'src/app/store/main-search';
 
 
 @Component({
   selector: 'daz-control-bar',
   imports: [
     CORE_IMPORTS,
-    CONTROL_BAR_MAT_IMPORTS,
+    MatToolbarModule,
     MainSearchComponent,
-    ActionButtonComponent
+    ButtonComponent
   ],
   templateUrl: './control-bar.component.html',
-  styleUrl: './control-bar.component.scss'
+  styleUrl: './control-bar.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ControlBarComponent implements OnInit {
-  addNewButtonConfig$ = new BehaviorSubject<ActionButtonConfig>({
-    type: ActionButtonType.ADD,
-    action: Action.DEFAULT
-  });
-  menuCurrent!: MenuNode | null;
+export class ControlBarComponent {
+  private actionSvc = inject(ActionService);
+  private store = inject(Store);
 
-  constructor(
-    private destroyRef: DestroyRef,
-    private store: Store,
-    private actionSvc: ActionService
-  ) { }
+  resource = input.required<Resource | null>();
 
-  ngOnInit(): void {
-    this.syncState();
-  }
-  
-  private syncState(): void {
-    this.store.select(MenuState.getCurrent)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(current => {
-        this.menuCurrent = current;
+  mainSearchConfig = this.store.selectSignal(MainSearchState.getConfig);
+  currentMenuItem = this.store.selectSignal(MenuState.getCurrent);
+  btnToAddNew = computed(() => 
+    this.createButtonByResource(this.resource() ?? Resource.DASHBOARD));
 
-        if(current) { 
-          this.setAddButtonConfig(current.resource);
-        }
-      });
+  private createButtonByResource(resource: Resource): ButtonConfig {
+    const permission = 
+      ControlBarConfigHelper.getResourcePermissionForAddNewBtn(resource);
+
+    if (!permission) return { type: ButtonType.FLAT };
+
+    return {
+      type: ButtonType.FLAT,
+      permission: permission,
+      label: LocaleKeys.labels.buttons.addNew,
+      icon: 'add'
+    };
   }
 
-  private setAddButtonConfig(resource: Resource): void {
-    const action = ControlBarConfigHelper.getCreateActionForResource(resource);
-
-    this.addNewButtonConfig$.next({
-      type: ActionButtonType.ADD,
-      action
-    });
-  }
-
-  addNewButtonClickHandle(action: Action): void {
+  addNewButtonClickHandle(): void {
     this.actionSvc.emitAction({ 
-      action,
+      action: Action.OPEN_FORM_DIALOG,
       payload: { }
     });
   }

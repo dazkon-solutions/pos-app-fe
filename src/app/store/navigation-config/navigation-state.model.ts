@@ -11,10 +11,6 @@ import { Resource } from "src/app/common/enums";
 
 
 export interface NavigationStateModel {
-  uid:          number;
-  pid:          number;
-  name:         string;
-  description:  string;
-  route:        string;
-  resource:     Resource;
+  routePath: string;
+  resource:  Resource | null;
 }

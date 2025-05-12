@@ -9,12 +9,16 @@
 
 import { 
   Component, 
+  inject, 
   OnDestroy, 
   OnInit 
 } from '@angular/core';
 import { LocaleKeys } from 'src/app/common/constants';
-import { Navigator } from 'src/app/common/services';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
+import { 
+  NavigationService, 
+  RoutePaths 
+} from 'src/app/common/navigation';
 import { POS_MAT_IMPORTS } from '../pos-imports';
 import { CalculatorService } from '../../calculator/category.service';
 
@@ -31,6 +35,9 @@ export class PosHeaderComponent implements
   OnInit,
   OnDestroy 
 {
+  private navigationSvc = inject(NavigationService);
+  private calSvc = inject(CalculatorService);
+  
   hour = 0;
   minute = 0;
   second = 0;
@@ -39,11 +46,6 @@ export class PosHeaderComponent implements
   date = '';
 
   LocaleKeys = LocaleKeys;
-
-  constructor(
-    private navigateSvc: Navigator,
-    private calSvc: CalculatorService
-  ) { }
 
   ngOnInit(): void {
     this.updateDate();
@@ -71,7 +73,7 @@ export class PosHeaderComponent implements
   }
 
   navigateToDashboard(): void {
-    this.navigateSvc.navigateToDashboardWithUpdatingMenu();
+    this.navigationSvc.navigateTo(RoutePaths.DASHBOARD);
   }
 
   openCalculator(): void {

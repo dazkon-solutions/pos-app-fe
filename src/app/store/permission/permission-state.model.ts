@@ -7,9 +7,9 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Action } from "src/app/common/enums";
+import { Permission } from "src/app/common/enums";
 
 
 export interface PermissionStateModel {
-  list: Action[];
+  list: Permission[];
 }

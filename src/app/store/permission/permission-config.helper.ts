@@ -21,17 +21,15 @@ export class PermissionConfigHelper {
   }
 
   private static list: any[] = [
-    'CREATE_PRODUCT',
-    'VIEW_PRODUCT',
-    'UPDATE_PRODUCT',
-    'DELETE_PRODUCT',
-    'CREATE_CATEGORY',
-    'VIEW_CATEGORY',
-    'UPDATE_CATEGORY',
-    'DELETE_CATEGORY',
-    'CREATE_BRAND',
+    'VIEW_BRAND_LIST_PAGE',
     'VIEW_BRAND',
-    'UPDATE_BRAND',
-    'DELETE_BRAND'
+    'CAN_CREATE_BRAND',
+    'CAN_UPDATE_BRAND',
+    'CAN_DELETE_BRAND',
+    'VIEW_CATEGORY_LIST_PAGE',
+    'VIEW_CATEGORY',
+    'CAN_CREATE_CATEGORY',
+    'CAN_UPDATE_CATEGORY',
+    'CAN_DELETE_CATEGORY',
   ]
 }

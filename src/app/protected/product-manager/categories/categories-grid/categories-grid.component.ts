@@ -9,19 +9,20 @@
 
 import { 
   ChangeDetectionStrategy, 
-  Component 
+  Component, 
+  signal
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Action } from 'src/app/common/enums';
+import { Permission } from 'src/app/common/enums';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { GRID_VIEW_MAT_IMPORTS } from 'src/app/common/imports/grid-view-imports';
-import { 
-  ActionButtonConfig, 
-  ActionButtonType 
-} from 'src/app/private/system/common/action-button';
-import { ActionButtonComponent } from 'src/app/private/system/common/action-button/action-button.component';
 import { AnimationPlayerComponent } from 'src/app/private/system/common/animation-player/animation-player.component';
 import { BaseGridViewComponent } from 'src/app/private/system/common/base-grid-view-component';
+import {
+  ButtonConfig, 
+  ButtonStyleClass, 
+  ButtonType 
+} from 'src/app/private/system/common/button';
+import { ButtonComponent } from 'src/app/private/system/common/button/button.component';
 import { GridItemSkeletonComponent } from 'src/app/private/system/common/skeletons/grid-item-skeleton/grid-item-skeleton.component';
 
 @Component({
@@ -29,24 +30,26 @@ import { GridItemSkeletonComponent } from 'src/app/private/system/common/skeleto
   imports: [
     CORE_IMPORTS,
     GRID_VIEW_MAT_IMPORTS,
-    ActionButtonComponent,
     GridItemSkeletonComponent,
-    AnimationPlayerComponent
+    AnimationPlayerComponent,
+    ButtonComponent
   ],
   templateUrl: './categories-grid.component.html',
   styleUrl: './categories-grid.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoriesGridComponent extends BaseGridViewComponent<any> {
-  protected initializeButtons(): void {
-    this.viewButton$ = new BehaviorSubject<ActionButtonConfig>({
-      action: Action.VIEW_CATEGORY,
-      type: ActionButtonType.VIEW
-    });
-  
-    this.deleteButton$ = new BehaviorSubject<ActionButtonConfig>({
-      action: Action.DELETE_CATEGORY,
-      type: ActionButtonType.DELETE_MENU_ITEM
-    });
-  }
+  protected viewButton = signal<ButtonConfig>({
+    type: ButtonType.FLAT,
+    permission: Permission.VIEW_CATEGORY,
+    label: this.LocaleKeys.labels.buttons.view
+  });
+
+  protected deleteButton = signal<ButtonConfig>({
+    type: ButtonType.MENU_ITEM,
+    icon: 'delete',
+    label: this.LocaleKeys.tooltips.delete,
+    permission: Permission.CAN_DELETE_CATEGORY,
+    styleClass: ButtonStyleClass.BTN_WARN
+  });
 }

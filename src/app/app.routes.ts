@@ -8,6 +8,7 @@
  */
 
 import { Routes } from '@angular/router';
+import { RoutePaths } from './common/navigation';
 
 export const routes: Routes = [
   { 
@@ -16,13 +17,18 @@ export const routes: Routes = [
       .then(m => m.DashboardComponent)
   },
   { 
-    path: 'pos', 
+    path: RoutePaths.POS_PAGE, 
     loadComponent: () => import('./protected/pos/pos.component')
       .then(m => m.PosComponent)
   },
   { 
-    path: 'products', 
-    loadChildren: () => import('./protected/product-manager/product.routes')
-      .then(m => m.PRODUCT_MANAGER_ROUTS)
-  }
+    path: RoutePaths.PRODUCT_LIST_PAGE, 
+    loadComponent: () => import('./protected/product-manager/products/products.component')
+      .then(m => m.ProductsComponent)
+  },
+  { 
+    path: RoutePaths.CATEGORY_LIST_PAGE, 
+    loadComponent: () => import('./protected/product-manager/categories/categories.component')
+      .then(m => m.CategoriesComponent)
+  },
 ];

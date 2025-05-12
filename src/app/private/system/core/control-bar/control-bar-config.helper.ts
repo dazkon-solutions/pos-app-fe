@@ -8,19 +8,20 @@
  */
 
 import { 
-  Action, 
+  Permission, 
   Resource 
 } from "src/app/common/enums";
 
-
 export class ControlBarConfigHelper {
-  private static resourceCreateActionMap: { [key in Resource]?: Action } = {
-    [Resource.PRODUCTS]: Action.CREATE_PRODUCT,
-    [Resource.CATEGORIES]: Action.CREATE_CATEGORY,
-    [Resource.BRANDS]: Action.CREATE_BRAND,
+  private static resourcePermissionForAddNewBtn: { [key in Resource]?: Permission } = {
+    [Resource.PRODUCTS]: Permission.CAN_CREATE_PRODUCT,
+    [Resource.CATEGORIES]: Permission.CAN_CREATE_CATEGORY,
+    [Resource.BRANDS]: Permission.CAN_CREATE_BRAND,
   };
 
-  static getCreateActionForResource(resource: Resource): Action {
-    return this.resourceCreateActionMap[resource] ?? Action.DEFAULT;
+  static getResourcePermissionForAddNewBtn(
+    resource: Resource
+  ): Permission | null {
+    return this.resourcePermissionForAddNewBtn[resource] ?? null;
   }
 }

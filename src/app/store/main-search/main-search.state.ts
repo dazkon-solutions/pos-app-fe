@@ -16,15 +16,14 @@ import {
   StateContext 
 } from "@ngxs/store";
 import { Resource } from "src/app/common/enums";
-import { LocaleKeys } from "src/app/common/constants";
 import { MainSearchStateConfigHelper } from "./main-search-state-config.helper";
 import { MainSearchStateModel } from "./main-search-state.model";
-import { MainSearchConfig } from "./main-search.interface";
 import { StateKey } from "../state-key.token";
+import { MainSearchConfig } from "./main-search.interface";
 
 
-export class SetMainSearchByResource {
-  static readonly type = '[Main search] Set by resource';
+export class SetMainSearchConfigByResource {
+  static readonly type = '[Main search] Set config by resource';
   constructor(public resource: Resource) { }
 }
 
@@ -56,16 +55,6 @@ export class ResetMainSearchState {
 @Injectable()
 export class MainSearchState {
   @Selector()
-  static getValues(state: MainSearchStateModel): MainSearchStateModel {
-    return state;
-  }
-
-  @Selector()
-  static getConfig(state: MainSearchStateModel): MainSearchConfig {
-    return state.config;
-  }
-
-  @Selector()
   static getValue(state: MainSearchStateModel): string {
     return state.searchTerm;
   }
@@ -75,10 +64,15 @@ export class MainSearchState {
     return state.isFilterActivated;
   }
 
-  @Action(SetMainSearchByResource)
-  setMainSearchByResource(
+  @Selector()
+  static getConfig(state: MainSearchStateModel): MainSearchConfig | null {
+    return state.config;
+  }
+
+  @Action(SetMainSearchConfigByResource)
+  setMainSearchConfigByResource(
     ctx: StateContext<MainSearchStateModel>,
-    action: SetMainSearchByResource
+    action: SetMainSearchConfigByResource
   ): void {
     ctx.patchState({
       config: MainSearchStateConfigHelper.getConfigByResource(action.resource)
@@ -97,31 +91,16 @@ export class MainSearchState {
 
   @Action(ActivateMainSearchFilter)
   activateMainSearchFilter(ctx: StateContext<MainSearchStateModel>): void {
-    const state = ctx.getState();
-
-    if(!state.config) return;
-
     ctx.patchState({
       isFilterActivated: true,
-      config: {
-        ...state.config,
-        label: LocaleKeys.labels.forms.usingAdvancedFilter
-      }
     });
   }
 
   @Action(DeactivateMainSearchFilter)
   deactivateMainSearchFilter(ctx: StateContext<MainSearchStateModel>): void {
-    const state = ctx.getState();
-    
     ctx.patchState({
       isFilterActivated: false
     });
-
-    // Set value to config.label
-    if(!state.config) return;
-
-    ctx.dispatch(new SetMainSearchByResource(state.config?.resource));
   }
 
   @Action(ResetMainSearchTerm)

@@ -10,18 +10,23 @@
 <mat-toolbar class="daz-control-bar" >
   <!-- Title -->
   <span class="mat-title-large" >
-    {{ menuCurrent?.name ?? '' | translate }}
+    {{ currentMenuItem()?.name ?? '' | translate }}
   </span>
   <!-- End of title -->
 
   <span class="spacer" ></span>
 
   <!-- Search field -->
-  <daz-main-search />
+  @if (mainSearchConfig()) {
+    <daz-main-search [config]="mainSearchConfig()" />
+  }
   <!-- End of search field -->
 
   <!-- Button section -->
-  <daz-action-button [config$]="addNewButtonConfig$"
-                     (buttonClicked)="addNewButtonClickHandle($event)" />
+  <daz-button [type]="btnToAddNew().type"
+              [label]="btnToAddNew().label"
+              [icon]="btnToAddNew().icon"
+              [permission]="btnToAddNew().permission"
+              (buttonClicked)="addNewButtonClickHandle()" />
   <!-- End of button section -->
 </mat-toolbar>

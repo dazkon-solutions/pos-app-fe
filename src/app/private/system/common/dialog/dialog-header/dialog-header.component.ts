@@ -8,30 +8,36 @@
  */
 
 import { 
+  ChangeDetectionStrategy,
   Component, 
-  Input 
+  input
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatChipsModule } from '@angular/material/chips';
 import { LocaleKeys } from 'src/app/common/constants';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
-import { DIALOG_MAT_IMPORTS } from '../dialog-imports';
 import { DialogHeaderConfig } from './dialog-header.interface';
 
 @Component({
   selector: 'daz-dialog-header',
   imports: [
     CORE_IMPORTS,
-    DIALOG_MAT_IMPORTS
+    MatDialogModule,
+    MatTooltipModule,
+    MatIconModule,
+    MatButtonModule,
+    MatChipsModule
   ],
   templateUrl: './dialog-header.component.html',
-  styleUrl: './dialog-header.component.scss'
+  styleUrl: './dialog-header.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DialogHeaderComponent {
-  @Input('config$')
-  config$!: Observable<DialogHeaderConfig>;
-
-  @Input('isProcessing$')
-  isProcessing$!: Observable<boolean>;
+  config = input.required<DialogHeaderConfig>();
+  isProcessing = input<boolean>();
 
   LocaleKeys = LocaleKeys;
 }

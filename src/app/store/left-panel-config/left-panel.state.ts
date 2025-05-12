@@ -21,6 +21,14 @@ export class ToggleLeftPanel {
   static readonly type = '[LeftPanel] Toggle';
 }
 
+export class ExpendLeftPanel {
+  static readonly type = '[LeftPanel] Expand';
+}
+
+export class CollapseLeftPanel {
+  static readonly type = '[LeftPanel] Collapse';
+}
+
 export class ResetLeftPanel {
   static readonly type = '[LeftPanel] Reset';
 }
@@ -41,6 +49,16 @@ export class LeftPanelState {
     const state = ctx.getState();
     const toggled = state ? false : true;
     ctx.setState(toggled);
+  }
+
+  @Action(ExpendLeftPanel)
+  expendLeftPanel(ctx: StateContext<boolean>) {
+    ctx.setState(true);
+  }
+
+  @Action(CollapseLeftPanel)
+  collapseLeftPanel(ctx: StateContext<boolean>) {
+    ctx.setState(true);
   }
 
   @Action(ResetLeftPanel)

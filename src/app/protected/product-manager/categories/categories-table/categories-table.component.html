@@ -7,19 +7,17 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-@let dataSource = (dataSource$ | async) ?? [];
-
 <table mat-table 
-       [dataSource]="dataSource" 
-       class="mat-elevation-z8 table" >
+       class="mat-elevation-z8 table"
+       [dataSource]="dataSource()" >
 
   <ng-container matColumnDef="photo" >
     <th mat-header-cell *matHeaderCellDef >
       Image 
     </th>
-    <td mat-cell *matCellDef="let element" > 
+    <td mat-cell *matCellDef="let row" > 
       <img class="cell-image" 
-           [src]="element.photo" 
+           [src]="row.photo" 
            alt="image" > 
     </td>
   </ng-container>
@@ -28,70 +26,73 @@
     <th mat-header-cell *matHeaderCellDef > 
       No. 
     </th>
-    <td mat-cell *matCellDef="let element" > {{ element.id }} </td>
+    <td mat-cell *matCellDef="let row" > {{ row.id }} </td>
   </ng-container>
 
   <ng-container matColumnDef="name" >
     <th mat-header-cell *matHeaderCellDef > 
       Name
     </th>
-    <td mat-cell *matCellDef="let element" > {{ element.name }} </td>
+    <td mat-cell *matCellDef="let row" > {{ row.name }} </td>
   </ng-container>
 
   <ng-container matColumnDef="weight" >
     <th mat-header-cell *matHeaderCellDef > 
       Weight 
     </th>
-    <td mat-cell *matCellDef="let element" > {{ element.weight }} </td>
+    <td mat-cell *matCellDef="let row" > {{ row.weight }} </td>
   </ng-container>
 
   <ng-container matColumnDef="symbol" >
     <th mat-header-cell *matHeaderCellDef > 
       Symbol
     </th>
-    <td mat-cell *matCellDef="let element" > {{ element.symbol }} </td>
+    <td mat-cell *matCellDef="let row" > {{ row.symbol }} </td>
   </ng-container>
 
   <ng-container matColumnDef="viewAction" >
     <th mat-header-cell *matHeaderCellDef ></th>
     <td mat-cell 
-        *matCellDef="let element"
+        *matCellDef="let row"
         [class]="TableColumnAlignmentStyleClass.RIGHT" > 
-      <daz-action-button [config$]="viewButton$" 
-                         (buttonClicked)="buttonClicked($event, 
-                                                        element)" />
+      <daz-button [type]="viewButton().type"
+                  [label]="viewButton().label"
+                  [permission]="viewButton().permission"
+                  (buttonClicked)="buttonClicked(Action.OPEN_FORM_DIALOG, 
+                                                 row)" />
     </td>
   </ng-container>
 
   <ng-container matColumnDef="deleteAction" >
     <th mat-header-cell *matHeaderCellDef ></th>
     <td mat-cell 
-        *matCellDef="let element"
+        *matCellDef="let row"
         [class]="TableColumnAlignmentStyleClass.RIGHT" > 
-      <daz-action-button [config$]="deleteButton$"
-                         (buttonClicked)="buttonClicked($event, 
-                                                        element)" />
+        <daz-button [type]="deleteButton().type"
+                    [icon]="deleteButton().icon"
+                    [tooltip]="deleteButton().tooltip"
+                    [styleClass]="deleteButton().styleClass"
+                    [permission]="deleteButton().permission"
+                    (buttonClicked)="buttonClicked(Action.DELETE_ITEM, 
+                                                   row)" />
     </td>
   </ng-container>
 
   <!-- Header and rows section -->
-  @let tableHeaderColor = tableHeaderColor$ | async;
   <tr mat-header-row 
-      *matHeaderRowDef="displayedColumns sticky: true"
-      [style.background-color]="tableHeaderColor" >
+      *matHeaderRowDef="displayedColumns() sticky: true" >
   </tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns();" ></tr>
   <!-- End of header and rows section -->
 
   <!-- This table row show if table empty -->
-  @let isLoading = isLoading$ | async;
   <tr class="mat-row" 
       *matNoDataRow >
     <td class="mat-cell" 
-        [class.table-data-not-found-section]="!isLoading"
-        colspan="10" >
+        colspan="10"
+        [class.table-data-not-found-section]="!isLoading()" >
       
-        @if (isLoading) {
+        @if (isLoading()) {
           <daz-table-skeleton-with-image [count]="10" />
         } @else {
           <!-- No data found animation -->

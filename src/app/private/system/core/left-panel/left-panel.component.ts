@@ -14,20 +14,28 @@ import {
   ChangeDetectorRef,
   Component, 
   DestroyRef, 
+  effect, 
+  inject, 
   OnInit, 
   ViewChild
 } from '@angular/core';
-import { Router } from '@angular/router';
 import { CdkTree } from '@angular/cdk/tree';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CdkTreeModule } from "@angular/cdk/tree";
+import { MatButtonModule } from "@angular/material/button";
+import { MatRippleModule } from "@angular/material/core";
+import { MatDividerModule } from "@angular/material/divider";
+import { MatIconModule } from "@angular/material/icon";
+import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatTreeModule } from "@angular/material/tree";
 import { 
   firstValueFrom,
   Observable
 } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { 
-  LeftPanelState,
-  ToggleLeftPanel
+  ExpendLeftPanel,
+  LeftPanelState
 } from 'src/app/store/left-panel-config';
 import { 
   MenuState,
@@ -35,18 +43,23 @@ import {
   MenuNode,
   SetMenuParent
 } from 'src/app/store/menu-config';
-import { Resource } from 'src/app/common/enums';
-import { Navigator } from 'src/app/common/services';
+import { NavigationService } from 'src/app/common/navigation';
+import { NavigationState } from 'src/app/store/navigation-config';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { BottomMenuComponent } from './bottom-menu/bottom-menu.component';
-import { LEFT_PANEL_MAT_IMPORTS } from './left-panel-imports';
 
 
 @Component({
   selector: 'daz-left-panel',
   imports: [
     CORE_IMPORTS,
-    LEFT_PANEL_MAT_IMPORTS,
+    MatDividerModule,
+    MatTreeModule,
+    MatIconModule,
+    MatTooltipModule,
+    CdkTreeModule,
+    MatButtonModule,
+    MatRippleModule,
     BottomMenuComponent
   ],
   templateUrl: './left-panel.component.html',
@@ -57,8 +70,15 @@ export class LeftPanelComponent implements
   OnInit,
   AfterViewInit
 {
+  private destroyRef = inject(DestroyRef);
+  private store = inject(Store);
+  private navigationSvc = inject(NavigationService);
+  private cdr = inject(ChangeDetectorRef);
+  
   @ViewChild(CdkTree)
   tree!: CdkTree<MenuNode>;
+
+  private currentRoutePath = this.store.selectSignal(NavigationState.getCurrentRoutePath);
   
   current$!: Observable<MenuNode | null>;
   dataSource: MenuNode[] = [];
@@ -69,17 +89,14 @@ export class LeftPanelComponent implements
   hasChild = (_: number, node: MenuNode) => 
     !!node.children && node.children.length > 0;
 
-  constructor(
-    private destroyRef: DestroyRef,
-    private router: Router,
-    private store: Store,
-    private navigateSvc: Navigator,
-    private cdr: ChangeDetectorRef
-  ) { }
+  constructor() { 
+    effect(() => {
+      this.prepairMenuUI(this.currentRoutePath());
+    })
+  }
 
   async ngOnInit(): Promise<void> {
     await this.syncState();
-    this.init();
   }
 
   ngAfterViewInit(): void {
@@ -127,12 +144,6 @@ export class LeftPanelComponent implements
       });
   }
 
-  private init(): void {
-    this.navigateSvc.navigator$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(resource => this.navigateToResource(resource));
-  }
-
   private async expandParent(): Promise<void> {
     const current = await firstValueFrom(this.current$);
 
@@ -155,26 +166,21 @@ export class LeftPanelComponent implements
     this.tree.collapseAll();
   }
 
-  private navigateToResource(resource: Resource): void {
-    const menuNode = this.flattened.find(item => item.resource === resource);
+  private prepairMenuUI(routePath: string): void {
+    const menuNode = this.flattened.find(item => item.routePath === routePath);
 
     if(!menuNode) return;
-    if((!menuNode.route) && (menuNode.route !== '')) return; // '' is a route
-
-    this.navigateTo(menuNode.route);
+    if((!menuNode.routePath) && (menuNode.routePath !== '')) return; // '' is a route
 
     this.store.dispatch(new SelectMenuItem(menuNode));
 
     this.expandParent();
 
-    // Open Leftpanel if closed
-    if(!this.isLeftPanelExpanded) {
-      this.store.dispatch(new ToggleLeftPanel());
-    }
+    this.store.dispatch(new ExpendLeftPanel());
   }
 
   onClickExpandedMenuNode(node: MenuNode): void {
-    this.navigateSvc.navigateTo(node.resource);
+    this.navigationSvc.navigateTo(node.routePath);
   }
 
   onClickCollapsedMenuNode(node: MenuNode): void {
@@ -182,15 +188,11 @@ export class LeftPanelComponent implements
       ? node.children.find(child => child) 
       : null;
 
-    const resource = firstChild
-      ? firstChild.resource
-      : node.resource;
+    const routePath = firstChild
+      ? firstChild.routePath
+      : node.routePath;
 
-    this.navigateSvc.navigateTo(resource);
-  }
-
-  private navigateTo(route: string): void {
-    this.router.navigate([ route ]);
+    this.navigationSvc.navigateTo(routePath);
   }
 
   private isChild(node: MenuNode): boolean {
@@ -203,7 +205,7 @@ export class LeftPanelComponent implements
   ): boolean {
     if(!current) return false;
 
-    return (node.resource === current.resource) || 
+    return (node.routePath === current.routePath) || 
            (node.uid === current.uid) || 
            (node.uid === current.pid);
   }

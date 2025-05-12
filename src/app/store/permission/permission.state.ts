@@ -14,7 +14,7 @@ import {
   State, 
   StateContext 
 } from "@ngxs/store";
-import { Action as clickAction } from "src/app/common/enums";
+import { Permission } from "src/app/common/enums";
 import { PermissionStateModel } from "./permission-state.model";
 import { PermissionConfigHelper } from "./permission-config.helper";
 import { StateKey } from "../state-key.token";
@@ -41,7 +41,7 @@ export class PermissionState {
   }
 
   @Selector()
-  static getList(state: PermissionStateModel): clickAction[] {
+  static getList(state: PermissionStateModel): Permission[] {
     return state.list;
   }
 

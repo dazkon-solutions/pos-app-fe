@@ -9,18 +9,15 @@
 
 import { 
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component, 
-  DestroyRef, 
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges
+  computed, 
+  inject, 
+  input
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Store } from '@ngxs/store';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { AppearanceState } from 'src/app/store/appearance';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
-import { ThemeService } from 'src/app/common/services';
 import { ArrayUtil } from 'src/app/common/utils';
 import { SkeletonConfigHelper } from '../skeleton-config.helper';
 
@@ -35,52 +32,26 @@ import { SkeletonConfigHelper } from '../skeleton-config.helper';
   styleUrl: './table-skeleton-with-image.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TableSkeletonWithImageComponent implements 
-  OnInit,
-  OnChanges 
-{
-  @Input('count')
-  count = 1;
+export class TableSkeletonWithImageComponent {
+  private store = inject(Store);
+  private isLightTheme = this.store.selectSignal(AppearanceState.isLightTheme);
 
-  loadingItems: any[] = [];
-  circleTheme = { };
-  lineTheme = { };
+  count = input.required<number>();
 
-  constructor(
-    private destroyRef: DestroyRef,
-    private themeSvc: ThemeService,
-    private cdr: ChangeDetectorRef
-  ) { }
+  loadingItems = computed(() => ArrayUtil.createFakeArray(this.count()));
+  circleTheme = computed(() => ({
+    width: '52px',
+    height: '52px',
+    'background': this.isLightTheme()
+      ? '' 
+      : SkeletonConfigHelper.darkBgColor,
+  }));
 
-  ngOnInit(): void {
-    this.themeSvc.isLightTheme$()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(isLightTheme => this.createTheme(isLightTheme));
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if('count' in changes) {
-      this.loadingItems = ArrayUtil.createFakeArray(this.count);
-    }
-  }
-
-  private async createTheme(isLightTheme: boolean): Promise<void> {
-    this.circleTheme = {
-      width: '52px',
-      height: '52px',
-      'background': isLightTheme 
-        ? '' 
-        : SkeletonConfigHelper.darkBgColor,
-    };
-
-    this.lineTheme = {
-      height: '52px',
-      margin: 0,
-      'background': isLightTheme 
-        ? '' 
-        : SkeletonConfigHelper.darkBgColor,
-    };
-
-    this.cdr.detectChanges();
-  }
+  lineTheme = computed(() => ({
+    height: '52px',
+    margin: 0,
+    'background': this.isLightTheme()
+      ? '' 
+      : SkeletonConfigHelper.darkBgColor,
+  }));
 }

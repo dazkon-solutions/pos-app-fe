@@ -12,7 +12,7 @@ import {
   Resource 
 } from "src/app/common/enums";
 
-export interface Permission {
+export interface PermissionItem {
   pid:          number;
   resource:     Resource;
   actions: {

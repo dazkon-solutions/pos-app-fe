@@ -7,59 +7,56 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-@let isLoading = (isLoading$ | async) ?? false;
-
 <form disabled >
   <mat-form-field class="form-field-width-full" 
-                  [subscriptSizing]="subscriptSizing"
-                  [floatLabel]="isLoading ? 'always' : 'auto'" >
-    <mat-label >{{ ctrlLabel | translate }}</mat-label>
+                  [subscriptSizing]="subscriptSizing()"
+                  [floatLabel]="isLoading() ? 'always' : 'auto'" >
+    <mat-label >{{ ctrlLabel() | translate }}</mat-label>
 
-    @if (isLoading) {
-      <!-- Loading -->
-      <input type="text" 
-             class="auto-complete-loading"
-             matInput 
-             readonly
-             [value]="LocaleKeys.labels.forms.loadingList | translate" >
-      <!-- End of Loading -->
-
-    } @else {
-      <input #input
-             type="text"
-             matInput
-             [placeholder]="LocaleKeys.labels.forms.selectOne | translate"
-             [formControl]="myControl"
-             [matAutocomplete]="auto"
-             [errorStateMatcher]="matcher"
-             (input)="filter()" >
-    }
+    <input #input
+           type="text"
+           matInput
+           [placeholder]="LocaleKeys.labels.forms.selectOne | translate"
+           [formControl]="myControl"
+           [matAutocomplete]="auto"
+           [errorStateMatcher]="matcher"
+           (input)="filter()" >
 
     <!-- Action buttons -->
-    @if (!isLoading) {
+    @if (!isLoading()) {
       <ng-container [ngTemplateOutlet]="ActionButtonsTemplate" matSuffix />
     }
     <!-- End of action buttons -->
 
     <mat-autocomplete requireSelection 
                       #auto="matAutocomplete"
-                      (optionSelected)="onOptionSelected($event)"
-                      [displayWith]="displayFn" >
+                      [displayWith]="displayFn"
+                      (optionSelected)="onOptionSelected($event)" >
       
-      @let dataSource = (dataSource$ | async) ?? [];
-      @for (option of dataSource; track option[ctrlDisplayProperty]) {
-        <mat-option [value]="option" >
-          {{ option.title }}. {{ option[ctrlDisplayProperty] }}
-        </mat-option>
+      @if (!isLoading()) { 
+        @for (option of dataSource(); track option[ctrlDisplayProperty()]) {
+          <mat-option [value]="option" >
+            {{ option.title }}. {{ option[ctrlDisplayProperty()] }}
+          </mat-option>
+        }
+  
+        <!-- No data found message -->
+        @if (dataSource().length < 1) {
+          <mat-option disabled >
+            {{ LocaleKeys.titles.noDataFound | translate }}
+          </mat-option>
+        }
+        <!-- End of no data found message -->
+
       }
 
-      <!-- No data found message -->
-      @if (dataSource.length < 1) {
+      <!-- Loading -->
+      @if (isLoading()) {
         <mat-option disabled >
-          {{ LocaleKeys.titles.noDataFound | translate }}
+          {{ LocaleKeys.titles.loadingList | translate }}
         </mat-option>
       }
-      <!-- End of no data found message -->
+      <!-- End of loading -->
 
     </mat-autocomplete>
     

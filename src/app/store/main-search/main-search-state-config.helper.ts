@@ -8,7 +8,6 @@
  */
 
 import { Resource } from "src/app/common/enums";
-import { LocaleKeys } from "src/app/common/constants";
 import { MainSearchStateModel } from "./main-search-state.model";
 import { MainSearchConfig } from "./main-search.interface";
 
@@ -17,41 +16,26 @@ export class MainSearchStateConfigHelper {
   static createDefault(): MainSearchStateModel {
     return {
       searchTerm: '',
-      config: this.defaultConfig(),
-      isFilterActivated: false
+      isFilterActivated: false,
+      config: null
     };
-  }
-
-  static defaultConfig(): MainSearchConfig {
-    return {
-      label: LocaleKeys.labels.forms.search,
-      resource: Resource.NONE,
-      hasFilter: false
-    }
   }
 
   static createConfigList(): MainSearchConfig[] {
     return [
-      // {
-      //   label: LocaleKeys.labels.forms.searchByName,
-      //   resource: Resource.PRODUCTS
-      // },
       {
-        label: LocaleKeys.labels.forms.searchByName,
-        resource: Resource.CATEGORIES,
-        hasFilter: true
-      },
-      {
-        label: LocaleKeys.labels.forms.searchByName,
-        resource: Resource.BRANDS,
+        resource: Resource.PRODUCTS,
         hasFilter: false
       },
+      {
+        resource: Resource.CATEGORIES,
+        hasFilter: true
+      }
     ];
   }
 
-  static getConfigByResource(resource: Resource): MainSearchConfig {
-    const configList = this.createConfigList();
-    return configList.find(config => config.resource === resource) 
-      ?? this.defaultConfig();
+  static getConfigByResource(resource: Resource): MainSearchConfig | null {
+    return this.createConfigList().find(config => 
+      config.resource === resource) ?? null;
   }
 }

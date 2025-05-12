@@ -41,7 +41,6 @@ import {
   NativeDateAdapter 
 } from '@angular/material/core';
 import { LeftPanelState } from 'src/app/store/left-panel-config';
-import { ResourceState } from 'src/app/store/resource-config';
 import { AppearanceState } from 'src/app/store/appearance';
 import { MainSearchState } from 'src/app/store/main-search';
 import { NavigationState } from 'src/app/store/navigation-config';
@@ -73,7 +72,7 @@ export const appConfig: ApplicationConfig = {
       [
         EndpointConfigState,
         PermissionState,
-        ResourceState,
+        NavigationState,
         AppearanceState,
         NavigationState,
         MenuState,
@@ -92,7 +91,7 @@ export const appConfig: ApplicationConfig = {
             engine: LOCAL_STORAGE_ENGINE
           },
           {
-            key: StateKey.RESOURCE,
+            key: StateKey.NAVIGATION,
             engine: LOCAL_STORAGE_ENGINE
           },
           {

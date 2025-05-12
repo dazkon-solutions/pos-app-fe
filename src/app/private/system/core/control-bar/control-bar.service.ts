@@ -7,18 +7,15 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-@use '@angular/material' as mat;
+import { Injectable } from "@angular/core";
+import { Resource } from "src/app/common/enums";
+import { ControlBarConfigHelper } from "./control-bar-config.helper";
 
-@mixin footer-styles(
-  $bg-color,
-  $text-color
-) {
-  .daz-footer {
-    .top-layer {
-      .curve {
-        background-color: $bg-color;
-        color: $text-color;
-      }
-    }
+@Injectable({ 
+  providedIn: 'root'
+})
+export class ControlBarService {
+  isVisible(resource: Resource): boolean {
+    return !!ControlBarConfigHelper.getResourcePermissionForAddNewBtn(resource);
   }
 }

@@ -24,7 +24,7 @@
     @include mat.chips-overrides((
       elevated-container-color: var.$static-color-3,
       outline-width: 0,
-      label-text-color: var.$dark-bg-text-color-1
+      label-text-color: #fff
     ));
   }
 }

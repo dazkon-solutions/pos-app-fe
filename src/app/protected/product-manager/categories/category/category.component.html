@@ -9,15 +9,14 @@
 
 
 <!-- Waiting -->
-@let isProcessing = (isProcessing$ | async) ?? false;
-@if (isProcessing) {
+@if (isProcessing()) {
   <daz-waiting-overlay />
 }
 <!-- End of waiting -->
 
 <!-- Header -->
-<daz-dialog-header [config$]="dialogHeaderConfig$"
-                   [isProcessing$]="isProcessing$" />
+<daz-dialog-header [config]="dialogHeaderConfig()"
+                   [isProcessing]="isProcessing()" />
 <!-- End of header -->
 
 <!-- Content -->
@@ -28,11 +27,12 @@
 <!-- End of content -->
 
 <!-- Actions -->
-<daz-dialog-actions [initFormMode]="initFormMode"
-                    [createButton$]="createBtn$"
-                    [updateButton$]="updateBtn$"
-                    [editButton$]="editBtn$"
-                    (actionClicked)="actionClicked($event)" />
+<daz-dialog-form-actions [isCreateMode]="isCreateMode()"
+                         [isEditable]="isFormEditable()"
+                         [createPermission]="createPermission()"
+                         [updatePermission]="updatePermission()"
+                         (editablilityToggled)="onToggleEditability()"
+                         (actionClicked)="onSubmit()" />
 <!-- End of actions -->
 
 
@@ -47,9 +47,9 @@
           {{ LocaleKeys.labels.forms.name | translate }}
         </mat-label>
         <input matInput 
-              formControlName="name" 
-              name="name"
-              [errorStateMatcher]="matcher" >
+               formControlName="name" 
+               name="name"
+               [errorStateMatcher]="matcher" >
         @if (form.get('name')?.hasError('required')) {
           <mat-error>{{ LocaleKeys.errors.required | translate }}</mat-error>
         }
@@ -86,8 +86,8 @@
                                 displayProperty="name"
                                 [label]="LocaleKeys.labels.forms.name"
                                 [isParentTouched]="formTouched"
-                                [dataSource$]="getCategoryList()"
-                                [isLoading$]="isCategoryLoading$"
+                                [dataSource]="getCategoryList()"
+                                [isLoading]="isCategoryLoading()"
                                 [validators]="form.get('category')?.validator"
                                 (filterTerm)="onFilterCategory($event)"
                                 (fetchDataClicked)="categoryFetchClicked($event)" />
@@ -99,8 +99,8 @@
                                 displayProperty="name"
                                 [label]="LocaleKeys.labels.forms.name"
                                 [isParentTouched]="formTouched"
-                                [dataSource$]="getCustomerList()"
-                                [isLoading$]="isCategoryLoading$"
+                                [dataSource]="getCustomerList()"
+                                [isLoading]="isCategoryLoading()"
                                 [validators]="form.get('customer')?.validator"
                                 (filterTerm)="onFilterCategory($event)"
                                 (fetchDataClicked)="categoryFetchClicked($event)" />

@@ -7,62 +7,48 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
-@use 'variables' as var;
-@use 'dazkon-theme' as theme;
-@use 'dark-theme' as dt;
+@use 'theme-colors' as theme;
 @use 'light-theme' as lt;
-@use 'form';
-@use 'table';
+@use 'dark-theme' as dt;
+@use 'button';
 @use 'data-view' as dv;
+@use 'table';
+@use 'pagination';
 @use 'grid';
-@use 'alert-snack-bar' as alertsnck;
+@use 'alert-snack-bar' as asb;
+@use 'menu';
+@use 'form';
 
+@include mat.typography-hierarchy(theme.$light-theme);
 
-@include mat.typography-hierarchy(theme.$light-theme,
-                                  '.mat-typography',
-                                  false);
+// Apply light theme by default
+:root, 
+.light-theme {
+  @include mat.all-component-themes(theme.$light-theme);
+  @include theme.high-contrast-overrides(light);
+  @include lt.light-theme();
+}
+
+.dark-theme {
+  @include mat.all-component-colors(theme.$dark-theme);
+  @include theme.high-contrast-overrides(dark);
+  @include dt.dark-theme();
+}
+
+.light-theme,
+.dark-theme {
+  @include button.button-styles();
+  @include dv.data-view-styles();
+  @include table.table-styles();
+  @include pagination.pagination-styles();
+  @include grid.grid-styles();
+  @include form.form-styles();
+}
 
 :root {
-  @include mat.core-theme(theme.$light-theme);
-  @include mat.all-component-themes(theme.$light-theme);
-  @include mat.form-field-overrides((
-    container-height: 34px,
-    container-vertical-padding: 7px,
-    outlined-container-shape: 12px,
-  ));
-  @include mat.button-overrides((
-    filled-container-height: 36px,
-    outlined-container-height: 36px
-  ));
-  @include mat.fab-overrides((
-    extended-container-height: 36px,
-    extended-container-shape: 100px,
-    small-container-shape: 100px
-  ));
-  @include mat.table-overrides((
-    header-container-height: 40px,
-    row-item-container-height: 47px
-  ));
-  @include mat.paginator-overrides((
-    form-field-container-height: 33px,
-    form-field-container-vertical-padding: 4px,
-    container-size: 43px
-  ));
-  @include mat.menu-overrides((
-    divider-bottom-spacing: 0,
-    divider-top-spacing: 0,
-    item-with-icon-trailing-spacing: 150px,
-    item-label-text-size: 13px,
-    item-icon-size: 20px,
-    container-color: var.$light-bg-color-1
-  ));
-  @include mat.chips-overrides((
-    container-shape-radius: 100px,
-    container-height: 25px
-  ));
+  @include menu.menu-styles();
+  @include asb.alert-snack-bar-styles();
 }
 
 html, 
@@ -76,17 +62,11 @@ body {
   flex: 1 1 auto;
 }
 
-.dark-theme {
-  @include dt.dark-theme-styles();
-}
-
-.light-theme {
-  @include lt.light-theme-styles();
-}
-
 // Import custom styles
-@include form.form-styles();
-@include table.table-styles();
-@include dv.data-view-styles();
-@include grid.grid-styles();
-@include alertsnck.alert-snack-bar-styles();
+// @include button.button-styles;
+
+// @include form.form-styles();
+// @include table.table-styles();
+// @include dv.data-view-styles();
+// @include grid.grid-styles();
+// @include alertsnck.alert-snack-bar-styles();

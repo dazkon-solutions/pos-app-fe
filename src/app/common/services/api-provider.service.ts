@@ -7,7 +7,10 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Injectable } from "@angular/core";
+import { 
+  inject, 
+  Injectable 
+} from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { 
   Observable,
@@ -25,6 +28,9 @@ import {
   providedIn: 'root'
 })
 export class ApiProviderService {
+  private store = inject(Store);
+  private http = inject(HttpClient);
+
   private httpClientOptions = { 
     withCredentials: true,
     headers: {
@@ -33,11 +39,6 @@ export class ApiProviderService {
       'Accept': 'application/json'
     }
   };
-
-  constructor(
-    private store: Store,
-    private http: HttpClient
-  ) { }
 
   private getNestedValue(obj: any, path: string): any {
     return path.split('.').reduce((acc, key) => acc && acc[key], obj);

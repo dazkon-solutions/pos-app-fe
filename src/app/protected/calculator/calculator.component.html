@@ -7,13 +7,13 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-<daz-dialog-header [config$]="headerConfig$" />
+<daz-dialog-header [config]="headerConfig()" />
 
 <mat-dialog-content class="daz-calculator" >
   <!-- Display section -->
   <div >
-    <p class="display mat-title-large" >{{ historyDisplay }}</p>
-    <p class="display mat-headline-large" >{{ resultDisplay }}</p>
+    <p class="display mat-title-large" >{{ historyDisplay() }}</p>
+    <p class="display mat-headline-large" >{{ resultDisplay() }}</p>
   </div>
   <!-- End of display section -->
 

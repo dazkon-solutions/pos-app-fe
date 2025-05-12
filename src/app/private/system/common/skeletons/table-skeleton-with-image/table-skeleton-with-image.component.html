@@ -7,20 +7,20 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-@for (item of loadingItems; track $index) {
+@for (item of loadingItems(); track $index) {
   <div class="daz-table-skeleton-with-image" >
     <div>
       <ngx-skeleton-loader count="1" 
                            appearance="circle" 
-                           [theme]="circleTheme"
-                           animation="progress" />
+                           animation="progress"
+                           [theme]="circleTheme()" />
     </div>
 
     <div class="line-wrapper" >
       <ngx-skeleton-loader count="1" 
                            appearance="line" 
-                           [theme]="lineTheme"
-                           animation="progress" />
+                           animation="progress"
+                           [theme]="lineTheme()" />
     </div>
   </div>
 }

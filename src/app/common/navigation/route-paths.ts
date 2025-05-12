@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+ * Copyright (c) 2025 DAZKON SOLUTIONS (DAZKON PVT LTD)
  * All rights reserved. 
  * This code is proprietary to DAZKON SOLUTIONS. 
  * Unauthorized use, reproduction, modification, distribution, or sale
@@ -7,14 +7,10 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-@use '@angular/material' as mat;
-
-@mixin dialog-styles(
-  $bg-color,
-  $text-color
-) {
-  @include mat.dialog-overrides((
-    container-color: $bg-color,
-    subhead-color: $text-color
-  ));
+export const RoutePaths = {
+  DASHBOARD: '',
+  PRODUCT_LIST_PAGE: 'products',
+  CATEGORY_LIST_PAGE: 'products/categories',
+  BRAND_LIST_PAGE: 'products/brands',
+  POS_PAGE: 'pos',
 }

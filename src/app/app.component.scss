@@ -11,31 +11,24 @@
 
 .drawer-container {
   height: 100%;
-  
-  background-color: var.$dark-bg-color;
 }
 
 .daz-container {
   display: flex;
   flex-direction: column;
   height: 100%;
-
-  background-color: var.$dark-bg-color;
 }
 
 .daz-content {
   z-index: 0;
-  
   overflow-y: hidden;
   padding: 0 16px;
-  border-radius: 10px;
-  height: calc(100% - 108px);
+  height: 100%;
 }
 
 .left-panel {
   border-radius: 0;
-
-  background-color: var.$dark-bg-color;
+  background-color: var.$menu-panel-bg-color;
 }
 
 .left-panel-expanded {
@@ -52,12 +45,4 @@
 
 .daz-control-bar {
   z-index: 0;
-}
-
-.background-color-with-curve-helper-for-control-bar {
-  position: absolute;
-  top: 92px;
-
-  height: 20px;
-  width: 100%;
 }

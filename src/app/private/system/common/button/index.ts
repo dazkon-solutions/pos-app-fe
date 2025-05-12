@@ -7,13 +7,5 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { MatButtonModule } from "@angular/material/button";
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatIconModule } from "@angular/material/icon";
-
-
-export const CALCULATOR_MAT_IMPORTS = [
-  MatIconModule,
-  MatButtonModule,
-  MatDialogModule
-];
+export * from './button-type.enum';
+export * from './button.interface';

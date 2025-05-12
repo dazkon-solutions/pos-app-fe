@@ -7,14 +7,14 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-@if (config) {
+@if (config()) {
   <span matSnackBarLabel
         class="daz-snack-bar-alert" 
         (click)="onClickClose($event)" >
 
     <mat-icon class="icon" 
-              [svgIcon]="config.data.icon" />
+              [svgIcon]="config().data.icon" />
     
-    {{ config.announcementMessage ?? '' | translate }}
+    {{ config().announcementMessage ?? '' | translate }}
   </span>
 }

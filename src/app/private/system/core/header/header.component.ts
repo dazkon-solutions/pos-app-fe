@@ -8,62 +8,60 @@
  */
 
 import { 
+  ChangeDetectionStrategy,
   Component,
-  OnInit
+  inject
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { Router } from '@angular/router';
+import { MatButtonModule } from "@angular/material/button";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatChipsModule } from "@angular/material/chips";
+import { MatRippleModule } from "@angular/material/core";
+import { MatDividerModule } from "@angular/material/divider";
+import { MatIconModule } from "@angular/material/icon";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatTooltipModule } from "@angular/material/tooltip";
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { ToggleLeftPanel } from 'src/app/store/left-panel-config';
 import { LocaleKeys } from 'src/app/common/constants';
-import { ThemeService } from 'src/app/common/services';
 import { ToggleTheme } from 'src/app/store/appearance';
 import { MainSearchConfig } from 'src/app/store/main-search';
-import { 
-  MenuNode, 
-  MenuState 
-} from 'src/app/store/menu-config';
-import { HEADER_MAT_IMPORTS } from './header-imports';
-
+import { MenuState } from 'src/app/store/menu-config';
 
 @Component({
   selector: 'daz-header',
   imports: [
     CORE_IMPORTS,
-    HEADER_MAT_IMPORTS
+    MatToolbarModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatMenuModule,
+    MatChipsModule,
+    MatDividerModule,
+    MatButtonToggleModule,
+    MatButtonModule,
+    MatRippleModule
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit {
-  menuParentItem$!: Observable<MenuNode | null>;
+export class HeaderComponent {
+  private store = inject(Store);
+  private router = inject(Router);
+
+  menuParentItem = this.store.selectSignal(MenuState.getParent);
+
   searchConfig$!: Observable<MainSearchConfig | null>;
   isLightTheme$!: Observable<boolean>;
+
   LocaleKeys = LocaleKeys;
   isFullScreen = false;
   username = 'samantha';
   role = 'ADMIN';
-
-  constructor(
-    private store: Store,
-    private themeSvc: ThemeService,
-    private router: Router
-  ) { }
-
-  ngOnInit(): void {
-    this.init();
-  }
-  
-  private init(): void {
-    this.syncState();
-    
-    this.isLightTheme$ = this.themeSvc.isLightTheme$();
-  }
-
-  private syncState(): void {
-    this.menuParentItem$ = this.store.select(MenuState.getParent);
-  }
 
   onClickNotifications(): void {
     // this.notificationPanelSvc.openPanel();

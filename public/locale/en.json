@@ -13,7 +13,8 @@
     "helpDesk": "Help Desk",
     "optionsMenu": "Options Menu",
     "noDataFound": "No Data Found",
-    "calculator": "Calculator"
+    "calculator": "Calculator",
+    "loadingList": "Loading list..."
   },
 
   "tooltips": {
@@ -68,6 +69,7 @@
       "update": "UPDATE",
       "view": "VIEW",
       "delete": "DELETE",
+      "yesDeleteIt": "YES, DELETE IT!",
       "cancel": "CANCEL",
       "ok": "OK",
       "edit": "EDIT"
@@ -76,7 +78,6 @@
       "selectOne": "Select one",
       "search": "Search",
       "usingAdvancedFilter": "Using advanced filter..",
-      "searchByName": "Search by name",
       "name": "Name",
       "description": "Description",
       "createdAt": "Created at",

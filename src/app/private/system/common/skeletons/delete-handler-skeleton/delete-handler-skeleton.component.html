@@ -11,21 +11,21 @@
   <div>
     <ngx-skeleton-loader count="1" 
                          appearance="circle" 
-                         [theme]="iconTheme"
-                         animation="progress" />
+                         animation="progress"
+                         [theme]="iconTheme()" />
   </div>
 
   <div class="line-wrapper" >
     <ngx-skeleton-loader count="2" 
                          appearance="line" 
-                         [theme]="contentTheme"
-                         animation="progress" />
+                         animation="progress"
+                         [theme]="contentTheme()" />
   </div>
 
   <div class="actions" align="end" >
     <ngx-skeleton-loader count="2" 
                          appearance="line" 
-                         [theme]="actionsTheme"
-                         animation="progress" />
+                         animation="progress"
+                         [theme]="actionsTheme()" />
   </div>
 </div>

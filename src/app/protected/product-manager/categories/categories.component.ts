@@ -8,21 +8,19 @@
  */
 
 import { 
+  ChangeDetectionStrategy,
   Component, 
-  DestroyRef, 
-  OnInit 
+  effect, 
+  inject, 
+  OnInit, 
+  signal
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { 
-  BehaviorSubject, 
-  Observable
-} from 'rxjs';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { Store } from '@ngxs/store';
 import { PageEvent } from '@angular/material/paginator';
-import { CATEGORY_MAT_IMPORTS } from './category-imports';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { ActionResponse } from 'src/app/common/interfaces';
-import { Action } from 'src/app/common/enums';
+import { Action, Resource } from 'src/app/common/enums';
 import { ProductCategoryUIState } from 'src/app/store/product-category';
 import { ActionService } from 'src/app/common/services';
 import { ViewTogglePaginationComponent } from 'src/app/private/system/common/view-toggle-pagination/view-toggle-pagination.component';
@@ -31,8 +29,10 @@ import { ToggleView
 import { StateKey } from 'src/app/store/state-key.token';
 import { 
   FetchProductCategoryList, 
-  LoadProductCategoryList 
+  LoadProductCategoryList, 
+  ProductCategoryState
 } from 'src/app/store/product-category/data/product-category.state';
+import { SetResource } from 'src/app/store/navigation-config';
 import { CategoriesTableComponent } from './categories-table/categories-table.component';
 import { CategoriesGridComponent } from './categories-grid/categories-grid.component';
 import { CategoryService } from './category.service';
@@ -50,48 +50,42 @@ interface PeriodicElement {
   selector: 'daz-categories',
   imports: [
     CORE_IMPORTS,
-    CATEGORY_MAT_IMPORTS,
+    ScrollingModule,
     CategoriesTableComponent,
     CategoriesGridComponent,
     ViewTogglePaginationComponent
   ],
   templateUrl: './categories.component.html',
-  styleUrl: './categories.component.scss'
+  styleUrl: './categories.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoriesComponent implements OnInit {
-  isListView$!: Observable<boolean>;
-  isLoading$!: Observable<boolean>;
-  dataSource$ = new BehaviorSubject<PeriodicElement[]>([]);
-  pagination$!: Observable<PageEvent>;
+  private store = inject(Store);
+  private actionSvc = inject(ActionService);
+  private service = inject(CategoryService);
 
-  constructor(
-    private destroyRef: DestroyRef,
-    private store: Store,
-    private actionSvc: ActionService,
-    private service: CategoryService
-  ) { }
+  isListView = this.store.selectSignal(ProductCategoryUIState.isListView);
+  isLoading = this.store.selectSignal(ProductCategoryUIState.isLoading);
+  pagination = this.store.selectSignal(ProductCategoryState.paginate);
+  dataSource = signal<any[]>([]);
+
+  private resource = Resource.CATEGORIES;
+  
+  constructor() { 
+    effect(() => this.handleAction(this.actionSvc.action()));
+  }
 
   ngOnInit(): void {
-    this.subscribeToActions();
-    this.syncState();
-    
-    this.dataSource$.next(this.dataSource);
+    this.store.dispatch([
+      new SetResource(this.resource),
+      new LoadProductCategoryList(),
+    ]);
 
-    this.store.dispatch(new LoadProductCategoryList())
+    this.dataSource.set(this.sampleDataSource);
   }
 
-  private subscribeToActions(): void {
-    this.actionSvc.action$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(action => this.handleAction(action));
-  }
 
-  private syncState(): void {
-    this.isListView$ = this.store.select(ProductCategoryUIState.isListView);
-    this.isLoading$ = this.store.select(ProductCategoryUIState.isLoading);
-  }
-
-  private dataSource: PeriodicElement[] = [
+  private sampleDataSource: PeriodicElement[] = [
     {photo:'https://fastly.picsum.photos/id/2/5000/3333.jpg?hmac=_KDkqQVttXw_nM-RyJfLImIbafFrqLsuGO5YuHqD-qQ' ,id: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
     {photo:'https://fastly.picsum.photos/id/2/5000/3333.jpg?hmac=_KDkqQVttXw_nM-RyJfLImIbafFrqLsuGO5YuHqD-qQ' ,id: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
     {photo:'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U' ,id: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
@@ -134,24 +128,24 @@ export class CategoriesComponent implements OnInit {
     {photo:'https://fastly.picsum.photos/id/2/5000/3333.jpg?hmac=_KDkqQVttXw_nM-RyJfLImIbafFrqLsuGO5YuHqD-qQ' ,id: 40, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
   ];
 
-  private handleAction(actionResponse: ActionResponse) {
+  private handleAction(actionResponse: ActionResponse): void {
+    if (actionResponse.action === Action.DEFAULT) return;
+
     switch (actionResponse.action) {
       case Action.OPEN_ADVANCED_FILTER:
         this.service.openFilter();
         break;
-      case Action.CREATE_CATEGORY:
+      case Action.OPEN_FORM_DIALOG:
         this.service.openForm();
         break;
-      case Action.VIEW_CATEGORY:
-        this.service.openForm();
-        console.warn(actionResponse);
-        break;
-      case Action.DELETE_CATEGORY:
+      case Action.DELETE_ITEM:
         this.service.delete(actionResponse.payload);
         break;
       default:
         console.warn('Unhandled action:', actionResponse.action);
     }
+
+    this.actionSvc.resetAction();
   }
 
   viewToggled(): void {

@@ -12,9 +12,9 @@
   <mat-spinner [diameter]="50" />
 
   <!-- Title -->
-  @if (title) {
+  @if (title()) {
     <span class="mat-body-large title" >
-      {{ title | translate }}
+      {{ title() | translate }}
     </span>
   }
   <!-- End of title -->

@@ -9,14 +9,15 @@
 
 import { 
   Component, 
+  computed, 
   DestroyRef, 
+  effect, 
   ElementRef, 
   EventEmitter, 
-  Input, 
-  OnChanges, 
+  inject, 
+  input, 
   OnInit, 
   Output, 
-  SimpleChanges, 
   ViewChild
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -27,7 +28,6 @@ import {
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { 
   debounceTime, 
-  Observable, 
   Subject 
 } from 'rxjs';
 import { LocaleKeys } from 'src/app/common/constants';
@@ -39,32 +39,21 @@ import { CustomErrorStateMatcher } from '../error-statement-matcher';
 })
 export abstract class BaseAutoCompleteComponent implements 
   ControlValueAccessor,
-  OnInit,
-  OnChanges
+  OnInit
 {
+  private destroyRef = inject(DestroyRef);
+
   @ViewChild('input') 
   input!: ElementRef<HTMLInputElement>;
   
-  @Input('dataSource$') 
-  dataSource$!: Observable<any[]>;
-
-  @Input('isLoading$') 
-  isLoading$!: Observable<boolean>;
-
-  @Input('label') 
-  label!: string ;
+  dataSource = input.required<any[]>();
+  isLoading = input.required<boolean>();
+  label = input.required<string>();
+  displayProperty = input.required<string>();
+  validators = input.required<any>();
+  isParentTouched = input<boolean>(false);
+  subscriptSizing = input<'fixed'|'dynamic'>('fixed');
   
-  @Input('displayProperty') 
-  displayProperty!: string;
-  
-  @Input('validators') 
-  validators: any;
-
-  @Input('isParentTouched')
-  isParentTouched = false;
-
-  @Input('subscriptSizing') 
-  subscriptSizing: 'fixed'|'dynamic' = 'fixed' ;
 
   @Output('filterTerm') 
   filterTerm = new EventEmitter<string>(true);
@@ -74,8 +63,8 @@ export abstract class BaseAutoCompleteComponent implements
   
   filterSubject$ = new Subject<string>();
   clickTimeout: any;
-  ctrlLabel = 'name';
-  ctrlDisplayProperty = 'name';
+  ctrlLabel = computed(() => this.label());
+  ctrlDisplayProperty = computed(() => this.displayProperty());
   ctrlFilterProperty = 'name';
   LocaleKeys = LocaleKeys;
   ButtonEvent = ButtonEvent;
@@ -86,26 +75,21 @@ export abstract class BaseAutoCompleteComponent implements
   onChange: any = () => {};
   onTouched: any = () => {};
 
-  constructor(private destroyRef: DestroyRef) { }
+  constructor() { 
+    effect(() => {
+      if (this.validators()) {
+        this.setValidators(this.validators());
+      }
+
+      if (this.isParentTouched()) {
+        this.markAsTouched();
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.setNullForEmptySelection();
     this.emitFilterTerm();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if('label' in changes) {
-      this.ctrlLabel = this.label;
-    }
-    if('displayProperty' in changes) {
-      this.ctrlDisplayProperty = this.displayProperty;
-    }
-    if('validators' in changes) {
-      this.setValidators(this.validators);
-    }
-    if('isParentTouched' in changes) {
-      this.markAsTouched();
-    }
   }
 
   private emitFilterTerm(): void {
@@ -178,7 +162,7 @@ export abstract class BaseAutoCompleteComponent implements
   // Control how the selected value is displayed in the input field
   displayFn = (option: any): string => {
     return option 
-      ? option[this.ctrlDisplayProperty] 
+      ? option[this.ctrlDisplayProperty()] 
       : '';
   };
 

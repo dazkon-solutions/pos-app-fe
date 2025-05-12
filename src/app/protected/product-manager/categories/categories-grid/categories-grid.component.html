@@ -7,26 +7,23 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-@let dataSource = (dataSource$ | async) ?? [];
-@let isLoading = isLoading$ | async;
-
 <div class="grid" >
-  @if (!isLoading) {
-    @for (item of dataSource; track trackById($index, item)) {
+  @if (!isLoading()) {
+    @for (item of dataSource(); track trackById($index, item)) {
       <ng-container [ngTemplateOutlet]="GridItemTemplate" 
                     [ngTemplateOutletContext]="{ item: item }" />
     }
 
     <!-- No data found animation -->
-    @if (dataSource.length < 1) {
+    @if (dataSource().length < 1) {
       <daz-animation-player [animationType]="AnimationType.NO_DATA_FOUND" />
     }
     <!-- End of no data found animation -->
 
   } @else {
     <!-- Loading animation -->
-    @for (item of defaultLoadingItems; track item.id) {
-      <daz-grid-item-skeleton [skeletonType]="GridItemSkeletonType.NAME_CARD" />
+    @for (item of defaultLoadingItems(); track item.id) {
+      <daz-grid-item-skeleton [type]="GridItemSkeletonType.NAME_CARD" />
     }
     <!-- End of loading animation -->
   }
@@ -58,15 +55,19 @@
       <!-- Action button area -->
       <div class="action-area" >
         <!-- Main button -->
-        <daz-action-button [config$]="viewButton$" 
-                           (buttonClicked)="buttonClicked($event, 
-                                                          item)" />
+        <daz-button [type]="viewButton().type"
+                    [label]="viewButton().label"
+                    [isLoading]="false"
+                    [permission]="viewButton().permission"
+                    (buttonClicked)="buttonClicked(Action.OPEN_FORM_DIALOG, 
+                                                   item)" />
         <!-- End of main button -->
         
         <!-- Secondary button -->
-        <daz-action-button [config$]="viewButton$" 
-                           (buttonClicked)="buttonClicked($event, 
-                                                          item)" />
+        <daz-button [type]="viewButton().type"
+                    [label]="viewButton().label"
+                    [isLoading]="false"
+                    [permission]="viewButton().permission" />
         <!-- End of secondary button -->
       </div>
       <!-- End of action button area -->
@@ -92,9 +93,13 @@
 <mat-menu #optionMenu="matMenu" 
           xPosition="before" >
   <ng-template matMenuContent let-item="item" >
-    <daz-action-button [config$]="deleteButton$"
-                       (buttonClicked)="buttonClicked($event, 
-                                                      item)" />
+    <daz-button [type]="deleteButton().type"
+                [icon]="deleteButton().icon"
+                [label]="deleteButton().label"
+                [permission]="deleteButton().permission"
+                [styleClass]="deleteButton().styleClass"
+                (buttonClicked)="buttonClicked(Action.DELETE_ITEM, 
+                                               item)" />
   </ng-template>
 </mat-menu>
 <!-- End of option menu -->

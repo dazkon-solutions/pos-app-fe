@@ -8,7 +8,7 @@
  */
 
 export interface PaginateResponse {
-  pageNo:   number,
-  pageSize: number,
-  total:    number
+  pageNo:   number;
+  pageSize: number;
+  total:    number;
 }

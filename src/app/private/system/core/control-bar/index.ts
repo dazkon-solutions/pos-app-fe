@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+ * Copyright (c) 2025 DAZKON SOLUTIONS (DAZKON PVT LTD)
  * All rights reserved. 
  * This code is proprietary to DAZKON SOLUTIONS. 
  * Unauthorized use, reproduction, modification, distribution, or sale
@@ -7,14 +7,4 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-@use '@angular/material' as mat;
-
-@mixin bottom-sheet-styles(
-  $bg-color,
-  $text-color
-) {
-  @include mat.bottom-sheet-overrides((
-    container-background-color: $bg-color,
-    container-text-color: $text-color
-  ));
-}
+export * from './control-bar.service';

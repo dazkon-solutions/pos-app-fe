@@ -9,21 +9,13 @@
 
 @use '@angular/material' as mat;
 
-@mixin table-colors(
-  $bg-color,
-  $text-color-headline,
-  $text-color-body,
-  $row-outline-color
-) {
-  @include mat.table-overrides((
-    background-color: $bg-color,
-    header-headline-color: $text-color-headline,
-    row-item-label-text-color: $text-color-body,
-    row-item-outline-color: $row-outline-color
-  ));
-}
-
 @mixin table-styles {
+  @include mat.table-overrides((
+    header-container-height: 40px,
+    row-item-container-height: 47px,
+    header-headline-size: 12px
+  ));
+  
   .table {
     // Map with TableColumnAlignmentStyleClass ENUM
     .content-align-right  {
@@ -51,4 +43,26 @@
       margin: 3px 0;
     }
   }
+}
+
+@mixin table-themes(
+  $header-color,
+  $row-outline-color,
+  $row-hover-color,
+) { 
+  .table {
+    th {
+      background-color: $header-color;
+    }
+    
+    tr {
+      &:hover {
+        background-color: $row-hover-color;
+      }
+    }
+  }
+
+  @include mat.table-overrides((
+    row-item-outline-color: $row-outline-color
+  ));
 }

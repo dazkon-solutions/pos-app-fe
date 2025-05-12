@@ -30,7 +30,7 @@ import { POS_MAT_IMPORTS } from '../pos-imports';
     CORE_IMPORTS,
     POS_MAT_IMPORTS,
     FORM_MAT_IMPORTS,
-    CommonAutoCompleteComponent
+    // CommonAutoCompleteComponent
   ],
   templateUrl: './pos-product-grid.component.html',
   styleUrl: './pos-product-grid.component.scss'

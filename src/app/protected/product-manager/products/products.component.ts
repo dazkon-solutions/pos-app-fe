@@ -7,28 +7,30 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
 import { BehaviorSubject } from 'rxjs';
 import { Action, Resource } from 'src/app/common/enums';
-import { 
-  ActionButtonConfig, 
-  ActionButtonType 
-} from 'src/app/private/system/common/action-button';
-import { ActionButtonComponent } from 'src/app/private/system/common/action-button/action-button.component';
+import { SetResource } from 'src/app/store/navigation-config';
 
 @Component({
   selector: 'daz-products',
   imports: [
-    ActionButtonComponent
+    //
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
-export class ProductsComponent {
-  private readonly resource = Resource.PRODUCTS;
+export class ProductsComponent implements OnInit {
+  private store = inject(Store);
 
-  createButtonConfig$ = new BehaviorSubject<ActionButtonConfig>({
-    type: ActionButtonType.CREATE,
-    action: Action.DEFAULT
-  });
+  private resource = Resource.PRODUCTS;
+
+  ngOnInit(): void {
+    this.init();    
+  }
+
+  private init(): void {
+    this.store.dispatch(new SetResource(this.resource));
+  }
 }

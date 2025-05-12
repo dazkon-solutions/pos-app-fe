@@ -8,6 +8,10 @@
  */
 
 export interface DeletableResponse {
-  isDeletable:    boolean;
-  errorMessages:  string[];
+  isDeletable: boolean;
+  messages:    string[];
+}
+
+export interface DeletableApiResponse {
+  data: DeletableResponse;
 }

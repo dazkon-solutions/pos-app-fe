@@ -8,14 +8,14 @@
 -->
 
 <div class="daz-animation-player" >
-  <ng-lottie [options]="options" 
-             [width]="config.width"
-             [height]="config.height"
+  <ng-lottie [options]="options()" 
+             [width]="config().width"
+             [height]="config().height"
              (animationCreated)="handleAnimation($event)" />
   
-  @if (config.title) {
+  @if (config().title) {
     <h1 class="mat-title-large title" >
-      {{ config.title | translate }}
+      {{ config().title ?? '' | translate }}
     </h1>
   }
 </div>

@@ -8,9 +8,13 @@
  */
 
 import { 
+  ChangeDetectionStrategy,
   Component,
   DestroyRef,
-  OnInit
+  inject,
+  input,
+  OnInit,
+  signal
 } from '@angular/core';
 import { 
   FormBuilder, 
@@ -20,6 +24,12 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged } from 'rxjs';
 import { Store } from '@ngxs/store';
+import { MatBadgeModule } from "@angular/material/badge";
+import { MatButtonModule } from "@angular/material/button";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatIconModule } from "@angular/material/icon";
+import { MatInputModule } from "@angular/material/input";
+import { MatTooltipModule } from "@angular/material/tooltip";
 import { FormHelper } from 'src/app/common/helpers';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { 
@@ -27,68 +37,46 @@ import {
   MainSearchState, 
   DeactivateMainSearchFilter,
   SetMainSearchTerm,
-  SetMainSearchByResource
 } from 'src/app/store/main-search';
 import { LocaleKeys } from 'src/app/common/constants';
-import { MenuState } from 'src/app/store/menu-config';
-import { 
-  Action, 
-  Resource 
-} from 'src/app/common/enums';
+import { Action } from 'src/app/common/enums';
 import { ActionService } from 'src/app/common/services';
-import { MAIN_SEARCH_MAT_IMPORTS } from './main-search-imports';
 
 
 @Component({
   selector: 'daz-main-search',
   imports: [
     CORE_IMPORTS,
-    MAIN_SEARCH_MAT_IMPORTS
+    MatInputModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatBadgeModule,
+    MatButtonModule
   ],
   templateUrl: './main-search.component.html',
-  styleUrl: './main-search.component.scss'
+  styleUrl: './main-search.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainSearchComponent implements OnInit {
-  config!: MainSearchConfig;
+  private destroyRef = inject(DestroyRef);
+  private formBuilder = inject(FormBuilder);
+  private store = inject(Store);
+  private actionSvc = inject(ActionService);
+
+  config = input.required<MainSearchConfig | null>();
+
+  isFilterActivated = signal<boolean>(false);
   form: FormGroup;
   LocaleKeys = LocaleKeys;
-  isFilterActivated = false;
 
-  constructor(
-    private destroyRef: DestroyRef,
-    private formBuilder: FormBuilder,
-    private store: Store,
-    private actionSvc: ActionService
-  ) {
+  constructor() {
     this.form = this.createForm(this.formBuilder);
     this.onSearchValue();
   }
 
   ngOnInit(): void {
-    this.syncState();
     this.syncFilterChanges();
-  }
-
-  private syncState(): void {
-    this.store.select(MenuState.getCurrent)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(current => {
-        if(current) { 
-          this.store.dispatch(new SetMainSearchByResource(current.resource));
-          this.store.dispatch(new DeactivateMainSearchFilter()); // Reset for new page
-        }
-      });
-
-    this.store.select(MainSearchState.getConfig)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(config => {
-        this.config = config;
-
-        // Disable filter form-field if not available filter for the page
-        config.resource === Resource.NONE
-          ? this.form.disable()
-          : this.form.enable();
-      });
   }
 
   private syncFilterChanges(): void {
@@ -97,17 +85,13 @@ export class MainSearchComponent implements OnInit {
         takeUntilDestroyed(this.destroyRef), 
         distinctUntilChanged())
       .subscribe(isFilterActivated => {
-        this.isFilterActivated = isFilterActivated;
+        this.isFilterActivated.set(isFilterActivated);
         this.handleFormActivation(isFilterActivated);
         this.clearForm();
       });
   }
 
   private handleFormActivation(isFilterd: boolean): void {
-    if(!this.config.resource) return;
-    
-    if(this.config.resource === Resource.NONE) return;
-
     isFilterd 
       ? this.form.disable() 
       : this.form.enable();

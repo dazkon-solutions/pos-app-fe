@@ -10,7 +10,7 @@
 @use '@angular/material' as mat;
 @use 'variables' as var;
 
-@mixin alert-snack-bar-styles {
+@mixin alert-snack-bar-styles() {
   @include mat.snack-bar-overrides((
     supporting-text-color: var.$alert-text-color
   ));

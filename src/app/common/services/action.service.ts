@@ -7,19 +7,31 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { 
+  Injectable, 
+  signal 
+} from "@angular/core";
 import { ActionResponse } from "../interfaces";
+import { Action } from "../enums";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActionService {
-  private actionSubject = new Subject<ActionResponse>();
-  action$ = this.actionSubject.asObservable();
+  private defaultActionResponse: ActionResponse = {
+    action: Action.DEFAULT,
+    payload: { }
+  };
 
-  emitAction(actionResponse: ActionResponse) {
-    this.actionSubject.next(actionResponse);
+  action = signal<ActionResponse>(this.defaultActionResponse);
+
+  emitAction(actionResponse: ActionResponse): void {
+    this.action.set(actionResponse);
+  }
+  
+  // Call this from the component after action response triggerd
+  resetAction(): void {
+    this.action.set(this.defaultActionResponse);
   }
 }

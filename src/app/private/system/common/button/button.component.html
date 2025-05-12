@@ -1,0 +1,136 @@
+<!-- 
+  Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+  All rights reserved.  
+  This code is proprietary to DAZKON SOLUTIONS. 
+  Unauthorized use, reproduction, modification, distribution, or sale 
+  without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+  For inquiries, please contact: info@dazkonsolutions.com 
+-->
+
+@switch (type()) {
+  @case (ButtonType.BASIC) {
+    <button mat-button
+            [disabled]="isButtonDisabled()"
+            [class]="styleClass()"
+            [matTooltip]="tooltip() ?? '' | translate"
+            [matTooltipDisabled]="!!!tooltip()"
+            (click)="onClick($event)" >
+      @if (isLoading()) {
+        <mat-icon >
+          <mat-spinner mode="indeterminate"
+                       class="btn-progress-spinner"
+                       diameter="18" 
+                       strokeWidth="2" />
+        </mat-icon>
+      } @else if (!!icon()) {
+        <mat-icon [svgIcon]="icon() ?? ''" />
+      }
+      {{ label() ?? '' | translate }}
+    </button>
+  }
+
+  @case (ButtonType.FLAT) {
+    <button mat-flat-button
+            [disabled]="isButtonDisabled()"
+            [class]="styleClass()"
+            [matTooltip]="tooltip() ?? '' | translate"
+            [matTooltipDisabled]="!!!tooltip()"
+            (click)="onClick($event)" >
+      @if (isLoading()) {
+        <mat-icon >
+          <mat-spinner mode="indeterminate"
+                       class="btn-progress-spinner"
+                       diameter="18" 
+                       strokeWidth="2" />
+        </mat-icon>
+      } @else if (!!icon()) {
+        <mat-icon [svgIcon]="icon() ?? ''" />
+      }
+      {{ label() ?? '' | translate }}
+    </button>
+  }
+
+  @case (ButtonType.STROKED) {
+    <button mat-stroked-button
+            [disabled]="isButtonDisabled()"
+            [class]="styleClass()"
+            [matTooltip]="tooltip() ?? '' | translate"
+            [matTooltipDisabled]="!!!tooltip()"
+            (click)="onClick($event)" >
+      @if (isLoading()) {
+        <mat-icon >
+          <mat-spinner mode="indeterminate" 
+                       class="btn-progress-spinner"
+                       diameter="18" 
+                       strokeWidth="2" />
+        </mat-icon>
+      } @else if (!!icon()) {
+        <mat-icon [svgIcon]="icon() ?? ''" />
+      }
+      {{ label() ?? '' | translate }}
+    </button>
+  }
+
+  @case (ButtonType.MINI_FAB) {
+    <button mat-mini-fab
+            [disabled]="isButtonDisabled()"
+            [class]="styleClass()"
+            [matTooltip]="tooltip() ?? '' | translate"
+            [matTooltipDisabled]="!!!tooltip()"
+            (click)="onClick($event)" >
+      @if (isLoading()) {
+        <span >
+          <mat-spinner mode="indeterminate" 
+                       class="btn-progress-spinner"
+                       diameter="18" 
+                       strokeWidth="2" />
+        </span>
+      } @else {
+        <mat-icon [svgIcon]="icon() ?? ''" />
+      }
+    </button>
+  }
+
+  @case (ButtonType.MENU_ITEM) {
+    <button mat-menu-item
+            [disabled]="isButtonDisabled()"
+            [class]="styleClass()"
+            (click)="onClick($event)" >
+      <mat-icon [svgIcon]="icon() ?? ''" />
+      <span >{{ label() ?? '' | translate  }}</span>
+    </button>
+  }
+
+  <!-- <button mat-fab extended 
+            [disabled]="isDisabled()"
+            [matTooltip]="tooltip() | translate"
+            [matTooltipDisabled]="tooltip().length < 1"
+            (click)="onClick($event)" >
+      @if (isLoading()) {
+        <mat-icon >
+          <mat-spinner mode="indeterminate" 
+                       diameter="20" 
+                       strokeWidth="2" />
+        </mat-icon>
+      } @else if (icon().length > 0) {
+        <mat-icon [svgIcon]="icon()" />
+      }
+      {{ label() | translate | uppercase }}
+    </button> -->
+
+  <!-- 
+
+  @case (ActionButtonShape.MENU_ITEM) {
+    <button mat-menu-item
+            [class]="button.style"
+            [disabled]="isDisabled"
+            (click)="onClick($event)" >
+      <mat-icon [svgIcon]="button.icon" />
+      <span >{{ button.label | translate }}</span>
+    </button>
+  } -->
+  
+  @default {
+    Invalid button!
+  }
+}

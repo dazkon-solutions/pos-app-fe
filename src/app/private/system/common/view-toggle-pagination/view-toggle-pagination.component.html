@@ -7,17 +7,14 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-@let isListView = (isListView$ | async) ?? false;
-
 <mat-toolbar class="daz-view-toggle-pagination pagination" >
   <mat-toolbar-row >
     <!-- List view button -->
     <button mat-icon-button
             [matTooltip]="LocaleKeys.tooltips.listView | translate"
             (click)="onClickToggle($event, 
-                                   isListView, 
                                    ViewType.LIST)" >
-      <mat-icon [svgIcon]="isListView ? 'list-view-filled' : 'list-view'" />
+      <mat-icon [svgIcon]="isListView() ? 'list-view-filled' : 'list-view'" />
     </button>
     <!-- End of list view button -->
 
@@ -25,9 +22,8 @@
     <button mat-icon-button
             [matTooltip]="LocaleKeys.tooltips.gridView | translate"
             (click)="onClickToggle($event, 
-                                   isListView,
                                    ViewType.GRID)" >
-      <mat-icon [svgIcon]="!isListView ? 'grid-view-filled' : 'grid-view'" />
+      <mat-icon [svgIcon]="!isListView() ? 'grid-view-filled' : 'grid-view'" />
     </button>
     <!-- End of grid view button -->
 
@@ -44,12 +40,11 @@
     <span class="spacer" ></span>
 
     <!-- Paginator -->
-    @let pagination = pagination$ | async;
     <mat-paginator showFirstLastButtons
                    aria-label="Select page"
-                   [pageSize]="pagination?.pageSize" 
-                   [length]="pagination?.length"
-                   [pageIndex]="pagination?.pageIndex"
+                   [pageSize]="pagination().pageSize" 
+                   [length]="pagination().length"
+                   [pageIndex]="pagination().pageIndex"
                    [pageSizeOptions]="[ 20, 50, 100 ]"
                    (page)="onChangePaginations($event)"  >
     </mat-paginator>

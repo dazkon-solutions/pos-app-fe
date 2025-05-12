@@ -7,7 +7,10 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Injectable } from "@angular/core";
+import { 
+  inject, 
+  Injectable 
+} from "@angular/core";
 import { Store } from "@ngxs/store";
 import { 
   AlertMode, 
@@ -19,7 +22,7 @@ import { SetAlert } from "./alert.state";
   providedIn: 'root'
 })
 export class AlertService {
-  constructor(private store: Store) { }
+  private store = inject(Store);
 
   setAlert(
     type: AlertType,

@@ -9,7 +9,7 @@
 
 <mat-card class="daz-grid-item-skeleton" >
   <mat-card-content class="card-content" >
-    @switch (type) {
+    @switch (type()) {
       @case (GridItemSkeletonType.PROFILE_CARD) {
         <ng-container [ngTemplateOutlet]="ProfileCardTemplate" />
       }
@@ -30,15 +30,15 @@
   <div class="profile-pic" >
     <ngx-skeleton-loader count="1" 
                          appearance="circle" 
-                         [theme]="circleTheme"
-                         animation="progress" />
+                         animation="progress"
+                         [theme]="circleTheme()" />
   </div>
   
   <div class="line-wrapper" >
     <ngx-skeleton-loader count="2" 
                          appearance="line" 
-                         [theme]="lineTheme"
-                         animation="progress" />
+                         animation="progress"
+                         [theme]="lineTheme()" />
   </div>
 </ng-template>
 <!-- End of profile card template -->
@@ -48,8 +48,8 @@
   <div class="line-wrapper" >
     <ngx-skeleton-loader count="2" 
                          appearance="line" 
-                         [theme]="lineTheme"
-                         animation="progress" />
+                         animation="progress"
+                         [theme]="lineTheme()" />
   </div>
 </ng-template>
 <!-- End of name card template -->

@@ -7,10 +7,14 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+@use '@angular/material' as mat;
 
-export const SNACK_BAR_ALERT_MAT_IMPORTS = [
-  MatSnackBarModule,
-  MatIconModule
-];
+@mixin menu-styles() {
+  @include mat.menu-overrides((
+    divider-bottom-spacing: 0,
+    divider-top-spacing: 0,
+    item-with-icon-trailing-spacing: 150px,
+    item-label-text-size: 13px,
+    item-icon-size: 20px,
+  ));
+}

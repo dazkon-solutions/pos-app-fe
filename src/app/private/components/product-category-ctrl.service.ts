@@ -8,7 +8,7 @@
  */
 
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { 
   DeletableResponse,
   PaginatedProductCategory,
@@ -61,8 +61,13 @@ export class ProductCategoryCtrlService {
 
   isDeletable(id: number): Observable<DeletableResponse> {
     const params = { id };
-    return this.api.get<DeletableResponse>(Endpoint.CATEGORIES_IS_DELETABLE,
-                                           params);
+    // return this.api.get<DeletableResponse>(Endpoint.CATEGORIES_IS_DELETABLE,
+    //                                        params);
+    const res: DeletableResponse = {
+      isDeletable: true,
+      messages: ['delete delete']
+    };
+    return of(res)
   }
 
   deleteById(id: number): Observable<boolean> {

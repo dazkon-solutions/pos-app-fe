@@ -7,17 +7,18 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Routes } from '@angular/router';
-import { ProductsComponent } from './products/products.component';
+export enum ButtonType {
+  BASIC = 'basic',
+  RAISED = 'raised',
+  FLAT = 'flat',
+  ICON = 'icon',
+  STROKED = 'stroked',
+  FAB = 'fab',
+  MINI_FAB = 'mini-fab',
+  MENU_ITEM = 'menu-item'
+}
 
-export const PRODUCT_MANAGER_ROUTS: Routes = [
-  { 
-    path: '', 
-    component: ProductsComponent
-  },
-  {
-    path: 'categories',
-    loadComponent: () => import('./categories/categories.component')
-      .then(m => m.CategoriesComponent) 
-  }
-];
+export enum ButtonStyleClass {
+  DEFAULT = '',
+  BTN_WARN = 'btn-warn',
+}

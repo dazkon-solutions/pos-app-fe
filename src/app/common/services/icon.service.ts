@@ -7,7 +7,10 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Injectable } from "@angular/core";
+import { 
+  inject, 
+  Injectable 
+} from "@angular/core";
 import { MatIconRegistry } from "@angular/material/icon";
 import { 
   DomSanitizer, 
@@ -19,12 +22,10 @@ import {
   providedIn: 'root'
 })
 export class IconService {
-  private path = 'icons';
+  private matIconReg = inject(MatIconRegistry);
+  private domSanitizer = inject(DomSanitizer);
 
-  constructor(
-    private readonly matIconReg: MatIconRegistry,
-    private readonly domSanitizer: DomSanitizer
-  ) { }
+  private path = 'icons';
 
   registerSvgIcons(): void {
     this.registerIcons();

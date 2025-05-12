@@ -7,9 +7,13 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Injectable } from "@angular/core";
+import { 
+  inject, 
+  Injectable 
+} from "@angular/core";
 import { Store } from "@ngxs/store";
 import { DialogService } from "src/app/common/services";
+import { SetDeletableResponse } from "src/app/store/delete-handle";
 import { DeleteHandlerComponent } from "./delete-handler.component";
 import { DeleteHandlerConfig } from "./delete-handler.interface";
 
@@ -17,19 +21,27 @@ import { DeleteHandlerConfig } from "./delete-handler.interface";
   providedIn: 'root'
 })
 export class DeleteHandlerService {
-  constructor(
-    private dialogSvc: DialogService,
-    private store: Store
-  ) { }
+  private dialogSvc = inject(DialogService);
+  private store = inject(Store);
 
   handleDelete(config: DeleteHandlerConfig): void {
     const { checkActionInstance } = config;
     this.dialogSvc.open(DeleteHandlerComponent, { 
       data: config,
       autoFocus: false,
-      minWidth: '500px'
+      width: '590px',
+      minHeight: '313px'
     });
 
-    this.store.dispatch(checkActionInstance);
+    if(checkActionInstance) {
+      this.store.dispatch(checkActionInstance);
+
+    } else {
+      // Default deletable
+      this.store.dispatch(new SetDeletableResponse({
+        isDeletable: true,
+        messages: []
+      }));
+    }
   }
 }

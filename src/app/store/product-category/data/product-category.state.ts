@@ -7,7 +7,10 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Injectable } from "@angular/core";
+import { 
+  inject, 
+  Injectable 
+} from "@angular/core";
 import { 
   Action,
   Selector, 
@@ -31,7 +34,6 @@ import { ProductCategoryCtrlService } from "src/app/private/components";
 import { LocaleKeys } from "src/app/common/constants";
 import { 
   SetDeletableResponse, 
-  SetDeleteHandleLoadingStatus, 
   SetDeleteHandleProcessingStatus 
 } from "src/app/store/delete-handle";
 import { ProductCategoryStateModel } from "./product-category-state.model";
@@ -115,11 +117,9 @@ export class ResetProductCategoryState {
 })
 @Injectable()
 export class ProductCategoryState {
-  constructor(
-    private productCategoryCtrlSvc: ProductCategoryCtrlService,
-    private uiStateSvc: UIStateService,
-    private alertSvc: AlertService
-  ) { } 
+  private productCategoryCtrlSvc = inject(ProductCategoryCtrlService);
+  private uiStateSvc = inject(UIStateService);
+  private alertSvc = inject(AlertService);
 
   @Selector()
   static getList(state: ProductCategoryStateModel): ProductCategory[] {
@@ -353,8 +353,6 @@ export class ProductCategoryState {
     ctx: StateContext<ProductCategoryStateModel>,
     action: CheckProductCategoryDeletable
   ): Observable<any> {
-    ctx.dispatch(new SetDeleteHandleLoadingStatus(true));
-
     return this.productCategoryCtrlSvc.isDeletable(action.id)
       .pipe(
         tap(deletableResponse => {
@@ -365,9 +363,6 @@ export class ProductCategoryState {
           this.alertSvc.setAlert(AlertType.ERROR, 
                                  LocaleKeys.alerts.failed.categoryDeletionFailed);
           return EMPTY;
-        }),
-        finalize(() => {
-          ctx.dispatch(new SetDeleteHandleLoadingStatus(false));
         }));
   }
 

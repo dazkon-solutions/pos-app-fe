@@ -7,15 +7,15 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Resource } from "src/app/common/enums";
+import { Permission } from "src/app/common/enums";
 
 export interface MenuNode {
   uid:          number;
   pid:          number;
   name:         string;
   description:  string;
-  resource:     Resource;
+  permission:   Permission;
   icon?:        string;
   children?:    MenuNode[];
-  route?:       string;
+  routePath?:   string;
 }

@@ -10,72 +10,50 @@
 @use '@angular/material' as mat;
 @use 'variables' as var;
 
-@mixin button-styles(
-  $primary-bg-color,
-  $warn-bg-color,
-  $fg-color
-) {
-  @include mat.fab-overrides((
-    extended-container-elevation-shadow: none,
-    extended-hover-container-elevation-shadow: none,
-    extended-pressed-container-elevation-shadow: none,
-    extended-focus-container-elevation-shadow: none,
-    small-container-elevation-shadow: none,
-    small-hover-container-elevation-shadow: none,
-    small-pressed-container-elevation-shadow: none,
-    small-focus-container-elevation-shadow: none,
-    foreground-color: $fg-color
+@mixin button-styles() {
+  button[mat-button] mat-icon,
+  button[mat-stroked-button] mat-icon,
+  button[mat-flat-button] mat-icon {
+    line-height: 0;
+  }
+
+  @include mat.button-overrides((
+    filled-container-height: 36px,
+    outlined-container-height: 36px,
   ));
 
-  // Overrides mini fab size
-  .mat-mdc-mini-fab {   
-    height: 36px;
-    width: 36px;
-  }
+  @include mat.fab-overrides((
+    small-container-shape: 100px,
+    small-container-elevation-shadow: 0,
+    small-focus-container-elevation-shadow: 0,
+    small-hover-container-elevation-shadow: 0,
+    small-pressed-container-elevation-shadow: 0
+  ));
 
-  .btn-fab-primary {
-    @include mat.fab-overrides((
-      container-color: $primary-bg-color
-    ));
-  }
-
-  .btn-fab-basic-primary {
-    @include mat.fab-overrides((
-      container-color: none,
-      foreground-color: $primary-bg-color
-    ));
-  }
-
-  .btn-fab-warn {
-    @include mat.fab-overrides((
-      container-color: $warn-bg-color,
-    ));
-  }
-
-  .btn-mini-fab-warn {
-    @include mat.fab-overrides((
-      small-container-color: $warn-bg-color,
-      small-foreground-color: $fg-color
-    ));
-  }
-
-  .btn-fab-primary,
-  .btn-mini-fab-warn {
+  .btn-progress-spinner {
     @include mat.progress-spinner-overrides((
-      active-indicator-color: var.$light-bg-color-1
+      active-indicator-color: var.$btn-progress-spinner-color
     ));
   }
 }
 
-@mixin button-styles-dark-disabled {
-  @include mat.button-overrides((
-    filled-disabled-container-color: var.$dark-disabled
-  ));
+@mixin button-themes($bg-color) {
+  .btn-warn {
+    @include mat.button-overrides((
+      filled-container-color: $bg-color,
+      filled-label-text-color: var.$btn-text-color,
+      outlined-label-text-color: $bg-color,
+      outlined-outline-color: $bg-color
+    ));
 
-  @include mat.fab-overrides((
-    disabled-state-container-color: var.$dark-disabled,
-    disabled-state-foreground-color: var.$dark-disabled,
-    small-disabled-state-container-color: var.$dark-disabled,
-    small-disabled-state-foreground-color: var.$dark-disabled
-  ));
+    @include mat.fab-overrides((
+      small-container-color: $bg-color,
+      small-foreground-color: var.$btn-text-color
+    ));
+
+    @include mat.menu-overrides((
+      item-icon-color: var.$btn-warn-text-color,
+      item-label-text-color: var.$btn-warn-text-color
+    ));
+  }
 }

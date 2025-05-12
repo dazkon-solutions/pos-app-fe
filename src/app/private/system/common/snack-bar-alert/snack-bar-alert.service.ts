@@ -7,7 +7,10 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Injectable } from "@angular/core";
+import { 
+  inject, 
+  Injectable 
+} from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Alert } from "src/app/store/alerts";
 import { SnackBarAlertComponent } from "./snack-bar-alert.component";
@@ -17,7 +20,7 @@ import { SnackBarAlertConfigHelper } from "./snack-bar-alert-config.helper";
   providedIn: 'root'
 })
 export class SnackBarAlertService {
-  constructor(private snackbar: MatSnackBar) { }
+  private snackbar = inject(MatSnackBar);
 
   open(alert: Alert): void {
     const config = SnackBarAlertConfigHelper.createAlert(alert);

@@ -8,16 +8,21 @@
  */
 
 import { 
+  ChangeDetectionStrategy,
   Component, 
   EventEmitter, 
-  Input, 
+  input, 
   Output 
 } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { Observable } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { LocaleKeys } from 'src/app/common/constants';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
-import { VIEW_TOGGLE_PAGINATION_MAT_IMPORTS } from './view-toggle-pagination-imports';
 
 enum ViewType {
   LIST,
@@ -28,17 +33,20 @@ enum ViewType {
   selector: 'daz-view-toggle-pagination',
   imports: [
     CORE_IMPORTS,
-    VIEW_TOGGLE_PAGINATION_MAT_IMPORTS
+    MatPaginatorModule,
+    MatTooltipModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatDividerModule
   ],
   templateUrl: './view-toggle-pagination.component.html',
-  styleUrl: './view-toggle-pagination.component.scss'
+  styleUrl: './view-toggle-pagination.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ViewTogglePaginationComponent {
-  @Input('isListView$')
-  isListView$!: Observable<boolean>;
-
-  @Input('pagination$')
-  pagination$!: Observable<PageEvent>;
+  isListView = input.required<boolean>();
+  pagination = input.required<PageEvent>();
     
   @Output('viewToggled')
   viewToggled = new EventEmitter<boolean>(true);
@@ -54,15 +62,14 @@ export class ViewTogglePaginationComponent {
 
   onClickToggle(
     event: MouseEvent,
-    isListView: boolean,
     viewType: ViewType
   ): void {
     event.stopPropagation();
     event.preventDefault();
 
-    if((viewType === ViewType.LIST) && isListView) return;
+    if((viewType === ViewType.LIST) && this.isListView()) return;
 
-    if((viewType === ViewType.GRID) && !isListView) return;
+    if((viewType === ViewType.GRID) && !this.isListView()) return;
 
     this.viewToggled.emit(true);
   }

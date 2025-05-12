@@ -8,15 +8,15 @@
  */
 
 import { 
-  ChangeDetectorRef,
+  ChangeDetectionStrategy,
   Component, 
-  DestroyRef, 
-  OnInit
+  computed, 
+  inject
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Store } from '@ngxs/store';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
-import { ThemeService } from 'src/app/common/services';
+import { AppearanceState } from 'src/app/store/appearance';
 import { SkeletonConfigHelper } from '../skeleton-config.helper';
 
 
@@ -27,52 +27,33 @@ import { SkeletonConfigHelper } from '../skeleton-config.helper';
     NgxSkeletonLoaderModule
   ],
   templateUrl: './delete-handler-skeleton.component.html',
-  styleUrl: './delete-handler-skeleton.component.scss'
+  styleUrl: './delete-handler-skeleton.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DeleteHandleSkeletonComponent implements OnInit {
-  loadingItems: any[] = [];
-  iconTheme = { };
-  contentTheme = { };
-  actionsTheme = { };
-
-  constructor(
-    private destroyRef: DestroyRef,
-    private themeSvc: ThemeService,
-    private cdr: ChangeDetectorRef
-  ) { }
-
-  ngOnInit(): void {
-    this.themeSvc.isLightTheme$()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(isLightTheme => this.createTheme(isLightTheme));
-  }
-
-  private async createTheme(isLightTheme: boolean): Promise<void> {
-    this.iconTheme = {
-      width: '100px',
-      height: '100px',
-      'background': isLightTheme 
-        ? '' 
-        : SkeletonConfigHelper.darkBgColor,
-    };
-
-    this.contentTheme = {
-      height: '25px',
-      margin: 0,
-      'background': isLightTheme 
-        ? '' 
-        : SkeletonConfigHelper.darkBgColor,
-    };
-
-    this.actionsTheme = {
-      height: '36px',
+export class DeleteHandleSkeletonComponent {
+  private store = inject(Store);
+  private isLightTheme = this.store.selectSignal(AppearanceState.isLightTheme);
+  
+  iconTheme = computed(() => ({
+    width: '100px',
+    height: '100px',
+    'background': this.isLightTheme()
+      ? '' 
+      : SkeletonConfigHelper.darkBgColor,
+  }));
+  contentTheme = computed(() => ({
+    height: '25px',
+    margin: 0,
+    'background': this.isLightTheme() 
+      ? '' 
+      : SkeletonConfigHelper.darkBgColor,
+  }));
+  actionsTheme = computed(() => ({
+    height: '36px',
       width: '100px',
       margin: '5px',
-      'background': isLightTheme 
+      'background': this.isLightTheme()  
         ? '' 
         : SkeletonConfigHelper.darkBgColor,
-    };
-
-    this.cdr.detectChanges();
-  }
+  }));
 }

@@ -10,18 +10,11 @@
 @use '@angular/material' as mat;
 @use 'variables' as var;
 
-@mixin data-view-styles {
+@mixin data-view-styles() {
   .data-view {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: calc(100% - 49px);
-    border-radius: 7px 15px 0 0;
-  }
-}
-
-@mixin data-view-light {
-  .data-view {
-    border-top: 1px solid var.$light-bg-color-2;
   }
 }

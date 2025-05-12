@@ -8,39 +8,39 @@
  */
 
 import { 
+  ChangeDetectionStrategy,
   Component, 
-  DestroyRef, 
+  effect, 
+  inject, 
   OnInit 
 } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { 
+  Router, 
+  RouterOutlet 
+} from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { TranslateService } from '@ngx-translate/core';
 import { 
   ControlBarComponent,
-  FooterComponent, 
   HeaderComponent, 
   LeftPanelComponent
 } from 'src/app/private/system/core';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
-import { 
-  IconService, 
-  ThemeService 
-} from './common/services';
+import { IconService } from './common/services';
 import { Resource } from './common/enums';
-import { 
-  MenuConfigService, 
-  MenuState 
-} from './store/menu-config';
-import { MenuNode } from './store/menu-config/menu.interface';
+import { MenuConfigService } from './store/menu-config';
 import { LeftPanelState } from './store/left-panel-config';
 import { SnackBarAlertService } from './private/system/common/snack-bar-alert/snack-bar-alert.service';
 import { 
+  Alert,
   AlertMode, 
   AlertState 
 } from './store/alerts';
+import { NavigationState } from './store/navigation-config';
+import { ControlBarService } from './private/system/core/control-bar';
+import { RoutePaths } from './common/navigation';
+import { AppearanceState } from './store/appearance';
 
 @Component({
   selector: 'daz-root',
@@ -50,73 +50,51 @@ import {
     MatSidenavModule,
     HeaderComponent,
     LeftPanelComponent,
-    FooterComponent,
     ControlBarComponent
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-  isLightTheme$!: Observable<boolean>;
-  isLeftPanelExpanded$!: Observable<boolean>;
-  menuCurrent$!: Observable<MenuNode | null>;
+  private store = inject(Store);
+  private controlBarSvc = inject(ControlBarService);
+  private translate = inject(TranslateService);
+  private iconSvc = inject(IconService);
+  private menuConfigSvc = inject(MenuConfigService);
+  private snackBarAlertSvc = inject(SnackBarAlertService);
+  private router = inject(Router);
+
+  isLeftPanelExpanded = this.store.selectSignal(LeftPanelState.isExpanded);
+  currentResource = this.store.selectSignal(NavigationState.getCurrentResource);
+  newAlert = this.store.selectSignal(AlertState.getNew);
+  isLightTheme = this.store.selectSignal(AppearanceState.isLightTheme);
   isAuth = true;
 
-  constructor(
-    private translate: TranslateService,
-    private iconSvc: IconService,
-    private menuConfigSvc: MenuConfigService,
-    private themeSvc: ThemeService,
-    private snackBarAlertSvc: SnackBarAlertService,
-    private store: Store,
-    private destroyRef: DestroyRef,
-    private router: Router
-  ) {
+  constructor() {
     this.translate.setDefaultLang('en');
     this.translate.use('en');
-
     this.iconSvc.registerSvgIcons();
+
+    effect(() => this.subscribeToAlerts(this.newAlert()));
   }
 
   ngOnInit(): void {
-    this.init();
-    this.syncState();
     this.menuConfigSvc.createMenuTreeByPermission(); // TODO: REMOVE
   }
 
-  private init(): void {
-    this.isLightTheme$ = this.themeSvc.isLightTheme$();
-  }
-
-  private syncState(): void {
-    this.isLeftPanelExpanded$ = this.store.select(LeftPanelState.isExpanded);
-    this.menuCurrent$ = this.store.select(MenuState.getCurrent);
-
-    this.subscribeToAlerts();
-  }
-  
-  private subscribeToAlerts(): void {
-    this.store.select(AlertState.getNew)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(alert => {
-        if(alert?.mode === AlertMode.SNACK_BAR) {
-          this.snackBarAlertSvc.open(alert)
-        }
-      });
+  private subscribeToAlerts(alert: Alert): void {
+    if(alert?.mode === AlertMode.SNACK_BAR) {
+      this.snackBarAlertSvc.open(alert);
+    }
   }
 
   isVisibleControlBar(resource: Resource | null): boolean {
-    if(!resource) return false;
-
-    const avoidResources = [ 
-      Resource.DASHBOARD,
-      Resource.NONE
-    ];
-
-    return !avoidResources.includes(resource);
+    if (!resource) return false;
+    return this.controlBarSvc.isVisible(resource);
   }
 
   isPosRoute(): boolean {
-    return this.router.url === '/pos';
+    return this.router.url === `/${RoutePaths.POS_PAGE}`;
   }
 }

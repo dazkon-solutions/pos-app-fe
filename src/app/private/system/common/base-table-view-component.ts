@@ -9,53 +9,37 @@
 
 import { 
   Component, 
-  Input
+  inject, 
+  input, 
+  signal
 } from '@angular/core';
-import { 
-  BehaviorSubject,
-  Observable 
-} from 'rxjs';
 import { 
   Action,
   TableColumnAlignmentStyleClass 
 } from 'src/app/common/enums';
-import { 
-  ActionService, 
-  TableService 
-} from 'src/app/common/services';
-import { ActionButtonConfig } from './action-button';
+import { ActionService } from 'src/app/common/services';
 import { AnimationType } from './animation-player';
 
 @Component({
   template: ''
 })
 export abstract class BaseTableViewComponent<T> {
-  @Input('dataSource$')
-  dataSource$!: Observable<T[]>;
+  protected actionSvc = inject(ActionService);
 
-  @Input('isLoading$')
-  isLoading$!: Observable<boolean>;
+  dataSource = input.required<T[]>();
+  isLoading = input.required<boolean>();
 
-  viewButton$!: BehaviorSubject<ActionButtonConfig>;
-  deleteButton$!: BehaviorSubject<ActionButtonConfig>;
-
-  tableHeaderColor$: Observable<string>;
-  displayedColumns: string[];
+  displayedColumns = signal<string[]>([]);
 
   TableColumnAlignmentStyleClass = TableColumnAlignmentStyleClass;
   AnimationType = AnimationType;
+  Action = Action;
 
-  constructor(
-    protected tableSvc: TableService,
-    protected actionSvc: ActionService
-  ) { 
-    this.tableHeaderColor$ = this.tableSvc.tableHeaderColor$;
-    this.displayedColumns = this.setDisplayedColumns();
-    this.initializeButtons();
+  constructor() { 
+    this.displayedColumns.set(this.setDisplayedColumns());
   }
 
   protected abstract setDisplayedColumns(): string[];
-  protected abstract initializeButtons(): void;
 
   buttonClicked(
     action: Action, 

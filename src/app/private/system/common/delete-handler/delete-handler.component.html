@@ -7,35 +7,24 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
 
-@let isLoading = (isLoading$ | async) ?? false;
-@let isDeletable = (isDeletable$ | async) ?? false;
-@let isProcessing = (isProcessing$ | async) ?? false;
-
-<!-- Waiting -->
-@if (isProcessing) {
-  <daz-waiting-overlay />
-}
-<!-- End of waiting -->
-
-
 <!-- Content -->
 <mat-dialog-content >
-  @if (isLoading) {
-    <daz-delete-handler-skeleton />
-
+  @switch (deleteHandlerStatus()) {
+    @case (DeleteHandlerStatus.DELETABLE) {
+      <ng-container [ngTemplateOutlet]="DeleteConfirmationTemplate" />
+    }
+    @case (DeleteHandlerStatus.NOT_DELETABLE) {
+      <ng-container [ngTemplateOutlet]="NotDeletableTemplate" />
+    }
+    @default {
+      <daz-delete-handler-skeleton />
+    }
   }
-  @else if (isDeletable) {
-    <ng-container [ngTemplateOutlet]="DeleteConfirmationTemplate" />
-
-  } @else {
-    <ng-container [ngTemplateOutlet]="NotDeletableTemplate" />
-  }
-
 </mat-dialog-content>
 <!-- End of content -->
 
 <!-- Action section -->
-@if (!isLoading) {
+@if (!DeleteHandlerStatus.INIT) {
   <mat-dialog-actions >
     <ng-container [ngTemplateOutlet]="ActionsTemplate" />
   </mat-dialog-actions>
@@ -59,7 +48,6 @@
 
 
 <!-- Not deletable template -->
-@let errorMessages = (errorMessages$ | async) ?? [];
 <ng-template #NotDeletableTemplate >
   <daz-animation-player [animationType]="AnimationType.DO_NOT" />
 
@@ -68,11 +56,13 @@
       {{ LocaleKeys.titles.youCannotDelete | translate }}
     </h2>
 
-    <ul >
-      @for (item of errorMessages; track $index) {
-        <li >{{ item }}</li>
-      }
-    </ul>
+    <div class="messages" >
+      <ul >
+        @for (item of messages(); track $index) {
+          <li >{{ item }}</li>
+        }
+      </ul>
+    </div>
   </div>
 </ng-template>
 <!-- End of not deletable template -->
@@ -80,20 +70,31 @@
 
 <!-- Actions template -->
 <ng-template #ActionsTemplate >
-  @if (isDeletable) {
-    <button mat-button 
-            mat-dialog-close >
-      {{ LocaleKeys.labels.buttons.cancel | translate }}
-    </button>
-    
-    <daz-action-button [config$]="deleteBtn$"
-                       (buttonClicked)="deleteClicked()" />
+  @switch (deleteHandlerStatus()) {
+    @case (DeleteHandlerStatus.DELETABLE) {
+      <daz-button [type]="cancelButton().type"
+                  [label]="cancelButton().label"
+                  [isDisabled]="isProcessing()"
+                  (buttonClicked)="cancelClicked() "/>
+      
+      <daz-button [type]="deleteButton().type"
+                  [icon]="deleteButton().icon"
+                  [label]="deleteButton().label"
+                  [isLoading]="isProcessing()"
+                  [styleClass]="deleteButton().styleClass"
+                  [permission]="deleteButton().permission"
+                  (buttonClicked)="deleteClicked()" />
+    }
 
-  } @else {
-    <button mat-flat-button 
-            mat-dialog-close >
-      {{ LocaleKeys.labels.buttons.ok | translate }}
-    </button>
+    @case (DeleteHandlerStatus.NOT_DELETABLE) {
+      <daz-button [type]="okButton().type"
+                  [label]="okButton().label"
+                  (buttonClicked)="cancelClicked() "/>
+    }
+
+    @default {
+      <!-- Loading... -->
+    }
   }
 </ng-template>
 <!-- End of actions template -->

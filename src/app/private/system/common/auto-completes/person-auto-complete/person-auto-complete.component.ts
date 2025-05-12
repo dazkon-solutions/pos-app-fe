@@ -38,7 +38,7 @@ import { BaseAutoCompleteComponent } from '../base-auto-complete-component';
 export class PersonAutoCompleteComponent extends BaseAutoCompleteComponent {
   override displayFn = (option: any): string => {
     return option 
-      ? `${option.title}. ${option[this.ctrlDisplayProperty]}` 
+      ? `${option.title}. ${option[this.ctrlDisplayProperty()]}` 
       : '';
   };
 }

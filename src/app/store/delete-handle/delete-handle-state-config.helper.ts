@@ -13,9 +13,7 @@ import { DeleteHandleStateModel } from "./delete-handle-state.model";
 export class DeleteHandleStateConfigHelper {
   static createDefault(): DeleteHandleStateModel {
     return {
-      isDeletable: false,
-      errorMessages: [],
-      isLoading: false,
+      response: null,
       isProcessing: false
     };
   }

@@ -9,19 +9,16 @@
 
 import { 
   Component, 
-  Input,
+  inject, 
+  input, 
+  signal,
   ViewChild
 } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { 
-  BehaviorSubject,
-  Observable 
-} from 'rxjs';
 import { Action } from 'src/app/common/enums';
 import { ActionService } from 'src/app/common/services';
 import { ArrayUtil } from 'src/app/common/utils';
 import { LocaleKeys } from 'src/app/common/constants';
-import { ActionButtonConfig } from './action-button';
 import { AnimationType } from './animation-player';
 import { GridItemSkeletonType } from './skeletons/grid-item-skeleton';
 
@@ -29,28 +26,20 @@ import { GridItemSkeletonType } from './skeletons/grid-item-skeleton';
   template: ''
 })
 export abstract class BaseGridViewComponent<T> {
+  protected actionSvc = inject(ActionService);
+  
   @ViewChild(MatMenuTrigger) 
   optionMenu!: MatMenuTrigger;
 
-  @Input('dataSource$')
-  dataSource$!: Observable<T[]>;
+  dataSource = input.required<T[]>();
+  isLoading = input.required<boolean>();
 
-  @Input('isLoading$')
-  isLoading$!: Observable<boolean>;
+  defaultLoadingItems = signal<any>(ArrayUtil.createFakeArray(25));
 
-  viewButton$!: BehaviorSubject<ActionButtonConfig>;
-  deleteButton$!: BehaviorSubject<ActionButtonConfig>;
-
-  defaultLoadingItems = ArrayUtil.createFakeArray(25);
   GridItemSkeletonType = GridItemSkeletonType;
   AnimationType = AnimationType;
   LocaleKeys = LocaleKeys;
-
-  constructor(protected actionSvc: ActionService) { 
-    this.initializeButtons();
-  }
-
-  protected abstract initializeButtons(): void;
+  Action = Action;
 
   trackById(index: number, item: any): number {
     return item.id;

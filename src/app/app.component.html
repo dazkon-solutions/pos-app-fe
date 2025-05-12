@@ -7,20 +7,17 @@
   For inquiries, please contact: info@dazkonsolutions.com 
 -->
   
-@let isLightTheme = isLightTheme$ | async;
-
 <!-- This section should hide when directed to the POS route -->
 <mat-drawer-container class="drawer-container" 
-                      [ngClass]="isLightTheme ? 'light-theme' : 'dark-theme'"
+                      [ngClass]="isLightTheme() ? 'light-theme' : 'dark-theme'"
                       autosize 
                       hasBackdrop="false"
                       *ngIf="!isPosRoute()" > 
   <!-- left panel -->
-  @let isLeftPanelExpanded = (isLeftPanelExpanded$ | async) ?? false;
   <mat-drawer #drawer
               mode="side"
               opened="true"
-              [ngClass]="isLeftPanelExpanded 
+              [ngClass]="isLeftPanelExpanded()
                 ? 'left-panel-expanded' 
                 : 'left-panel-collapsed'"
               [style.width]="!isAuth ? '0' : ''" >
@@ -37,17 +34,11 @@
     <!-- End of header -->
 
     <!-- Control bar -->
-    @let menuCurrent = menuCurrent$ | async;
-    @if(isVisibleControlBar(menuCurrent && menuCurrent.resource)) {
-      <daz-control-bar class="daz-control-bar" />
+    @if(isVisibleControlBar(currentResource())) {
+      <daz-control-bar class="daz-control-bar" 
+                       [resource]="currentResource()" />
     }
     <!-- End of control bar -->
-
-    <!-- Helper for manage background color with curve -->
-    @if(isVisibleControlBar(menuCurrent && menuCurrent.resource)) {
-      <div class="background-color-with-curve-helper-for-control-bar" ></div>
-    }
-    <!-- End of helper for manage background color with curve -->
 
     <!-- Content -->
     <div class="daz-content" >
@@ -55,9 +46,6 @@
     </div>
     <!-- End of content -->
 
-    <!-- Footer -->
-    <daz-footer />
-    <!-- End of footer -->
   </div>
 
 </mat-drawer-container>
@@ -65,7 +53,7 @@
 
 <!-- POS-end -->
 @if (isPosRoute()) {
-  <div [ngClass]="isLightTheme ? 'light-theme' : 'dark-theme'" >
+  <div [ngClass]="isLightTheme() ? 'light-theme' : 'dark-theme'" >
     <router-outlet />
   </div>
 }

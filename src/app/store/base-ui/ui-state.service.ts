@@ -7,7 +7,10 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Injectable } from "@angular/core";
+import { 
+  inject, 
+  Injectable 
+} from "@angular/core";
 import { Store } from "@ngxs/store";
 import { 
   SetLoadingStatus, 
@@ -19,7 +22,7 @@ import { StateKey } from "../state-key.token";
   providedIn: 'root'
 })
 export class UIStateService {
-  constructor(private store: Store) { }
+  private store = inject(Store);
 
   setLoading(
     stateKey: StateKey,

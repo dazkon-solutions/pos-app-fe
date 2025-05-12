@@ -7,66 +7,71 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-$primary-color: #2196F3;
-$warn-color: #f32626;
+@use 'theme-colors' as theme;
+@use 'sass:map';
 
-$dark-disabled: #ffffff20;
+$warn-color-light: map.get(theme.$error-palette, 60);
+$warn-color-dark: map.get(theme.$error-palette, 60);
 
-// Background
-$light-bg-color-1: #fff;
-$light-bg-color-2: #F3F3F3;
-$light-bg-color-3: #e3e3e3;
-$dark-bg-color: #141414;
+// Button
+$btn-text-color: #fff;
+$btn-warn-text-color: map.get(theme.$error-palette, 60);
+$btn-progress-spinner-color: #fff;
+
+// Scroll
+$scroll-thumb-color-light: rgb(map.get(theme.$primary-palette, 60), 0.5);
+$scroll-hover-color-light: map.get(theme.$primary-palette, 60);
+$scroll-bg-color-light: #fff;
+$scroll-thumb-color-dark: rgb(map.get(theme.$primary-palette, 80), 0.5);
+$scroll-hover-color-dark: map.get(theme.$primary-palette, 80);
+$scroll-bg-color-dark: #121316;
+
+// Table
+$table-header-color-light: #F3F3F3;
+$table-row-outline-color-light: #e3e3e3;
+$table-row-hover-color-light: #f0f0f0;
+$table-header-color-dark: #000100;
+$table-row-outline-color-dark: #1E1E1E;
+$table-row-hover-color-dark: #1E1E1E;
+
+// Header
+$header-color-light: #F3F3F3;
+$header-color-dark: #1E1E1E;
+
+// Alerts - snack bar
+$alert-success-bg-color: #339900;
+$alert-error-bg-color: map.get(theme.$error-palette, 60);
+$alert-text-color: #fff;
+
+// Main menu
+$menu-panel-text-color: #BBBBBB;
+$menu-panel-text-color-hover: #fff;
+$menu-panel-item-icon-color-selected: #fff;
+$menu-panel-item-bg-color-hover: #e0e0ff88;
+$menu-panel-item-bg-color-selected: #2c2c2c;
+$menu-panel-bg-color: #141414;
+$menu-panel-item-child-bg-color: #0c0c0c;
+$menu-panel-item-child-bg-color-selected: #242424;
 
 // Static colors
 $static-color-1: #1E1E1E;
 $static-color-2: #000100; // for darkest backgrounds
 $static-color-3: #8F9097;
 
-$tertiary-color: #FF6D00; // not used
-$hover-color: #e0e0ff88;
-$active-color: #e0e0ff;
-$scroll-thumb-color: #e0e0ff;
-$scroll-bg-color: #F5F5F5;
+// ----------------------------------------------------------
 
-$dark-hover-color: $primary-color;
-$dark-active-color: #515264;
-$dark-scroll-thumb-color: #515264;
-$dark-scroll-bg-color: #e1e0f920;
 
-// Text
-$light-bg-text-color: #141414;
-$dark-bg-text-color-1: #fff;
-$dark-bg-text-color-2: #BBBBBB;
 
-// Button
-$btn-text-color: #fff;
-$btn-primary-color: #1469C0;
-$btn-primary-dark-color: #2196F3;
-$btn-warn-color: #f32626;
-$btn-warn-dark-color: #f32626;
 
-// Alerts - snack bar
-$alert-success-bg-color: #339900;
-$alert-error-bg-color: #f32626;
-$alert-text-color: #fff;
 
-// Table
-$table-bg-color: $light-bg-color-1;
-$table-bg-dark-color: $static-color-2;
-$table-header-text-color: $light-bg-text-color;
-$table-header-text-dark-color: $dark-bg-text-color-1;
-$table-body-text-color: $light-bg-text-color;
-$table-body-text-dark-color: $dark-bg-text-color-2;
-$table-row-outline-color: #e3e3e3;
-$table-row-outline-dark-color: #1E1E1E;
 
-// Main menu
-$menu-panel-text-color: #BBBBBB;
-$menu-panel-text-color-hover: #fff;
-$menu-panel-item-icon-color-selected: #fff;
-$menu-panel-item-bg-color-hover: $hover-color;
-$menu-panel-item-bg-color-selected: #2c2c2c;
-$menu-panel-bg-color: $dark-bg-color;
-$menu-panel-item-child-bg-color: #0c0c0c;
-$menu-panel-item-child-bg-color-selected: #242424;
+
+
+
+
+
+
+
+
+
+

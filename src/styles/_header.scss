@@ -9,14 +9,10 @@
 
 @use '@angular/material' as mat;
 
-@mixin header-styles(
-  $bg-color,
-  $text-color
-) {
+@mixin header-themes($bg-color) {
   .daz-header {
     @include mat.toolbar-overrides((
-      container-background-color: $bg-color,
-      container-text-color: $text-color
+      container-background-color: $bg-color
     ));
   }
 }

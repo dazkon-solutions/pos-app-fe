@@ -7,7 +7,10 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Injectable } from '@angular/core';
+import { 
+  inject, 
+  Injectable 
+} from '@angular/core';
 import { 
   BottomSheetService, 
   DialogService 
@@ -21,17 +24,14 @@ import {
   DeleteProductCategory 
 } from 'src/app/store/product-category/data/product-category.state';
 import { Action } from 'src/app/common/enums';
-import { CategoryComponent } from './category/category.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-  constructor(
-    private dialogSvc: DialogService,
-    private deleteHandlerSvc: DeleteHandlerService,
-    private bottomSheetSvc: BottomSheetService
-  ) { }
+  private dialogSvc = inject(DialogService);
+  private deleteHandlerSvc = inject(DeleteHandlerService);
+  private bottomSheetSvc = inject(BottomSheetService);
 
   async openForm(): Promise<void> {
     const { CategoryComponent } = await import('./category/category.component');
@@ -48,7 +48,6 @@ export class CategoryService {
     const config: DeleteHandlerConfig = {
       checkActionInstance: new CheckProductCategoryDeletable(id),
       deleteActionInstance: new DeleteProductCategory(id),
-      deleteAction: Action.DELETE_CATEGORY,
       description: name
     };
 

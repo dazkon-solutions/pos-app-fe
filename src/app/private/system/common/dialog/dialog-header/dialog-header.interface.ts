@@ -8,6 +8,6 @@
  */
 
 export interface DialogHeaderConfig {
-  title:        string;
-  value?:       string;
+  title:   string;
+  value?:  string;
 }

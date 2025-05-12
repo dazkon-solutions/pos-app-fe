@@ -8,36 +8,11 @@
  */
 
 @use '@angular/material' as mat;
-@use 'variables' as var;
 
-@mixin pagination-styles(
-  $bg-color,
-  $text-color,
-  $border-color
-) {
+@mixin pagination-styles() {
   @include mat.paginator-overrides((
-    container-text-color: $text-color,
-    container-background-color: $bg-color
-  ));
-
-  .pagination {
-    @include mat.toolbar-overrides((
-      container-background-color: $bg-color
-    ));
-
-    border-top: 1px solid $border-color;
-  }
-}
-
-@mixin pagination-colors-dark {
-  @include mat.paginator-overrides((
-    disabled-icon-color: var.$dark-disabled,
-    enabled-icon-color: var.$dark-bg-text-color-2
-  ));
-
-  .pagination {
-    @include mat.icon-button-overrides((
-      icon-color: var.$dark-bg-text-color-2
-    ));
-  }
+    form-field-container-height: 33px,
+    form-field-container-vertical-padding: 4px,
+    container-size: 43px
+  ));  
 }

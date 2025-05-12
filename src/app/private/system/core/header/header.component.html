@@ -16,9 +16,8 @@
   <!-- End of menu toggle -->
 
   <!-- Title -->
-  @let menuParentItem = menuParentItem$ | async;
   <span class="title mat-title-medium" >
-    {{ menuParentItem && (menuParentItem.name | translate) }}
+    {{ menuParentItem()?.name ?? '' | translate }}
   </span>
   <!-- End of title -->
 

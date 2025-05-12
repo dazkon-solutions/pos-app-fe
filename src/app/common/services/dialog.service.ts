@@ -7,37 +7,44 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Injectable } from "@angular/core";
+import { 
+  computed,
+  inject, 
+  Injectable 
+} from "@angular/core";
 import { ComponentType } from "@angular/cdk/portal";
 import { 
   MatDialog, 
   MatDialogConfig, 
   MatDialogRef 
 } from "@angular/material/dialog";
-import { ThemeService } from "./theme.service";
-
+import { Store } from "@ngxs/store";
+import { AppearanceState } from "src/app/store/appearance";
 
 @Injectable({ 
   providedIn: 'root'
 })
 export class DialogService {
-  constructor(
-    private dialog: MatDialog,
-    private themeSvc: ThemeService
-  ) { }
+  private dialog = inject(MatDialog);
+  private store = inject(Store);
+
+  private isLightTheme = this.store.selectSignal(AppearanceState.isLightTheme);
+
+  private theme = computed(() => this.isLightTheme() 
+    ? 'light-theme' 
+    : 'dark-theme');
 
   async open<T extends ComponentType<any>>(
     component: T,
     config: MatDialogConfig,
     styleClasses: string[] = [],
   ): Promise<MatDialogRef<T>> {
-    const isLightTheme = await this.themeSvc.isLightThemeAsync();
 
     return this.dialog.open(component, { 
       disableClose: true,
       ...config,
       panelClass: [
-        isLightTheme ? 'light-theme' : 'dark-theme',
+        this.theme(),
         ...styleClasses
       ]
     });

@@ -7,10 +7,10 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
+import { DeletableResponse } from "src/app/common/interfaces";
+
 
 export interface DeleteHandleStateModel { 
-  isDeletable:    boolean;
-  errorMessages:  string[];
-  isLoading:      boolean;
-  isProcessing:   boolean;
+  response:      DeletableResponse | null;
+  isProcessing:  boolean;
 }

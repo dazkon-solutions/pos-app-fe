@@ -7,14 +7,17 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { Injectable } from '@angular/core';
+import { 
+  inject, 
+  Injectable 
+} from '@angular/core';
 import { DialogService } from 'src/app/common/services';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CalculatorService {
-  constructor(private dialogSvc: DialogService) { }
+  private dialogSvc = inject(DialogService);
 
   async open(): Promise<void> {
     const { CalculatorComponent } = await import('./calculator.component');

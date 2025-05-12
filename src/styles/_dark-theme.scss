@@ -8,106 +8,25 @@
  */
 
 @use '@angular/material' as mat;
-// @use 'dazkon-theme' as theme;
+@use 'theme-colors' as theme;
 @use 'variables' as var;
-// @use 'mat-component';
-// @use 'common';
 @use 'scroll';
 @use 'header';
-@use 'control-bar';
-@use 'footer';
-@use 'form';
-@use 'card';
-@use 'drawer';
-@use 'table';
-@use 'pagination';
 @use 'button';
-@use 'bottom-sheet';
-@use 'dialog';
-@use 'pos';
-// @use 'dialog';
-// @use 'bottom-sheet' as bs;
-// @use 'table';
+@use 'table';
 
 
-@mixin dark-theme-styles() {
-  // $theme: theme.$dark-theme;
+@mixin dark-theme() {
+  @include scroll.scroller-themes(var.$scroll-bg-color-dark, 
+                                  var.$scroll-thumb-color-dark,
+                                  var.$scroll-bg-color-dark,
+                                  var.$scroll-hover-color-dark);
 
-  color: var.$dark-bg-text-color-1;
+  @include header.header-themes(var.$header-color-dark);
 
-  .daz-container,
-  .daz-content {
-    background-color: var.$static-color-2;
-  }
+  @include button.button-themes(var.$warn-color-dark);
 
-  .background-color-with-curve-helper-for-header {
-    background-color: var.$static-color-1;
-  }
-
-  .background-color-with-curve-helper-for-control-bar{
-    background-color: var.$dark-bg-color;
-  }
-
-  // @include mat.all-component-colors($theme);
-
-  // @include mat-component.mat-component-color-variants($theme);
-
-  // @include common.hover-layer-color(var.$dark-hover-color);
-
-  // @include common.active-layer-color(var.$dark-active-color);
-
-  @include scroll.scroller-styles(var.$dark-scroll-bg-color, 
-                                  var.$dark-scroll-thumb-color,
-                                  var.$dark-scroll-bg-color,
-                                  var.$dark-hover-color);
-
-  @include header.header-styles(var.$static-color-1,
-                                var.$dark-bg-text-color-2);
-
-  @include control-bar.control-bar-styles(var.$dark-bg-color,
-                                          var.$dark-bg-text-color-1);
-
-  @include footer.footer-styles(var.$static-color-2,
-                                var.$dark-bg-text-color-1);
-
-  @include form.form-colors(var.$dark-bg-text-color-1);
-  @include form.form-colors-dark();
-  @include form.form-colors-dark-disabled();
-
-  @include card.card-styles(var.$static-color-2,
-                            var.$static-color-1,
-                            var.$dark-bg-text-color-2);
-  @include card.card-colors-dark();
-
-  @include drawer.drawer-styles(var.$static-color-2);
-
-  @include table.table-colors(var.$table-bg-dark-color,
-                              var.$table-header-text-dark-color,
-                              var.$table-body-text-dark-color,
-                              var.$table-row-outline-dark-color);
-
-  @include pagination.pagination-styles(var.$static-color-2,
-                                        var.$dark-bg-text-color-2,
-                                        var.$table-row-outline-dark-color);
-  @include pagination.pagination-colors-dark();
-
-  @include button.button-styles(var.$btn-primary-dark-color,
-                                var.$btn-warn-color,
-                                var.$btn-text-color);
-  @include button.button-styles-dark-disabled();
-
-  @include bottom-sheet.bottom-sheet-styles(var.$dark-bg-color,
-                                            var.$dark-bg-text-color-2);
-
-  @include dialog.dialog-styles(var.$dark-bg-color,
-                                var.$dark-bg-text-color-2);
-
-  @include pos.pos-styles(var.$dark-bg-color,
-                          var.$dark-bg-text-color-2);
-
-  // @include dialog.dialog-background(var.$dark-bg-color);
-
-  // @include bs.bottom-sheet-background(var.$dark-bg-color);
-
-  // @include table.table-background(var.$dark-bg-color);
+  @include table.table-themes(var.$table-header-color-dark,
+                              var.$table-row-outline-color-dark,
+                              var.$table-row-hover-color-dark);
 }

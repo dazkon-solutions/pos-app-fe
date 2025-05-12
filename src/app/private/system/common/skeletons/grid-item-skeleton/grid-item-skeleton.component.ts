@@ -9,85 +9,52 @@
 
 import { 
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  DestroyRef,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges
+  computed,
+  inject,
+  input
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatCardModule } from '@angular/material/card';
+import { Store } from '@ngxs/store';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { ThemeService } from 'src/app/common/services';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
+import { AppearanceState } from 'src/app/store/appearance';
 import { SkeletonConfigHelper } from '../skeleton-config.helper';
-import { GRID_ITEM_SKELETON_MAT_IMPORTS } from './grid-item-skeleton-imports';
 import { GridItemSkeletonType } from './grid-item-skeleton-type.enum';
 
 
 @Component({
   selector: 'daz-grid-item-skeleton',
-  standalone: true,
   imports: [
     CORE_IMPORTS,
-    GRID_ITEM_SKELETON_MAT_IMPORTS,
+    MatCardModule,
     NgxSkeletonLoaderModule
   ],
   templateUrl: './grid-item-skeleton.component.html',
   styleUrl: './grid-item-skeleton.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GridItemSkeletonComponent implements 
-  OnInit,
-  OnChanges
-{
-  @Input({ 
-    alias: 'skeletonType', 
-    required: true 
-  })
-  skeletonType!: GridItemSkeletonType;
+export class GridItemSkeletonComponent {
+  private store = inject(Store);
+  private isLightTheme = this.store.selectSignal(AppearanceState.isLightTheme);
+
+  type = input.required<GridItemSkeletonType>();
   
-  circleTheme = { };
-  lineTheme = { };
-  type = GridItemSkeletonType.NAME_CARD;
+  circleTheme = computed(() => ({
+    width: '80px',
+    height: '80px',
+    'background-color': this.isLightTheme()
+      ? '' 
+      : SkeletonConfigHelper.darkBgColor
+  }));
+
+  lineTheme = computed(() => ({
+    height: '20px',
+    margin: 0,
+    'background-color': this.isLightTheme()
+      ? '' 
+      : SkeletonConfigHelper.darkBgColor
+  }));
+
   GridItemSkeletonType = GridItemSkeletonType;
-
-  constructor(
-    private destroyRef: DestroyRef,
-    private themeSvc: ThemeService,
-    private cdr: ChangeDetectorRef
-  ) { }
-
-  ngOnInit(): void {
-    this.themeSvc.isLightTheme$()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(isLightTheme => this.createTheme(isLightTheme));
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if('skeletonType' in changes) {
-      this.type = this.skeletonType;
-    }
-  }
-
-  private async createTheme(isLightTheme: boolean): Promise<void> {
-    this.circleTheme = {
-      width: '80px',
-      height: '80px',
-      'background-color': isLightTheme 
-        ? '' 
-        : SkeletonConfigHelper.darkBgColor
-    };
-
-    this.lineTheme = {
-      height: '20px',
-      margin: 0,
-      'background-color': isLightTheme 
-        ? '' 
-        : SkeletonConfigHelper.darkBgColor
-    };
-
-    this.cdr.detectChanges();
-  }
 }
