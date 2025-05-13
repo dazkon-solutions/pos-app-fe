@@ -10,6 +10,15 @@
 export enum Endpoint {
   SERVER_URL = 'serverUrl',
 
+  BRANDS_FETCH_ALL = 'brands.fetchAll',
+  BRANDS_FETCH_BY_ID = 'brands.fetchById',
+  BRANDS_CREATE = 'brands.create',
+  BRANDS_UPDATE = 'brands.update',
+  BRANDS_DELETE = 'brands.delete',
+  BRANDS_CHECK_DELETABLE = 'brands.checkDeletable',
+
+
+  // TODO: MODIFI
   CATEGORIES_GET_PAGINATED = 'categories.getPaginated',
   CATEGORIES_VIEW = 'categories.view',
   CATEGORIES_CREATE = 'categories.create',

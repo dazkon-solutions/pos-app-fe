@@ -14,9 +14,11 @@ export enum StateKey {
   MENU = 'menu',
   NAVIGATION = 'navigation',
   LEFT_PANEL = 'leftPanel',
-  PRODUCT_CATEGORY_UI = 'productCategoryUI',
-  PRODUCT_CATEGORY = 'productCategory',
   PERMISSION = 'permission',
   ALERT = 'alert',
-  DELETE_HANDLE = 'deleteHandle'
+  DELETE_HANDLE = 'deleteHandle',
+  PRODUCT_CATEGORY_UI = 'productCategoryUI',
+  PRODUCT_CATEGORY = 'productCategory',
+  PRODUCT_BRAND_UI = 'productBrandUI',
+  PRODUCT_BRAND = 'productBrand',
 }

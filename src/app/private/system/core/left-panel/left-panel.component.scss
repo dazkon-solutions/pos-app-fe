@@ -17,11 +17,15 @@
   justify-content: center;
   align-items: center;
   height: 42px;
-
   background-color: var.$menu-panel-bg-color;
 
-  .collapsed-menu-logo {
-    width: 34px;
+  .name {
+    margin-left: 10px;
+    font-weight: 550;
+  }
+
+  .menu-logo {
+    width: 27px;
   }
 }
 

@@ -30,6 +30,13 @@ export const LocaleKeys = {
     noDataFound: 'titles.noDataFound',
     calculator: 'titles.calculator',
     loadingList: 'titles.loadingList',
+    tablesColumns: {
+      name: 'titles.tablesColumns.name',
+    },
+    brand: {
+      brand: 'titles.brand.brand',
+      createBrand: 'titles.brand.createBrand',
+    },
   },
   tooltips: {
     notifications: 'tooltips.notifications',
@@ -55,6 +62,11 @@ export const LocaleKeys = {
       categoryCreated: 'alerts.success.categoryCreated',
       categoryUpdated: 'alerts.success.categoryUpdated',
       categoryDeleted: 'alerts.success.categoryDeleted',
+      brand: {
+        created: 'alerts.success.brand.created',
+        updated: 'alerts.success.brand.updated',
+        deleted: 'alerts.success.brand.deleted',
+      },
     },
     failed: {
       incorrectUsernamePassword: 'alerts.failed.incorrectUsernamePassword',
@@ -63,6 +75,13 @@ export const LocaleKeys = {
       categoryCreationFailed: 'alerts.failed.categoryCreationFailed',
       categoryUpdateFailed: 'alerts.failed.categoryUpdateFailed',
       categoryDeletionFailed: 'alerts.failed.categoryDeletionFailed',
+      brand: {
+        listFetchFailed: 'alerts.failed.brand.listFetchFailed',
+        fetchFailed: 'alerts.failed.brand.fetchFailed',
+        creationFailed: 'alerts.failed.brand.creationFailed',
+        updateFailed: 'alerts.failed.brand.updateFailed',
+        deletionFailed: 'alerts.failed.brand.deletionFailed',
+      },
     },
   },
   notifications: {

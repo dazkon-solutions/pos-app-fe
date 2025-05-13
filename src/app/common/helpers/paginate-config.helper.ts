@@ -8,10 +8,10 @@
  */
 
 import { PageEvent } from "@angular/material/paginator";
-import { PaginateResponse } from "../interfaces";
+import { PaginateRequest } from "../interfaces";
 
 export class PaginateConfigHelper {
-  static createDefault(): PaginateResponse {
+  static createDefault(): PaginateRequest {
     return {
       pageNo: 1,
       pageSize: 20,
@@ -29,7 +29,7 @@ export class PaginateConfigHelper {
 
   static paginate<T>(
     items: T[], 
-    responsePaginate: PaginateResponse = this.createDefault()
+    responsePaginate: PaginateRequest = this.createDefault()
   ): T[] {
     const { pageNo, pageSize } = responsePaginate;
 

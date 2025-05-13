@@ -53,7 +53,7 @@ export class ApiProviderService {
         const baseUrl = endpoints[Endpoint.SERVER_URL]; // The base URL from config
         let url = this.getNestedValue(endpoints, endpoint); // The specific endpoint path
 
-        if(!url) {
+        if (!url) {
           throw new Error(`API endpoint not found: ${endpoint}`);
         }
 

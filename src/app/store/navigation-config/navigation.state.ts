@@ -70,9 +70,6 @@ export class NavigationState {
     ctx: StateContext<NavigationStateModel>,
     action: SetResource
   ): void {
-    const currentState = ctx.getState();
-    if (currentState.resource === action.resource) return;
-
     ctx.patchState({
       resource: action.resource
     });

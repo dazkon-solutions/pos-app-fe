@@ -8,7 +8,7 @@
  */
 
 import { 
-  PaginateResponse, 
+  PaginateRequest, 
   ProductCategory, 
   ProductCategoryFilterTerms
 } from "src/app/common/interfaces";
@@ -19,5 +19,5 @@ export interface ProductCategoryStateModel {
   isLoaded:     boolean;
   isFiltered:   boolean;
   filterTerms:  ProductCategoryFilterTerms;
-  paginate:     PaginateResponse;
+  paginate:     PaginateRequest;
 }

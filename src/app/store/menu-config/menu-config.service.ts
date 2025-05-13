@@ -34,9 +34,9 @@ export class MenuConfigService {
     //     .hasPermission(parentItem.resource, 
     //                    Action.VIEW);
 
-    //   if(parentPermission) {
+    //   if (parentPermission) {
         
-    //     if(parentItem.children) {
+    //     if (parentItem.children) {
     //       let childItems = [];
           
     //       for(const childItem of parentItem.children) {
@@ -44,7 +44,7 @@ export class MenuConfigService {
     //           .hasPermission(childItem.resource, 
     //                          Action.LIST_VIEW);
 
-    //         if(childPermission) {
+    //         if (childPermission) {
     //           childItems.push(childItem);
     //         }
     //       }

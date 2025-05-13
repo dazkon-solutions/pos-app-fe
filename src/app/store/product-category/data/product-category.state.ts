@@ -178,7 +178,7 @@ export class ProductCategoryState {
 
   @Action(LoadProductCategoryList)
   loadProductCategoryList(ctx: StateContext<ProductCategoryStateModel>): void {
-    if(ctx.getState().isLoaded) return;
+    if (ctx.getState().isLoaded) return;
    
     ctx.dispatch(new FetchProductCategoryList());
   }
@@ -201,7 +201,7 @@ export class ProductCategoryState {
   ): void {
     let isFiltered = false;
     
-    if(!FilterHelper.isEmpty(action.payload)) {
+    if (!FilterHelper.isEmpty(action.payload)) {
       isFiltered = true;
     }
 

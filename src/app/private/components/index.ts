@@ -8,3 +8,4 @@
  */
 
 export * from './product-category-ctrl.service';
+export * from './product-brand-ctrl.service';

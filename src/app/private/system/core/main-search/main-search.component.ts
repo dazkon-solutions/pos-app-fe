@@ -34,9 +34,7 @@ import { FormHelper } from 'src/app/common/helpers';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { 
   MainSearchConfig,
-  MainSearchState, 
-  DeactivateMainSearchFilter,
-  SetMainSearchTerm,
+  MainSearchState
 } from 'src/app/store/main-search';
 import { LocaleKeys } from 'src/app/common/constants';
 import { Action } from 'src/app/common/enums';
@@ -110,17 +108,23 @@ export class MainSearchComponent implements OnInit {
   }
 
   private clearForm(): void {
-    this.form.patchValue({ search: '' });
+    this.form.patchValue({ search: null }, { emitEvent: false });
   }
 
   onSearchValue(): void {
     FormHelper.setupDebouncedFilter(
       this.form.get('search'), 
       () => {
-        if(this.form.invalid) return;
+        if (this.form.invalid) return;
 
-        const searchTerm = this.form.get('search')?.value.trim();
-        this.store.dispatch(new SetMainSearchTerm(searchTerm));
+        const searchTerm = this.form.get('search')?.value;
+
+        if (searchTerm === null) return; // only check nulls. empty strings should accept
+
+        this.actionSvc.emitAction({
+          action: Action.PERFORM_MAIN_SEARCH,
+          payload: searchTerm.trim()
+        });
       },
       this.destroyRef
     );
@@ -132,7 +136,10 @@ export class MainSearchComponent implements OnInit {
 
   onClickClearForm(): void {
     this.clearForm();
-    this.store.dispatch(new DeactivateMainSearchFilter());
+    this.actionSvc.emitAction({
+      action: Action.PERFORM_MAIN_SEARCH,
+      payload: ''
+    });
   }
 
   onClickAdvancedFilter(): void {

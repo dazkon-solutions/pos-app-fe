@@ -14,7 +14,14 @@
     "optionsMenu": "Options Menu",
     "noDataFound": "No Data Found",
     "calculator": "Calculator",
-    "loadingList": "Loading list..."
+    "loadingList": "Loading list...",
+    "tablesColumns": {
+      "name": "Name"
+    },
+    "brand": {
+      "brand": "Brand",
+      "createBrand": "Create Brand"
+    }
   },
 
   "tooltips": {
@@ -41,7 +48,12 @@
       "loginSuccessful": "Login successful",
       "categoryCreated": "Category created",
       "categoryUpdated": "Category updated",
-      "categoryDeleted": "Category deleted"
+      "categoryDeleted": "Category deleted",
+      "brand": {
+        "created": "Brand created",
+        "updated": "Brand updated",
+        "deleted": "Brand deleted"
+      }
     },
     "failed": {
       "incorrectUsernamePassword": "Incorrect Username or Password!",
@@ -49,7 +61,14 @@
       "categoryFetchFailed": "Failed to fetch category",
       "categoryCreationFailed": "Failed to create category",
       "categoryUpdateFailed": "Failed to update category",
-      "categoryDeletionFailed": "Failed to delete category"
+      "categoryDeletionFailed": "Failed to delete category",
+      "brand": {
+        "listFetchFailed": "Failed to fetch brands",
+        "fetchFailed": "Failed to fetch brand",
+        "creationFailed": "Failed to create brand",
+        "updateFailed": "Failed to update brand",
+        "deletionFailed": "Failed to delete brand"
+      }
     }
   },
 

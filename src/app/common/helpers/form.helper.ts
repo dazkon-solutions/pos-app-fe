@@ -40,11 +40,11 @@ export class FormHelper {
   ): void {
     const ctrlValue = form.get(`${controlName}`)?.value;
 
-    if(!ctrlValue) {
+    if (!ctrlValue) {
       return
     };
 
-    if(!Object.keys(ctrlValue).includes('id')){
+    if (!Object.keys(ctrlValue).includes('id')){
       form.get(`${controlName}`)?.setValue('');
 
     } else {
@@ -58,7 +58,7 @@ export class FormHelper {
   ): boolean {
     const ctrlValue = form.get(`${controlName}`)?.value;
 
-    if(!ctrlValue) {
+    if (!ctrlValue) {
       return false;
     };
 

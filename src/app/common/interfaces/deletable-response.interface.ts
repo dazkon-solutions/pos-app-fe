@@ -9,9 +9,5 @@
 
 export interface DeletableResponse {
   isDeletable: boolean;
-  messages:    string[];
-}
-
-export interface DeletableApiResponse {
-  data: DeletableResponse;
+  blockers:    string[];
 }

@@ -12,7 +12,7 @@ import { Observable, of } from "rxjs";
 import { 
   DeletableResponse,
   PaginatedProductCategory,
-  PaginateResponse, 
+  PaginateRequest, 
   ProductCategory, 
   ProductCategoryFilterTerms 
 } from "src/app/common/interfaces";
@@ -27,7 +27,7 @@ export class ProductCategoryCtrlService {
   constructor(private api: ApiProviderService) { }
 
   fetchAll(
-    paginate: PaginateResponse,
+    paginate: PaginateRequest,
     filterTerms: ProductCategoryFilterTerms
   ): Observable<PaginatedProductCategory> {
     const params = {
@@ -65,7 +65,7 @@ export class ProductCategoryCtrlService {
     //                                        params);
     const res: DeletableResponse = {
       isDeletable: true,
-      messages: ['delete delete']
+      blockers: ['delete delete']
     };
     return of(res)
   }

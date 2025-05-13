@@ -31,4 +31,9 @@ export const routes: Routes = [
     loadComponent: () => import('./protected/product-manager/categories/categories.component')
       .then(m => m.CategoriesComponent)
   },
+  { 
+    path: RoutePaths.BRAND_LIST_PAGE, 
+    loadComponent: () => import('./protected/product-manager/brands/brands.component')
+      .then(m => m.BrandsComponent)
+  },
 ];

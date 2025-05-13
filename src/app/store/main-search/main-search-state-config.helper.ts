@@ -30,6 +30,10 @@ export class MainSearchStateConfigHelper {
       {
         resource: Resource.CATEGORIES,
         hasFilter: true
+      },
+      {
+        resource: Resource.BRANDS,
+        hasFilter: false
       }
     ];
   }

@@ -59,6 +59,10 @@ import {
 import { ProductCategoryState } from './store/product-category/data/product-category.state';
 import { AlertState } from './store/alerts';
 import { DeleteHandleState } from './store/delete-handle';
+import { 
+  ProductBrandState, 
+  ProductBrandUIState 
+} from './store/product-brand';
 
 
 
@@ -78,10 +82,12 @@ export const appConfig: ApplicationConfig = {
         MenuState,
         MainSearchState,
         LeftPanelState,
+        AlertState,
+        DeleteHandleState,
         ProductCategoryUIState,
         ProductCategoryState,
-        AlertState,
-        DeleteHandleState
+        ProductBrandUIState,
+        ProductBrandState
       ],
       withNgxsLoggerPlugin(),
       withNgxsStoragePlugin({
@@ -108,6 +114,10 @@ export const appConfig: ApplicationConfig = {
           },
           {
             key: StateKey.PRODUCT_CATEGORY_UI,
+            engine: LOCAL_STORAGE_ENGINE
+          },
+          {
+            key: StateKey.PRODUCT_BRAND_UI,
             engine: LOCAL_STORAGE_ENGINE
           }
         ]

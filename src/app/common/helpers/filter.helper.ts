@@ -13,7 +13,7 @@ export class FilterHelper {
     let isEmpty = true;
 
     for(const value of Object.values(filterTerms)) {
-      if(value !== '') {
+      if (value !== '') {
         isEmpty = false;
       }
     }

@@ -7,8 +7,15 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export interface PaginateResponse {
-  pageNo:   number;
-  pageSize: number;
-  total:    number;
+import { ProductBrandUIStateModel } from "./product-brand-ui-state.model";
+
+
+export class ProductBrandUIStateConfigHelper {
+  static createDefault(): ProductBrandUIStateModel {
+    return {
+      isLoading: false,
+      isListView: false,
+      isProcessing: false
+    };
+  }
 }

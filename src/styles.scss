@@ -19,6 +19,7 @@
 @use 'alert-snack-bar' as asb;
 @use 'menu';
 @use 'form';
+@use 'chip';
 
 @include mat.typography-hierarchy(theme.$light-theme);
 
@@ -44,6 +45,7 @@
   @include pagination.pagination-styles();
   @include grid.grid-styles();
   @include form.form-styles();
+  @include chip.chip-styles();
 }
 
 :root {
@@ -61,12 +63,3 @@ body {
 .spacer {
   flex: 1 1 auto;
 }
-
-// Import custom styles
-// @include button.button-styles;
-
-// @include form.form-styles();
-// @include table.table-styles();
-// @include dv.data-view-styles();
-// @include grid.grid-styles();
-// @include alertsnck.alert-snack-bar-styles();
