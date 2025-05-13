@@ -7,16 +7,8 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export interface ProductCategory {
-  id:   number;
-  name: string;
-}
+import { BaseUIStateModel } from "src/app/store/base-ui/base-ui-state.model";
 
-export interface PaginatedProductCategory {
-  data:  ProductCategory[];
-  total: number;
-}
-
-export interface ProductCategoryFilterTerms {
-  name: string;
+export interface SampleUIStateModel extends BaseUIStateModel { 
+  //
 }

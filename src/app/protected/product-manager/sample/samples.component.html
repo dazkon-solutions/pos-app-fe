@@ -14,14 +14,14 @@
                              [style.overflow]="isLoading() ? 'unset' : ''" >
   @if (isListView()) {
     <!-- Table section -->
-    <daz-categories-table [dataSource]="dataSource()"
-                          [isLoading]="isLoading()" />
+    <daz-samples-table [dataSource]="dataSource()"
+                       [isLoading]="isLoading()" />
     <!-- End of table section -->
 
   } @else {
     <!-- Grid section -->
-    <daz-categories-grid [dataSource]="dataSource()"
-                         [isLoading]="isLoading()" />
+    <daz-samples-grid [dataSource]="dataSource()"
+                      [isLoading]="isLoading()" />
     <!-- End of grid section -->
   }
 </cdk-virtual-scroll-viewport>

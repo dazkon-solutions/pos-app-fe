@@ -3,9 +3,9 @@
     "hi": "Hi!",
     "dashboard": "Dashboard",
     "products": "Products",
-    "categories": "Categories",
-    "category": "Category",
-    "createCategory": "Create Category",
+    "samples": "Samples",
+    "sample": "Sample",
+    "createSample": "Create Sample",
     "brands": "Brands",
     "areYouSureYouWantToDelete": "Are you sure you want to delete this item?",
     "youCannotDelete": "You can't delete this item",
@@ -46,9 +46,9 @@
     },
     "success": {
       "loginSuccessful": "Login successful",
-      "categoryCreated": "Category created",
-      "categoryUpdated": "Category updated",
-      "categoryDeleted": "Category deleted",
+      "sampleCreated": "Sample created",
+      "sampleUpdated": "Sample updated",
+      "sampleDeleted": "Sample deleted",
       "brand": {
         "created": "Brand created",
         "updated": "Brand updated",
@@ -57,11 +57,11 @@
     },
     "failed": {
       "incorrectUsernamePassword": "Incorrect Username or Password!",
-      "categoryListFetchFailed": "Failed to fetch categories",
-      "categoryFetchFailed": "Failed to fetch category",
-      "categoryCreationFailed": "Failed to create category",
-      "categoryUpdateFailed": "Failed to update category",
-      "categoryDeletionFailed": "Failed to delete category",
+      "sampleListFetchFailed": "Failed to fetch samples",
+      "sampleFetchFailed": "Failed to fetch sample",
+      "sampleCreationFailed": "Failed to create sample",
+      "sampleUpdateFailed": "Failed to update sample",
+      "sampleDeletionFailed": "Failed to delete sample",
       "brand": {
         "listFetchFailed": "Failed to fetch brands",
         "fetchFailed": "Failed to fetch brand",
@@ -104,7 +104,7 @@
       "title": "Title",
       "customer": "Customer",
       "product": "Product",
-      "category": "Category",
+      "sample": "Sample",
       "brand": "Brand"
     }
   },

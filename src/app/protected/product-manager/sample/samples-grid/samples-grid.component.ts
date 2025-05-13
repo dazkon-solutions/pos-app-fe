@@ -26,7 +26,7 @@ import { ButtonComponent } from 'src/app/private/system/common/button/button.com
 import { GridItemSkeletonComponent } from 'src/app/private/system/common/skeletons/grid-item-skeleton/grid-item-skeleton.component';
 
 @Component({
-  selector: 'daz-categories-grid',
+  selector: 'daz-samples-grid',
   imports: [
     CORE_IMPORTS,
     GRID_VIEW_MAT_IMPORTS,
@@ -34,14 +34,14 @@ import { GridItemSkeletonComponent } from 'src/app/private/system/common/skeleto
     AnimationPlayerComponent,
     ButtonComponent
   ],
-  templateUrl: './categories-grid.component.html',
-  styleUrl: './categories-grid.component.scss',
+  templateUrl: './samples-grid.component.html',
+  styleUrl: './samples-grid.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CategoriesGridComponent extends BaseGridViewComponent<any> {
+export class SamplesGridComponent extends BaseGridViewComponent<any> {
   protected viewButton = signal<ButtonConfig>({
     type: ButtonType.FLAT,
-    permission: Permission.VIEW_CATEGORY,
+    permission: Permission.VIEW_SAMPLE,
     label: this.LocaleKeys.labels.buttons.view
   });
 
@@ -49,7 +49,7 @@ export class CategoriesGridComponent extends BaseGridViewComponent<any> {
     type: ButtonType.MENU_ITEM,
     icon: 'delete',
     label: this.LocaleKeys.tooltips.delete,
-    permission: Permission.CAN_DELETE_CATEGORY,
+    permission: Permission.CAN_DELETE_SAMPLE,
     styleClass: ButtonStyleClass.BTN_WARN
   });
 }

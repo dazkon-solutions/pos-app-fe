@@ -32,22 +32,18 @@ import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { DialogFormActionsComponent } from 'src/app/private/system/common/dialog/dialog-form-actions/dialog-form-actions.component';
 import { DialogHeaderConfig } from 'src/app/private/system/common/dialog/dialog-header';
 import { DialogHeaderComponent } from 'src/app/private/system/common/dialog/dialog-header/dialog-header.component';
-import { ProductCategoryUIState } from 'src/app/store/product-category';
 import { CustomErrorStateMatcher } from 'src/app/private/system/common/error-statement-matcher';
 import { FORM_MAT_IMPORTS } from 'src/app/common/imports/form-imports';
 import { WaitingOverlayComponent } from 'src/app/private/system/common/waiting-overlay/waiting-overlay.component';
 import { CommonAutoCompleteComponent } from 'src/app/private/system/common/auto-completes/common-auto-complete/common-auto-complete.component';
 import { PersonAutoCompleteComponent } from 'src/app/private/system/common/auto-completes/person-auto-complete/person-auto-complete.component';
-import { 
-  CreateProductCategory, 
-  ProductCategoryState, 
-  UpdateProductCategory 
-} from 'src/app/store/product-category/data/product-category.state';
-import { CategoryFormConfigHelper } from './category-form-config';
+import { SampleFormConfigHelper } from './sample-form-config';
+import { SampleUIState } from 'src/app/store/sample';
+import { CreateSample, SampleState, UpdateSample } from 'src/app/store/sample/data/sample.state';
 
 
 @Component({
-  selector: 'daz-category',
+  selector: 'daz-sample',
   imports: [
     CORE_IMPORTS,
     FORM_MAT_IMPORTS,
@@ -58,25 +54,25 @@ import { CategoryFormConfigHelper } from './category-form-config';
     CommonAutoCompleteComponent,
     PersonAutoCompleteComponent
   ],
-  templateUrl: './category.component.html',
-  styleUrl: './category.component.scss',
+  templateUrl: './sample.component.html',
+  styleUrl: './sample.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CategoryComponent implements OnInit {
+export class SampleComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   private store = inject(Store);
   private formBuilder = inject(FormBuilder);
 
   dialogHeaderConfig = signal<DialogHeaderConfig>({
-    title: LocaleKeys.titles.createCategory
+    title: LocaleKeys.titles.createSample
   });
 
-  isProcessing = this.store.selectSignal(ProductCategoryUIState.isProcessing);
-  currentItem = this.store.selectSignal(ProductCategoryState.getCurrent);
-  isCategoryLoading = this.store.selectSignal(ProductCategoryUIState.isLoading);
+  isProcessing = this.store.selectSignal(SampleUIState.isProcessing);
+  currentItem = this.store.selectSignal(SampleState.getCurrent);
+  isSampleLoading = this.store.selectSignal(SampleUIState.isLoading);
 
-  createPermission = signal<Permission>(Permission.CAN_CREATE_CATEGORY);
-  updatePermission = signal<Permission>(Permission.CAN_UPDATE_CATEGORY);
+  createPermission = signal<Permission>(Permission.CAN_CREATE_SAMPLE);
+  updatePermission = signal<Permission>(Permission.CAN_UPDATE_SAMPLE);
   isFormEditable = signal<boolean>(false);
   isCreateMode = signal<boolean>(false);
 
@@ -86,7 +82,7 @@ export class CategoryComponent implements OnInit {
   LocaleKeys = LocaleKeys;
 
   constructor() {
-    this.form = CategoryFormConfigHelper.createForm(this.formBuilder);
+    this.form = SampleFormConfigHelper.createForm(this.formBuilder);
 
     effect(() => {
       const currentItem = this.currentItem();
@@ -104,14 +100,14 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form.get('category')?.valueChanges
+    this.form.get('sample')?.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((v:any) => console.warn('chn',v));
   }
 
   private setFormData(formData: any): void {
     this.dialogHeaderConfig.set({
-      title: LocaleKeys.titles.category,
+      title: LocaleKeys.titles.sample,
       value: 'SAL-23232'
     });
     
@@ -130,8 +126,8 @@ export class CategoryComponent implements OnInit {
     }
 
     const action = (this.form.value.id > 0)
-      ? new UpdateProductCategory(this.form.value)
-      : new CreateProductCategory(this.form.value);
+      ? new UpdateSample(this.form.value)
+      : new CreateSample(this.form.value);
 
     this.store.dispatch(action);
 
@@ -142,16 +138,16 @@ export class CategoryComponent implements OnInit {
     this.isFormEditable.set(!this.isFormEditable());
   } 
 
-  onFilterCategory(filterTerm: string): void {
-    console.warn('category filter', filterTerm);
+  onFilterSample(filterTerm: string): void {
+    console.warn('sample filter', filterTerm);
   }
 
-  categoryFetchClicked(buttonEvent: ButtonEvent): void {
-    // this.isCategoryLoading$ = of(true);
-    console.warn('fetch category', buttonEvent);
+  sampleFetchClicked(buttonEvent: ButtonEvent): void {
+    // this.isSampleLoading$ = of(true);
+    console.warn('fetch sample', buttonEvent);
   }
 
-  getCategoryList(): any[] {
+  getSampleList(): any[] {
     const list = [
       {
         id: 1,

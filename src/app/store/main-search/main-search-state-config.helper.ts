@@ -28,7 +28,7 @@ export class MainSearchStateConfigHelper {
         hasFilter: false
       },
       {
-        resource: Resource.CATEGORIES,
+        resource: Resource.SAMPLES,
         hasFilter: true
       },
       {

@@ -11,14 +11,14 @@
 <form [formGroup]="form" >
   <div class="form-section" >
     <!-- <daz-common-auto-complete class="form-field-width-half" 
-                              formControlName="category"
+                              formControlName="sample"
                               displayProperty="name"
                               subscriptSizing="dynamic"
-                              [label]="LocaleKeys.labels.forms.category"
-                              [dataSource$]="getCategoryList()"
-                              [isLoading$]="isCategoryLoading$"
-                              (filterTerm)="onFilterCategory($event)"
-                              (fetchDataClicked)="categoryFetchClicked($event)" />
+                              [label]="LocaleKeys.labels.forms.sample"
+                              [dataSource$]="getSampleList()"
+                              [isLoading$]="isSampleLoading$"
+                              (filterTerm)="onFilterSample($event)"
+                              (fetchDataClicked)="sampleFetchClicked($event)" />
 
     <daz-common-auto-complete class="form-field-width-half" 
                               formControlName="brand"

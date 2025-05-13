@@ -22,19 +22,19 @@ import { ActivateMainSearchFilter, DeactivateMainSearchFilter } from 'src/app/st
 
 
 @Component({
-  selector: 'daz-category-filter',
+  selector: 'daz-sample-filter',
   imports: [
     CORE_IMPORTS,
     FILTER_MAT_IMPORTS,
     ButtonComponent
   ],
-  templateUrl: './category-filter.component.html',
-  styleUrl: './category-filter.component.scss'
+  templateUrl: './sample-filter.component.html',
+  styleUrl: './sample-filter.component.scss'
 })
-export class CategoryFilterComponent implements OnInit {
+export class SampleFilterComponent implements OnInit {
   buttonToAddNew = {
     type: ButtonType.STROKED,
-    permission: Permission.CAN_CREATE_CATEGORY,
+    permission: Permission.CAN_CREATE_SAMPLE,
     label: LocaleKeys.labels.buttons.addNew,
     icon: 'add',
     styleClass: ButtonStyleClass.BTN_WARN

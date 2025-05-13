@@ -7,8 +7,4 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { BaseUIStateModel } from "src/app/store/base-ui/base-ui-state.model";
-
-export interface ProductCategoryUIStateModel extends BaseUIStateModel { 
-  //
-}
+export * from './ui/sample-ui.state';

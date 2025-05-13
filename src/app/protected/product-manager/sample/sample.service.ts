@@ -19,35 +19,31 @@ import {
   DeleteHandlerConfig, 
   DeleteHandlerService 
 } from 'src/app/private/system/common/delete-handler';
-import { 
-  CheckProductCategoryDeletable, 
-  DeleteProductCategory 
-} from 'src/app/store/product-category/data/product-category.state';
-import { Action } from 'src/app/common/enums';
+import { CheckSampleDeletable, DeleteSample } from 'src/app/store/sample/data/sample.state';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
+export class SampleService {
   private dialogSvc = inject(DialogService);
   private deleteHandlerSvc = inject(DeleteHandlerService);
   private bottomSheetSvc = inject(BottomSheetService);
 
   async openForm(): Promise<void> {
-    const { CategoryComponent } = await import('./category/category.component');
-    this.dialogSvc.open(CategoryComponent, { });
+    const { SampleComponent } = await import('./sample/sample.component');
+    this.dialogSvc.open(SampleComponent, { });
   }
 
   async openFilter(): Promise<void> {
-    const { CategoryFilterComponent } = await import('./category-filter/category-filter.component');
-    this.bottomSheetSvc.open(CategoryFilterComponent);
+    const { SampleFilterComponent } = await import('./sample-filter/sample-filter.component');
+    this.bottomSheetSvc.open(SampleFilterComponent);
   }
 
-  delete(category: any): void {
-    const { id, name } = category;
+  delete(sample: any): void {
+    const { id, name } = sample;
     const config: DeleteHandlerConfig = {
-      checkActionInstance: new CheckProductCategoryDeletable(id),
-      deleteActionInstance: new DeleteProductCategory(id),
+      checkActionInstance: new CheckSampleDeletable(id),
+      deleteActionInstance: new DeleteSample(id),
       description: name
     };
 

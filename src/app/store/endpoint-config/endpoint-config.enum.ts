@@ -19,10 +19,10 @@ export enum Endpoint {
 
 
   // TODO: MODIFI
-  CATEGORIES_GET_PAGINATED = 'categories.getPaginated',
-  CATEGORIES_VIEW = 'categories.view',
-  CATEGORIES_CREATE = 'categories.create',
-  CATEGORIES_UPDATE = 'categories.update',
-  CATEGORIES_IS_DELETABLE = 'categories.isDeletable',
-  CATEGORIES_DELETE = 'categories.delete',
+  SAMPLES_GET_PAGINATED = 'samples.getPaginated',
+  SAMPLES_VIEW = 'samples.view',
+  SAMPLES_CREATE = 'samples.create',
+  SAMPLES_UPDATE = 'samples.update',
+  SAMPLES_IS_DELETABLE = 'samples.isDeletable',
+  SAMPLES_DELETE = 'samples.delete',
 }

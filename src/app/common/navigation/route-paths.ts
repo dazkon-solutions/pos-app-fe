@@ -10,7 +10,7 @@
 export const RoutePaths = {
   DASHBOARD: '',
   PRODUCT_LIST_PAGE: 'products',
-  CATEGORY_LIST_PAGE: 'products/categories',
+  SAMPLE_LIST_PAGE: 'products/samples',
   BRAND_LIST_PAGE: 'products/brands',
   POS_PAGE: 'pos',
 }

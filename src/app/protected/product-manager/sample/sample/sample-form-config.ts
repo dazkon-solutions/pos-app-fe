@@ -13,7 +13,7 @@ import {
   Validators 
 } from "@angular/forms";
 
-export class CategoryFormConfigHelper {
+export class SampleFormConfigHelper {
   static createForm(formBuilder: FormBuilder): FormGroup {
     return formBuilder.group({
       id: [
@@ -33,7 +33,7 @@ export class CategoryFormConfigHelper {
           Validators.maxLength(5)
         ]
       ],
-      category: [
+      sample: [
         {
           value: null,
           disabled: false

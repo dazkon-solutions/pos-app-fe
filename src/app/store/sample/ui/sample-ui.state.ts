@@ -13,33 +13,33 @@ import {
   State
 } from "@ngxs/store";
 import { BaseUIState } from "src/app/store/base-ui/base-ui.state";
-import { ProductCategoryUIStateConfigHelper } from "./product-category-ui-state-config.helper";
-import { ProductCategoryUIStateModel } from "./product-category-ui-state.model";
+import { SampleUIStateConfigHelper } from "./sample-ui-state-config.helper";
+import { SampleUIStateModel } from "./sample-ui-state.model";
 import { StateKey } from "../../state-key.token";
 
 
-@State<ProductCategoryUIStateModel>({
-  name: StateKey.PRODUCT_CATEGORY_UI,
-  defaults: ProductCategoryUIStateConfigHelper.createDefault()
+@State<SampleUIStateModel>({
+  name: StateKey.SAMPLE_UI,
+  defaults: SampleUIStateConfigHelper.createDefault()
 })
 @Injectable()
-export class ProductCategoryUIState extends BaseUIState<ProductCategoryUIStateModel> {
+export class SampleUIState extends BaseUIState<SampleUIStateModel> {
   constructor() {
-    super(StateKey.PRODUCT_CATEGORY_UI);
+    super(StateKey.SAMPLE_UI);
   } 
 
   @Selector()
-  static isLoading(state: ProductCategoryUIStateModel): boolean {
+  static isLoading(state: SampleUIStateModel): boolean {
     return state.isLoading;
   }
 
   @Selector()
-  static isListView(state: ProductCategoryUIStateModel): boolean {
+  static isListView(state: SampleUIStateModel): boolean {
     return state.isListView;
   }
 
   @Selector()
-  static isProcessing(state: ProductCategoryUIStateModel): boolean {
+  static isProcessing(state: SampleUIStateModel): boolean {
     return state.isProcessing;
   }
 }

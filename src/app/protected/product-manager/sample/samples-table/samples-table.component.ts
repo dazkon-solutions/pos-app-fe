@@ -27,7 +27,7 @@ import { LocaleKeys } from 'src/app/common/constants';
 import { ButtonComponent } from 'src/app/private/system/common/button/button.component';
 
 @Component({
-  selector: 'daz-categories-table',
+  selector: 'daz-samples-table',
   imports: [
     CORE_IMPORTS,
     TABLE_VIEW_IMPORTS,
@@ -35,11 +35,11 @@ import { ButtonComponent } from 'src/app/private/system/common/button/button.com
     AnimationPlayerComponent,
     ButtonComponent
   ],
-  templateUrl: './categories-table.component.html',
-  styleUrl: './categories-table.component.scss',
+  templateUrl: './samples-table.component.html',
+  styleUrl: './samples-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CategoriesTableComponent extends BaseTableViewComponent<any> {
+export class SamplesTableComponent extends BaseTableViewComponent<any> {
   protected setDisplayedColumns(): string[] {
     return [
       'photo', 
@@ -54,7 +54,7 @@ export class CategoriesTableComponent extends BaseTableViewComponent<any> {
 
   protected viewButton = signal<ButtonConfig>({
     type: ButtonType.FLAT,
-    permission: Permission.VIEW_CATEGORY,
+    permission: Permission.VIEW_SAMPLE,
     label: LocaleKeys.labels.buttons.view
   });
 
@@ -62,7 +62,7 @@ export class CategoriesTableComponent extends BaseTableViewComponent<any> {
     type: ButtonType.MINI_FAB,
     icon: 'delete',
     tooltip: LocaleKeys.tooltips.delete,
-    permission: Permission.CAN_DELETE_CATEGORY,
+    permission: Permission.CAN_DELETE_SAMPLE,
     styleClass: ButtonStyleClass.BTN_WARN
   });
 }

@@ -15,7 +15,7 @@ import {
 export class ControlBarConfigHelper {
   private static resourcePermissionForAddNewBtn: { [key in Resource]?: Permission } = {
     [Resource.PRODUCTS]: Permission.CAN_CREATE_PRODUCT,
-    [Resource.CATEGORIES]: Permission.CAN_CREATE_CATEGORY,
+    [Resource.SAMPLES]: Permission.CAN_CREATE_SAMPLE,
     [Resource.BRANDS]: Permission.CAN_CREATE_BRAND,
   };
 

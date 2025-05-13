@@ -45,7 +45,6 @@ import { AppearanceState } from 'src/app/store/appearance';
 import { MainSearchState } from 'src/app/store/main-search';
 import { NavigationState } from 'src/app/store/navigation-config';
 import { MenuState } from 'src/app/store/menu-config';
-import { ProductCategoryUIState } from './store/product-category';
 import { StateKey } from './store/state-key.token';
 import { PermissionState } from './store/permission';
 import { 
@@ -56,13 +55,14 @@ import {
   EndpointConfigService, 
   EndpointConfigState 
 } from './store/endpoint-config';
-import { ProductCategoryState } from './store/product-category/data/product-category.state';
 import { AlertState } from './store/alerts';
 import { DeleteHandleState } from './store/delete-handle';
 import { 
   ProductBrandState, 
   ProductBrandUIState 
 } from './store/product-brand';
+import { SampleUIState } from './store/sample';
+import { SampleState } from './store/sample/data/sample.state';
 
 
 
@@ -84,8 +84,8 @@ export const appConfig: ApplicationConfig = {
         LeftPanelState,
         AlertState,
         DeleteHandleState,
-        ProductCategoryUIState,
-        ProductCategoryState,
+        SampleUIState,
+        SampleState,
         ProductBrandUIState,
         ProductBrandState
       ],
@@ -113,7 +113,7 @@ export const appConfig: ApplicationConfig = {
             engine: LOCAL_STORAGE_ENGINE
           },
           {
-            key: StateKey.PRODUCT_CATEGORY_UI,
+            key: StateKey.SAMPLE_UI,
             engine: LOCAL_STORAGE_ENGINE
           },
           {

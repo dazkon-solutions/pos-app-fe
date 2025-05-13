@@ -9,13 +9,6 @@
 
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { 
-  DeletableResponse,
-  PaginatedProductCategory,
-  PaginateRequest, 
-  ProductCategory, 
-  ProductCategoryFilterTerms 
-} from "src/app/common/interfaces";
 import { ApiProviderService } from "src/app/common/services/api-provider.service";
 import { Endpoint } from "src/app/store/endpoint-config";
 
@@ -23,13 +16,13 @@ import { Endpoint } from "src/app/store/endpoint-config";
 @Injectable({ 
   providedIn: 'root'
 })
-export class ProductCategoryCtrlService {
+export class SampleCtrlService {
   constructor(private api: ApiProviderService) { }
 
   fetchAll(
-    paginate: PaginateRequest,
-    filterTerms: ProductCategoryFilterTerms
-  ): Observable<PaginatedProductCategory> {
+    paginate: any,
+    filterTerms: any
+  ): Observable<any> {
     const params = {
       pageNo: paginate.pageNo, 
       pageSize: paginate.pageSize, 
@@ -37,33 +30,33 @@ export class ProductCategoryCtrlService {
     };
 
     return this.api
-      .get<PaginatedProductCategory>(Endpoint.CATEGORIES_GET_PAGINATED,
+      .get<any>(Endpoint.SAMPLES_GET_PAGINATED,
                                      params);
   }
 
-  fetchById(id: number): Observable<ProductCategory> {
+  fetchById(id: number): Observable<any> {
     const params = { id };
-    return this.api.get<ProductCategory>(Endpoint.CATEGORIES_VIEW,
+    return this.api.get<any>(Endpoint.SAMPLES_VIEW,
                                          params);
   }
 
-  create(data: ProductCategory): Observable<ProductCategory> {
-    return this.api.post<ProductCategory>(Endpoint.CATEGORIES_CREATE,
+  create(data: any): Observable<any> {
+    return this.api.post<any>(Endpoint.SAMPLES_CREATE,
                                           data);
   }
 
-  update(data: ProductCategory): Observable<ProductCategory> {
+  update(data: any): Observable<any> {
     const params = { id: data.id };
-    return this.api.update<ProductCategory>(Endpoint.CATEGORIES_UPDATE,
+    return this.api.update<any>(Endpoint.SAMPLES_UPDATE,
                                             data,
                                             params);
   }
 
-  isDeletable(id: number): Observable<DeletableResponse> {
+  isDeletable(id: number): Observable<any> {
     const params = { id };
     // return this.api.get<DeletableResponse>(Endpoint.CATEGORIES_IS_DELETABLE,
     //                                        params);
-    const res: DeletableResponse = {
+    const res: any = {
       isDeletable: true,
       blockers: ['delete delete']
     };
@@ -72,7 +65,7 @@ export class ProductCategoryCtrlService {
 
   deleteById(id: number): Observable<boolean> {
     const params = { id };
-    return this.api.delete<boolean>(Endpoint.CATEGORIES_DELETE,
+    return this.api.delete<boolean>(Endpoint.SAMPLES_DELETE,
                                     params);
   }
 }

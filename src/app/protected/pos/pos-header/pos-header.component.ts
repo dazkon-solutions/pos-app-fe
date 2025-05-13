@@ -20,7 +20,7 @@ import {
   RoutePaths 
 } from 'src/app/common/navigation';
 import { POS_MAT_IMPORTS } from '../pos-imports';
-import { CalculatorService } from '../../calculator/category.service';
+import { CalculatorService } from '../../calculator/calculator.service';
 
 @Component({
   selector: 'daz-pos-header',

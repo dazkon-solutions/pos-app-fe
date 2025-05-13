@@ -9,15 +9,13 @@
 
 import { 
   PaginateRequest, 
-  ProductCategory, 
-  ProductCategoryFilterTerms
 } from "src/app/common/interfaces";
 
-export interface ProductCategoryStateModel { 
-  list:         ProductCategory[];
-  current:      ProductCategory | null;
+export interface SampleStateModel { 
+  list:         any[];
+  current:      any | null;
   isLoaded:     boolean;
   isFiltered:   boolean;
-  filterTerms:  ProductCategoryFilterTerms;
+  filterTerms:  any;
   paginate:     PaginateRequest;
 }

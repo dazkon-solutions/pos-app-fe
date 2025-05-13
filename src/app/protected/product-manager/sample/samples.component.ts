@@ -21,21 +21,17 @@ import { PageEvent } from '@angular/material/paginator';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { ActionResponse } from 'src/app/common/interfaces';
 import { Action, Resource } from 'src/app/common/enums';
-import { ProductCategoryUIState } from 'src/app/store/product-category';
 import { ActionService } from 'src/app/common/services';
 import { ViewTogglePaginationComponent } from 'src/app/private/system/common/view-toggle-pagination/view-toggle-pagination.component';
 import { ToggleView 
 } from 'src/app/store/base-ui';
 import { StateKey } from 'src/app/store/state-key.token';
-import { 
-  FetchProductCategoryList, 
-  LoadProductCategoryList, 
-  ProductCategoryState
-} from 'src/app/store/product-category/data/product-category.state';
 import { SetResource } from 'src/app/store/navigation-config';
-import { CategoriesTableComponent } from './categories-table/categories-table.component';
-import { CategoriesGridComponent } from './categories-grid/categories-grid.component';
-import { CategoryService } from './category.service';
+import { SamplesTableComponent } from './samples-table/samples-table.component';
+import { SamplesGridComponent } from './samples-grid/samples-grid.component';
+import { SampleService } from './sample.service';
+import { SampleUIState } from 'src/app/store/sample';
+import { FetchSampleList, LoadSampleList, SampleState } from 'src/app/store/sample/data/sample.state';
 
 
 interface PeriodicElement {
@@ -47,29 +43,29 @@ interface PeriodicElement {
 }
 
 @Component({
-  selector: 'daz-categories',
+  selector: 'daz-samples',
   imports: [
     CORE_IMPORTS,
     ScrollingModule,
-    CategoriesTableComponent,
-    CategoriesGridComponent,
+    SamplesTableComponent,
+    SamplesGridComponent,
     ViewTogglePaginationComponent
   ],
-  templateUrl: './categories.component.html',
-  styleUrl: './categories.component.scss',
+  templateUrl: './samples.component.html',
+  styleUrl: './samples.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CategoriesComponent implements OnInit {
+export class SamplesComponent implements OnInit {
   private store = inject(Store);
   private actionSvc = inject(ActionService);
-  private service = inject(CategoryService);
+  private service = inject(SampleService);
 
-  isListView = this.store.selectSignal(ProductCategoryUIState.isListView);
-  isLoading = this.store.selectSignal(ProductCategoryUIState.isLoading);
-  pagination = this.store.selectSignal(ProductCategoryState.paginate);
+  isListView = this.store.selectSignal(SampleUIState.isListView);
+  isLoading = this.store.selectSignal(SampleUIState.isLoading);
+  pagination = this.store.selectSignal(SampleState.paginate);
   dataSource = signal<any[]>([]);
 
-  private resource = Resource.CATEGORIES;
+  private resource = Resource.SAMPLES;
   
   constructor() { 
     effect(() => this.handleAction(this.actionSvc.action()));
@@ -78,7 +74,7 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch([
       new SetResource(this.resource),
-      new LoadProductCategoryList(),
+      new LoadSampleList(),
     ]);
 
     this.dataSource.set(this.sampleDataSource);
@@ -149,7 +145,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   viewToggled(): void {
-    this.store.dispatch(new ToggleView(StateKey.PRODUCT_CATEGORY_UI));
+    this.store.dispatch(new ToggleView(StateKey.SAMPLE_UI));
   }
 
   paginationChanged(page: PageEvent): void {
@@ -157,7 +153,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   refreshData(): void {
-    this.store.dispatch(new FetchProductCategoryList())
+    this.store.dispatch(new FetchSampleList())
     console.warn('Fetch data');
   }
 }

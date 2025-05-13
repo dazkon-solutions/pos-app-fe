@@ -11,6 +11,6 @@ export enum Resource {
   NONE = 'NONE',
   DASHBOARD = 'DASHBOARD',
   PRODUCTS = 'PRODUCTS',
-  CATEGORIES = 'CATEGORIES',
+  SAMPLES = 'SAMPLES',
   BRANDS = 'BRANDS'
 }

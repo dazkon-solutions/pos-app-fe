@@ -7,4 +7,15 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './ui/product-category-ui.state';
+import { SampleUIStateModel } from "./sample-ui-state.model";
+
+
+export class SampleUIStateConfigHelper {
+  static createDefault(): SampleUIStateModel {
+    return {
+      isLoading: false,
+      isListView: false,
+      isProcessing: false
+    };
+  }
+}

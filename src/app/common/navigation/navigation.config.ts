@@ -25,8 +25,8 @@ export const NAVIGATION_CONFIG: NavigationConfig[] = [
     path: RoutePaths.PRODUCT_LIST_PAGE
   },
   {
-    permission: Permission.VIEW_CATEGORY_LIST_PAGE,
-    path: RoutePaths.CATEGORY_LIST_PAGE
+    permission: Permission.VIEW_SAMPLE_LIST_PAGE,
+    path: RoutePaths.SAMPLE_LIST_PAGE
   },
   {
     permission: Permission.VIEW_BRAND_LIST_PAGE,

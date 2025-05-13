@@ -7,19 +7,18 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-import { ProductCategoryFilterTerms } from "src/app/common/interfaces";
 import { PaginateConfigHelper } from "src/app/common/helpers";
-import { ProductCategoryStateModel } from "./product-category-state.model";
+import { SampleStateModel } from "./sample-state.model";
 
 
-export class ProductCategoryStateConfigHelper {
-  static createDefaultFilter(): ProductCategoryFilterTerms {
+export class SampleStateConfigHelper {
+  static createDefaultFilter(): any {
     return { 
       name: ''
     };
   }
   
-  static createDefault(): ProductCategoryStateModel {
+  static createDefault(): SampleStateModel {
     return {
       list: [],
       current: null,
