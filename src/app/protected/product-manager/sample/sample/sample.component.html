@@ -1,0 +1,128 @@
+<!-- 
+  Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+  All rights reserved.  
+  This code is proprietary to DAZKON SOLUTIONS. 
+  Unauthorized use, reproduction, modification, distribution, or sale 
+  without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+  For inquiries, please contact: info@dazkonsolutions.com 
+-->
+
+
+<!-- Waiting -->
+@if (isProcessing()) {
+  <daz-waiting-overlay />
+}
+<!-- End of waiting -->
+
+<!-- Header -->
+<daz-dialog-header [config]="dialogHeaderConfig()"
+                   [isProcessing]="isProcessing()" />
+<!-- End of header -->
+
+<!-- Content -->
+<mat-dialog-content >
+  <ng-container [ngTemplateOutlet]="FormTemplate" />
+
+</mat-dialog-content>
+<!-- End of content -->
+
+<!-- Actions -->
+<daz-dialog-form-actions [isCreateMode]="isCreateMode()"
+                         [isEditable]="isFormEditable()"
+                         [createPermission]="createPermission()"
+                         [updatePermission]="updatePermission()"
+                         (editablilityToggled)="onToggleEditability()"
+                         (actionClicked)="onSubmit()" />
+<!-- End of actions -->
+
+
+<!-- Form template -->
+<ng-template #FormTemplate >
+  <form [formGroup]="form" >
+
+    <span class="form-section-title" >hello</span>
+    <div class="form-section" >
+      <mat-form-field class="form-field-width-half" >
+        <mat-label > 
+          {{ LocaleKeys.labels.forms.name | translate }}
+        </mat-label>
+        <input matInput 
+               formControlName="name" 
+               name="name"
+               [errorStateMatcher]="matcher" >
+        @if (form.get('name')?.hasError('required')) {
+          <mat-error>{{ LocaleKeys.errors.required | translate }}</mat-error>
+        }
+        @if (form.get('name')?.hasError('maxlength')) {
+          <mat-error>
+            @let max = form.get('name')?.errors?.['maxlength']?.requiredLength;
+            {{ LocaleKeys.errors.maxlength | translate: { max } }}
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="form-field-width-half" >
+        <mat-label>
+          {{ LocaleKeys.labels.forms.createdAt | translate }}
+        </mat-label>
+        <input matInput 
+              formControlName="createdAt"
+              readonly
+              name="createdAt"
+              [matDatepicker]="datePicker"
+              [errorStateMatcher]="matcher" >
+        <mat-datepicker-toggle  matIconSuffix [for]="datePicker" />
+        <mat-datepicker #datePicker />
+        @if (form.get('createdAt')?.hasError('required')) {
+          <mat-error>{{ LocaleKeys.errors.required | translate }}</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <span class="form-section-title" >hello</span>
+    <div class="form-section" >
+      <daz-common-auto-complete class="form-field-width-full" 
+                                formControlName="sample"
+                                displayProperty="name"
+                                [label]="LocaleKeys.labels.forms.name"
+                                [isParentTouched]="formTouched"
+                                [dataSource]="getSampleList()"
+                                [isLoading]="isSampleLoading()"
+                                [validators]="form.get('sample')?.validator"
+                                (filterTerm)="onFilterSample($event)"
+                                (fetchDataClicked)="sampleFetchClicked($event)" />
+    </div>
+
+    <div class="form-section" >
+      <daz-person-auto-complete class="form-field-width-full" 
+                                formControlName="customer"
+                                displayProperty="name"
+                                [label]="LocaleKeys.labels.forms.name"
+                                [isParentTouched]="formTouched"
+                                [dataSource]="getCustomerList()"
+                                [isLoading]="isSampleLoading()"
+                                [validators]="form.get('customer')?.validator"
+                                (filterTerm)="onFilterSample($event)"
+                                (fetchDataClicked)="sampleFetchClicked($event)" />
+    </div>
+
+    <mat-form-field class="form-field-width-full" >
+      <mat-label >
+        {{ LocaleKeys.labels.forms.description | translate }}
+      </mat-label>
+      <textarea matInput 
+                formControlName="description"
+                name="description"
+                [errorStateMatcher]="matcher" >
+      </textarea>
+      @if (form.get('description')?.hasError('maxlength')) {
+        <mat-error>
+          @let max = form.get('description')?.errors?.['maxlength']?.requiredLength;
+          {{ LocaleKeys.errors.maxlength | translate: { max } }}
+        </mat-error>
+      }
+    </mat-form-field>
+
+  </form>
+</ng-template>
+<!-- End of form template -->

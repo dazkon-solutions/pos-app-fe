@@ -7,4 +7,5 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './product-category-ctrl.service';
+export * from './sample-ctrl.service';
+export * from './product-brand-ctrl.service';

@@ -69,7 +69,7 @@ export class ButtonComponent {
     event.stopPropagation();
     event.preventDefault();
 
-    if(this.isLoading()) return;
+    if (this.isLoading()) return;
 
     this.buttonClicked.emit(this.permission());
   }

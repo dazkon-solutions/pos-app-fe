@@ -43,7 +43,7 @@ export abstract class BaseUIState<T> {
     ctx: StateContext<BaseUIStateModel>, 
     action: SetLoadingStatus
   ): void {
-    if(action.StateKey !== this.stateKey) return;
+    if (action.StateKey !== this.stateKey) return;
    
     ctx.patchState({ 
       isLoading: action.isLoading 
@@ -55,7 +55,7 @@ export abstract class BaseUIState<T> {
     ctx: StateContext<BaseUIStateModel>, 
     action: ToggleView
   ): void {
-    if(action.StateKey !== this.stateKey) return;
+    if (action.StateKey !== this.stateKey) return;
     
     const state = ctx.getState();
     ctx.patchState({ 
@@ -68,7 +68,7 @@ export abstract class BaseUIState<T> {
     ctx: StateContext<BaseUIStateModel>, 
     action: SetProcessingStatus
   ): void {
-    if(action.StateKey !== this.stateKey) return;
+    if (action.StateKey !== this.stateKey) return;
    
     ctx.patchState({ 
       isProcessing: action.isProcessing 

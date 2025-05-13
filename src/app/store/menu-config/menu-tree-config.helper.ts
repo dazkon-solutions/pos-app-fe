@@ -43,10 +43,10 @@ export class MenuTreeConfigHelper {
           {
             uid: 12,
             pid: 10,
-            name: LocaleKeys.titles.categories,
-            description: LocaleKeys.titles.categories,
-            routePath: RoutePaths.CATEGORY_LIST_PAGE,
-            permission: Permission.VIEW_CATEGORY_LIST_PAGE
+            name: LocaleKeys.titles.samples,
+            description: LocaleKeys.titles.samples,
+            routePath: RoutePaths.SAMPLE_LIST_PAGE,
+            permission: Permission.VIEW_SAMPLE_LIST_PAGE
           },
           {
             uid: 13,

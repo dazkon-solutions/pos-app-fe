@@ -27,8 +27,13 @@ export const routes: Routes = [
       .then(m => m.ProductsComponent)
   },
   { 
-    path: RoutePaths.CATEGORY_LIST_PAGE, 
-    loadComponent: () => import('./protected/product-manager/categories/categories.component')
-      .then(m => m.CategoriesComponent)
+    path: RoutePaths.SAMPLE_LIST_PAGE, 
+    loadComponent: () => import('./protected/product-manager/sample/samples.component')
+      .then(m => m.SamplesComponent)
+  },
+  { 
+    path: RoutePaths.BRAND_LIST_PAGE, 
+    loadComponent: () => import('./protected/product-manager/brands/brands.component')
+      .then(m => m.BrandsComponent)
   },
 ];

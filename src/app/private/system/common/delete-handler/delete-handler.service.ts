@@ -33,14 +33,14 @@ export class DeleteHandlerService {
       minHeight: '313px'
     });
 
-    if(checkActionInstance) {
+    if (checkActionInstance) {
       this.store.dispatch(checkActionInstance);
 
     } else {
       // Default deletable
       this.store.dispatch(new SetDeletableResponse({
         isDeletable: true,
-        messages: []
+        blockers: []
       }));
     }
   }

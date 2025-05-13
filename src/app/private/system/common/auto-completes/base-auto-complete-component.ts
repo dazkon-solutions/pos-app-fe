@@ -121,7 +121,7 @@ export abstract class BaseAutoCompleteComponent implements
     event.stopPropagation();
     event.preventDefault();
 
-    if(buttonEvent === ButtonEvent.DOUBLE_CLICK) {
+    if (buttonEvent === ButtonEvent.DOUBLE_CLICK) {
       this.isRefetchDoubleClicked = true;
       clearTimeout(this.clickTimeout);
       this.fetchDataClicked.emit(buttonEvent);
@@ -132,17 +132,17 @@ export abstract class BaseAutoCompleteComponent implements
       return;
     }
   
-    if(this.isRefetchDoubleClicked) return;
+    if (this.isRefetchDoubleClicked) return;
 
     this.clickTimeout = setTimeout(() => {
-      if(!this.isRefetchDoubleClicked) {
+      if (!this.isRefetchDoubleClicked) {
         this.fetchDataClicked.emit(buttonEvent);
       }
     }, 300); 
   }
 
   private markAsTouched(): void {
-    if(!this.isParentTouched) return;
+    if (!this.isParentTouched) return;
 
     this.myControl.markAsTouched();
   }
@@ -170,7 +170,7 @@ export abstract class BaseAutoCompleteComponent implements
     this.myControl.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(value => {
-        if(!value || value === '') {
+        if (!value || value === '') {
           this.onChange(null);
         }
       });

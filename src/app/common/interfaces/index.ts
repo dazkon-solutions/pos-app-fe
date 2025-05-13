@@ -9,6 +9,6 @@
 
 export * from './permission-item.interface';
 export * from './action-response.interface';
-export * from './paginate-response.interface';
-export * from './product-category.interface';
+export * from './paginate.interface';
 export * from './deletable-response.interface';
+export * from './product-brand.interface';

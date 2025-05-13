@@ -38,7 +38,7 @@ export class EndpointConfigService {
       .pipe(take(1))
       .subscribe(status => this.isLoaded = status);
     
-    if(this.isLoaded) {
+    if (this.isLoaded) {
       return true;
     }
 
@@ -49,7 +49,7 @@ export class EndpointConfigService {
 
     this.config = await firstValueFrom(this.http.get(file));
 
-    if(this.config) {
+    if (this.config) {
       this.store.dispatch(new SetEndpoints(this.config));
     }
 
@@ -57,7 +57,7 @@ export class EndpointConfigService {
   }
 
   async createDefaultStates(): Promise<boolean> {
-    if(this.isLoaded) {
+    if (this.isLoaded) {
       return true;
     }
     await Promise.all([

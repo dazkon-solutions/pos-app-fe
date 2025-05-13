@@ -105,7 +105,7 @@ export class LeftPanelComponent implements
       .subscribe(panel => {
         this.isLeftPanelExpanded = panel;
 
-        if(!panel) {
+        if (!panel) {
           this.collapseAllNodes();
         } else {
           this.expandParent();
@@ -116,14 +116,14 @@ export class LeftPanelComponent implements
   }
 
   private setFlattenedIfNotExist(menuNodes: MenuNode[]): void {
-    if(this.flattened.length > 0) return;
+    if (this.flattened.length > 0) return;
   
     const flattenNodes = (nodes: MenuNode[]): MenuNode[] => {
       const flattenedNodes: MenuNode[] = [];
 
       for(const node of nodes) {
         flattenedNodes.push({ ...node, children: undefined });
-        if(node.children) {
+        if (node.children) {
           flattenedNodes.push(...flattenNodes(node.children));
         }
       }
@@ -147,11 +147,11 @@ export class LeftPanelComponent implements
   private async expandParent(): Promise<void> {
     const current = await firstValueFrom(this.current$);
 
-    if(!current) return;
+    if (!current) return;
 
     const parentItem = this.dataSource.find(item => item.uid === current.pid);
 
-    if(!parentItem) {
+    if (!parentItem) {
       this.store.dispatch(new SetMenuParent(current));
 
       return;
@@ -169,8 +169,8 @@ export class LeftPanelComponent implements
   private prepairMenuUI(routePath: string): void {
     const menuNode = this.flattened.find(item => item.routePath === routePath);
 
-    if(!menuNode) return;
-    if((!menuNode.routePath) && (menuNode.routePath !== '')) return; // '' is a route
+    if (!menuNode) return;
+    if ((!menuNode.routePath) && (menuNode.routePath !== '')) return; // '' is a route
 
     this.store.dispatch(new SelectMenuItem(menuNode));
 
@@ -203,7 +203,7 @@ export class LeftPanelComponent implements
     node: MenuNode,
     current: MenuNode | null
   ): boolean {
-    if(!current) return false;
+    if (!current) return false;
 
     return (node.routePath === current.routePath) || 
            (node.uid === current.uid) || 
@@ -218,17 +218,17 @@ export class LeftPanelComponent implements
     const ITEM_SELECTED_STYLE = 'menu-item-selected';
     const CHILD_ITEM_SELECTED_STYLE = 'child-menu-item-selected';
 
-    if(!current) return '';
+    if (!current) return '';
 
-    if((!this.isChild(node)) && (this.isSelectedItem(node, current))) {
+    if ((!this.isChild(node)) && (this.isSelectedItem(node, current))) {
       return ITEM_SELECTED_STYLE;
     }
 
-    if((this.isChild(node)) && (!this.isSelectedItem(node, current))) {
+    if ((this.isChild(node)) && (!this.isSelectedItem(node, current))) {
       return CHILD_STYLE;
     }
 
-    if((this.isChild(node)) && (this.isSelectedItem(node, current))) {
+    if ((this.isChild(node)) && (this.isSelectedItem(node, current))) {
       return CHILD_ITEM_SELECTED_STYLE;
     }
 
@@ -239,9 +239,9 @@ export class LeftPanelComponent implements
     node: MenuNode,
     current: MenuNode | null
   ): string {
-    if(!current) return node.icon ?? '';
+    if (!current) return node.icon ?? '';
 
-    if(current.pid > 0) {
+    if (current.pid > 0) {
       return current.pid === node.uid
         ? `${node.icon}-filled`
         : (node.icon ?? '');

@@ -42,6 +42,7 @@ export class DialogService {
 
     return this.dialog.open(component, { 
       disableClose: true,
+      minWidth: '400px',
       ...config,
       panelClass: [
         this.theme(),

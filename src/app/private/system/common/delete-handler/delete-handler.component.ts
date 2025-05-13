@@ -107,7 +107,7 @@ export class DeleteHandlerComponent implements OnDestroy {
       return;
     }
 
-    this.messages.set(response.messages);
+    this.messages.set(response.blockers);
     this.deleteHandlerStatus.set(DeleteHandlerStatus.NOT_DELETABLE);
   }
 

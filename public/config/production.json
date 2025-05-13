@@ -1,5 +1,7 @@
 {
   "endpoints": {
-    "serverUrl": "https://pos.be.dazkon-solution.com/api"
+    "serverUrl": "https://pos.be.dazkon-solution.com/api",
+
+    "fetchAll": "brands?searchText={searchTerm}&perPage={pageSize}&page={pageNo}"
   }
 }

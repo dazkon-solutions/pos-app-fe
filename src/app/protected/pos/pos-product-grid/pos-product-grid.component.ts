@@ -36,7 +36,7 @@ import { POS_MAT_IMPORTS } from '../pos-imports';
   styleUrl: './pos-product-grid.component.scss'
 })
 export class PosProductGridComponent {
-  isCategoryLoading$!: Observable<boolean>;
+  isSampleLoading$!: Observable<boolean>;
   isBrandLoading$!: Observable<boolean>;
   form: FormGroup;
   LocaleKeys = LocaleKeys;
@@ -51,7 +51,7 @@ export class PosProductGridComponent {
 
   createForm(formBuilder: FormBuilder): any {
     return formBuilder.group({
-      category: [
+      sample: [
         {
           value: '',
           disabled: false
@@ -72,17 +72,17 @@ export class PosProductGridComponent {
     });
   }
 
-  onFilterCategory(filterTerm: string): void {
-    console.warn('category filter', filterTerm);
+  onFilterSample(filterTerm: string): void {
+    console.warn('sample filter', filterTerm);
   }
 
   onFilterBrand(filterTerm: string): void {
     console.warn('brand filter', filterTerm);
   }
 
-  categoryFetchClicked(buttonEvent: ButtonEvent): void {
-    this.isCategoryLoading$ = of(true);
-    console.warn('fetch category', buttonEvent);
+  sampleFetchClicked(buttonEvent: ButtonEvent): void {
+    this.isSampleLoading$ = of(true);
+    console.warn('fetch sample', buttonEvent);
   }
 
   brandFetchClicked(buttonEvent: ButtonEvent): void {
@@ -90,7 +90,7 @@ export class PosProductGridComponent {
     console.warn('fetch brand', buttonEvent);
   }
 
-  getCategoryList(): Observable<any[]> {
+  getSampleList(): Observable<any[]> {
     const list = [
       { id: 1, name: 'Sugger' },
       { id: 2, name: 'Broom' },

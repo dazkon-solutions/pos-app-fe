@@ -1,0 +1,35 @@
+<!-- 
+  Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+  All rights reserved.  
+  This code is proprietary to DAZKON SOLUTIONS. 
+  Unauthorized use, reproduction, modification, distribution, or sale 
+  without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+  For inquiries, please contact: info@dazkonsolutions.com 
+-->
+
+<cdk-virtual-scroll-viewport itemSize="47" 
+                             minBufferPx="564" 
+                             maxBufferPx="600" 
+                             class="data-view"
+                             [style.overflow]="isLoading() ? 'unset' : ''" >
+  @if (isListView()) {
+    <!-- Table section -->
+    <daz-brands-table [dataSource]="dataSource()"
+                      [isLoading]="isLoading()" />
+    <!-- End of table section -->
+
+  } @else {
+    <!-- Grid section -->
+    <daz-brands-grid [dataSource]="dataSource()"
+                     [isLoading]="isLoading()" />
+    <!-- End of grid section -->
+  }
+</cdk-virtual-scroll-viewport>
+
+<!-- Pagination section -->
+<daz-view-toggle-pagination [isListView]="isListView()"
+                            [pagination]="pagination()"
+                            (viewToggled)="viewToggled()"
+                            (paginationChanged)="paginationChanged($event)"
+                            (refreshClicked)="refreshData()" />
+<!-- End of pagination section -->

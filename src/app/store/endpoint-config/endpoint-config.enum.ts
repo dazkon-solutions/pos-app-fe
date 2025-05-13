@@ -10,10 +10,19 @@
 export enum Endpoint {
   SERVER_URL = 'serverUrl',
 
-  CATEGORIES_GET_PAGINATED = 'categories.getPaginated',
-  CATEGORIES_VIEW = 'categories.view',
-  CATEGORIES_CREATE = 'categories.create',
-  CATEGORIES_UPDATE = 'categories.update',
-  CATEGORIES_IS_DELETABLE = 'categories.isDeletable',
-  CATEGORIES_DELETE = 'categories.delete',
+  BRANDS_FETCH_ALL = 'brands.fetchAll',
+  BRANDS_FETCH_BY_ID = 'brands.fetchById',
+  BRANDS_CREATE = 'brands.create',
+  BRANDS_UPDATE = 'brands.update',
+  BRANDS_DELETE = 'brands.delete',
+  BRANDS_CHECK_DELETABLE = 'brands.checkDeletable',
+
+
+  // TODO: MODIFI
+  SAMPLES_GET_PAGINATED = 'samples.getPaginated',
+  SAMPLES_VIEW = 'samples.view',
+  SAMPLES_CREATE = 'samples.create',
+  SAMPLES_UPDATE = 'samples.update',
+  SAMPLES_IS_DELETABLE = 'samples.isDeletable',
+  SAMPLES_DELETE = 'samples.delete',
 }

@@ -1,27 +1,13 @@
 {
   "endpoints": {
-    "serverUrl": "http://localhost:3000/api",
-    "categories": {
-      "getPaginated": "categories/get-paginated?page={pageNo}&limit={pageSize}&name={name}",
-      "create": "categories",
-      "update": "categories/{id}",
-      "view": "categories/{id}",
-      "delete": "categories/{id}",
-      "isDeletable": "categories/{id}/is-deletable"
-    },
+    "serverUrl": "https://test.thaproban.sewapiyasa.com/api/v1",
     "brands": {
+      "fetchAll": "brands?perPage={pageSize}&page={pageNo}&searchText={searchTerm}",
+      "fetchById": "brands/{id}",
       "create": "brands",
       "update": "brands/{id}",
-      "view": "brands/{id}",
-      "delete": "brands/{id}"
-    },
-    "products": {
-      "getPaginated": "products/get-paginated?page={pageNo}&limit={pageSize}&name={name}",
-      "create": "products",
-      "update": "products/{id}",
-      "view": "products/{id}",
-      "delete": "products/{id}",
-      "isDeletable": "products/{id}/is-deletable"
+      "delete": "brands/{id}",
+      "checkDeletable": "brands/{id}/check-deletable"
     }
   }
 }

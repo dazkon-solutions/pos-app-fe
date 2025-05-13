@@ -17,6 +17,7 @@ import {
   Action,
   TableColumnAlignmentStyleClass 
 } from 'src/app/common/enums';
+import { LocaleKeys } from 'src/app/common/constants';
 import { ActionService } from 'src/app/common/services';
 import { AnimationType } from './animation-player';
 
@@ -33,6 +34,7 @@ export abstract class BaseTableViewComponent<T> {
 
   TableColumnAlignmentStyleClass = TableColumnAlignmentStyleClass;
   AnimationType = AnimationType;
+  LocaleKeys = LocaleKeys;
   Action = Action;
 
   constructor() { 

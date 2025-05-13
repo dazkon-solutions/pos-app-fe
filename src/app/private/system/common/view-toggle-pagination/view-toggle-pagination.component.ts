@@ -67,9 +67,9 @@ export class ViewTogglePaginationComponent {
     event.stopPropagation();
     event.preventDefault();
 
-    if((viewType === ViewType.LIST) && this.isListView()) return;
+    if ((viewType === ViewType.LIST) && this.isListView()) return;
 
-    if((viewType === ViewType.GRID) && !this.isListView()) return;
+    if ((viewType === ViewType.GRID) && !this.isListView()) return;
 
     this.viewToggled.emit(true);
   }
