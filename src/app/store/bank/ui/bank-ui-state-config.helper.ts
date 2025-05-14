@@ -7,4 +7,15 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './trim-text.pipe';
+import { BankUIStateModel } from "./bank-ui-state.model";
+
+
+export class BankUIStateConfigHelper {
+  static createDefault(): BankUIStateModel {
+    return {
+      isLoading: false,
+      isListView: false,
+      isProcessing: false
+    };
+  }
+}

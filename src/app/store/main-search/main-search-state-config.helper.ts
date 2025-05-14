@@ -36,6 +36,10 @@ export class MainSearchStateConfigHelper {
         hasFilter: false
       },
       {
+        resource: Resource.BANKS,
+        hasFilter: false
+      },
+      {
         resource: Resource.SAMPLES,
         hasFilter: true
       },

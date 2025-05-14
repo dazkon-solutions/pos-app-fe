@@ -72,6 +72,8 @@ export class IconService {
       .addSvgIcon('person-add', this.setPath(`${this.path}/person-add-outlined.svg`))
       .addSvgIcon('advanced-filter', this.setPath(`${this.path}/advanced-filter-outlined.svg`))
       .addSvgIcon('advanced-filter-filled', this.setPath(`${this.path}/advanced-filter-filled.svg`))
+      .addSvgIcon('configuration', this.setPath(`${this.path}/configuration-outlined.svg`))
+      .addSvgIcon('configuration-filled', this.setPath(`${this.path}/configuration-filled.svg`))
   }                
 
   private setPath(url: string): SafeResourceUrl {

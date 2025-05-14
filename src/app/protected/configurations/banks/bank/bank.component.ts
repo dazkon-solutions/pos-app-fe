@@ -33,18 +33,18 @@ import { CustomErrorStateMatcher } from 'src/app/private/system/common/error-sta
 import { FORM_MAT_IMPORTS } from 'src/app/common/imports/form-imports';
 import { WaitingOverlayComponent } from 'src/app/private/system/common/waiting-overlay/waiting-overlay.component';
 import { 
-  CreateProductBrand, 
-  ProductBrandState, 
-  ProductBrandUIState,
-  ResetSelectedProductBrand,
-  UpdateProductBrand 
-} from 'src/app/store/product-brand';
-import { ProductBrand } from 'src/app/common/interfaces';
-import { BrandFormConfigHelper } from './brand-form-config';
+  BankState, 
+  BankUIState, 
+  CreateBank,
+  ResetSelectedBank, 
+  UpdateBank 
+} from 'src/app/store/bank';
+import { Bank } from 'src/app/common/interfaces';
+import { BankFormConfigHelper } from './bank-form-config';
 
 
 @Component({
-  selector: 'daz-brand',
+  selector: 'daz-bank',
   imports: [
     CORE_IMPORTS,
     FORM_MAT_IMPORTS,
@@ -53,23 +53,23 @@ import { BrandFormConfigHelper } from './brand-form-config';
     DialogFormActionsComponent,
     WaitingOverlayComponent
   ],
-  templateUrl: './brand.component.html',
-  styleUrl: './brand.component.scss',
+  templateUrl: './bank.component.html',
+  styleUrl: './bank.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BrandComponent implements OnDestroy {
+export class BankComponent implements OnDestroy {
   private store = inject(Store);
   private formBuilder = inject(FormBuilder);
   private dialogRef = inject(DialogRef);
   
-  isProcessing = this.store.selectSignal(ProductBrandUIState.isProcessing);
-  currentItem = this.store.selectSignal(ProductBrandState.getCurrent);
+  isProcessing = this.store.selectSignal(BankUIState.isProcessing);
+  currentItem = this.store.selectSignal(BankState.getCurrent);
   
   dialogHeaderConfig = signal<DialogHeaderConfig>({ 
-    title: LocaleKeys.titles.brand.createBrand 
+    title: LocaleKeys.titles.bank.createBank 
   });
-  createPermission = signal<Permission>(Permission.CAN_CREATE_BRAND);
-  updatePermission = signal<Permission>(Permission.CAN_UPDATE_BRAND);
+  createPermission = signal<Permission>(Permission.CAN_CREATE_BANK);
+  updatePermission = signal<Permission>(Permission.CAN_UPDATE_BANK);
   isFormEditable = signal<boolean>(true);
   isCreateMode = signal<boolean>(true);
 
@@ -79,7 +79,7 @@ export class BrandComponent implements OnDestroy {
   LocaleKeys = LocaleKeys;
 
   constructor() {
-    this.form = BrandFormConfigHelper.createForm(this.formBuilder);
+    this.form = BankFormConfigHelper.createForm(this.formBuilder);
 
     effect(() => {
       const currentItem = this.currentItem();
@@ -92,22 +92,22 @@ export class BrandComponent implements OnDestroy {
       }
 
       if (isProcessing) { 
-        this.dialogHeaderConfig.set({title: LocaleKeys.titles.brand.brand}); 
+        this.dialogHeaderConfig.set({title: LocaleKeys.titles.bank.bank}); 
       }
     });
   }
 
-  private setFormData(brand: ProductBrand): void {
-    if (!brand) return;
-    if (this.form.value.id === brand.id) return;
+  private setFormData(bank: Bank): void {
+    if (!bank) return;
+    if (this.form.value.id === bank.id) return;
 
     this.dialogHeaderConfig.set({
-      title: LocaleKeys.titles.brand.brand
+      title: LocaleKeys.titles.bank.bank
     });
     
     this.form.patchValue({
-      id: brand.id,
-      name: brand.name
+      id: bank.id,
+      name: bank.name
     }, { emitEvent: false });
   }
 
@@ -119,8 +119,8 @@ export class BrandComponent implements OnDestroy {
     }
 
     const stateAction = (this.form.value.id > 0)
-      ? new UpdateProductBrand(this.form.value)
-      : new CreateProductBrand(this.form.value);
+      ? new UpdateBank(this.form.value)
+      : new CreateBank(this.form.value);
 
     try {
       await firstValueFrom(this.store.dispatch(stateAction));
@@ -135,6 +135,6 @@ export class BrandComponent implements OnDestroy {
   } 
 
   ngOnDestroy(): void {
-    this.store.dispatch(new ResetSelectedProductBrand());
+    this.store.dispatch(new ResetSelectedBank());
   }
 }

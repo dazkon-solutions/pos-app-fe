@@ -10,3 +10,4 @@
 export * from './sample-ctrl.service';
 export * from './product-brand-ctrl.service';
 export * from './product-category-ctrl.service';
+export * from './bank-ctrl.service';

@@ -8,51 +8,58 @@
  */
 
 import { 
-  ChangeDetectionStrategy, 
+  ChangeDetectionStrategy,
   Component, 
-  signal
+  signal 
 } from '@angular/core';
-import { Permission } from 'src/app/common/enums';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
-import { GRID_VIEW_MAT_IMPORTS } from 'src/app/common/imports/grid-view-imports';
-import { ProductCategory } from 'src/app/common/interfaces';
-import { TrimTextPipe } from 'src/app/common/pipes';
+import { Permission } from 'src/app/common/enums';
+import { TableSkeletonWithImageComponent } from 'src/app/private/system/common/skeletons/table-skeleton-with-image/table-skeleton-with-image.component';
+import { TABLE_VIEW_IMPORTS } from 'src/app/common/imports/table-view-imports';
 import { AnimationPlayerComponent } from 'src/app/private/system/common/animation-player/animation-player.component';
-import { BaseGridViewComponent } from 'src/app/private/system/common/base-grid-view-component';
-import {
+import { BaseTableViewComponent } from 'src/app/private/system/common/base-table-view-component';
+import { 
   ButtonConfig, 
   ButtonStyleClass, 
   ButtonType 
 } from 'src/app/private/system/common/button';
+import { LocaleKeys } from 'src/app/common/constants';
 import { ButtonComponent } from 'src/app/private/system/common/button/button.component';
-import { GridItemSkeletonComponent } from 'src/app/private/system/common/skeletons/grid-item-skeleton/grid-item-skeleton.component';
+import { Bank } from 'src/app/common/interfaces';
 
 @Component({
-  selector: 'daz-categories-grid',
+  selector: 'daz-banks-table',
   imports: [
     CORE_IMPORTS,
-    GRID_VIEW_MAT_IMPORTS,
-    TrimTextPipe,
-    GridItemSkeletonComponent,
+    TABLE_VIEW_IMPORTS,
+    TableSkeletonWithImageComponent,
     AnimationPlayerComponent,
     ButtonComponent
   ],
-  templateUrl: './categories-grid.component.html',
-  styleUrl: './categories-grid.component.scss',
+  templateUrl: './banks-table.component.html',
+  styleUrl: './banks-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CategoriesGridComponent extends BaseGridViewComponent<ProductCategory> {
+export class BanksTableComponent extends BaseTableViewComponent<Bank> {
+  protected setDisplayedColumns(): string[] {
+    return [
+      'name',
+      'viewAction',
+      'deleteAction'
+    ];
+  }
+
   protected viewBtn = signal<ButtonConfig>({
     type: ButtonType.FLAT,
-    permission: Permission.VIEW_CATEGORY,
-    label: this.LocaleKeys.labels.buttons.view
+    permission: Permission.VIEW_BANK,
+    label: LocaleKeys.labels.buttons.view
   });
 
   protected deleteBtn = signal<ButtonConfig>({
-    type: ButtonType.MENU_ITEM,
+    type: ButtonType.MINI_FAB,
     icon: 'delete',
-    label: this.LocaleKeys.labels.buttons.delete,
-    permission: Permission.CAN_DELETE_CATEGORY,
+    tooltip: LocaleKeys.tooltips.delete,
+    permission: Permission.CAN_DELETE_BANK,
     styleClass: ButtonStyleClass.BTN_WARN
   });
 }

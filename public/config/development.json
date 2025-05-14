@@ -16,6 +16,14 @@
       "update": "categories/{id}",
       "delete": "categories/{id}",
       "checkDeletable": "categories/{id}/check-deletable"
+    },
+    "banks": {
+      "fetchAll": "banks?perPage={pageSize}&page={pageNo}&searchText={searchTerm}",
+      "fetchById": "banks/{id}",
+      "create": "banks",
+      "update": "banks/{id}",
+      "delete": "banks/{id}",
+      "checkDeletable": "banks/{id}/check-deletable"
     }
   }
 }

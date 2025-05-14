@@ -16,6 +16,7 @@ import { Permission } from 'src/app/common/enums';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { GRID_VIEW_MAT_IMPORTS } from 'src/app/common/imports/grid-view-imports';
 import { ProductBrand } from 'src/app/common/interfaces';
+import { TrimTextPipe } from 'src/app/common/pipes';
 import { AnimationPlayerComponent } from 'src/app/private/system/common/animation-player/animation-player.component';
 import { BaseGridViewComponent } from 'src/app/private/system/common/base-grid-view-component';
 import {
@@ -31,6 +32,7 @@ import { GridItemSkeletonComponent } from 'src/app/private/system/common/skeleto
   imports: [
     CORE_IMPORTS,
     GRID_VIEW_MAT_IMPORTS,
+    TrimTextPipe,
     GridItemSkeletonComponent,
     AnimationPlayerComponent,
     ButtonComponent

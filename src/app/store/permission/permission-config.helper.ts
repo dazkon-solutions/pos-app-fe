@@ -33,6 +33,12 @@ export class PermissionConfigHelper {
     'CAN_UPDATE_CATEGORY',
     'CAN_DELETE_CATEGORY',
 
+    'VIEW_BANK_LIST_PAGE',
+    'VIEW_BANK',
+    'CAN_CREATE_BANK',
+    'CAN_UPDATE_BANK',
+    'CAN_DELETE_BANK',
+
     'VIEW_SAMPLE_LIST_PAGE',
     'VIEW_SAMPLE',
     'CAN_CREATE_SAMPLE',

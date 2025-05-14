@@ -102,8 +102,7 @@ export class CategoryComponent implements OnDestroy {
     if (this.form.value.id === category.id) return;
 
     this.dialogHeaderConfig.set({
-      title: LocaleKeys.titles.category.category,
-      value: category.name
+      title: LocaleKeys.titles.category.category
     });
     
     this.form.patchValue({

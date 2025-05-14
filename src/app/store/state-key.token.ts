@@ -23,4 +23,6 @@ export enum StateKey {
   PRODUCT_BRAND = 'productBrand',
   PRODUCT_CATEGORY_UI = 'productCategoryUI',
   PRODUCT_CATEGORY = 'productCategory',
+  BANK_UI = 'bankUI',
+  BANK = 'bank',
 }

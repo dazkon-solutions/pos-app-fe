@@ -7,4 +7,8 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './trim-text.pipe';
+import { BaseUIStateModel } from "src/app/store/base-ui/base-ui-state.model";
+
+export interface BankUIStateModel extends BaseUIStateModel { 
+  //
+}
