@@ -40,9 +40,14 @@ export class MainSearchStateConfigHelper {
         hasFilter: false
       },
       {
+        resource: Resource.EXPENSE_TYPES,
+        hasFilter: false
+      },
+      {
         resource: Resource.SAMPLES,
         hasFilter: true
       },
+      
     ];
   }
 

@@ -40,6 +40,8 @@ export const LocaleKeys = {
       samples: 'titles.mainMenu.samples',
       configurations: 'titles.mainMenu.configurations',
       banks: 'titles.mainMenu.banks',
+      expenses: 'titles.mainMenu.expenses',
+      expenseTypes: 'titles.mainMenu.expenseTypes',
     },
     brand: {
       brand: 'titles.brand.brand',
@@ -52,6 +54,10 @@ export const LocaleKeys = {
     bank: {
       bank: 'titles.bank.bank',
       createBank: 'titles.bank.createBank',
+    },
+    expenseType: {
+      expenseType: 'titles.expenseType.expenseType',
+      createExpenseType: 'titles.expenseType.createExpenseType',
     },
   },
   tooltips: {
@@ -93,6 +99,11 @@ export const LocaleKeys = {
         updated: 'alerts.success.bank.updated',
         deleted: 'alerts.success.bank.deleted',
       },
+      expenseType: {
+        created: 'alerts.success.expenseType.created',
+        updated: 'alerts.success.expenseType.updated',
+        deleted: 'alerts.success.expenseType.deleted',
+      },
     },
     failed: {
       incorrectUsernamePassword: 'alerts.failed.incorrectUsernamePassword',
@@ -121,6 +132,13 @@ export const LocaleKeys = {
         creationFailed: 'alerts.failed.bank.creationFailed',
         updateFailed: 'alerts.failed.bank.updateFailed',
         deletionFailed: 'alerts.failed.bank.deletionFailed',
+      },
+      expenseType: {
+        listFetchFailed: 'alerts.failed.expenseType.listFetchFailed',
+        fetchFailed: 'alerts.failed.expenseType.fetchFailed',
+        creationFailed: 'alerts.failed.expenseType.creationFailed',
+        updateFailed: 'alerts.failed.expenseType.updateFailed',
+        deletionFailed: 'alerts.failed.expenseType.deletionFailed',
       },
     },
   },

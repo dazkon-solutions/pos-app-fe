@@ -7,13 +7,15 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export enum Resource {
-  NONE = 'NONE',
-  DASHBOARD = 'DASHBOARD',
-  PRODUCTS = 'PRODUCTS',
-  SAMPLES = 'SAMPLES',
-  BRANDS = 'BRANDS',
-  CATEGORIES = 'CATEGORIES',
-  BANKS = 'BANKS',
-  EXPENSE_TYPES = 'EXPENSE_TYPES'
+import { ExpenseTypeUIStateModel } from "./expense-type-ui-state.model";
+
+
+export class ExpenseTypeUIStateConfigHelper {
+  static createDefault(): ExpenseTypeUIStateModel {
+    return {
+      isLoading: false,
+      isListView: false,
+      isProcessing: false
+    };
+  }
 }

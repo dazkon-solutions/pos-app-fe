@@ -40,4 +40,8 @@ export const NAVIGATION_CONFIG: NavigationConfig[] = [
     permission: Permission.VIEW_BANK_LIST_PAGE,
     path: RoutePaths.BANK_LIST_PAGE
   },
+  {
+    permission: Permission.VIEW_EXPENSE_TYPE_LIST_PAGE,
+    path: RoutePaths.EXPENSE_TYPE_LIST_PAGE
+  },
 ];

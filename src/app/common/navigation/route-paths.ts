@@ -14,5 +14,6 @@ export const RoutePaths = {
   CATEGORY_LIST_PAGE: 'products/categories',
   BRAND_LIST_PAGE: 'products/brands',
   BANK_LIST_PAGE: 'configurations/banks',
+  EXPENSE_TYPE_LIST_PAGE: 'expenses/expense-types',
   POS_PAGE: 'pos',
 }

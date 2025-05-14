@@ -29,7 +29,7 @@ export class NavigationService {
       config.path === routePath);
 
     if (!navigation) {
-      console.error(`No route configured for path: ${routePath}`);
+      console.error(`No route configured for path. Check navigation config: ${routePath}`);
       return;
     };
 

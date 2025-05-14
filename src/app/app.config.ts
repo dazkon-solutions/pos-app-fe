@@ -68,6 +68,7 @@ import {
   ProductCategoryUIState 
 } from './store/product-category';
 import { BankState, BankUIState } from './store/bank';
+import { ExpenseTypeState, ExpenseTypeUIState } from './store/expense-type';
 
 
 
@@ -96,7 +97,9 @@ export const appConfig: ApplicationConfig = {
         ProductCategoryUIState,
         ProductCategoryState,
         BankUIState,
-        BankState
+        BankState,
+        ExpenseTypeUIState,
+        ExpenseTypeState
       ],
       withNgxsLoggerPlugin(),
       withNgxsStoragePlugin({
@@ -135,6 +138,10 @@ export const appConfig: ApplicationConfig = {
           },
           {
             key: StateKey.BANK_UI,
+            engine: LOCAL_STORAGE_ENGINE
+          },
+          {
+            key: StateKey.EXPENSE_TYPE_UI,
             engine: LOCAL_STORAGE_ENGINE
           }
         ]

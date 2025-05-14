@@ -7,13 +7,17 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export enum Resource {
-  NONE = 'NONE',
-  DASHBOARD = 'DASHBOARD',
-  PRODUCTS = 'PRODUCTS',
-  SAMPLES = 'SAMPLES',
-  BRANDS = 'BRANDS',
-  CATEGORIES = 'CATEGORIES',
-  BANKS = 'BANKS',
-  EXPENSE_TYPES = 'EXPENSE_TYPES'
+import { 
+  ExpenseType,
+  ExpenseTypeFilterTerms,
+  PaginateRequest
+} from "src/app/common/interfaces";
+
+export interface ExpenseTypeStateModel { 
+  list:         ExpenseType[];
+  current:      ExpenseType | null;
+  isLoaded:     boolean;
+  isFiltered:   boolean;
+  filterTerms:  ExpenseTypeFilterTerms;
+  paginate:     PaginateRequest;
 }
