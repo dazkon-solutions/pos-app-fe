@@ -7,4 +7,5 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './trim-text.pipe';
+export * from './data/bank.state';
+export * from './ui/bank-ui.state';

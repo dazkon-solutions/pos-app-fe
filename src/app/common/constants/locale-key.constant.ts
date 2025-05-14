@@ -38,6 +38,8 @@ export const LocaleKeys = {
       settings: 'titles.mainMenu.settings',
       helpDesk: 'titles.mainMenu.helpDesk',
       samples: 'titles.mainMenu.samples',
+      configurations: 'titles.mainMenu.configurations',
+      banks: 'titles.mainMenu.banks',
     },
     brand: {
       brand: 'titles.brand.brand',
@@ -46,6 +48,10 @@ export const LocaleKeys = {
     category: {
       category: 'titles.category.category',
       createCategory: 'titles.category.createCategory',
+    },
+    bank: {
+      bank: 'titles.bank.bank',
+      createBank: 'titles.bank.createBank',
     },
   },
   tooltips: {
@@ -82,6 +88,11 @@ export const LocaleKeys = {
         updated: 'alerts.success.category.updated',
         deleted: 'alerts.success.category.deleted',
       },
+      bank: {
+        created: 'alerts.success.bank.created',
+        updated: 'alerts.success.bank.updated',
+        deleted: 'alerts.success.bank.deleted',
+      },
     },
     failed: {
       incorrectUsernamePassword: 'alerts.failed.incorrectUsernamePassword',
@@ -103,6 +114,13 @@ export const LocaleKeys = {
         creationFailed: 'alerts.failed.category.creationFailed',
         updateFailed: 'alerts.failed.category.updateFailed',
         deletionFailed: 'alerts.failed.category.deletionFailed',
+      },
+      bank: {
+        listFetchFailed: 'alerts.failed.bank.listFetchFailed',
+        fetchFailed: 'alerts.failed.bank.fetchFailed',
+        creationFailed: 'alerts.failed.bank.creationFailed',
+        updateFailed: 'alerts.failed.bank.updateFailed',
+        deletionFailed: 'alerts.failed.bank.deletionFailed',
       },
     },
   },

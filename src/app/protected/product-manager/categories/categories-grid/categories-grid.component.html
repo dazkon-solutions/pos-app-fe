@@ -38,10 +38,10 @@
     <mat-card-content class="content" >
       <!-- Title section -->
       <div >
-        <mat-card-title >{{ item.name }}</mat-card-title>
+        <mat-card-title >{{ item.name | trimText: 19 }}</mat-card-title>
         <mat-card-subtitle >
           @if (item.nameLocal) {
-            {{ item.nameLocal }}
+            {{ item.nameLocal | trimText: 19 }}
           } @else {
             <span class="mat-body-small" >
               {{ LocaleKeys.titles.noTranslatedName | translate }}

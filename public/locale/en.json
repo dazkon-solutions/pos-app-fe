@@ -22,7 +22,9 @@
       "categories": "Categories",
       "settings": "Settings",
       "helpDesk": "Help Desk",
-      "samples": "Samples"
+      "samples": "Samples",
+      "configurations": "Configurations",
+      "banks": "Banks"
     },
     "brand": {
       "brand": "Brand",
@@ -31,6 +33,10 @@
     "category": {
       "category": "Category",
       "createCategory": "Create Category"
+    },
+    "bank": {
+      "bank": "Bank",
+      "createBank": "Create Bank"
     }
   },
 
@@ -68,6 +74,11 @@
         "created": "Category created",
         "updated": "Category updated",
         "deleted": "Category deleted"
+      },
+      "bank": {
+        "created": "Bank created",
+        "updated": "Bank updated",
+        "deleted": "Bank deleted"
       }
     },
     "failed": {
@@ -90,6 +101,13 @@
         "creationFailed": "Failed to create category",
         "updateFailed": "Failed to update category",
         "deletionFailed": "Failed to delete category"
+      },
+      "bank": {
+        "listFetchFailed": "Failed to fetch banks",
+        "fetchFailed": "Failed to fetch bank",
+        "creationFailed": "Failed to create bank",
+        "updateFailed": "Failed to update bank",
+        "deletionFailed": "Failed to delete bank"
       }
     }
   },

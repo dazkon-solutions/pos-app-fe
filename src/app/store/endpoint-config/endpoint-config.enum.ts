@@ -24,6 +24,13 @@ export enum Endpoint {
   CATEGORIES_DELETE = 'categories.delete',
   CATEGORIES_CHECK_DELETABLE = 'categories.checkDeletable',
 
+  BANKS_FETCH_ALL = 'banks.fetchAll',
+  BANKS_FETCH_BY_ID = 'banks.fetchById',
+  BANKS_CREATE = 'banks.create',
+  BANKS_UPDATE = 'banks.update',
+  BANKS_DELETE = 'banks.delete',
+  BANKS_CHECK_DELETABLE = 'banks.checkDeletable',
+
 
   // TODO: MODIFI
   SAMPLES_GET_PAGINATED = 'samples.getPaginated',

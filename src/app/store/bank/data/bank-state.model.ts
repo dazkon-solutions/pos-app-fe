@@ -7,4 +7,17 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './trim-text.pipe';
+import { 
+  Bank,
+  BankFilterTerms,
+  PaginateRequest
+} from "src/app/common/interfaces";
+
+export interface BankStateModel { 
+  list:         Bank[];
+  current:      Bank | null;
+  isLoaded:     boolean;
+  isFiltered:   boolean;
+  filterTerms:  BankFilterTerms;
+  paginate:     PaginateRequest;
+}

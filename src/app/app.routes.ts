@@ -37,6 +37,11 @@ export const routes: Routes = [
       .then(m => m.BrandsComponent)
   },
   { 
+    path: RoutePaths.BANK_LIST_PAGE, 
+    loadComponent: () => import('./protected/configurations/banks/banks.component')
+      .then(m => m.BanksComponent)
+  },
+  { 
     path: RoutePaths.SAMPLE_LIST_PAGE, 
     loadComponent: () => import('./protected/product-manager/sample/samples.component')
       .then(m => m.SamplesComponent)

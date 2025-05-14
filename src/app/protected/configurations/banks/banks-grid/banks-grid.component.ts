@@ -15,7 +15,7 @@ import {
 import { Permission } from 'src/app/common/enums';
 import { CORE_IMPORTS } from 'src/app/common/imports/core-imports';
 import { GRID_VIEW_MAT_IMPORTS } from 'src/app/common/imports/grid-view-imports';
-import { ProductCategory } from 'src/app/common/interfaces';
+import { Bank } from 'src/app/common/interfaces';
 import { TrimTextPipe } from 'src/app/common/pipes';
 import { AnimationPlayerComponent } from 'src/app/private/system/common/animation-player/animation-player.component';
 import { BaseGridViewComponent } from 'src/app/private/system/common/base-grid-view-component';
@@ -28,7 +28,7 @@ import { ButtonComponent } from 'src/app/private/system/common/button/button.com
 import { GridItemSkeletonComponent } from 'src/app/private/system/common/skeletons/grid-item-skeleton/grid-item-skeleton.component';
 
 @Component({
-  selector: 'daz-categories-grid',
+  selector: 'daz-banks-grid',
   imports: [
     CORE_IMPORTS,
     GRID_VIEW_MAT_IMPORTS,
@@ -37,14 +37,14 @@ import { GridItemSkeletonComponent } from 'src/app/private/system/common/skeleto
     AnimationPlayerComponent,
     ButtonComponent
   ],
-  templateUrl: './categories-grid.component.html',
-  styleUrl: './categories-grid.component.scss',
+  templateUrl: './banks-grid.component.html',
+  styleUrl: './banks-grid.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CategoriesGridComponent extends BaseGridViewComponent<ProductCategory> {
+export class BanksGridComponent extends BaseGridViewComponent<Bank> {
   protected viewBtn = signal<ButtonConfig>({
     type: ButtonType.FLAT,
-    permission: Permission.VIEW_CATEGORY,
+    permission: Permission.VIEW_BANK,
     label: this.LocaleKeys.labels.buttons.view
   });
 
@@ -52,7 +52,7 @@ export class CategoriesGridComponent extends BaseGridViewComponent<ProductCatego
     type: ButtonType.MENU_ITEM,
     icon: 'delete',
     label: this.LocaleKeys.labels.buttons.delete,
-    permission: Permission.CAN_DELETE_CATEGORY,
+    permission: Permission.CAN_DELETE_BANK,
     styleClass: ButtonStyleClass.BTN_WARN
   });
 }

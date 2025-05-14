@@ -9,8 +9,8 @@
 
 import { Permission } from "src/app/common/enums";
 import { LocaleKeys } from "src/app/common/constants";
-import { MenuNode } from "./menu.interface";
 import { RoutePaths } from "src/app/common/navigation";
+import { MenuNode } from "./menu.interface";
 
 export class MenuTreeConfigHelper {
   static createTree(): MenuNode[] {
@@ -66,6 +66,24 @@ export class MenuTreeConfigHelper {
           },
         ]
       },
+      {
+        uid: 90,
+        pid: 0,
+        name: LocaleKeys.titles.mainMenu.configurations,
+        description: LocaleKeys.titles.mainMenu.configurations,
+        icon: 'configuration',
+        permission: Permission.VIEW_CONFIGURATIONS_SECTION,
+        children: [
+          {
+            uid: 91,
+            pid: 90,
+            name: LocaleKeys.titles.mainMenu.banks,
+            description: LocaleKeys.titles.mainMenu.banks,
+            routePath: RoutePaths.BANK_LIST_PAGE,
+            permission: Permission.VIEW_BANK_LIST_PAGE
+          }, 
+        ]
+      }
     ];
 
     return items;

@@ -13,5 +13,6 @@ export const RoutePaths = {
   SAMPLE_LIST_PAGE: 'products/samples',
   CATEGORY_LIST_PAGE: 'products/categories',
   BRAND_LIST_PAGE: 'products/brands',
+  BANK_LIST_PAGE: 'configurations/banks',
   POS_PAGE: 'pos',
 }
