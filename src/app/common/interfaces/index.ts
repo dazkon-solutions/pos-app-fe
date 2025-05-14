@@ -12,3 +12,4 @@ export * from './action-response.interface';
 export * from './paginate.interface';
 export * from './deletable-response.interface';
 export * from './product-brand.interface';
+export * from './product-category.interface';

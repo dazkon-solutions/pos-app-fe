@@ -28,13 +28,17 @@ export class MainSearchStateConfigHelper {
         hasFilter: false
       },
       {
-        resource: Resource.SAMPLES,
-        hasFilter: true
+        resource: Resource.CATEGORIES,
+        hasFilter: false
       },
       {
         resource: Resource.BRANDS,
         hasFilter: false
-      }
+      },
+      {
+        resource: Resource.SAMPLES,
+        hasFilter: true
+      },
     ];
   }
 

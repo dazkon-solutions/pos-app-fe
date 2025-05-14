@@ -7,6 +7,15 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export * from './sample-ctrl.service';
-export * from './product-brand-ctrl.service';
-export * from './product-category-ctrl.service';
+import { ProductCategoryUIStateModel } from "./product-category-ui-state.model";
+
+
+export class ProductCategoryUIStateConfigHelper {
+  static createDefault(): ProductCategoryUIStateModel {
+    return {
+      isLoading: false,
+      isListView: false,
+      isProcessing: false
+    };
+  }
+}

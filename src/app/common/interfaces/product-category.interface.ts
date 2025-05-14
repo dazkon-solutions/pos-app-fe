@@ -10,26 +10,29 @@
 import { DeletableResponse } from "./deletable-response.interface";
 import { PaginateResponse } from "./paginate.interface";
 
-export interface ProductBrand {
-  id:   number;
-  name: string;
+export interface ProductCategory {
+  id:               number;
+  name:             string;
+  nameLocal:        string;
+  description:      string;
+  descriptionLocal: string;
 }
 
-export interface ProductBrandResponse {
-  brand:    ProductBrand;
+export interface ProductCategoryResponse {
+  category: ProductCategory;
   success:  boolean;
 }
 
-export interface PaginatedProductBrandResponse {
-  brands: ProductBrand[];
-  meta:   PaginateResponse;
+export interface PaginatedProductCategoryResponse {
+  categories: ProductCategory[];
+  meta:       PaginateResponse;
 }
 
-export interface ProductBrandDeletableResponse {
-  brand:   DeletableResponse;
-  success: boolean;
+export interface ProductCategoryDeletableResponse {
+  category: DeletableResponse;
+  success:  boolean;
 }
 
-export interface ProductBrandFilterTerms {
+export interface ProductCategoryFilterTerms {
   name: string;
 }

@@ -17,6 +17,13 @@ export enum Endpoint {
   BRANDS_DELETE = 'brands.delete',
   BRANDS_CHECK_DELETABLE = 'brands.checkDeletable',
 
+  CATEGORIES_FETCH_ALL = 'categories.fetchAll',
+  CATEGORIES_FETCH_BY_ID = 'categories.fetchById',
+  CATEGORIES_CREATE = 'categories.create',
+  CATEGORIES_UPDATE = 'categories.update',
+  CATEGORIES_DELETE = 'categories.delete',
+  CATEGORIES_CHECK_DELETABLE = 'categories.checkDeletable',
+
 
   // TODO: MODIFI
   SAMPLES_GET_PAGINATED = 'samples.getPaginated',

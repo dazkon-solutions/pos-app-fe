@@ -18,8 +18,8 @@ export class MenuTreeConfigHelper {
       {
         uid: 1,
         pid: 0,
-        name: LocaleKeys.titles.dashboard,
-        description: LocaleKeys.titles.dashboard,
+        name: LocaleKeys.titles.mainMenu.dashboard,
+        description: LocaleKeys.titles.mainMenu.dashboard,
         icon: 'dashboard',
         routePath: RoutePaths.DASHBOARD,
         permission: Permission.VIEW_DASHBOARD
@@ -27,35 +27,43 @@ export class MenuTreeConfigHelper {
       {
         uid: 10,
         pid: 0,
-        name: LocaleKeys.titles.products,
-        description: LocaleKeys.titles.products,
+        name: LocaleKeys.titles.mainMenu.products,
+        description: LocaleKeys.titles.mainMenu.products,
         icon: 'product',
         permission: Permission.VIEW_PRODUCTS_SECTION,
         children: [
           {
             uid: 11,
             pid: 10,
-            name: LocaleKeys.titles.products,
-            description: LocaleKeys.titles.products,
+            name: LocaleKeys.titles.mainMenu.allProducts,
+            description: LocaleKeys.titles.mainMenu.allProducts,
             routePath: RoutePaths.PRODUCT_LIST_PAGE,
             permission: Permission.VIEW_PRODUCT_LIST_PAGE
           }, 
           {
             uid: 12,
             pid: 10,
-            name: LocaleKeys.titles.samples,
-            description: LocaleKeys.titles.samples,
-            routePath: RoutePaths.SAMPLE_LIST_PAGE,
-            permission: Permission.VIEW_SAMPLE_LIST_PAGE
+            name: LocaleKeys.titles.mainMenu.categories,
+            description: LocaleKeys.titles.mainMenu.categories,
+            routePath: RoutePaths.CATEGORY_LIST_PAGE,
+            permission: Permission.VIEW_CATEGORY_LIST_PAGE
           },
           {
             uid: 13,
             pid: 10,
-            name: LocaleKeys.titles.brands,
-            description: LocaleKeys.titles.brands,
+            name: LocaleKeys.titles.mainMenu.brands,
+            description: LocaleKeys.titles.mainMenu.brands,
             routePath: RoutePaths.BRAND_LIST_PAGE,
             permission: Permission.VIEW_BRAND_LIST_PAGE
-          }
+          },
+          {
+            uid: 14,
+            pid: 10,
+            name: LocaleKeys.titles.mainMenu.samples,
+            description: LocaleKeys.titles.mainMenu.samples,
+            routePath: RoutePaths.SAMPLE_LIST_PAGE,
+            permission: Permission.VIEW_SAMPLE_LIST_PAGE
+          },
         ]
       },
     ];

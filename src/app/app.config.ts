@@ -63,6 +63,10 @@ import {
 } from './store/product-brand';
 import { SampleUIState } from './store/sample';
 import { SampleState } from './store/sample/data/sample.state';
+import { 
+  ProductCategoryState, 
+  ProductCategoryUIState 
+} from './store/product-category';
 
 
 
@@ -87,7 +91,9 @@ export const appConfig: ApplicationConfig = {
         SampleUIState,
         SampleState,
         ProductBrandUIState,
-        ProductBrandState
+        ProductBrandState,
+        ProductCategoryUIState,
+        ProductCategoryState
       ],
       withNgxsLoggerPlugin(),
       withNgxsStoragePlugin({
@@ -118,6 +124,10 @@ export const appConfig: ApplicationConfig = {
           },
           {
             key: StateKey.PRODUCT_BRAND_UI,
+            engine: LOCAL_STORAGE_ENGINE
+          },
+          {
+            key: StateKey.PRODUCT_CATEGORY_UI,
             engine: LOCAL_STORAGE_ENGINE
           }
         ]
