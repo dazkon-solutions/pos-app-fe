@@ -1,26 +1,36 @@
 {
   "titles": {
     "hi": "Hi!",
-    "dashboard": "Dashboard",
-    "products": "Products",
-    "samples": "Samples",
     "sample": "Sample",
     "createSample": "Create Sample",
-    "brands": "Brands",
     "areYouSureYouWantToDelete": "Are you sure you want to delete this item?",
     "youCannotDelete": "You can't delete this item",
-    "settings": "Settings",
-    "helpDesk": "Help Desk",
     "optionsMenu": "Options Menu",
     "noDataFound": "No Data Found",
     "calculator": "Calculator",
     "loadingList": "Loading list...",
+    "noTranslatedName": "No translated name",
     "tablesColumns": {
-      "name": "Name"
+      "name": "Name",
+      "nameTranslated": "Name (Translated)"
+    },
+    "mainMenu": {
+      "dashboard": "Dashboard",
+      "products": "Products",
+      "allProducts": "All Products",
+      "brands": "Brands",
+      "categories": "Categories",
+      "settings": "Settings",
+      "helpDesk": "Help Desk",
+      "samples": "Samples"
     },
     "brand": {
       "brand": "Brand",
       "createBrand": "Create Brand"
+    },
+    "category": {
+      "category": "Category",
+      "createCategory": "Create Category"
     }
   },
 
@@ -53,6 +63,11 @@
         "created": "Brand created",
         "updated": "Brand updated",
         "deleted": "Brand deleted"
+      },
+      "category": {
+        "created": "Category created",
+        "updated": "Category updated",
+        "deleted": "Category deleted"
       }
     },
     "failed": {
@@ -68,6 +83,13 @@
         "creationFailed": "Failed to create brand",
         "updateFailed": "Failed to update brand",
         "deletionFailed": "Failed to delete brand"
+      },
+      "category": {
+        "listFetchFailed": "Failed to fetch categories",
+        "fetchFailed": "Failed to fetch category",
+        "creationFailed": "Failed to create category",
+        "updateFailed": "Failed to update category",
+        "deletionFailed": "Failed to delete category"
       }
     }
   },
@@ -98,7 +120,9 @@
       "search": "Search",
       "usingAdvancedFilter": "Using advanced filter..",
       "name": "Name",
+      "nameTranslated": "Name (Translated)",
       "description": "Description",
+      "descriptionTranslated": "Description (Translated)",
       "createdAt": "Created at",
       "loadingList": "Loading list...",
       "title": "Title",

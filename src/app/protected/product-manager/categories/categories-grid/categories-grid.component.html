@@ -1,0 +1,101 @@
+<!-- 
+  Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
+  All rights reserved.  
+  This code is proprietary to DAZKON SOLUTIONS. 
+  Unauthorized use, reproduction, modification, distribution, or sale 
+  without the explicit written permission of DAZKON SOLUTIONS is strictly prohibited.
+  For inquiries, please contact: info@dazkonsolutions.com 
+-->
+
+<div class="grid" >
+  @if (!isLoading()) {
+    @for (item of dataSource(); track trackById($index, item)) {
+      <ng-container [ngTemplateOutlet]="GridItemTemplate" 
+                    [ngTemplateOutletContext]="{ item: item }" />
+    }
+
+    <!-- No data found animation -->
+    @if (dataSource().length < 1) {
+      <daz-animation-player [animationType]="AnimationType.NO_DATA_FOUND" />
+    }
+    <!-- End of no data found animation -->
+
+  } @else {
+    <!-- Loading animation -->
+    @for (item of defaultLoadingItems(); track item.id) {
+      <daz-grid-item-skeleton [type]="GridItemSkeletonType.NAME_CARD" />
+    }
+    <!-- End of loading animation -->
+  }
+</div>
+
+<!-- Grid item template -->
+<ng-template #GridItemTemplate 
+             let-item="item" >
+
+  <mat-card class="grid-item card" appearance="outlined" >
+    <!-- Content section -->
+    <mat-card-content class="content" >
+      <!-- Title section -->
+      <div >
+        <mat-card-title >{{ item.name }}</mat-card-title>
+        <mat-card-subtitle >
+          @if (item.nameLocal) {
+            {{ item.nameLocal }}
+          } @else {
+            <span class="mat-body-small" >
+              {{ LocaleKeys.titles.noTranslatedName | translate }}
+            </span>
+          }
+        </mat-card-subtitle>
+      </div>
+      <!-- End of title section -->
+
+    </mat-card-content>
+    <!-- End of content section -->
+
+    <mat-card-actions >
+      <!-- Action button area -->
+      <div class="action-area" >
+        <!-- Main button -->
+        <daz-button [type]="viewBtn().type"
+                    [label]="viewBtn().label"
+                    [isLoading]="false"
+                    [permission]="viewBtn().permission"
+                    (buttonClicked)="buttonClicked(Action.OPEN_FORM_DIALOG, 
+                                                   item)" />
+        <!-- End of main button -->
+      </div>
+      <!-- End of action button area -->
+
+      <span class="spacer" ></span>
+
+      <!-- Option button -->
+      <button mat-icon-button
+              [matTooltip]="LocaleKeys.tooltips.options | translate"
+              [matMenuTriggerFor]="optionMenu" 
+              [matMenuTriggerData]="{ item }" >
+        <mat-icon svgIcon="expand-less-right" />
+      </button>
+      <!-- End of option button -->
+    </mat-card-actions>
+  </mat-card>
+
+</ng-template>
+<!-- End of grid item -->
+
+
+<!-- Option menu -->
+<mat-menu #optionMenu="matMenu" 
+          xPosition="before" >
+  <ng-template matMenuContent let-item="item" >
+    <daz-button [type]="deleteBtn().type"
+                [icon]="deleteBtn().icon"
+                [label]="deleteBtn().label"
+                [permission]="deleteBtn().permission"
+                [styleClass]="deleteBtn().styleClass"
+                (buttonClicked)="buttonClicked(Action.DELETE_ITEM, 
+                                               item)" />
+  </ng-template>
+</mat-menu>
+<!-- End of option menu -->

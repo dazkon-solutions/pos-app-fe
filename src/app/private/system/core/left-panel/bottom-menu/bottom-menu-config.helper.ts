@@ -16,14 +16,14 @@ export class BottomMenuConfigHelper {
     return [
       {
         uid: 1,
-        name: LocaleKeys.titles.helpDesk,
-        description: LocaleKeys.titles.helpDesk,
+        name: LocaleKeys.titles.mainMenu.helpDesk,
+        description: LocaleKeys.titles.mainMenu.helpDesk,
         icon: 'help'
       },
       {
         uid: 2,
-        name: LocaleKeys.titles.settings,
-        description: LocaleKeys.titles.settings,
+        name: LocaleKeys.titles.mainMenu.settings,
+        description: LocaleKeys.titles.mainMenu.settings,
         icon: 'settings'
       }
     ];

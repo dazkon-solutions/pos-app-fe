@@ -8,6 +8,14 @@
       "update": "brands/{id}",
       "delete": "brands/{id}",
       "checkDeletable": "brands/{id}/check-deletable"
+    },
+    "categories": {
+      "fetchAll": "categories?perPage={pageSize}&page={pageNo}&searchText={searchTerm}",
+      "fetchById": "categories/{id}",
+      "create": "categories",
+      "update": "categories/{id}",
+      "delete": "categories/{id}",
+      "checkDeletable": "categories/{id}/check-deletable"
     }
   }
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2025 DAZKON SOLUTIONS (DAZKON PVT LTD)
+ * Copyright (c) 2024 DAZKON SOLUTIONS (DAZKON PVT LTD)
  * All rights reserved. 
  * This code is proprietary to DAZKON SOLUTIONS. 
  * Unauthorized use, reproduction, modification, distribution, or sale
@@ -7,11 +7,8 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export const RoutePaths = {
-  DASHBOARD: '',
-  PRODUCT_LIST_PAGE: 'products',
-  SAMPLE_LIST_PAGE: 'products/samples',
-  CATEGORY_LIST_PAGE: 'products/categories',
-  BRAND_LIST_PAGE: 'products/brands',
-  POS_PAGE: 'pos',
+import { BaseUIStateModel } from "src/app/store/base-ui/base-ui-state.model";
+
+export interface ProductCategoryUIStateModel extends BaseUIStateModel { 
+  //
 }
