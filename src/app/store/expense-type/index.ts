@@ -7,13 +7,5 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export enum Resource {
-  NONE = 'NONE',
-  DASHBOARD = 'DASHBOARD',
-  PRODUCTS = 'PRODUCTS',
-  SAMPLES = 'SAMPLES',
-  BRANDS = 'BRANDS',
-  CATEGORIES = 'CATEGORIES',
-  BANKS = 'BANKS',
-  EXPENSE_TYPES = 'EXPENSE_TYPES'
-}
+export * from './data/expense-type.state';
+export * from './ui/expense-type-ui.state';

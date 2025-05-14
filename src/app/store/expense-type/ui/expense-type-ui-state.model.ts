@@ -7,13 +7,8 @@
  * For inquiries, please contact: info@dazkonsolutions.com
  */
 
-export enum Resource {
-  NONE = 'NONE',
-  DASHBOARD = 'DASHBOARD',
-  PRODUCTS = 'PRODUCTS',
-  SAMPLES = 'SAMPLES',
-  BRANDS = 'BRANDS',
-  CATEGORIES = 'CATEGORIES',
-  BANKS = 'BANKS',
-  EXPENSE_TYPES = 'EXPENSE_TYPES'
+import { BaseUIStateModel } from "src/app/store/base-ui/base-ui-state.model";
+
+export interface ExpenseTypeUIStateModel extends BaseUIStateModel { 
+  //
 }

@@ -24,7 +24,9 @@
       "helpDesk": "Help Desk",
       "samples": "Samples",
       "configurations": "Configurations",
-      "banks": "Banks"
+      "banks": "Banks",
+      "expenses": "Expenses",
+      "expenseTypes": "Expense Types"
     },
     "brand": {
       "brand": "Brand",
@@ -37,6 +39,10 @@
     "bank": {
       "bank": "Bank",
       "createBank": "Create Bank"
+    },
+    "expenseType": {
+      "expenseType": "Expense Type",
+      "createExpenseType": "Create Expense Type"
     }
   },
 
@@ -79,6 +85,11 @@
         "created": "Bank created",
         "updated": "Bank updated",
         "deleted": "Bank deleted"
+      },
+      "expenseType": {
+        "created": "Expense type created",
+        "updated": "Expense type updated",
+        "deleted": "Expense type deleted"
       }
     },
     "failed": {
@@ -108,6 +119,13 @@
         "creationFailed": "Failed to create bank",
         "updateFailed": "Failed to update bank",
         "deletionFailed": "Failed to delete bank"
+      },
+      "expenseType": {
+        "listFetchFailed": "Failed to fetch expense types",
+        "fetchFailed": "Failed to fetch expense type",
+        "creationFailed": "Failed to create expense type",
+        "updateFailed": "Failed to update expense type",
+        "deletionFailed": "Failed to delete expense type"
       }
     }
   },

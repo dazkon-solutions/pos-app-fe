@@ -67,6 +67,24 @@ export class MenuTreeConfigHelper {
         ]
       },
       {
+        uid: 20,
+        pid: 0,
+        name: LocaleKeys.titles.mainMenu.expenses,
+        description: LocaleKeys.titles.mainMenu.expenses,
+        icon: 'expense',
+        permission: Permission.VIEW_EXPENSES_SECTION,
+        children: [
+          {
+            uid: 21,
+            pid: 20,
+            name: LocaleKeys.titles.mainMenu.expenseTypes,
+            description: LocaleKeys.titles.mainMenu.expenseTypes,
+            routePath: RoutePaths.EXPENSE_TYPE_LIST_PAGE,
+            permission: Permission.VIEW_EXPENSE_TYPE_LIST_PAGE
+          }, 
+        ]
+      },
+      {
         uid: 90,
         pid: 0,
         name: LocaleKeys.titles.mainMenu.configurations,

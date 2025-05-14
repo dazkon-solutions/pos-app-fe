@@ -42,6 +42,11 @@ export const routes: Routes = [
       .then(m => m.BanksComponent)
   },
   { 
+    path: RoutePaths.EXPENSE_TYPE_LIST_PAGE, 
+    loadComponent: () => import('./protected/expense-manager/expense-types/expense-types.component')
+      .then(m => m.ExpenseTypesComponent)
+  },
+  { 
     path: RoutePaths.SAMPLE_LIST_PAGE, 
     loadComponent: () => import('./protected/product-manager/sample/samples.component')
       .then(m => m.SamplesComponent)

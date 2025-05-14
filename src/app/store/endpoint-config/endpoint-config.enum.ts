@@ -31,6 +31,13 @@ export enum Endpoint {
   BANKS_DELETE = 'banks.delete',
   BANKS_CHECK_DELETABLE = 'banks.checkDeletable',
 
+  EXPENSE_TYPES_FETCH_ALL = 'expenseTypes.fetchAll',
+  EXPENSE_TYPES_FETCH_BY_ID = 'expenseTypes.fetchById',
+  EXPENSE_TYPES_CREATE = 'expenseTypes.create',
+  EXPENSE_TYPES_UPDATE = 'expenseTypes.update',
+  EXPENSE_TYPES_DELETE = 'expenseTypes.delete',
+  EXPENSE_TYPES_CHECK_DELETABLE = 'expenseTypes.checkDeletable',
+
 
   // TODO: MODIFI
   SAMPLES_GET_PAGINATED = 'samples.getPaginated',

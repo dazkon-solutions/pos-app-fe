@@ -18,6 +18,7 @@ export class ControlBarConfigHelper {
     [Resource.CATEGORIES]: Permission.CAN_CREATE_CATEGORY,
     [Resource.BRANDS]: Permission.CAN_CREATE_BRAND,
     [Resource.BANKS]: Permission.CAN_CREATE_BANK,
+    [Resource.EXPENSE_TYPES]: Permission.CAN_CREATE_EXPENSE_TYPE,
     [Resource.SAMPLES]: Permission.CAN_CREATE_SAMPLE,
   };
 
