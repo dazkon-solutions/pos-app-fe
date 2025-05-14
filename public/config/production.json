@@ -1,7 +1,37 @@
 {
   "endpoints": {
-    "serverUrl": "https://pos.be.dazkon-solution.com/api",
-
-    "fetchAll": "brands?searchText={searchTerm}&perPage={pageSize}&page={pageNo}"
+    "serverUrl": "https://test.thaproban.sewapiyasa.com/api/v1",
+    "brands": {
+      "fetchAll": "brands?perPage={pageSize}&page={pageNo}&searchText={searchTerm}",
+      "fetchById": "brands/{id}",
+      "create": "brands",
+      "update": "brands/{id}",
+      "delete": "brands/{id}",
+      "checkDeletable": "brands/{id}/check-deletable"
+    },
+    "categories": {
+      "fetchAll": "categories?perPage={pageSize}&page={pageNo}&searchText={searchTerm}",
+      "fetchById": "categories/{id}",
+      "create": "categories",
+      "update": "categories/{id}",
+      "delete": "categories/{id}",
+      "checkDeletable": "categories/{id}/check-deletable"
+    },
+    "banks": {
+      "fetchAll": "banks?perPage={pageSize}&page={pageNo}&searchText={searchTerm}",
+      "fetchById": "banks/{id}",
+      "create": "banks",
+      "update": "banks/{id}",
+      "delete": "banks/{id}",
+      "checkDeletable": "banks/{id}/check-deletable"
+    },
+    "expenseTypes": {
+      "fetchAll": "expense-types?perPage={pageSize}&page={pageNo}&searchText={searchTerm}",
+      "fetchById": "expense-types/{id}",
+      "create": "expense-types",
+      "update": "expense-types/{id}",
+      "delete": "expense-types/{id}",
+      "checkDeletable": "expense-types/{id}/check-deletable"
+    }
   }
 }
